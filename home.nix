@@ -25,6 +25,7 @@
     # Tools
     neovim
     neofetch
+    exa
 
     # Programming
     yarn
@@ -80,6 +81,11 @@
       fish_greeting = {
         description = "Greeting to show when starting a fish shell";
         body = "echo 🐟";
+      };
+      ll = {
+        wraps = "exa";
+        description = "List contents of directory using long format";
+	body = "exa -abhl --icons --group-directories-first $argv";
       };
     };
   };
