@@ -33,6 +33,9 @@
     nodejs-16_x
   ];
 
+  programs.direnv.enable = true;
+  programs.direnv.nix-direnv.enable = true;
+
   programs.fish = {
     enable = true;
     plugins = [
@@ -66,7 +69,13 @@
       if test -d (brew --prefix)"/share/fish/vendor_completions.d"
           set -gx fish_complete_path (brew --prefix)/share/fish/vendor_completions.d $fish_complete_path 
       end
+
+      direnv hook fish | source
     '';
+    shellAbbrs = {
+      vim = "nvim";
+      vi = "nvim";
+    };
     functions = {
       fish_greeting = {
         description = "Greeting to show when starting a fish shell";
