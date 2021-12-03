@@ -19,7 +19,12 @@
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
-  home.sessionPath = [ "/opt/homebrew/bin" ];
+  home = {
+    sessionPath = [ "/opt/homebrew/bin" ];
+    sessionVariables = {
+      ERL_AFLAGS = "-kernel shell_history enabled";
+    };
+  };
 
   home.packages = with pkgs; [
     # Tools
@@ -39,7 +44,7 @@
 
   programs.git = {
     enable = true;
-    ignores = [ ".DS_Store" ];
+    ignores = [ ".DS_Store" ".direnv" ];
     userName = "okkdev";
     userEmail = "dev@stehlik.me";
     includes = [
@@ -52,6 +57,7 @@
       }
     ];
     aliases = {
+      s = "status";
       p = "pull";
       a = "add";
       aa = "add .";
