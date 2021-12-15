@@ -1,29 +1,16 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 {
-  # Home Manager needs a bit of information about you and the
-  # paths it should manage.
-  home.username = "js";
-  home.homeDirectory = "/Users/js";
-
-  # This value determines the Home Manager release that your
-  # configuration is compatible with. This helps avoid breakage
-  # when a new Home Manager release introduces backwards
-  # incompatible changes.
-  #
-  # You can update Home Manager without changing this value. See
-  # the Home Manager release notes for a list of state version
-  # changes in each release.
-  home.stateVersion = "22.05";
-
-  # Let Home Manager install and manage itself.
-  programs.home-manager.enable = true;
-
   home = {
+    username = "js";
+    homeDirectory = "/Users/js";
+    stateVersion = "22.05";
     sessionPath = [ "/opt/homebrew/bin" ];
     sessionVariables = {
       ERL_AFLAGS = "-kernel shell_history enabled";
+      EDITOR = "neovim";
     };
+    file.".hushlogin".text = "";
   };
 
   home.packages = with pkgs; [
@@ -39,8 +26,20 @@
     nodejs-16_x
   ];
 
-  programs.direnv.enable = true;
-  programs.direnv.nix-direnv.enable = true;
+  home.file.".Brewfile" = {
+    source = ./Brewfile;
+    onChange = ''
+      brew bundle install --cleanup --verbose --no-upgrade --force --no-lock --global
+    '';
+  };
+  
+  programs.home-manager.enable = true;
+
+  programs.direnv = {
+    enable = true;
+    nix-direnv.enable = true;
+    enableFishIntegration = true;
+  };
 
   programs.git = {
     enable = true;
@@ -95,7 +94,7 @@
       }
     ];
     shellInit = ''
-      source /opt/homebrew/opt/asdf/libexec/asdf.fish
+      #source /opt/homebrew/opt/asdf/libexec/asdf.fish
 
       if test -d (brew --prefix)"/share/fish/completions"
           set -gx fish_complete_path (brew --prefix)/share/fish/completions $fish_complete_path 
