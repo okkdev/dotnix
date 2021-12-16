@@ -7,6 +7,7 @@ let
     "homebrew/cask-versions"
     "homebrew/core"
   ];
+
   casks = [
     "1password"
     "alacritty"
@@ -36,12 +37,15 @@ with lib; {
   home.sessionPath = [ "/opt/homebrew/bin" ];
 
   home.file.".Brewfile" = {
-    text = (concatMapStrings (tap:
-        ''tap "'' + tap + ''"
-        '') taps) 
-        + (concatMapStrings (cask:
-          ''cask "'' + cask + ''"
-          '') casks);
+    text = (concatMapStrings 
+      (tap: ''tap "'' + tap + ''"
+        '')
+      taps)
+      +
+      (concatMapStrings
+      (cask: ''cask "'' + cask + ''"
+        '')
+      casks);
     onChange = ''
       brew bundle install --cleanup --verbose --no-upgrade --force --no-lock --global
     '';

@@ -19,7 +19,6 @@
           sha256 = "1hrl22dd0aaszdanhvddvqz3aq40jp9zi2zn0v1hjnf7fx4bgpma";
         };
       }
-
       {
         name = "hydro";
         src = pkgs.fetchFromGitHub {
@@ -55,7 +54,7 @@
       ll = {
         wraps = "exa";
         description = "List contents of directory using long format";
-	body = "exa -abhl --icons --group-directories-first $argv";
+        body = "exa -abhl --icons --group-directories-first $argv";
       };
     };
   }; 
