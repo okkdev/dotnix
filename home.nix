@@ -7,7 +7,7 @@ with lib; {
     stateVersion = "22.05";
     sessionVariables = {
       ERL_AFLAGS = "-kernel shell_history enabled";
-      EDITOR = "neovim";
+      EDITOR = "nvim";
     };
     file.".hushlogin".text = "";
   };

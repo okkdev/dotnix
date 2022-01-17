@@ -20,6 +20,7 @@
       p = "pull";
       a = "add";
       aa = "add .";
+      ap = "add -p";
       c = "commit";
       cm = "commit -m";
       pp = "push";
