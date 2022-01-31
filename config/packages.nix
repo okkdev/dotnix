@@ -6,6 +6,7 @@
     neovim
     neofetch
     exa
+    bat
 
     # Programming
     yarn

@@ -30,6 +30,7 @@ let
     "spotify"
     "stremio"
     "tableplus"
+    "the-unarchiver"
     "transmission"
     "ubersicht"
     "via"
