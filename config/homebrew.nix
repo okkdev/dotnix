@@ -6,6 +6,7 @@ let
     "homebrew/cask"
     "homebrew/cask-versions"
     "homebrew/core"
+    "homebrew/cask-fonts"
   ];
 
   casks = [
@@ -37,6 +38,19 @@ let
     "visual-studio-code"
     "zoom"
   ];
+
+  fonts = [
+    "fantasque-sans-mono-nerd-font"
+    "fira-code"
+    "hasklig"
+    "hasklug-nerd-font"
+    "ibm-plex-mono"
+    "ibm-plex"
+    "inter"
+    "iosevka-nerd-font"
+    "iosevka"
+    "jetbrains-mono"
+  ]
 in
 with lib; {
   home.sessionPath = [ "/opt/homebrew/bin" ];
@@ -50,7 +64,12 @@ with lib; {
       (concatMapStrings
       (cask: ''cask "'' + cask + ''"
         '')
-      casks);
+      casks)
+      +
+      (concatMapStrings
+      (font: ''cask "font-'' + font + ''"
+        '')
+      fonts);
     onChange = ''
       brew bundle install --cleanup --verbose --no-upgrade --force --no-lock --global
     '';
