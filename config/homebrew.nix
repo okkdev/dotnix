@@ -44,13 +44,12 @@ let
     "fira-code"
     "hasklig"
     "hasklug-nerd-font"
-    "ibm-plex-mono"
     "ibm-plex"
     "inter"
     "iosevka-nerd-font"
     "iosevka"
     "jetbrains-mono"
-  ]
+  ];
 in
 with lib; {
   home.sessionPath = [ "/opt/homebrew/bin" ];
