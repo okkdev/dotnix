@@ -19,5 +19,6 @@ with lib; {
     /homebrew.nix
     /programs/shell.nix
     /programs/git.nix
+    /programs/kitty.nix
   ];
 }
