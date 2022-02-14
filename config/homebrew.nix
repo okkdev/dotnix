@@ -4,9 +4,9 @@ let
   taps = [
     "homebrew/bundle"
     "homebrew/cask"
+    "homebrew/cask-fonts"
     "homebrew/cask-versions"
     "homebrew/core"
-    "homebrew/cask-fonts"
   ];
 
   casks = [
@@ -15,6 +15,7 @@ let
     "alfred"
     "amethyst"
     "appcleaner"
+    "dbngin"
     "docker"
     "firefox-developer-edition"
     "godot"
@@ -27,6 +28,7 @@ let
     "microsoft-edge"
     "muse"
     "scroll-reverser"
+    "signal"
     "slack"
     "spotify"
     "stremio"
