@@ -8,6 +8,7 @@
     darwinLaunchOptions = [
       "--single-instance"
       "--directory=~"
+      "--listen-on=unix:/tmp/mykitty"
     ];
     font = {
       name = "FantasqueSansMono Nerd Font";
@@ -21,6 +22,7 @@
       adjust_line_height = "120%";
       macos_thicken_font = "0.5";
       background_opacity = "0.95";
+      listen_on = "unix:/tmp/mykitty";
     };
     extraConfig = "include current-theme.conf";
   };

@@ -4,7 +4,6 @@
   programs.direnv = {
     enable = true;
     nix-direnv.enable = true;
-    enableFishIntegration = true;
   };
 
   programs.fish = {
@@ -46,15 +45,52 @@
       vim = "nvim";
       vi = "nvim";
     };
+    shellAliases = {
+      ssh = "TERM=xterm-256color /usr/bin/ssh";
+      ll = "exa -abhl --icons --group-directories-first";
+    };
     functions = {
       fish_greeting = {
         description = "Greeting to show when starting a fish shell";
         body = "echo 🐟";
       };
-      ll = {
-        wraps = "exa";
-        description = "List contents of directory using long format";
-        body = "exa -abhl --icons --group-directories-first $argv";
+      switch_theme = {
+        argumentNames = "mode";
+        description = "switches global theme";
+        body = ''
+          if [ "$mode" = "dark" ]
+            osascript -l JavaScript -e "Application('System Events').appearancePreferences.darkMode = true"
+            switch_kitty_theme "Kaolin Temple"
+          else if [ "$mode" = "light" ]
+            osascript -l JavaScript -e "Application('System Events').appearancePreferences.darkMode = false"
+            switch_kitty_theme "Kaolin Light"
+          else
+            if [ (osascript -l JavaScript -e "Application('System Events').appearancePreferences.darkMode()") = "true" ]
+              switch_theme "light"
+            else
+              switch_theme "dark"
+            end
+          end
+        '';
+      };
+      switch_kitty_theme = {
+        argumentNames = "theme_name";
+        description = "changes the kitty terminal theme";
+        body = ''
+          if [ -z "$theme_name" ]
+            echo "please pass a theme as argument"
+            return
+          end
+
+          set -l current_theme (realpath ~/.config/kitty/current-theme.conf)
+
+          if kitty +kitten themes --dump-theme $theme_name > $current_theme
+            kitty @ --to unix:/tmp/mykitty set-colors -a -c $current_theme
+          else
+            echo "theme not found"
+            return
+          end
+        '';
       };
     };
   }; 
