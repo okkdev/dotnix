@@ -7,6 +7,7 @@
     neofetch
     exa
     bat
+    viddy
 
     # Programming
     yarn
