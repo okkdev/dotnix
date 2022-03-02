@@ -25,6 +25,7 @@ let
     "keka"
     "kitty"
     "maccy"
+    "mark-text"
     "microsoft-auto-update"
     "microsoft-edge"
     "muse"

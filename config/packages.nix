@@ -14,5 +14,9 @@
     beam.interpreters.erlangR24
     beam.packages.erlangR24.elixir_1_12
     nodejs-16_x
+    rustup
+
+    # Nix
+    cachix
   ];
 }
