@@ -21,6 +21,7 @@
       a = "add";
       aa = "add .";
       ap = "add -p";
+      d = "diff";
       c = "commit";
       cm = "commit -m";
       pp = "push";

@@ -20,7 +20,7 @@
       allow_remote_control = "yes";
       window_padding_width = 20;
       adjust_line_height = "120%";
-      macos_thicken_font = "0.5";
+      macos_thicken_font = "0.4";
       background_opacity = "0.95";
       listen_on = "unix:/tmp/mykitty";
     };

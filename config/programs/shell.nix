@@ -6,6 +6,8 @@
     nix-direnv.enable = true;
   };
 
+  programs.fzf.enable = true;
+
   programs.fish = {
     enable = true;
     plugins = [
