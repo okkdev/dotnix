@@ -1,7 +1,12 @@
 { config, pkgs, ... }:
 
 {
- home.packages = with pkgs; [
+  nixpkgs.config.allowUnfree = true;
+  home.file.".config/nixpkgs/config.nix".text = ''
+    { allowUnfree = true; }
+  '';
+
+  home.packages = with pkgs; [
     # Tools
     neovim
     neofetch
@@ -19,10 +24,4 @@
     # Nix
     cachix
   ];
-
-  home.file.".config/nixpkgs/config.nix".text = "
-  {
-    allowUnfree = true;
-  }
-  ";
 }
