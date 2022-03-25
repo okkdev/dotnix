@@ -33,7 +33,7 @@ git clone git@github.com:okkdev/dotnix.git
 ```
 6. Symlink config
 ```sh
-ln -s dotnix/ ~/.config/nixpkgs
+ln -s (pwd)/dotnix ~/.config/nixpkgs
 ```
 7. Activate config
 ```sh
