@@ -29,6 +29,7 @@ let
     "microsoft-auto-update"
     "microsoft-edge"
     "muse"
+    "raycast"
     "scroll-reverser"
     "signal"
     "slack"
