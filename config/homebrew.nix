@@ -15,6 +15,7 @@ let
     "alfred"
     "amethyst"
     "appcleaner"
+    "cyberduck"
     "dbngin"
     "docker"
     "firefox-developer-edition"
@@ -53,6 +54,7 @@ let
     "iosevka-nerd-font"
     "iosevka"
     "jetbrains-mono"
+    "juliamono"
   ];
 in
 with lib; {

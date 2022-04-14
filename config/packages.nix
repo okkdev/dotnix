@@ -13,11 +13,12 @@
     exa
     bat
     viddy
+    nix-info
 
     # Programming
     yarn
     beam.interpreters.erlangR24
-    beam.packages.erlangR24.elixir_1_12
+    beam.packages.erlangR24.elixir_1_13
     nodejs-16_x
     rustup
 

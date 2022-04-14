@@ -30,5 +30,6 @@
       init.defaultBranch = "main";
       core.sshCommand = "/usr/bin/ssh";
     };
+    delta.enable = true;
   };
 }

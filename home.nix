@@ -8,6 +8,7 @@ with lib; {
     sessionVariables = {
       ERL_AFLAGS = "-kernel shell_history enabled";
       EDITOR = "nvim";
+      BAT_THEME = "ansi";
     };
     file.".hushlogin".text = "";
   };
