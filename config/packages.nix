@@ -35,8 +35,8 @@ in
     beam.interpreters.erlangR24
     beam.packages.erlangR24.elixir_1_13
     nodejs-16_x
-    rustup
     go_1_18
+    rustup
 
     # Nix
     cachix

@@ -4,7 +4,10 @@
   programs.kitty = {
     enable = true;
     # workaround to use homebrew kitty
-    package = pkgs.writeShellScriptBin "_kitty" "kitty";
+    package = pkgs.runCommand "kitty" { } ''
+      mkdir -p $out/bin
+      ln -s /opt/homebrew/bin/kitty $out/bin/kitty
+    '';
     darwinLaunchOptions = [
       "--single-instance"
       "--directory=~"

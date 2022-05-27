@@ -10,7 +10,7 @@
       {
         condition = "gitdir:~/Documents/git/work/";
         contents = {
-          user.name = "js";
+          user.name = "Jen Stehlik";
           user.email = "js@cyon.ch";
         };
       }
@@ -18,13 +18,24 @@
     aliases = {
       s = "status";
       p = "pull";
+      pp = "push";
+      rb = "rebase";
+      d = "diff";
+      f = "fetch";
+
       a = "add";
       aa = "add .";
       ap = "add -p";
-      d = "diff";
+
       c = "commit";
+      amend = "commit --amend --no-edit";
       cm = "commit -m";
-      pp = "push";
+
+      r = "reset";
+      rh = "reset HEAD";
+      rhard = "reset --hard";
+
+      l = "log --graph --abbrev-commit --decorate --format=format:'%C(blue)%h%C(reset) - %C(green)(%ar)%C(reset) %s %C(italic)- %an%C(reset)%C(magenta bold)%d%C(reset)' --all";
     };
     extraConfig = {
       init.defaultBranch = "main";
