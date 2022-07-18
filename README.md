@@ -39,3 +39,8 @@ ln -s (pwd)/dotnix ~/.config/nixpkgs
 ```sh
 home-manager switch
 ```
+
+🚨 Fish needs to be added to `/etc/shells` manually:
+```sh
+sudo echo /Users/js/.nix-profile/bin/fish >> /etc/shells
+```
