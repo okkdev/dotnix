@@ -9,6 +9,10 @@ let
     "homebrew/core"
   ];
 
+  brews = [
+    "lima"
+  ];
+
   casks = [
     "1password"
     "alacritty"
@@ -19,6 +23,7 @@ let
     "cyberduck"
     "dbngin"
     "docker"
+    "figma"
     "firefox-developer-edition"
     "godot"
     "iina"
@@ -58,6 +63,12 @@ let
     "iosevka"
     "jetbrains-mono"
     "juliamono"
+    "manrope"
+  ];
+
+  mas = [
+    { name="WireGuard";  id="1451685025"; }
+    { name="Unsplash Wallpapers"; id="1284863847"; }
   ];
 in
 with lib; {
@@ -65,19 +76,24 @@ with lib; {
 
   home.file.".Brewfile" = {
     text = (concatMapStrings 
-      (tap: ''tap "'' + tap + ''"
-        '')
+      (tap: ''tap "'' + tap + "\"\n")
       taps)
       +
+      (concatMapStrings 
+      (brew: ''brew "'' + brew + "\"\n")
+      brews)
+      +
       (concatMapStrings
-      (cask: ''cask "'' + cask + ''"
-        '')
+      (cask: ''cask "'' + cask + "\"\n")
       casks)
       +
       (concatMapStrings
-      (font: ''cask "font-'' + font + ''"
-        '')
-      fonts);
+      (font: ''cask "font-'' + font + "\"\n")
+      fonts)
+      +
+      (concatMapStrings
+      ({name, id}: ''mas "'' + name + ''", id: '' + id + "\n")
+      mas);
     onChange = ''
       brew bundle install --cleanup --verbose --no-upgrade --force --no-lock --global
     '';

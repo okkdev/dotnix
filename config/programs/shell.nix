@@ -41,6 +41,11 @@
           set -gx fish_complete_path (brew --prefix)/share/fish/vendor_completions.d $fish_complete_path 
       end
 
+      fish_add_path /opt/homebrew/sbin
+
+      fish_add_path /Users/js/.ghcup/bin
+      fish_add_path $HOME/.cabal/bin
+
       fish_terminal_colors
 
       direnv hook fish | source
@@ -48,6 +53,8 @@
     shellAbbrs = {
       vim = "nvim";
       vi = "nvim";
+      top = "btm";
+      npm = "pnpm";
     };
     shellAliases = {
       ssh = "TERM=xterm-256color /usr/bin/ssh";

@@ -25,18 +25,26 @@ in
     neofetch
     exa
     bat
+    tealdeer
+    fd
+    ripgrep
     viddy
     jq
     nix-info
     comet
+    httpie
+    bottom
 
     # Programming
-    yarn
     beam.interpreters.erlangR24
     beam.packages.erlangR24.elixir_1_13
     nodejs-16_x
+    yarn
+    nodePackages.pnpm
     go_1_18
     rustup
+    elmPackages.elm
+    llvm
 
     # Nix
     cachix
