@@ -38,6 +38,15 @@
           sha256 = "0mb01y1d0g8ilsr5m8a71j6xmqlyhf8w4xjf00wkk8k41cz3ypky";   
         };
       }
+      {
+      name = "puffer-fish";
+        src = pkgs.fetchFromGitHub {
+          owner = "nickeb96";
+          repo = "puffer-fish";
+          rev = "41721259f16b9695d582a8de8d656d4e429d7eea";
+          sha256 = "sha256-TdGyrAlL7aMxNtemxzOwTaOI+bbQ4zML2N2tV300FM8=";   
+        };
+      }
     ];
     shellInit = ''
       #source /opt/homebrew/opt/asdf/libexec/asdf.fish
@@ -56,6 +65,7 @@
       fish_add_path $HOME/.cabal/bin
 
       fish_terminal_colors
+      set --global hydro_symbol_prompt ➜
 
       direnv hook fish | source
     '';
