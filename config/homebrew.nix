@@ -27,6 +27,7 @@ let
     "firefox-developer-edition"
     "godot"
     "iina"
+    "inkscape"
     "insomnia"
     "iterm2-beta"
     "keka"
@@ -53,6 +54,8 @@ let
   ];
 
   fonts = [
+    "cascadia-code"
+    "cozette"
     "fantasque-sans-mono-nerd-font"
     "fira-code"
     "hasklig"

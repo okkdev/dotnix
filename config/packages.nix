@@ -34,10 +34,13 @@ in
     comet
     httpie
     bottom
+    dogdns
+    du-dust
+    yt-dlp
 
     # Programming
-    beam.interpreters.erlangR24
-    beam.packages.erlangR24.elixir_1_13
+    beam.interpreters.erlangR25
+    beam.packages.erlangR25.elixir_1_14
     nodejs-16_x
     yarn
     nodePackages.pnpm
