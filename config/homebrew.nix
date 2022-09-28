@@ -7,10 +7,14 @@ let
     "homebrew/cask-fonts"
     "homebrew/cask-versions"
     "homebrew/core"
+    "homebrew/services"
+    "koekeishiya/formulae"
   ];
 
   brews = [
     "lima"
+    "skhd"
+    "yabai"
   ];
 
   casks = [
@@ -18,6 +22,7 @@ let
     "alacritty"
     "alfred"
     "amethyst"
+    "android-file-transfer"
     "appcleaner"
     "balenaetcher"
     "cyberduck"

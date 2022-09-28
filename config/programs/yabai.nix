@@ -1,0 +1,97 @@
+{ config, pkgs, ... }:
+
+{
+  home.file.yabai = {
+    executable = true;
+    target = ".config/yabai/yabairc";
+    text = ''
+      #!/usr/bin/env sh
+
+      # global settings
+      yabai -m config mouse_follows_focus          on
+      yabai -m config focus_follows_mouse          off
+      yabai -m config window_origin_display        default
+      yabai -m config window_placement             second_child
+      yabai -m config window_topmost               off
+      yabai -m config window_shadow                on
+      yabai -m config window_opacity               off
+      yabai -m config window_opacity_duration      0.0
+      yabai -m config active_window_opacity        1.0
+      yabai -m config normal_window_opacity        0.90
+      yabai -m config window_border                off
+      yabai -m config window_border_width          6
+      yabai -m config active_window_border_color   0xff775759
+      yabai -m config normal_window_border_color   0xff555555
+      yabai -m config insert_feedback_color        0xffd75f5f
+      yabai -m config split_ratio                  0.50
+      yabai -m config auto_balance                 off
+      yabai -m config mouse_modifier               fn
+      yabai -m config mouse_action1                move
+      yabai -m config mouse_action2                resize
+      yabai -m config mouse_drop_action            swap
+
+      # general space settings
+      yabai -m config layout                       bsp
+      # yabai -m config top_padding                  40
+      yabai -m config external_bar                 all:40:0
+      yabai -m config bottom_padding               20
+      yabai -m config left_padding                 20
+      yabai -m config right_padding                20
+      yabai -m config window_gap                   15
+
+      # rules
+      yabai -m rule --add app="^System Preferences$" manage=off
+      yabai -m rule --add app="^1Password 7$" manage=off
+      yabai -m rule --add app="^Keka$" manage=off
+      yabai -m rule --add title='^Archive Utility$' manage=off
+
+      echo "yabai configuration loaded.."
+    '';
+    onChange = ''
+      brew services restart yabai
+    '';
+  };
+
+  home.file.skhd = {
+    executable = true;
+    target = ".config/skhd/skhdrc";
+    text = let
+      modMask = "shift + alt";
+      moveMask = "ctrl + shift + alt";
+    in ''
+      # focus window
+      ${modMask} - h : yabai -m window --focus west
+      ${modMask} - j : yabai -m window --focus south
+      ${modMask} - k : yabai -m window --focus north
+      ${modMask} - l : yabai -m window --focus east
+      # swap managed window
+      ${moveMask} - h : yabai -m window --swap west
+      ${moveMask} - j : yabai -m window --swap south
+      ${moveMask} - k : yabai -m window --swap north
+      ${moveMask} - l : yabai -m window --swap east
+      # focus monitor
+      ${modMask} - u  : yabai -m display --focus prev
+      ${modMask} - i  : yabai -m display --focus next
+      # send window to monitor and follow focus
+      ${moveMask} - u  : yabai -m window --display prev; yabai -m display --focus prev
+      ${moveMask} - i  : yabai -m window --display next; yabai -m display --focus next
+      # balance size of windows
+      ${modMask} - space : yabai -m space --balance
+      # send window to desktop and follow focus
+      # shift + cmd - z : yabai -m window --space next; yabai -m space --focus next
+      # shift + cmd - 2 : yabai -m window --space  2; yabai -m space --focus 2
+      # increase window size
+      ${modMask} - 0x21 : yabai -m window --resize left:-20:0
+      ${modMask} - 0x1E : yabai -m window --resize right:-20:0
+      # decrease window size
+      # shift + cmd - s : yabai -m window --resize bottom:0:-20
+      # shift + cmd - w : yabai -m window --resize top:0:20
+      # float / unfloat window and center on screen
+      ${modMask} - t : yabai -m window --toggle float; \
+                yabai -m window --grid 4:4:1:1:2:2
+    '';
+    onChange = ''
+      brew services restart skhd
+    '';
+  };
+}

@@ -22,5 +22,6 @@ with lib; {
     /programs/shell.nix
     /programs/git.nix
     /programs/kitty.nix
+    /programs/yabai.nix
   ];
 }
