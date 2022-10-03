@@ -53,7 +53,6 @@ let
     "tableplus"
     "transmission"
     "ubersicht"
-    "via"
     "visual-studio-code"
     "zoom"
   ];

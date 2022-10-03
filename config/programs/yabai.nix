@@ -1,6 +1,6 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
-{
+with lib; {
   home.file.yabai = {
     executable = true;
     target = ".config/yabai/yabairc";
@@ -58,6 +58,12 @@
     text = let
       modMask = "shift + alt";
       moveMask = "ctrl + shift + alt";
+      focusSpaceLeft = ''
+        osascript -e 'tell app "System Events" to key code "4" using {control down, shift down}'
+      '';
+      focusSpaceRight = ''
+        osascript -e 'tell app "System Events" to key code "37" using {control down, shift down}'
+      '';
     in ''
       # focus window
       ${modMask} - h : yabai -m window --focus west
@@ -69,23 +75,31 @@
       ${moveMask} - j : yabai -m window --swap south
       ${moveMask} - k : yabai -m window --swap north
       ${moveMask} - l : yabai -m window --swap east
+      # send window to space
+      ${concatMapStrings (n: moveMask + " - " + n + " : yabai -m window --space " + n + "\n") (map toString (range 1 9))}
+      # send window to space and follow focus
+      ${moveMask} - u : yabai -m window --space prev; ${focusSpaceLeft}
+      ${moveMask} - i : yabai -m window --space next; ${focusSpaceRight}
       # focus monitor
-      ${modMask} - u  : yabai -m display --focus prev
-      ${modMask} - i  : yabai -m display --focus next
+      ${modMask} - w : yabai -m display --focus prev
+      ${modMask} - e : yabai -m display --focus next
+      ${modMask} - r : yabai -m display --focus recent
       # send window to monitor and follow focus
-      ${moveMask} - u  : yabai -m window --display prev; yabai -m display --focus prev
-      ${moveMask} - i  : yabai -m window --display next; yabai -m display --focus next
+      ${moveMask} - w : yabai -m window --display prev; yabai -m display --focus prev
+      ${moveMask} - e : yabai -m window --display next; yabai -m display --focus next
+      ${moveMask} - r : yabai -m window --display recent; yabai -m display --focus recent
       # balance size of windows
       ${modMask} - space : yabai -m space --balance
-      # send window to desktop and follow focus
-      # shift + cmd - z : yabai -m window --space next; yabai -m space --focus next
-      # shift + cmd - 2 : yabai -m window --space  2; yabai -m space --focus 2
       # increase window size
-      ${modMask} - 0x21 : yabai -m window --resize left:-20:0
-      ${modMask} - 0x1E : yabai -m window --resize right:-20:0
+      ${modMask} - left : yabai -m window --resize left:-20:0
+      ${modMask} - right : yabai -m window --resize right:20:0
+      ${modMask} - up : yabai -m window --resize top:-20:0
+      ${modMask} - down : yabai -m window --resize bottom:20:0
       # decrease window size
-      # shift + cmd - s : yabai -m window --resize bottom:0:-20
-      # shift + cmd - w : yabai -m window --resize top:0:20
+      ${moveMask} - left : yabai -m window --resize left:20:0
+      ${moveMask} - right : yabai -m window --resize right:-20:0
+      ${moveMask} - up : yabai -m window --resize top:20:0
+      ${moveMask} - down : yabai -m window --resize bottom:-20:0
       # float / unfloat window and center on screen
       ${modMask} - t : yabai -m window --toggle float; \
                 yabai -m window --grid 4:4:1:1:2:2
