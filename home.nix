@@ -16,7 +16,7 @@ with lib; {
 
   programs.home-manager.enable = true;
 
-  imports = map (x: ./config + x) [
+  imports = map (x: ./home + x) [
     /macos.nix
     /packages.nix
     /homebrew.nix

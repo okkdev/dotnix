@@ -40,6 +40,8 @@
     extraConfig = {
       init.defaultBranch = "main";
       core.sshCommand = "/usr/bin/ssh";
+      push.default = "current";
+      push.autoSetupRemote = true;
     };
     delta.enable = true;
   };

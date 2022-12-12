@@ -3,9 +3,9 @@
 let
   comet = pkgs.stdenv.mkDerivation rec {
     name = "comet-${version}";
-    version = "0.0.5";
+    version = "v0.0.5";
     src = pkgs.fetchurl {
-      url = "https://github.com/liamg/comet/releases/download/v${version}/comet-darwin-arm64";
+      url = "https://github.com/liamg/comet/releases/download/${version}/comet-darwin-arm64";
       sha256 = "sha256-UMB7TMhZeVQZVoNZBuUT+0IeaYdeSBk/4mNhdzo+Q4o=";
     };
     phases = [ "installPhase" ];
