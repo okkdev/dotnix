@@ -20,6 +20,8 @@
       p = "pull";
       pp = "push";
       rb = "rebase";
+      sw = "switch";
+      swc = "switch -c";
       d = "diff";
       f = "fetch";
 
