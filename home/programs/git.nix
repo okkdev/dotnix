@@ -34,8 +34,9 @@
       cm = "commit -m";
 
       r = "reset";
-      rh = "reset HEAD";
+      rhead = "reset HEAD";
       rhard = "reset --hard";
+      undo = "reset HEAD~1 --mixed";
 
       l = "log --graph --abbrev-commit --decorate --format=format:'%C(blue)%h%C(reset) - %C(green)(%ar)%C(reset) %s %C(italic)- %an%C(reset)%C(magenta bold)%d%C(reset)' --all";
     };
