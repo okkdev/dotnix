@@ -4,7 +4,7 @@ with lib; {
   home = {
     username = "js";
     homeDirectory = "/Users/js";
-    stateVersion = "22.05";
+    stateVersion = "23.05";
     sessionVariables = {
       ERL_AFLAGS = "-kernel shell_history enabled";
       ELIXIR_EDITOR = "code --goto __FILE__:__LINE__";
@@ -24,5 +24,6 @@ with lib; {
     /programs/git.nix
     /programs/kitty.nix
     /programs/yabai.nix
+    /programs/neovim
   ];
 }
