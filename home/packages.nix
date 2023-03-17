@@ -21,7 +21,6 @@ in
 
   home.packages = with pkgs; [
     # Tools
-    neovim
     neofetch
     exa
     bat
@@ -41,13 +40,15 @@ in
     # Programming
     beam.interpreters.erlangR25
     beam.packages.erlangR25.elixir_1_14
-    nodejs-16_x
+    nodejs-19_x
     yarn
     nodePackages.pnpm
     go_1_18
     rustup
+    libiconv
     elmPackages.elm
     llvm
+    python39
 
     # Nix
     cachix

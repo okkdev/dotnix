@@ -25,12 +25,15 @@ let
     "android-file-transfer"
     "appcleaner"
     "balenaetcher"
+    "blender"
     "cyberduck"
+    "darktable"
     "dbngin"
     "diffusionbee"
     "docker"
     "figma"
     "firefox-developer-edition"
+    "freecad"
     "godot"
     "handbrake"
     "iina"
@@ -38,6 +41,7 @@ let
     "insomnia"
     "iterm2-beta"
     "keka"
+    "kicad"
     "kitty"
     "logseq"
     "maccy"
@@ -45,7 +49,9 @@ let
     "microsoft-auto-update"
     "microsoft-edge"
     "muse"
+    "neovide"
     "obs"
+    "openscad"
     "qbittorrent"
     "raycast"
     "scroll-reverser"
@@ -78,35 +84,35 @@ let
   ];
 
   mas = [
-    { name="WireGuard";  id="1451685025"; }
-    { name="Unsplash Wallpapers"; id="1284863847"; }
+    { name = "WireGuard"; id = "1451685025"; }
+    { name = "Unsplash Wallpapers"; id = "1284863847"; }
   ];
 in
 with lib; {
   home.sessionPath = [ "/opt/homebrew/bin" ];
 
   home.file.".Brewfile" = {
-    text = (concatMapStrings 
+    text = (concatMapStrings
       (tap: ''tap "'' + tap + "\"\n")
       taps)
-      +
-      (concatMapStrings 
+    +
+    (concatMapStrings
       (brew: ''brew "'' + brew + "\"\n")
       brews)
-      +
-      (concatMapStrings
+    +
+    (concatMapStrings
       (cask: ''cask "'' + cask + "\"\n")
       casks)
-      +
-      (concatMapStrings
+    +
+    (concatMapStrings
       (font: ''cask "font-'' + font + "\"\n")
       fonts)
-      +
-      (concatMapStrings
-      ({name, id}: ''mas "'' + name + ''", id: '' + id + "\n")
+    +
+    (concatMapStrings
+      ({ name, id }: ''mas "'' + name + ''", id: '' + id + "\n")
       mas);
     onChange = ''
-      brew bundle install --cleanup --verbose --no-upgrade --force --no-lock --global
+      $DRY_RUN_CMD brew bundle install --cleanup --verbose --no-upgrade --force --no-lock --global
     '';
   };
 }

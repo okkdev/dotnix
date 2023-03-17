@@ -4,9 +4,17 @@
   programs.direnv = {
     enable = true;
     nix-direnv.enable = true;
+    config.global = {
+      load_dotenv = true;
+    };
   };
 
   programs.fzf.enable = true;
+
+  programs.zoxide = {
+    enable = true;
+    enableFishIntegration = true;
+  };
 
   programs.fish = {
     enable = true;
@@ -30,21 +38,21 @@
         };
       }
       {
-      name = "bass";
+        name = "bass";
         src = pkgs.fetchFromGitHub {
           owner = "edc";
           repo = "bass";
           rev = "2fd3d2157d5271ca3575b13daec975ca4c10577a";
-          sha256 = "0mb01y1d0g8ilsr5m8a71j6xmqlyhf8w4xjf00wkk8k41cz3ypky";   
+          sha256 = "0mb01y1d0g8ilsr5m8a71j6xmqlyhf8w4xjf00wkk8k41cz3ypky";
         };
       }
       {
-      name = "puffer-fish";
+        name = "puffer-fish";
         src = pkgs.fetchFromGitHub {
           owner = "nickeb96";
           repo = "puffer-fish";
           rev = "41721259f16b9695d582a8de8d656d4e429d7eea";
-          sha256 = "sha256-TdGyrAlL7aMxNtemxzOwTaOI+bbQ4zML2N2tV300FM8=";   
+          sha256 = "sha256-TdGyrAlL7aMxNtemxzOwTaOI+bbQ4zML2N2tV300FM8=";
         };
       }
     ];
@@ -71,8 +79,6 @@
       direnv hook fish | source
     '';
     shellAbbrs = {
-      vim = "nvim";
-      vi = "nvim";
       top = "btm";
       npm = "pnpm";
     };
@@ -123,48 +129,48 @@
           end
         '';
       };
-      fish_terminal_colors ={
+      fish_terminal_colors = {
         description = "set fish colors to use terminal colors";
-	body = ''
-	  # Syntax highlighting variables
-	  # https://fishshell.com/docs/current/interactive.html#syntax-highlighting-variables
-	  set -U fish_color_normal normal
-	  set -U fish_color_command magenta
-	  set -U fish_color_keyword blue
-	  set -U fish_color_quote yellow
-	  set -U fish_color_redirection green
-	  set -U fish_color_end brblack
-	  set -U fish_color_error red
-	  set -U fish_color_param cyan
-	  set -U fish_color_comment brblack
-	  set -U fish_color_selection --reverse
-	  set -U fish_color_operator normal
-	  set -U fish_color_escape green
-	  set -U fish_color_autosuggestion brblack
-	  set -U fish_color_cwd cyan
-	  set -U fish_color_user yellow
-	  set -U fish_color_host blue
-	  set -U fish_color_host_remote magenta
-	  set -U fish_color_cancel normal
-	  set -U fish_color_search_match --background=black
+        body = ''
+          	  # Syntax highlighting variables
+          	  # https://fishshell.com/docs/current/interactive.html#syntax-highlighting-variables
+          	  set -U fish_color_normal normal
+          	  set -U fish_color_command magenta
+          	  set -U fish_color_keyword blue
+          	  set -U fish_color_quote yellow
+          	  set -U fish_color_redirection green
+          	  set -U fish_color_end brblack
+          	  set -U fish_color_error red
+          	  set -U fish_color_param cyan
+          	  set -U fish_color_comment brblack
+          	  set -U fish_color_selection --reverse
+          	  set -U fish_color_operator normal
+          	  set -U fish_color_escape green
+          	  set -U fish_color_autosuggestion brblack
+          	  set -U fish_color_cwd cyan
+          	  set -U fish_color_user yellow
+          	  set -U fish_color_host blue
+          	  set -U fish_color_host_remote magenta
+          	  set -U fish_color_cancel normal
+          	  set -U fish_color_search_match --background=black
 
-	  # Pager color variables
-	  # https://fishshell.com/docs/current/interactive.html#pager-color-variables
-	  set -U fish_pager_color_progress cyan
-	  set -U fish_pager_color_background
-	  set -U fish_pager_color_prefix blue
-	  set -U fish_pager_color_completion normal
-	  set -U fish_pager_color_description normal
-	  set -U fish_pager_color_selected_background --reverse
-	  set -U fish_pager_color_selected_prefix
-	  set -U fish_pager_color_selected_completion
-	  set -U fish_pager_color_selected_description
-	  set -U fish_pager_color_secondary_background
-	  set -U fish_pager_color_secondary_prefix blue
-	  set -U fish_pager_color_secondary_completion normal
-	  set -U fish_pager_color_secondary_description normal
-	'';
+          	  # Pager color variables
+          	  # https://fishshell.com/docs/current/interactive.html#pager-color-variables
+          	  set -U fish_pager_color_progress cyan
+          	  set -U fish_pager_color_background
+          	  set -U fish_pager_color_prefix blue
+          	  set -U fish_pager_color_completion normal
+          	  set -U fish_pager_color_description normal
+          	  set -U fish_pager_color_selected_background --reverse
+          	  set -U fish_pager_color_selected_prefix
+          	  set -U fish_pager_color_selected_completion
+          	  set -U fish_pager_color_selected_description
+          	  set -U fish_pager_color_secondary_background
+          	  set -U fish_pager_color_secondary_prefix blue
+          	  set -U fish_pager_color_secondary_completion normal
+          	  set -U fish_pager_color_secondary_description normal
+          	'';
       };
     };
-  }; 
+  };
 }
