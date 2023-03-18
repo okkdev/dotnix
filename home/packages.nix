@@ -40,6 +40,7 @@ in
     # Programming
     beam.interpreters.erlangR25
     beam.packages.erlangR25.elixir_1_14
+    elixir_ls
     nodejs-19_x
     yarn
     nodePackages.pnpm

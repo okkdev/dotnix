@@ -14,12 +14,15 @@
       nvim-treesitter
       plenary-nvim
       telescope-nvim
+      telescope-fzf-native-nvim
       nvim-lspconfig
       nvim-cmp
+      cmp-nvim-lsp
       cmp-buffer
       cmp-cmdline
-      cmp-nvim-lsp
       cmp-path
+      luasnip
+      cmp_luasnip
       undotree
       leap-nvim
       vim-sleuth
