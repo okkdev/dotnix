@@ -48,7 +48,7 @@ with lib; {
       echo "yabai configuration loaded.."
     '';
     onChange = ''
-      brew services restart yabai
+      yabai --restart-service
     '';
   };
 
@@ -107,7 +107,7 @@ with lib; {
                   yabai -m window --grid 4:4:1:1:2:2
       '';
     onChange = ''
-      brew services restart skhd
+      skhd --restart-service
     '';
   };
 }

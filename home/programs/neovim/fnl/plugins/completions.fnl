@@ -2,6 +2,7 @@
 (local luasnip (require :luasnip))
 
 (luasnip.config.setup {})
+((. (require :luasnip.loaders.from_vscode) :lazy_load))
 
 (cmp.setup {:mapping (cmp.mapping.preset.insert {:<C-Space> (cmp.mapping.complete {})
                                                  :<C-d> (cmp.mapping.scroll_docs (- 4))

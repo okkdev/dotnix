@@ -9,6 +9,6 @@
 (require :plugins.undotree)
 (require :plugins.which_key)
 (require :plugins.comment)
-(require :plugins.cmp)
+(require :plugins.completions)
 (require :plugins.lsp_config)
 

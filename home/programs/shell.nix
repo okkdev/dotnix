@@ -68,6 +68,7 @@
       end
 
       fish_add_path /opt/homebrew/sbin
+      fish_add_path /opt/homebrew/bin
 
       fish_add_path /Users/js/.ghcup/bin
       fish_add_path $HOME/.cabal/bin

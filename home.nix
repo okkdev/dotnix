@@ -25,5 +25,6 @@ with lib; {
     /programs/kitty.nix
     /programs/yabai.nix
     /programs/neovim
+    /programs/helix.nix
   ];
 }

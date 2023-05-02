@@ -23,6 +23,7 @@
       cmp-path
       luasnip
       cmp_luasnip
+      friendly-snippets
       undotree
       leap-nvim
       vim-sleuth
@@ -44,7 +45,7 @@
     "nvim/fnl" = {
       source = ./fnl;
       onChange = ''
-        $DRY_RUN_CMD rm -rf "$HOME/.cache/nvim/hotpot/"
+        rm -rf "$HOME/.cache/nvim/hotpot/"
       '';
     };
   };

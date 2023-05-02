@@ -20,7 +20,6 @@ let
   casks = [
     "1password"
     "alacritty"
-    "alfred"
     "amethyst"
     "android-file-transfer"
     "appcleaner"
@@ -31,9 +30,11 @@ let
     "dbngin"
     "diffusionbee"
     "docker"
+    "fightcade"
     "figma"
     "firefox-developer-edition"
     "freecad"
+    "gimp"
     "godot"
     "handbrake"
     "iina"
@@ -44,10 +45,9 @@ let
     "kicad"
     "kitty"
     "logseq"
+    "losslesscut"
     "maccy"
     "mark-text"
-    "microsoft-auto-update"
-    "microsoft-edge"
     "muse"
     "neovide"
     "obs"
@@ -112,7 +112,7 @@ with lib; {
       ({ name, id }: ''mas "'' + name + ''", id: '' + id + "\n")
       mas);
     onChange = ''
-      $DRY_RUN_CMD brew bundle install --cleanup --verbose --no-upgrade --force --no-lock --global
+      /opt/homebrew/bin/brew bundle install --cleanup --verbose --no-upgrade --force --no-lock --global
     '';
   };
 }

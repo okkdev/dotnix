@@ -15,7 +15,7 @@
     ];
     font = {
       name = "FantasqueSansMono Nerd Font";
-      size = 15;
+      size = 16;
     };
     settings = {
       hide_window_decorations = "titlebar-only";
@@ -23,7 +23,7 @@
       allow_remote_control = "yes";
       window_padding_width = 20;
       adjust_line_height = "120%";
-      macos_thicken_font = "0.4";
+      macos_thicken_font = "0.2";
       background_opacity = "0.95";
       listen_on = "unix:/tmp/mykitty";
     };
