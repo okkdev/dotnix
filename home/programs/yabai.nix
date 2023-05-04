@@ -48,7 +48,7 @@ with lib; {
       echo "yabai configuration loaded.."
     '';
     onChange = ''
-      yabai --restart-service
+      /opt/homebrew/bin/yabai --restart-service
     '';
   };
 
@@ -77,6 +77,9 @@ with lib; {
         ${moveMask} - j : yabai -m window --swap south
         ${moveMask} - k : yabai -m window --swap north
         ${moveMask} - l : yabai -m window --swap east
+        # rotate space
+        ${moveMask} - n : yabai -m space --rotate 270
+        ${moveMask} - m : yabai -m space --rotate 90
         # send window to space
         ${concatMapStrings (n: moveMask + " - " + n + " : yabai -m window --space " + n + "\n") (map toString (range 1 9))}
         # send window to space and follow focus
@@ -107,7 +110,7 @@ with lib; {
                   yabai -m window --grid 4:4:1:1:2:2
       '';
     onChange = ''
-      skhd --restart-service
+      /opt/homebrew/bin/skhd --restart-service
     '';
   };
 }
