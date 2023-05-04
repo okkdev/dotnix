@@ -74,8 +74,10 @@
       fish_add_path $HOME/.cabal/bin
 
       fish_terminal_colors
-      set --global hydro_symbol_prompt " ➜"
-      set --global hydro_multiline true
+      set -U hydro_symbol_prompt " ➜"
+      set -U hydro_multiline true
+
+      set -U NEOVIDE_FRAME buttonless
 
       direnv hook fish | source
     '';

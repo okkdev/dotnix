@@ -10,6 +10,7 @@ with lib; {
       ELIXIR_EDITOR = "code --goto __FILE__:__LINE__";
       EDITOR = "nvim";
       BAT_THEME = "ansi";
+      NEOVIDE_FRAME = "buttonless";
     };
     file.".hushlogin".text = "";
   };

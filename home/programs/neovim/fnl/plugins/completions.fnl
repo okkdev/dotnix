@@ -2,7 +2,7 @@
 (local luasnip (require :luasnip))
 
 (luasnip.config.setup {})
-((. (require :luasnip.loaders.from_vscode) :lazy_load))
+((. (require :luasnip.loaders.from_vscode) :lazy_load) {:paths :/Users/js/.local/share/nvim/site/pack/packer/start/friendly-snippets})
 
 (cmp.setup {:mapping (cmp.mapping.preset.insert {:<C-Space> (cmp.mapping.complete {})
                                                  :<C-d> (cmp.mapping.scroll_docs (- 4))
