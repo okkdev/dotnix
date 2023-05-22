@@ -29,6 +29,7 @@
       vim-sleuth
       which-key-nvim
       comment-nvim
+      toggleterm-nvim
 
       # language
       conjure
