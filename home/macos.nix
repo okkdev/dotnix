@@ -14,4 +14,14 @@
       ApplePressAndHoldEnabled = false;
     };
   };
+  launchd.agents.load-ssh-keys = {
+    enable = true;
+    config = {
+      ProgramArguments = [
+        "/usr/bin/ssh-add"
+        "--apple-load-keychain"
+      ];
+      RunAtLoad = true;
+    };
+  };
 }

@@ -15,7 +15,7 @@
     ];
     font = {
       name = "FantasqueSansMono Nerd Font";
-      size = 16;
+      size = 15;
     };
     settings = {
       hide_window_decorations = "titlebar-only";
