@@ -14,8 +14,8 @@
       "--listen-on=unix:/tmp/mykitty"
     ];
     font = {
-      name = "FantasqueSansMono Nerd Font";
-      size = 15;
+      name = "FantasqueSansM Nerd Font";
+      size = 16;
     };
     settings = {
       hide_window_decorations = "titlebar-only";
