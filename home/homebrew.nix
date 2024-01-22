@@ -19,13 +19,13 @@ let
 
   casks = [
     "1password"
-    "alacritty"
     "amethyst"
     "android-file-transfer"
     "appcleaner"
     "arc"
     "balenaetcher"
     "blender"
+    "bruno"
     "cyberduck"
     "darktable"
     "dbngin"
@@ -54,6 +54,8 @@ let
     "neovide"
     "obs"
     "openscad"
+    "orbstack"
+    "orcaslicer"
     "qbittorrent"
     "raycast"
     "scroll-reverser"
