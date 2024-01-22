@@ -22,11 +22,13 @@ in
   home.packages = with pkgs; [
     # Tools
     neofetch
-    exa
+    eza
     bat
     tealdeer
     fd
     ripgrep
+    fzf
+    tree-sitter
     viddy
     jq
     nix-info
@@ -39,19 +41,22 @@ in
 
     # Programming
     beam.interpreters.erlangR25
-    beam.packages.erlangR25.elixir_1_14
+    beam.packages.erlangR26.elixir_1_15
     elixir_ls
-    nodejs-19_x
-    yarn
-    nodePackages.pnpm
-    go_1_18
+    nodejs_21
+    corepack_21
     rustup
     libiconv
     elmPackages.elm
     llvm
     python39
+    bun
+    gleam
+    fennel
+    fnlfmt
 
     # Nix
     cachix
+    nixpkgs-fmt
   ];
 }

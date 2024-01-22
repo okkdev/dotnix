@@ -1,5 +1,17 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
+let
+  tangerine-nvim = pkgs.vimUtils.buildVimPlugin rec {
+    pname = "tangerine-nvim";
+    version = "v2.8";
+    src = pkgs.fetchFromGitHub {
+      owner = "udayvir-singh";
+      repo = "tangerine.nvim";
+      rev = version;
+      sha256 = "sha256-gviY9oltZiOWJR9vWSIgWGd7uVvfcTPNUScmaWjVCm8=";
+    };
+  };
+in
 {
   programs.neovim = {
     enable = true;
@@ -7,14 +19,13 @@
     vimAlias = true;
     vimdiffAlias = true;
     withNodeJs = true;
-    extraPackages = (with pkgs ;[ fennel fnlfmt ripgrep fd fzf tree-sitter ]);
     plugins = with pkgs.vimPlugins; [
       # meta
-      hotpot-nvim
-      nvim-treesitter
+      tangerine-nvim
       plenary-nvim
-      telescope-nvim
-      telescope-fzf-native-nvim
+
+      # lsp/completions
+      nvim-treesitter
       nvim-lspconfig
       nvim-cmp
       cmp-nvim-lsp
@@ -24,30 +35,37 @@
       luasnip
       cmp_luasnip
       friendly-snippets
+
+      # ease of use
       undotree
       leap-nvim
+      vim-repeat
       vim-sleuth
-      which-key-nvim
       comment-nvim
       toggleterm-nvim
+      telescope-nvim
+      telescope-fzf-native-nvim
+
+      # ui
+      rose-pine
+      nvim-web-devicons
+      noice-nvim
+      lualine-nvim
+      which-key-nvim
+      alpha-nvim
+      nui-nvim
+      nvim-notify
 
       # language
       conjure
       vim-nix
-
-      # themes
-      rose-pine
-      nvim-web-devicons
-     ];
+    ];
   };
 
   xdg.configFile = {
-    "nvim/init.lua".source = ./init.lua;
-    "nvim/fnl" = {
-      source = ./fnl;
-      onChange = ''
-        rm -rf "$HOME/.cache/nvim/hotpot/"
-      '';
+    "nvim" = {
+      source = ./config;
+      recursive = true;
     };
   };
 }

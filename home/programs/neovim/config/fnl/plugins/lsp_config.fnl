@@ -1,7 +1,3 @@
-(let [capabilities (vim.lsp.protocol.make_client_capabilities)
-      cmp_lsp (require :cmp_nvim_lsp)]
-  (var capabilities (cmp_lsp.default_capabilities capabilities)))
-
 (fn on_attach [_ bufnr]
   (fn kmap [keys func desc]
     (when desc
@@ -37,12 +33,17 @@
 
 ; Language Servers
 
-(local flags {:debounce_text_changes 150})
 (local lsp (require :lspconfig))
+(local cmp_lsp (require :cmp_nvim_lsp))
+(local capabilities
+       (cmp_lsp.default_capabilities (vim.lsp.protocol.make_client_capabilities)))
+(local flags {:debounce_text_changes 150})
 
 (lsp.rust_analyzer.setup {: on_attach :settings {:rust-analyzer {}} : flags})
 
 (lsp.elixirls.setup {:cmd [:elixir-ls] : on_attach : capabilities : flags})
 
 (lsp.elmls.setup {: on_attach : flags})
+
+;(lsp.fennel_ls.setup {: on_attach : flags})
 

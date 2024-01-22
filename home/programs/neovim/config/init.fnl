@@ -12,4 +12,6 @@
 (require :plugins.completions)
 (require :plugins.lsp_config)
 (require :plugins.toggleterm)
-
+(require :plugins.lualine)
+(require :plugins.alpha)
+(require :plugins.noice)

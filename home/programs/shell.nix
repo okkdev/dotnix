@@ -70,8 +70,10 @@
       fish_add_path /opt/homebrew/sbin
       fish_add_path /opt/homebrew/bin
 
-      fish_add_path /Users/js/.ghcup/bin
+      fish_add_path $HOME/.ghcup/bin
       fish_add_path $HOME/.cabal/bin
+
+      fish_add_path $HOME/.cargo/bin
 
       fish_terminal_colors
       set -U hydro_symbol_prompt " ➜"
@@ -87,7 +89,7 @@
     };
     shellAliases = {
       ssh = "TERM=xterm-256color /usr/bin/ssh";
-      ll = "exa -abhl --icons --group-directories-first";
+      ll = "eza -abhl --icons --group-directories-first";
     };
     functions = {
       fish_greeting = {
@@ -100,10 +102,10 @@
         body = ''
           if [ "$mode" = "dark" ]
             osascript -l JavaScript -e "Application('System Events').appearancePreferences.darkMode = true"
-            switch_kitty_theme "Kaolin Temple"
+            switch_kitty_theme "Rosé Pine"
           else if [ "$mode" = "light" ]
             osascript -l JavaScript -e "Application('System Events').appearancePreferences.darkMode = false"
-            switch_kitty_theme "Kaolin Light"
+            switch_kitty_theme "Rosé Pine Dawn"
           else
             if [ (osascript -l JavaScript -e "Application('System Events').appearancePreferences.darkMode()") = "true" ]
               switch_theme "light"

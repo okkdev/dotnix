@@ -24,7 +24,7 @@
       window_padding_width = 20;
       adjust_line_height = "120%";
       macos_thicken_font = "0.2";
-      background_opacity = "0.95";
+      background_opacity = "1";
       listen_on = "unix:/tmp/mykitty";
     };
     extraConfig = "include current-theme.conf";

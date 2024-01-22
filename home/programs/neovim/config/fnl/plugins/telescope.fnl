@@ -17,11 +17,11 @@
                 {:desc "[p]roject [s]earch files"})
 
 (vim.keymap.set :n :<leader><space> builtin.buffers
-                {:desc "[ ] Find existing buffers"})
+                {:desc "Find existing buffers"})
 
 (vim.keymap.set :n :<leader>/
                 (fn []
                   (builtin.current_buffer_fuzzy_find (themes.get_dropdown {:previewer false
                                                                            :winblend 10})))
-                {:desc "[/] Fuzzily search in current buffer"})
+                {:desc "Fuzzily search in current buffer"})
 
