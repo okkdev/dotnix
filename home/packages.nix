@@ -26,9 +26,8 @@ in
     bat
     tealdeer
     fd
-    ripgrep
     fzf
-    tree-sitter
+    ripgrep
     viddy
     jq
     nix-info
@@ -45,6 +44,7 @@ in
     elixir_ls
     nodejs_21
     corepack_21
+    biome
     rustup
     libiconv
     elmPackages.elm

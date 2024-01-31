@@ -53,6 +53,7 @@ let
     "muse"
     "neovide"
     "obs"
+    "obsidian"
     "openscad"
     "orbstack"
     "orcaslicer"
@@ -74,6 +75,7 @@ let
 
   fonts = [
     "cascadia-code"
+    "commit-mono"
     "cozette"
     "fantasque-sans-mono-nerd-font"
     "fira-code"

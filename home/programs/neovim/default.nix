@@ -19,6 +19,7 @@ in
     vimAlias = true;
     vimdiffAlias = true;
     withNodeJs = true;
+    extraPackages = (with pkgs ;[ fzf tree-sitter ]);
     plugins = with pkgs.vimPlugins; [
       # meta
       tangerine-nvim
