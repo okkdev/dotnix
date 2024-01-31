@@ -9,7 +9,11 @@
     };
   };
 
-  programs.fzf.enable = true;
+  programs.atuin = {
+    enable = true;
+    enableFishIntegration = true;
+    flags = [ "--disable-up-arrow" ];
+  };
 
   programs.zoxide = {
     enable = true;
@@ -19,15 +23,6 @@
   programs.fish = {
     enable = true;
     plugins = [
-      {
-        name = "nix-env";
-        src = pkgs.fetchFromGitHub {
-          owner = "lilyball";
-          repo = "nix-env.fish";
-          rev = "00c6cc762427efe08ac0bd0d1b1d12048d3ca727";
-          sha256 = "1hrl22dd0aaszdanhvddvqz3aq40jp9zi2zn0v1hjnf7fx4bgpma";
-        };
-      }
       {
         name = "hydro";
         src = pkgs.fetchFromGitHub {
@@ -56,9 +51,8 @@
         };
       }
     ];
+    loginShellInit = "fish_add_path --move --prepend --path $HOME/.nix-profile/bin /nix/var/nix/profiles/default/bin";
     shellInit = ''
-      #source /opt/homebrew/opt/asdf/libexec/asdf.fish
-
       if test -d (brew --prefix)"/share/fish/completions"
           set -gx fish_complete_path (brew --prefix)/share/fish/completions $fish_complete_path 
       end
@@ -78,10 +72,6 @@
       fish_terminal_colors
       set -U hydro_symbol_prompt " ➜"
       set -U hydro_multiline true
-
-      set -U NEOVIDE_FRAME buttonless
-
-      direnv hook fish | source
     '';
     shellAbbrs = {
       top = "btm";
