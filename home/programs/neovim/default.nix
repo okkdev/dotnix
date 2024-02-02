@@ -26,7 +26,28 @@ in
       plenary-nvim
 
       # lsp/completions
-      nvim-treesitter
+      (nvim-treesitter.withPlugins
+        (p: [
+          p.bash
+          p.c
+          p.elixir
+          p.elm
+          p.fennel
+          p.gleam
+          p.heex
+          p.javascript
+          p.json
+          p.lua
+          p.markdown
+          p.markdown_inline
+          p.query
+          p.regex
+          p.rust
+          p.typescript
+          p.vim
+          p.vimdoc
+          p.yaml
+        ]))
       nvim-lspconfig
       nvim-cmp
       cmp-nvim-lsp
@@ -46,6 +67,7 @@ in
       toggleterm-nvim
       telescope-nvim
       telescope-fzf-native-nvim
+      trouble-nvim #not setup yet
 
       # ui
       rose-pine
@@ -63,11 +85,22 @@ in
     ];
   };
 
-  xdg.configFile = {
-    "nvim" = {
-      source = ./config;
-      recursive = true;
-    };
+  xdg.configFile."nvim" = {
+    source = ./config;
+    recursive = true;
+    onChange = ''
+      $HOME/.nix-profile/bin/nvim -E -c ":FnlCompile!" -c q
+    '';
   };
-}
 
+  xdg.configFile."neovide/config.toml" = {
+    text = ''
+      frame = "buttonless"
+
+      [font]
+      normal = ["FantasqueSansM Nerd Font"]
+      size = 15
+    '';
+  };
+
+}
