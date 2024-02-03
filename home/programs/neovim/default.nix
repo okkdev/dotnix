@@ -19,7 +19,7 @@ in
     vimAlias = true;
     vimdiffAlias = true;
     withNodeJs = true;
-    extraPackages = (with pkgs ;[ fzf tree-sitter ]);
+    extraPackages = (with pkgs ;[ fzf tree-sitter delta fd ]);
     plugins = with pkgs.vimPlugins; [
       # meta
       tangerine-nvim
@@ -40,6 +40,7 @@ in
           p.lua
           p.markdown
           p.markdown_inline
+          p.nix
           p.query
           p.regex
           p.rust
@@ -59,23 +60,26 @@ in
       friendly-snippets
 
       # ease of use
-      undotree
       leap-nvim
+      eyeliner-nvim
       vim-repeat
       vim-sleuth
       comment-nvim
       toggleterm-nvim
       telescope-nvim
+      telescope-undo-nvim
       telescope-fzf-native-nvim
-      trouble-nvim #not setup yet
+      nvim-tree-lua
+      trouble-nvim
+      vim-fugitive
 
       # ui
       rose-pine
       nvim-web-devicons
-      noice-nvim
       lualine-nvim
       which-key-nvim
       alpha-nvim
+      noice-nvim
       nui-nvim
       nvim-notify
 
@@ -89,7 +93,7 @@ in
     source = ./config;
     recursive = true;
     onChange = ''
-      $HOME/.nix-profile/bin/nvim -E -c ":FnlCompile!" -c q
+      $HOME/.nix-profile/bin/nvim -Es -c ":FnlClean!" -c ":FnlCompile!"
     '';
   };
 

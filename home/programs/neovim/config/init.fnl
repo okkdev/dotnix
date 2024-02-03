@@ -6,7 +6,6 @@
 (require :plugins.theme)
 (require :plugins.telescope)
 (require :plugins.treesitter)
-(require :plugins.undotree)
 (require :plugins.which_key)
 (require :plugins.comment)
 (require :plugins.completions)
@@ -15,3 +14,7 @@
 (require :plugins.lualine)
 (require :plugins.alpha)
 (require :plugins.noice)
+(require :plugins.nvim_tree)
+(require :plugins.leap)
+(require :plugins.eyeliner)
+

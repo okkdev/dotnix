@@ -37,6 +37,7 @@
 (local cmp_lsp (require :cmp_nvim_lsp))
 (local capabilities
        (cmp_lsp.default_capabilities (vim.lsp.protocol.make_client_capabilities)))
+
 (local flags {:debounce_text_changes 150})
 
 (lsp.rust_analyzer.setup {: on_attach :settings {:rust-analyzer {}} : flags})
@@ -45,5 +46,21 @@
 
 (lsp.elmls.setup {: on_attach : flags})
 
+(lsp.gleam.setup {: on_attach : flags})
+
 ;(lsp.fennel_ls.setup {: on_attach : flags})
+
+(local cmp (require :cmp))
+
+; cmdline search
+(cmp.setup.cmdline "/" {:mapping (cmp.mapping.preset.cmdline)
+                        :sources [{:name :buffer}]})
+
+; cmdline command
+(cmp.setup.cmdline ":"
+                   {:mapping (cmp.mapping.preset.cmdline)
+                    :sources (cmp.config.sources [{:name :path}]
+                                                 [{:name :cmdline
+                                                   :option {:ignore_cmds [:Man
+                                                                          "!"]}}])})
 

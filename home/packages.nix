@@ -24,6 +24,7 @@ in
     neofetch
     eza
     bat
+    delta
     tealdeer
     fd
     fzf

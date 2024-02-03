@@ -1,18 +1,32 @@
-(let [config (require :telescope)]
-  (config.setup {:extensions {:fzf {:case_mode :smart_case
-                                    :fuzzy true
-                                    :override_file_sorter true
-                                    :override_generic_sorter true}}}))
-
-; Keybinds
-
+(local telescope (require :telescope))
 (local builtin (require :telescope.builtin))
 (local themes (require :telescope.themes))
 
-(vim.keymap.set :n :<leader>pf builtin.find_files
-                {:desc "[p]roject [f]ind files"})
+(telescope.setup {:extensions {:fzf {:case_mode :smart_case
+                                     :fuzzy true
+                                     :override_file_sorter true
+                                     :override_generic_sorter true}
+                               :undo {:use_delta true}}
+                  :pickers {:buffers {:sort_mru true
+                                      :ignore_current_buffer true}
+                            :find_files {:find_command [:fd
+                                                        :--hidden
+                                                        :--type
+                                                        :file
+                                                        :--follow
+                                                        :--strip-cwd-prefix]}}})
 
-(vim.keymap.set :n :<leader>pp builtin.git_files {:desc "[p]roject git files"})
+(telescope.load_extension :noice)
+(telescope.load_extension :fzf)
+(telescope.load_extension :undo)
+
+; Keybinds
+
+(vim.keymap.set :n :<leader>pp builtin.find_files {:desc "[p]roject files"})
+
+(vim.keymap.set :n :<leader>pg builtin.git_files
+                {:desc "[p]roject [g]it files"})
+
 (vim.keymap.set :n :<leader>ps builtin.live_grep
                 {:desc "[p]roject [s]earch files"})
 
@@ -24,4 +38,7 @@
                   (builtin.current_buffer_fuzzy_find (themes.get_dropdown {:previewer false
                                                                            :winblend 10})))
                 {:desc "Fuzzily search in current buffer"})
+
+(vim.keymap.set :n :<leader>u "<cmd>Telescope undo<cr>"
+                {:desc "open [u]ndo history"})
 

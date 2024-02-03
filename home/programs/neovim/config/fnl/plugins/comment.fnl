@@ -1,3 +1,3 @@
-(let [config (require :comment)]
-  (config.setup))
+(let [cmt (require :Comment)]
+  (cmt.setup))
 
