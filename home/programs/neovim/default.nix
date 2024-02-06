@@ -33,6 +33,7 @@ in
           p.elixir
           p.elm
           p.fennel
+          p.fish
           p.gleam
           p.heex
           p.javascript
@@ -58,6 +59,7 @@ in
       luasnip
       cmp_luasnip
       friendly-snippets
+      conform-nvim
 
       # ease of use
       leap-nvim
@@ -107,4 +109,20 @@ in
     '';
   };
 
+  # Default biome config
+  xdg.configFile."biome/biome.json" = {
+    text = ''
+      {
+        "formatter": {
+          "indentStyle": "space"
+        },
+        "javascript": {
+          "formatter": {
+            "semicolons": "asNeeded",
+            "trailingComma": "all"
+          }
+        }
+      }
+    '';
+  };
 }

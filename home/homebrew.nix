@@ -57,6 +57,7 @@ let
     "openscad"
     "orbstack"
     "orcaslicer"
+    "podman-desktop"
     "qbittorrent"
     "raycast"
     "scroll-reverser"

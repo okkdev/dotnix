@@ -49,15 +49,19 @@ in
     rustup
     libiconv
     elmPackages.elm
+    elmPackages.elm-format
     llvm
     python39
     bun
     gleam
     fennel
+    fennel-ls
     fnlfmt
+    nixd
+    nixfmt
+    rustywind
 
     # Nix
     cachix
-    nixpkgs-fmt
   ];
 }

@@ -17,4 +17,5 @@
 (require :plugins.nvim_tree)
 (require :plugins.leap)
 (require :plugins.eyeliner)
+(require :plugins.conform)
 
