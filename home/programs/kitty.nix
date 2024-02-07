@@ -8,14 +8,11 @@
       mkdir -p $out/bin
       ln -s /opt/homebrew/bin/kitty $out/bin/kitty
     '';
-    darwinLaunchOptions = [
-      "--single-instance"
-      "--directory=~"
-      "--listen-on=unix:/tmp/mykitty"
-    ];
+    darwinLaunchOptions =
+      [ "--single-instance" "--directory=~" "--listen-on=unix:/tmp/mykitty" ];
     font = {
-      name = "FantasqueSansM Nerd Font";
-      size = 16;
+      name = "CommitMonoLiga Nerd Font";
+      size = 15;
     };
     settings = {
       hide_window_decorations = "titlebar-only";

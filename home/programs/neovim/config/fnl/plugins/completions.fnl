@@ -1,8 +1,9 @@
 (local cmp (require :cmp))
 (local luasnip (require :luasnip))
+(local tcc (require :tailwindcss-colorizer-cmp))
 
 (luasnip.config.setup {})
-((. (require :luasnip.loaders.from_vscode) :lazy_load) {:paths :/Users/js/.local/share/nvim/site/pack/packer/start/friendly-snippets})
+((. (require :luasnip.loaders.from_vscode) :lazy_load) {:paths :$HOME/.local/share/nvim/site/pack/packer/start/friendly-snippets})
 
 (cmp.setup {:mapping (cmp.mapping.preset.insert {:<C-Space> (cmp.mapping.complete {})
                                                  :<C-d> (cmp.mapping.scroll_docs (- 4))
@@ -24,6 +25,8 @@
                                                                            (luasnip.expand_or_jump)
                                                                            (fallback)))
                                                                      [:i :s])})
+            :window {:completion (cmp.config.window.bordered)
+                     :documentation (cmp.config.window.bordered)}
             :snippet {:expand (fn [args]
                                 (luasnip.lsp_expand args.body))}
             :sources [{:name :path}
@@ -31,4 +34,6 @@
                       {:name :buffer :keyword_length 3}
                       {:name :luasnip :keyword_length 2}]}
            [{:name :buffer}])
+
+(set cmp.config.formatting {:format tcc.formatter})
 

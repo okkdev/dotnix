@@ -5,7 +5,8 @@ let
     name = "comet-${version}";
     version = "v0.0.5";
     src = pkgs.fetchurl {
-      url = "https://github.com/liamg/comet/releases/download/${version}/comet-darwin-arm64";
+      url =
+        "https://github.com/liamg/comet/releases/download/${version}/comet-darwin-arm64";
       sha256 = "sha256-UMB7TMhZeVQZVoNZBuUT+0IeaYdeSBk/4mNhdzo+Q4o=";
     };
     phases = [ "installPhase" ];
@@ -15,8 +16,7 @@ let
       chmod +x $out/bin/comet
     '';
   };
-in
-{
+in {
   nixpkgs.config.allowUnfree = true;
 
   home.packages = with pkgs; [
@@ -45,7 +45,11 @@ in
     elixir_ls
     nodejs_21
     corepack_21
+    nodePackages.typescript-language-server
+    tailwindcss
+    tailwindcss-language-server
     biome
+    prettierd
     rustup
     libiconv
     elmPackages.elm
@@ -57,7 +61,7 @@ in
     fennel
     fennel-ls
     fnlfmt
-    nixd
+    nil
     nixfmt
     rustywind
 

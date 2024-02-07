@@ -1,4 +1,4 @@
 (set vim.g.mapleader " ")
 
-; (vim.keymap.set :x :<leader>p "\"_dP")
+(vim.keymap.set [:n :x :i] :<D-s> :<cmd>w<cr> {:desc :Save})
 

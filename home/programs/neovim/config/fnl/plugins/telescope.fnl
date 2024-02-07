@@ -27,8 +27,8 @@
 (vim.keymap.set :n :<leader>pg builtin.git_files
                 {:desc "[p]roject [g]it files"})
 
-(vim.keymap.set :n :<leader>ps builtin.live_grep
-                {:desc "[p]roject [s]earch files"})
+(vim.keymap.set :n :<leader>p/ builtin.live_grep
+                {:desc "[p]roject search files"})
 
 (vim.keymap.set :n :<leader><space> builtin.buffers
                 {:desc "Find existing buffers"})

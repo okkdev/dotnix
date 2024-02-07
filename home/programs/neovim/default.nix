@@ -11,45 +11,54 @@ let
       sha256 = "sha256-gviY9oltZiOWJR9vWSIgWGd7uVvfcTPNUScmaWjVCm8=";
     };
   };
-in
-{
+  tailwindcss-colorizer-cmp = pkgs.vimUtils.buildVimPlugin {
+    pname = "tailwindcss-colorizer-cmp";
+    version = "main";
+    src = pkgs.fetchFromGitHub {
+      owner = "roobert";
+      repo = "tailwindcss-colorizer-cmp.nvim";
+      rev = "bc25c56083939f274edcfe395c6ff7de23b67c50";
+      sha256 = "sha256-4wt4J6pENX7QRG7N1GzE9L6pM5E88tnHbv4NQa5JqSI=";
+    };
+  };
+in {
   programs.neovim = {
     enable = true;
     viAlias = true;
     vimAlias = true;
     vimdiffAlias = true;
     withNodeJs = true;
-    extraPackages = (with pkgs ;[ fzf tree-sitter delta fd ]);
+    extraPackages = (with pkgs; [ fzf tree-sitter delta fd ]);
     plugins = with pkgs.vimPlugins; [
       # meta
       tangerine-nvim
       plenary-nvim
+      mini-nvim
 
       # lsp/completions
-      (nvim-treesitter.withPlugins
-        (p: [
-          p.bash
-          p.c
-          p.elixir
-          p.elm
-          p.fennel
-          p.fish
-          p.gleam
-          p.heex
-          p.javascript
-          p.json
-          p.lua
-          p.markdown
-          p.markdown_inline
-          p.nix
-          p.query
-          p.regex
-          p.rust
-          p.typescript
-          p.vim
-          p.vimdoc
-          p.yaml
-        ]))
+      (nvim-treesitter.withPlugins (p: [
+        p.bash
+        p.c
+        p.elixir
+        p.elm
+        p.fennel
+        p.fish
+        p.gleam
+        p.heex
+        p.javascript
+        p.json
+        p.lua
+        p.markdown
+        p.markdown_inline
+        p.nix
+        p.query
+        p.regex
+        p.rust
+        p.typescript
+        p.vim
+        p.vimdoc
+        p.yaml
+      ]))
       nvim-lspconfig
       nvim-cmp
       cmp-nvim-lsp
@@ -60,13 +69,13 @@ in
       cmp_luasnip
       friendly-snippets
       conform-nvim
+      tailwindcss-colorizer-cmp
 
       # ease of use
       leap-nvim
       eyeliner-nvim
       vim-repeat
-      vim-sleuth
-      comment-nvim
+      # vim-sleuth
       toggleterm-nvim
       telescope-nvim
       telescope-undo-nvim
@@ -74,6 +83,7 @@ in
       nvim-tree-lua
       trouble-nvim
       vim-fugitive
+      gitsigns-nvim
 
       # ui
       rose-pine
@@ -114,7 +124,8 @@ in
     text = ''
       {
         "formatter": {
-          "indentStyle": "space"
+          "indentStyle": "space",
+          "formatWithErrors": true
         },
         "javascript": {
           "formatter": {

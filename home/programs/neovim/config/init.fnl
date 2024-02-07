@@ -7,7 +7,6 @@
 (require :plugins.telescope)
 (require :plugins.treesitter)
 (require :plugins.which_key)
-(require :plugins.comment)
 (require :plugins.completions)
 (require :plugins.lsp_config)
 (require :plugins.toggleterm)
@@ -18,4 +17,6 @@
 (require :plugins.leap)
 (require :plugins.eyeliner)
 (require :plugins.conform)
+(require :plugins.gitsigns)
+(require :plugins.mini)
 

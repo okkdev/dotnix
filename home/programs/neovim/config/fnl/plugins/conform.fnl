@@ -1,11 +1,12 @@
 (local conform (require :conform))
 
-(conform.setup {:formatters_by_ft {:css [:rustywind]
-                                   :elixir [:mix]
+(conform.setup {:formatters_by_ft {:css [:prettierd :rustywind]
                                    :elm [:elm_format]
                                    :fennel [:fnlfmt]
                                    :heex [:rustywind]
-                                   :html [:rustywind]
+                                   :html [:prettierd :rustywind]
+                                   :javascript [:biome :rustywind]
+                                   :typescript [:biome :rustywind]
                                    :nix [:nixfmt]}
                 :format_on_save (fn [bufnr]
                                   (let [buffer (. vim.b bufnr)]
@@ -13,6 +14,14 @@
                                             buffer.disable_autoformat)
                                         nil
                                         {:lsp_fallback true :timeout_ms 500})))})
+
+(set conform.formatters.biome
+     {:command :biome
+      :args [:format
+             :--stdin-file-path
+             :$FILENAME
+             :--config-path
+             (vim.fn.expand :$HOME/.config/biome/)]})
 
 (vim.api.nvim_create_user_command :Format
                                   (fn [args]
@@ -46,5 +55,5 @@
                                     (set vim.g.disable_autoformat false))
                                   {:desc "Enable autoformat-on-save"})
 
-(vim.keymap.set [:n :x] :<leader>lf "<cmd>:Format<cr>" {:desc :format})
+(vim.keymap.set [:n :x] :<leader>lf :<cmd>Format<cr> {:desc :format})
 

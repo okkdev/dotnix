@@ -1,8 +1,6 @@
 (fn on_attach [_ bufnr]
   (fn kmap [keys func desc]
-    (when desc
-      (var desc (.. "LSP: " desc)))
-    (vim.keymap.set :n keys func {:buffer bufnr : desc}))
+    (vim.keymap.set :n keys func {:buffer bufnr :desc (.. "LSP: " desc)}))
 
   (kmap :K vim.lsp.buf.hover "Hover Documentation")
   (kmap :gd vim.lsp.buf.definition "[G]oto [D]efinition")
@@ -11,17 +9,36 @@
         "[G]oto [R]eferences")
   (kmap :gI vim.lsp.buf.implementation "[G]oto [I]mplementation")
   (kmap :<leader>lrn vim.lsp.buf.rename "[R]e[n]ame")
-  (kmap :<leader>lca vim.lsp.buf.code_action "[C]ode [A]ction")
-  (kmap :<leader>ld vim.lsp.buf.type_definition "Type [D]efinition")
-  (kmap :<leader>lds (. (require :telescope.builtin) :lsp_document_symbols)
-        "[D]ocument [S]ymbols")
-  (kmap :<leader>lwa vim.lsp.buf.add_workspace_folder "[W]orkspace [A]dd Folder")
+  (kmap :<leader>lwa vim.lsp.buf.add_workspace_folder
+        "[W]orkspace [A]dd Folder")
   (kmap :<leader>lwr vim.lsp.buf.remove_workspace_folder
         "[W]orkspace [R]emove Folder")
   (kmap :<leader>lwl
         (fn []
           (print (vim.inspect (vim.lsp.buf.list_workspace_folders))))
-        "[W]orkspace [L]ist Folders"))
+        "[W]orkspace [L]ist Folders")
+  (kmap :<leader>ld vim.diagnostic.open_float "Show [d]iagnostics"))
+
+; Diagnostic config
+
+(vim.diagnostic.config {:severity_sort true
+                        :update_in_insert false
+                        :underline {:severity {:min vim.diagnostic.severity.INFO}}
+                        :signs {:severity {:min vim.diagnostic.severity.INFO}}
+                        :virtual_text {:prefix "●" :source :if_many}
+                        :linehl true
+                        :float {:style :minimal
+                                :border :rounded
+                                :source :always}})
+
+(fn dsign [icon typ]
+  (let [dtype (.. :DiagnosticSign typ)]
+    (vim.fn.sign_define dtype {:text icon :texthl dtype})))
+
+(dsign "" :Error)
+(dsign "" :Warn)
+(dsign "" :Info)
+(dsign "" :Hint)
 
 ; Language Servers
 
@@ -41,18 +58,19 @@
 
 (lsp.gleam.setup {: on_attach : capabilities : flags})
 
-(lsp.nixd.setup {: on_attach : capabilities : flags})
+(lsp.nil_ls.setup {: on_attach : capabilities : flags})
 
 (lsp.fennel_ls.setup {: on_attach : capabilities : flags})
 
-(lsp.biome.setup {:cmd [:biome
-                        :lsp-proxy
-                        :--config-path
-                        :$HOME/.config/biome/biome.json]
+(lsp.biome.setup {:cmd [:biome :lsp-proxy :--config-path :$HOME/.config/biome/]
                   :single_file_support true
                   : on_attach
                   : capabilities
                   : flags})
+
+(lsp.tsserver.setup {: on_attach : capabilities : flags})
+
+(lsp.tailwindcss.setup {: on_attach : capabilities : flags})
 
 ; cmdline search
 (cmp.setup.cmdline "/" {:mapping (cmp.mapping.preset.cmdline)
