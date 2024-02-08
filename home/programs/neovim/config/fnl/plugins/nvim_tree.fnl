@@ -1,3 +1,4 @@
+; File tree view
 (set vim.g.loaded_netrw 1)
 (set vim.g.loaded_netrwPlugin 1)
 

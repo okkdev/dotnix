@@ -1,3 +1,4 @@
+; Nvim settings
 (local o vim.o)
 
 (set o.clipboard :unnamedplus)

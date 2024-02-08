@@ -1,3 +1,4 @@
+; Modal thing browser
 (local telescope (require :telescope))
 (local builtin (require :telescope.builtin))
 (local themes (require :telescope.themes))

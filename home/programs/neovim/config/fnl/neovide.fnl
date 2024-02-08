@@ -1,3 +1,4 @@
+; Neovide settings
 (when vim.g.neovide
   (set vim.g.neovide_cursor_animation_length 0.01)
   (set vim.g.neovide_padding_top 30)

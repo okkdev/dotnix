@@ -1,3 +1,4 @@
+; Show key options/commands
 (set vim.o.timeout true)
 (set vim.o.timeoutlen 300)
 

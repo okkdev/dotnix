@@ -1,3 +1,4 @@
+; Bottom info bar
 (local lualine (require :lualine))
 
 (lualine.setup {:extensions [:toggleterm]

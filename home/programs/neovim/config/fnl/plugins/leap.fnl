@@ -1,3 +1,4 @@
+; Mulitline f/F command
 (local key vim.keymap)
 
 (key.set [:n :x :o] :<leader>f "<Plug>(leap-forward-to)"

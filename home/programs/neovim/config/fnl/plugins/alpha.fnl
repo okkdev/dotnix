@@ -1,3 +1,4 @@
+; Start page
 (local alpha (require :alpha))
 (local theta (require :alpha.themes.theta))
 

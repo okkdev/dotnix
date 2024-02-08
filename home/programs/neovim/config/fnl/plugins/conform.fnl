@@ -1,3 +1,4 @@
+; Formatter with LSP Format fallback
 (local conform (require :conform))
 
 (conform.setup {:formatters_by_ft {:css [:prettierd :rustywind]
@@ -8,6 +9,7 @@
                                    :javascript [:biome :rustywind]
                                    :typescript [:biome :rustywind]
                                    :nix [:nixfmt]}
+                ; Toggleable format on save
                 :format_on_save (fn [bufnr]
                                   (let [buffer (. vim.b bufnr)]
                                     (if (or vim.g.disable_autoformat

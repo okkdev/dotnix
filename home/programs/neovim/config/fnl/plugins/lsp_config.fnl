@@ -1,3 +1,4 @@
+; LSP
 (fn on_attach [_ bufnr]
   (fn kmap [keys func desc]
     (vim.keymap.set :n keys func {:buffer bufnr :desc (.. "LSP: " desc)}))
@@ -67,16 +68,4 @@
 (lsp.tsserver.setup {: on_attach : capabilities : flags})
 
 (lsp.tailwindcss.setup {: on_attach : capabilities : flags})
-
-; cmdline search
-(cmp.setup.cmdline "/" {:mapping (cmp.mapping.preset.cmdline)
-                        :sources [{:name :buffer}]})
-
-; cmdline command
-(cmp.setup.cmdline ":"
-                   {:mapping (cmp.mapping.preset.cmdline)
-                    :sources (cmp.config.sources [{:name :path}]
-                                                 [{:name :cmdline
-                                                   :option {:ignore_cmds [:Man
-                                                                          "!"]}}])})
 

@@ -1,9 +1,12 @@
+; Completions for Path, LSP and more
 (local cmp (require :cmp))
 (local luasnip (require :luasnip))
-(local tcc (require :tailwindcss-colorizer-cmp))
 
 (luasnip.config.setup {})
-((. (require :luasnip.loaders.from_vscode) :lazy_load) {:paths :$HOME/.local/share/nvim/site/pack/packer/start/friendly-snippets})
+
+; workaround to ignore duplicate vscode snippets
+(let [vscode_loader (require :luasnip.loaders.from_vscode)]
+  (vscode_loader.lazy_load {:paths :$HOME/.local/share/nvim/site/pack/packer/start/friendly-snippets}))
 
 (cmp.setup {:mapping (cmp.mapping.preset.insert {:<C-Space> (cmp.mapping.complete {})
                                                  :<C-d> (cmp.mapping.scroll_docs (- 4))
@@ -35,5 +38,19 @@
                       {:name :luasnip :keyword_length 2}]}
            [{:name :buffer}])
 
-(set cmp.config.formatting {:format tcc.formatter})
+; cmdline search
+(cmp.setup.cmdline "/" {:mapping (cmp.mapping.preset.cmdline)
+                        :sources [{:name :buffer}]})
+
+; cmdline command
+(cmp.setup.cmdline ":"
+                   {:mapping (cmp.mapping.preset.cmdline)
+                    :sources (cmp.config.sources [{:name :path}]
+                                                 [{:name :cmdline
+                                                   :option {:ignore_cmds [:Man
+                                                                          "!"]}}])})
+
+; Tailwind colors in completion menu
+(let [tcc (require :tailwindcss-colorizer-cmp)]
+  (set cmp.config.formatting {:format tcc.formatter}))
 
