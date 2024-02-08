@@ -120,7 +120,7 @@ in {
   };
 
   # Default biome config
-  xdg.configFile."biome/biome.json" = {
+  home.file."biome.json" = {
     text = ''
       {
         "formatter": {

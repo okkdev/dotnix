@@ -15,14 +15,6 @@
                                         nil
                                         {:lsp_fallback true :timeout_ms 500})))})
 
-(set conform.formatters.biome
-     {:command :biome
-      :args [:format
-             :--stdin-file-path
-             :$FILENAME
-             :--config-path
-             (vim.fn.expand :$HOME/.config/biome/)]})
-
 (vim.api.nvim_create_user_command :Format
                                   (fn [args]
                                     (var range nil)

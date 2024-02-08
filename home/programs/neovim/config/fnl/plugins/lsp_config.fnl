@@ -62,11 +62,7 @@
 
 (lsp.fennel_ls.setup {: on_attach : capabilities : flags})
 
-(lsp.biome.setup {:cmd [:biome :lsp-proxy :--config-path :$HOME/.config/biome/]
-                  :single_file_support true
-                  : on_attach
-                  : capabilities
-                  : flags})
+(lsp.biome.setup {:single_file_support true : on_attach : capabilities : flags})
 
 (lsp.tsserver.setup {: on_attach : capabilities : flags})
 
