@@ -28,9 +28,7 @@
                         :signs {:severity {:min vim.diagnostic.severity.INFO}}
                         :virtual_text {:prefix "●" :source :if_many}
                         :linehl true
-                        :float {:style :minimal
-                                :border :rounded
-                                :source :always}})
+                        :float {:style :minimal :source :always}})
 
 (fn dsign [icon typ]
   (let [dtype (.. :DiagnosticSign typ)]

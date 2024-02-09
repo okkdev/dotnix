@@ -21,6 +21,16 @@ let
       sha256 = "sha256-4wt4J6pENX7QRG7N1GzE9L6pM5E88tnHbv4NQa5JqSI=";
     };
   };
+  bg-nvim = pkgs.vimUtils.buildVimPlugin {
+    pname = "bg-nvim";
+    version = "main";
+    src = pkgs.fetchFromGitHub {
+      owner = "typicode";
+      repo = "bg.nvim";
+      rev = "1c95261cc5e3062e3b277fc5c15d180d51a40f62";
+      sha256 = "sha256-ZocdEdw7m6gVQap0MFr1uymIkHnX9ewjWmR7fYVR9Ko=";
+    };
+  };
 in {
   programs.neovim = {
     enable = true;
@@ -72,7 +82,6 @@ in {
       tailwindcss-colorizer-cmp
 
       # ease of use
-      leap-nvim
       eyeliner-nvim
       vim-repeat
       # vim-sleuth
@@ -84,9 +93,10 @@ in {
       trouble-nvim
       vim-fugitive
       gitsigns-nvim
+      flash-nvim
+      oil-nvim
 
       # ui
-      rose-pine
       nvim-web-devicons
       lualine-nvim
       which-key-nvim
@@ -94,6 +104,15 @@ in {
       noice-nvim
       nui-nvim
       nvim-notify
+      zen-mode-nvim
+      twilight-nvim
+      bg-nvim
+
+      # themes
+      rose-pine
+      catppuccin-nvim
+      neovim-ayu
+      oxocarbon-nvim
 
       # language
       conjure

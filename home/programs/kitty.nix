@@ -19,8 +19,7 @@
       macos_quit_when_last_window_closed = "yes";
       allow_remote_control = "yes";
       window_padding_width = 20;
-      adjust_line_height = "120%";
-      macos_thicken_font = "0.2";
+      adjust_line_height = "130%";
       background_opacity = "1";
       listen_on = "unix:/tmp/mykitty";
     };

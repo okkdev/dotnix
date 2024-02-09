@@ -38,18 +38,6 @@
                       {:name :luasnip :keyword_length 2}]}
            [{:name :buffer}])
 
-; cmdline search
-(cmp.setup.cmdline "/" {:mapping (cmp.mapping.preset.cmdline)
-                        :sources [{:name :buffer}]})
-
-; cmdline command
-(cmp.setup.cmdline ":"
-                   {:mapping (cmp.mapping.preset.cmdline)
-                    :sources (cmp.config.sources [{:name :path}]
-                                                 [{:name :cmdline
-                                                   :option {:ignore_cmds [:Man
-                                                                          "!"]}}])})
-
 ; Tailwind colors in completion menu
 (let [tcc (require :tailwindcss-colorizer-cmp)]
   (set cmp.config.formatting {:format tcc.formatter}))

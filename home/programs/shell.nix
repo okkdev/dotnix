@@ -4,9 +4,7 @@
   programs.direnv = {
     enable = true;
     nix-direnv.enable = true;
-    config.global = {
-      load_dotenv = true;
-    };
+    config.global = { load_dotenv = true; };
   };
 
   programs.atuin = {
@@ -51,7 +49,8 @@
         };
       }
     ];
-    loginShellInit = "fish_add_path --move --prepend --path $HOME/.nix-profile/bin /nix/var/nix/profiles/default/bin";
+    loginShellInit =
+      "fish_add_path --move --prepend --path $HOME/.nix-profile/bin /nix/var/nix/profiles/default/bin";
     shellInit = ''
       if test -d (brew --prefix)"/share/fish/completions"
           set -gx fish_complete_path (brew --prefix)/share/fish/completions $fish_complete_path 
@@ -70,7 +69,7 @@
       fish_add_path $HOME/.cargo/bin
 
       fish_terminal_colors
-      set -U hydro_symbol_prompt " ➜"
+      set -U hydro_symbol_prompt " $(tput bold)➜$(tput sgr0)"
       set -U hydro_multiline true
     '';
     shellAbbrs = {
@@ -126,45 +125,8 @@
       };
       fish_terminal_colors = {
         description = "set fish colors to use terminal colors";
-        body = ''
-          	  # Syntax highlighting variables
-          	  # https://fishshell.com/docs/current/interactive.html#syntax-highlighting-variables
-          	  set -U fish_color_normal normal
-          	  set -U fish_color_command magenta
-          	  set -U fish_color_keyword blue
-          	  set -U fish_color_quote yellow
-          	  set -U fish_color_redirection green
-          	  set -U fish_color_end brblack
-          	  set -U fish_color_error red
-          	  set -U fish_color_param cyan
-          	  set -U fish_color_comment brblack
-          	  set -U fish_color_selection --reverse
-          	  set -U fish_color_operator normal
-          	  set -U fish_color_escape green
-          	  set -U fish_color_autosuggestion brblack
-          	  set -U fish_color_cwd cyan
-          	  set -U fish_color_user yellow
-          	  set -U fish_color_host blue
-          	  set -U fish_color_host_remote magenta
-          	  set -U fish_color_cancel normal
-          	  set -U fish_color_search_match --background=black
-
-          	  # Pager color variables
-          	  # https://fishshell.com/docs/current/interactive.html#pager-color-variables
-          	  set -U fish_pager_color_progress cyan
-          	  set -U fish_pager_color_background
-          	  set -U fish_pager_color_prefix blue
-          	  set -U fish_pager_color_completion normal
-          	  set -U fish_pager_color_description normal
-          	  set -U fish_pager_color_selected_background --reverse
-          	  set -U fish_pager_color_selected_prefix
-          	  set -U fish_pager_color_selected_completion
-          	  set -U fish_pager_color_selected_description
-          	  set -U fish_pager_color_secondary_background
-          	  set -U fish_pager_color_secondary_prefix blue
-          	  set -U fish_pager_color_secondary_completion normal
-          	  set -U fish_pager_color_secondary_description normal
-          	'';
+        body =
+          "  # Syntax highlighting variables\n  # https://fishshell.com/docs/current/interactive.html#syntax-highlighting-variables\n  set -U fish_color_normal normal\n  set -U fish_color_command magenta\n  set -U fish_color_keyword blue\n  set -U fish_color_quote yellow\n  set -U fish_color_redirection green\n  set -U fish_color_end brblack\n  set -U fish_color_error red\n  set -U fish_color_param cyan\n  set -U fish_color_comment brblack\n  set -U fish_color_selection --reverse\n  set -U fish_color_operator normal\n  set -U fish_color_escape green\n  set -U fish_color_autosuggestion brblack\n  set -U fish_color_cwd cyan\n  set -U fish_color_user yellow\n  set -U fish_color_host blue\n  set -U fish_color_host_remote magenta\n  set -U fish_color_cancel normal\n  set -U fish_color_search_match --background=black\n\n  # Pager color variables\n  # https://fishshell.com/docs/current/interactive.html#pager-color-variables\n  set -U fish_pager_color_progress cyan\n  set -U fish_pager_color_background\n  set -U fish_pager_color_prefix blue\n  set -U fish_pager_color_completion normal\n  set -U fish_pager_color_description normal\n  set -U fish_pager_color_selected_background --reverse\n  set -U fish_pager_color_selected_prefix\n  set -U fish_pager_color_selected_completion\n  set -U fish_pager_color_selected_description\n  set -U fish_pager_color_secondary_background\n  set -U fish_pager_color_secondary_prefix blue\n  set -U fish_pager_color_secondary_completion normal\n  set -U fish_pager_color_secondary_description normal\n";
       };
     };
   };
