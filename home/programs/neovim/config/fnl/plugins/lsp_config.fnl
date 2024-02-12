@@ -67,3 +67,5 @@
 
 (lsp.tailwindcss.setup {: on_attach : capabilities : flags})
 
+(lsp.pyright.setup {: on_attach : capabilities : flags})
+

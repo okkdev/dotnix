@@ -22,6 +22,7 @@
     du-dust
     yt-dlp
     ollama
+    krabby
 
     # Programming
     beam.interpreters.erlangR25
@@ -48,6 +49,9 @@
     nil
     nixfmt
     rustywind
+    stylua
+    ruff
+    nodePackages.pyright
 
     # Nix
     cachix

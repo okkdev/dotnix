@@ -8,7 +8,9 @@
                                    :html [:prettierd :rustywind]
                                    :javascript [:biome :rustywind]
                                    :typescript [:biome :rustywind]
-                                   :nix [:nixfmt]}
+                                   :nix [:nixfmt]
+                                   :lua [:stylua]
+                                   :python [:ruff_format]}
                 ; Toggleable format on save
                 :format_on_save (fn [bufnr]
                                   (let [buffer (. vim.b bufnr)]

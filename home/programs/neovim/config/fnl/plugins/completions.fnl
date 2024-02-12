@@ -28,8 +28,24 @@
                                                                            (luasnip.expand_or_jump)
                                                                            (fallback)))
                                                                      [:i :s])})
-            :window {:completion (cmp.config.window.bordered)
-                     :documentation (cmp.config.window.bordered)}
+            :window {:completion {:col_offset (- 3)
+                                  :side_padding 0
+                                  :winhighlight "Normal:Pmenu,FloatBorder:Pmenu,Search:None"}}
+            :formatting {:fields [:kind :abbr :menu]
+                         :format (fn [entry vim-item]
+                                   (local kind
+                                          (let [lspkind (require :lspkind)
+                                                cmpformat (lspkind.cmp_format {:maxwidth 50
+                                                                               :mode :symbol_text})]
+                                            (cmpformat entry vim-item)))
+                                   (local strings
+                                          (vim.split kind.kind "%s"
+                                                     {:trimempty true}))
+                                   (set kind.kind
+                                        (.. " " (or (. strings 1) "") " "))
+                                   (set kind.menu
+                                        (.. "    (" (or (. strings 2) "") ")"))
+                                   kind)}
             :snippet {:expand (fn [args]
                                 (luasnip.lsp_expand args.body))}
             :sources [{:name :path}

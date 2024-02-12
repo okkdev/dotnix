@@ -77,6 +77,7 @@ in {
       cmp-path
       luasnip
       cmp_luasnip
+      lspkind-nvim
       friendly-snippets
       conform-nvim
       tailwindcss-colorizer-cmp
