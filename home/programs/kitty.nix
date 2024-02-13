@@ -12,7 +12,7 @@
       [ "--single-instance" "--directory=~" "--listen-on=unix:/tmp/mykitty" ];
     font = {
       name = "CommitMonoLiga Nerd Font";
-      size = 15;
+      size = 14.5;
     };
     settings = {
       hide_window_decorations = "titlebar-only";

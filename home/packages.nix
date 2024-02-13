@@ -27,31 +27,35 @@
     # Programming
     beam.interpreters.erlangR25
     beam.packages.erlangR26.elixir_1_15
-    elixir_ls
-    nodejs_21
-    corepack_21
-    nodePackages.typescript-language-server
-    tailwindcss
-    tailwindcss-language-server
-    biome
-    prettierd
-    rustup
-    libiconv
-    elmPackages.elm
-    elmPackages.elm-format
-    llvm
-    python39
     bun
-    gleam
+    corepack_21
+    elmPackages.elm
     fennel
+    gleam
+    libiconv
+    llvm
+    nodejs_21
+    python39
+    rustup
+    tailwindcss
+
+    # LSPs and formatters
+    biome
+    elixir_ls
+    elmPackages.elm-format
     fennel-ls
     fnlfmt
     nil
     nixfmt
+    nodePackages.pyright
+    nodePackages.typescript-language-server
+    php83Packages.phan
+    prettierd
+    ruff
     rustywind
     stylua
-    ruff
-    nodePackages.pyright
+    tailwindcss-language-server
+    vscode-langservers-extracted
 
     # Nix
     cachix

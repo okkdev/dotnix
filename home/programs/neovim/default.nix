@@ -37,6 +37,7 @@ in {
     viAlias = true;
     vimAlias = true;
     vimdiffAlias = true;
+    defaultEditor = true;
     withNodeJs = true;
     extraPackages = (with pkgs; [ fzf tree-sitter delta fd ]);
     plugins = with pkgs.vimPlugins; [
@@ -46,29 +47,7 @@ in {
       mini-nvim
 
       # lsp/completions
-      (nvim-treesitter.withPlugins (p: [
-        p.bash
-        p.c
-        p.elixir
-        p.elm
-        p.fennel
-        p.fish
-        p.gleam
-        p.heex
-        p.javascript
-        p.json
-        p.lua
-        p.markdown
-        p.markdown_inline
-        p.nix
-        p.query
-        p.regex
-        p.rust
-        p.typescript
-        p.vim
-        p.vimdoc
-        p.yaml
-      ]))
+      nvim-treesitter.withAllGrammars
       nvim-lspconfig
       nvim-cmp
       cmp-nvim-lsp

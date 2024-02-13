@@ -8,9 +8,7 @@ with lib; {
     sessionVariables = {
       ERL_AFLAGS = "-kernel shell_history enabled";
       ELIXIR_EDITOR = "code --goto __FILE__:__LINE__";
-      EDITOR = "nvim";
       BAT_THEME = "ansi";
-      NEOVIDE_FRAME = "buttonless";
     };
     file.".hushlogin".text = "";
   };
@@ -26,6 +24,7 @@ with lib; {
     /programs/kitty.nix
     /programs/yabai.nix
     /programs/neovim
+    /programs/tmux.nix
     /programs/helix.nix
   ];
 }

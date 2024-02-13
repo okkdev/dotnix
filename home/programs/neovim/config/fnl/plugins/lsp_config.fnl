@@ -42,7 +42,6 @@
 ; Language Servers
 
 (local lsp (require :lspconfig))
-(local cmp (require :cmp))
 (local cmp_lsp (require :cmp_nvim_lsp))
 (local capabilities
        (cmp_lsp.default_capabilities (vim.lsp.protocol.make_client_capabilities)))
@@ -68,4 +67,12 @@
 (lsp.tailwindcss.setup {: on_attach : capabilities : flags})
 
 (lsp.pyright.setup {: on_attach : capabilities : flags})
+
+(lsp.cssls.setup {: on_attach : capabilities : flags})
+
+(lsp.html.setup {: on_attach : capabilities : flags})
+
+(lsp.jsonls.setup {: on_attach : capabilities : flags})
+
+(lsp.phan.setup {: on_attach : capabilities : flags})
 

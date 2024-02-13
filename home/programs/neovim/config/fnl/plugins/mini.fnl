@@ -17,9 +17,11 @@
                                                                                        (set mouse_scrolled
                                                                                             false)
                                                                                        false)
+                                                                                     vim.g.neovide
+                                                                                     false
                                                                                      (> total-scroll
                                                                                         1)))})
-                           :timing (animate.gen_timing.linear {:duration 100
+                           :timing (animate.gen_timing.linear {:duration 150
                                                                :unit :total})}}))
 
 ; Highlight words under cursor

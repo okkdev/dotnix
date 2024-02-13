@@ -26,8 +26,8 @@
         src = pkgs.fetchFromGitHub {
           owner = "jorgebucaran";
           repo = "hydro";
-          rev = "383cdd905f5723f1805362185ad17ab7e7f48bff";
-          sha256 = "1vlh273nxa5r79p1nw061l5y2cbip04v64027xjgbh2wzjnqy9xr";
+          rev = "41b46a05c84a15fe391b9d43ecb71c7a243b5703";
+          sha256 = "sha256-zmEa/GJ9jtjzeyJUWVNSz/wYrU2FtqhcHdgxzi6ANHg=";
         };
       }
       {
@@ -35,8 +35,8 @@
         src = pkgs.fetchFromGitHub {
           owner = "edc";
           repo = "bass";
-          rev = "2fd3d2157d5271ca3575b13daec975ca4c10577a";
-          sha256 = "0mb01y1d0g8ilsr5m8a71j6xmqlyhf8w4xjf00wkk8k41cz3ypky";
+          rev = "79b62958ecf4e87334f24d6743e5766475bcf4d0";
+          sha256 = "sha256-3d/qL+hovNA4VMWZ0n1L+dSM1lcz7P5CQJyy+/8exTc=";
         };
       }
       {
