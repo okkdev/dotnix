@@ -7,7 +7,6 @@
     # Tools
     neofetch
     eza
-    bat
     delta
     tealdeer
     fd
@@ -60,4 +59,14 @@
     # Nix
     cachix
   ];
+
+  programs.bat = {
+    enable = true;
+    config.theme = "ansi";
+  };
+
+  programs.zoxide = {
+    enable = true;
+    enableFishIntegration = true;
+  };
 }

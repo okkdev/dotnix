@@ -8,7 +8,6 @@ with lib; {
     sessionVariables = {
       ERL_AFLAGS = "-kernel shell_history enabled";
       ELIXIR_EDITOR = "code --goto __FILE__:__LINE__";
-      BAT_THEME = "ansi";
     };
     file.".hushlogin".text = "";
   };

@@ -13,11 +13,6 @@
     flags = [ "--disable-up-arrow" ];
   };
 
-  programs.zoxide = {
-    enable = true;
-    enableFishIntegration = true;
-  };
-
   programs.fish = {
     enable = true;
     plugins = [
