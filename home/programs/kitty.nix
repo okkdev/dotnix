@@ -23,6 +23,7 @@
       background_opacity = "1";
       listen_on = "unix:/tmp/mykitty";
     };
+    shellIntegration.enableFishIntegration = true;
     extraConfig = "include current-theme.conf";
   };
 }

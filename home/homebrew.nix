@@ -11,11 +11,7 @@ let
     "koekeishiya/formulae"
   ];
 
-  brews = [
-    "lima"
-    "skhd"
-    "yabai"
-  ];
+  brews = [ "lima" "skhd" "yabai" ];
 
   casks = [
     "1password"
@@ -78,47 +74,46 @@ let
     "cascadia-code"
     "commit-mono"
     "cozette"
-    "fantasque-sans-mono-nerd-font"
+    "fantasque-sans-mono"
     "fira-code"
     "hasklig"
-    "hasklug-nerd-font"
     "ibm-plex"
     "inter"
-    "iosevka-nerd-font"
     "iosevka"
     "jetbrains-mono"
     "juliamono"
     "manrope"
+    "symbols-only-nerd-font"
   ];
 
   mas = [
-    { name = "WireGuard"; id = "1451685025"; }
-    { name = "Unsplash Wallpapers"; id = "1284863847"; }
+    {
+      name = "WireGuard";
+      id = "1451685025";
+    }
+    {
+      name = "Unsplash Wallpapers";
+      id = "1284863847";
+    }
   ];
-in
-with lib; {
+in with lib; {
   home.sessionPath = [ "/opt/homebrew/bin" ];
 
   home.file.".Brewfile" = {
-    text = (concatMapStrings
-      (tap: ''tap "'' + tap + "\"\n")
-      taps)
-    +
-    (concatMapStrings
-      (brew: ''brew "'' + brew + "\"\n")
-      brews)
-    +
-    (concatMapStrings
-      (cask: ''cask "'' + cask + "\"\n")
-      casks)
-    +
-    (concatMapStrings
-      (font: ''cask "font-'' + font + "\"\n")
-      fonts)
-    +
-    (concatMapStrings
-      ({ name, id }: ''mas "'' + name + ''", id: '' + id + "\n")
-      mas);
+    text = (concatMapStrings (tap:
+      ''tap "'' + tap + ''
+        "
+      '') taps) + (concatMapStrings (brew:
+        ''brew "'' + brew + ''
+          "
+        '') brews) + (concatMapStrings (cask:
+          ''cask "'' + cask + ''
+            "
+          '') casks) + (concatMapStrings (font:
+            ''cask "font-'' + font + ''
+              "
+            '') fonts) + (concatMapStrings
+              ({ name, id }: ''mas "'' + name + ''", id: '' + id + "\n") mas);
     onChange = ''
       /opt/homebrew/bin/brew bundle install --cleanup --verbose --no-upgrade --force --no-lock --global
     '';

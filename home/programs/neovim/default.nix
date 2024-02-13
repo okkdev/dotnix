@@ -113,8 +113,8 @@ in {
       frame = "buttonless"
 
       [font]
-      normal = ["FantasqueSansM Nerd Font"]
-      size = 15
+      normal = ["CommitMonoLiga Nerd Font"]
+      size = 14.5
     '';
   };
 

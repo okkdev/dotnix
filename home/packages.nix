@@ -48,7 +48,6 @@
     nixfmt
     nodePackages.pyright
     nodePackages.typescript-language-server
-    php83Packages.phan
     prettierd
     ruff
     rustywind

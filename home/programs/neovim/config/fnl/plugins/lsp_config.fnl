@@ -74,5 +74,3 @@
 
 (lsp.jsonls.setup {: on_attach : capabilities : flags})
 
-(lsp.phan.setup {: on_attach : capabilities : flags})
-
