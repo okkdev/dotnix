@@ -21,7 +21,7 @@
                                                                                      false
                                                                                      (> total-scroll
                                                                                         1)))})
-                           :timing (animate.gen_timing.linear {:duration 150
+                           :timing (animate.gen_timing.linear {:duration 125
                                                                :unit :total})}}))
 
 ; Highlight words under cursor
@@ -59,6 +59,7 @@
 ; Show indent scope
 (let [indent (require :mini.indentscope)]
   (indent.setup {:symbol "▎"
-                 :draw {:animation (indent.gen_animation.linear {:duration 10
+                 :draw {:delay 200
+                        :animation (indent.gen_animation.linear {:duration 5
                                                                  :unit :step})}}))
 

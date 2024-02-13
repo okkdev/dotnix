@@ -1,5 +1,6 @@
 (require :settings)
 (require :mapping)
+(require :autocommands)
 (require :neovide)
 
 ; Plugins

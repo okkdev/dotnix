@@ -41,48 +41,57 @@ in {
     withNodeJs = true;
     extraPackages = (with pkgs; [ fzf tree-sitter delta fd ]);
     plugins = with pkgs.vimPlugins; [
-      # meta
+      # Fennel compiler plugin
       tangerine-nvim
-      plenary-nvim
+
+      # collection of utils
       mini-nvim
 
-      # lsp/completions
+      # treesitter
       nvim-treesitter.withAllGrammars
+
+      # lsp and completions
       nvim-lspconfig
       nvim-cmp
       cmp-nvim-lsp
       cmp-buffer
       cmp-cmdline
       cmp-path
-      luasnip
-      cmp_luasnip
-      lspkind-nvim
-      friendly-snippets
-      conform-nvim
       tailwindcss-colorizer-cmp
 
-      # ease of use
+      # snippets
+      luasnip
+      cmp_luasnip
+      friendly-snippets
+
+      # formatter
+      conform-nvim
+
+      # ease of use stuff
       eyeliner-nvim
-      vim-repeat
-      # vim-sleuth
       toggleterm-nvim
+      plenary-nvim # telescope dependency
       telescope-nvim
       telescope-undo-nvim
       telescope-fzf-native-nvim
       nvim-tree-lua
       trouble-nvim
-      vim-fugitive
       gitsigns-nvim
       flash-nvim
       oil-nvim
 
-      # ui
+      # ui framework
+      nui-nvim
+
+      # icons
       nvim-web-devicons
+      lspkind-nvim
+
+      # ui elements
       lualine-nvim
       which-key-nvim
       alpha-nvim
       noice-nvim
-      nui-nvim
       nvim-notify
       zen-mode-nvim
       twilight-nvim
@@ -93,10 +102,6 @@ in {
       catppuccin-nvim
       neovim-ayu
       oxocarbon-nvim
-
-      # language
-      conjure
-      vim-nix
     ];
   };
 

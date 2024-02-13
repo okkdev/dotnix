@@ -22,6 +22,12 @@
       adjust_line_height = "130%";
       background_opacity = "1";
       listen_on = "unix:/tmp/mykitty";
+      disable_ligatures = "cursor";
+
+      ## Performance
+      # repaint_delay = 10;
+      # sync_to_monitor = "no";
+      input_delay = 2;
     };
     shellIntegration.enableFishIntegration = true;
     extraConfig = "include current-theme.conf";
