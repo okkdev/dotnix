@@ -74,6 +74,12 @@
     extraOptions = [ "--group-directories-first" ];
   };
 
+  programs.atuin = {
+    enable = true;
+    enableFishIntegration = true;
+    flags = [ "--disable-up-arrow" ];
+  };
+
   programs.tealdeer = {
     enable = true;
     updateOnActivation = true;

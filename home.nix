@@ -9,7 +9,6 @@ with lib; {
       ERL_AFLAGS = "-kernel shell_history enabled";
       ELIXIR_EDITOR = "code --goto __FILE__:__LINE__";
     };
-    file.".hushlogin".text = "";
   };
 
   programs.home-manager.enable = true;

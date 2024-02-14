@@ -7,12 +7,6 @@
     config.global = { load_dotenv = true; };
   };
 
-  programs.atuin = {
-    enable = true;
-    enableFishIntegration = true;
-    flags = [ "--disable-up-arrow" ];
-  };
-
   programs.fish = {
     enable = true;
     plugins = [

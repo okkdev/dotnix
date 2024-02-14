@@ -19,6 +19,9 @@
       ApplePressAndHoldEnabled = false;
     };
   };
+
+  home.file.".hushlogin".text = "";
+
   launchd.agents.load-ssh-keys = {
     enable = true;
     config = {
