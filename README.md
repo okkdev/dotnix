@@ -10,12 +10,13 @@ Manages dotfiles and cli tools via Home-Manager/Nix and casks via Homebrew
 ```sh
 curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install
 ```
+> Restart the shell after installation
 2. Install homebrew
 ```sh
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
 # Disable analytics
-brew analytics off
+/opt/homebrew/bin/brew analytics off
 ```
 3. Clone config
 ```sh
@@ -26,25 +27,31 @@ git clone git@github.com:okkdev/dotnix.git
 mkdir ~/.config
 ln -s (pwd)/dotnix ~/.config/home-manager
 ```
-5. Get Flake dependencies
-```sh
-cd dotnix
-nix flake archive
-# or
-nix flake update # to also update
-```
-6. Activate config
+5. Activate config
 ```sh
 nix run home-manager -- switch
 ```
 
-⚠️  Subsequent runs of home-manager are as simple as
+# Apply new config
+
 ```sh
 home-manager switch
 ```
 
+# Update packages
+
+```sh
+nix flake update
+home-manager switch
+```
+
+```sh
+brew update
+brew upgrade
+```
+
 🚨 Fish needs to be added to `/etc/shells` manually:
 ```sh
-sudo echo /Users/js/.nix-profile/bin/fish >> /etc/shells
+echo /Users/js/.nix-profile/bin/fish | sudo tee -a /etc/shells
 chsh -s /Users/js/.nix-profile/bin/fish
 ```
