@@ -5,10 +5,7 @@
 
   home.packages = with pkgs; [
     # Tools
-    neofetch
-    eza
     delta
-    tealdeer
     fd
     fzf
     ripgrep
@@ -67,5 +64,18 @@
   programs.zoxide = {
     enable = true;
     enableFishIntegration = true;
+  };
+
+  programs.eza = {
+    enable = true;
+    enableAliases = true;
+    icons = true;
+    git = true;
+    extraOptions = [ "--group-directories-first" ];
+  };
+
+  programs.tealdeer = {
+    enable = true;
+    updateOnActivation = true;
   };
 }

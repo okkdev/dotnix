@@ -71,10 +71,7 @@
       top = "btm";
       npm = "pnpm";
     };
-    shellAliases = {
-      ssh = "TERM=xterm-256color /usr/bin/ssh";
-      ll = "eza -abhl --icons --group-directories-first";
-    };
+    shellAliases = { ssh = "TERM=xterm-256color /usr/bin/ssh"; };
     functions = {
       fish_greeting = {
         description = "Greeting to show when starting a fish shell";
