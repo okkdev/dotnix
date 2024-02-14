@@ -70,6 +70,7 @@
     shellAbbrs = {
       top = "btm";
       npm = "pnpm";
+      du = "dust";
     };
     shellAliases = { ssh = "TERM=xterm-256color /usr/bin/ssh"; };
     functions = {

@@ -100,17 +100,23 @@ in with lib; {
     text = (concatMapStrings (tap:
       ''tap "'' + tap + ''
         "
-      '') taps) + (concatMapStrings (brew:
-        ''brew "'' + brew + ''
-          "
-        '') brews) + (concatMapStrings (cask:
-          ''cask "'' + cask + ''
-            "
-          '') casks) + (concatMapStrings (font:
-            ''cask "font-'' + font + ''
-              "
-            '') fonts) + (concatMapStrings
-              ({ name, id }: ''mas "'' + name + ''", id: '' + id + "\n") mas);
+      ''
+
+    ) taps) + (concatMapStrings (brew:
+      ''brew "'' + brew + ''
+        "
+      ''
+
+    ) brews) + (concatMapStrings (cask:
+      ''cask "'' + cask + ''
+        "
+      ''
+
+    ) casks) + (concatMapStrings (font:
+      ''cask "font-'' + font + ''
+        "
+      '') fonts) + (concatMapStrings
+        ({ name, id }: ''mas "'' + name + ''", id: '' + id + "\n") mas);
     onChange = ''
       /opt/homebrew/bin/brew bundle install --cleanup --verbose --no-upgrade --force --no-lock --global
     '';
