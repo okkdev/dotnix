@@ -32,6 +32,12 @@ ln -s (pwd)/dotnix ~/.config/home-manager
 nix run home-manager -- switch
 ```
 
+🚨 Fish needs to be added to `/etc/shells` manually:
+```sh
+echo /Users/js/.nix-profile/bin/fish | sudo tee -a /etc/shells
+chsh -s /Users/js/.nix-profile/bin/fish
+```
+
 # Apply new config
 
 ```sh
@@ -50,8 +56,3 @@ brew update
 brew upgrade
 ```
 
-🚨 Fish needs to be added to `/etc/shells` manually:
-```sh
-echo /Users/js/.nix-profile/bin/fish | sudo tee -a /etc/shells
-chsh -s /Users/js/.nix-profile/bin/fish
-```
