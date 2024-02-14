@@ -4,7 +4,7 @@ My personal macOS Home-Manager config
 
 Manages dotfiles and cli tools via Home-Manager/Nix and casks via Homebrew
 
-# Install steps
+## Install steps
 
 1. Install nix using the [Determinate Nix Installer](https://github.com/DeterminateSystems/nix-installer)
 ```sh
@@ -38,13 +38,13 @@ echo /Users/js/.nix-profile/bin/fish | sudo tee -a /etc/shells
 chsh -s /Users/js/.nix-profile/bin/fish
 ```
 
-# Apply new config
+## Apply new config
 
 ```sh
 home-manager switch
 ```
 
-# Update packages
+## Update packages
 
 ```sh
 nix flake update
