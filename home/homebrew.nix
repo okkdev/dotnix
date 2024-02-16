@@ -4,6 +4,7 @@ let
   taps = [
     "homebrew/bundle"
     "homebrew/cask"
+    "homebrew/cask-versions"
     "homebrew/cask-fonts"
     "homebrew/core"
     "homebrew/services"
@@ -66,33 +67,6 @@ let
     "visual-studio-code"
     "zoom"
   ];
-
-  fonts = [
-    "cascadia-code"
-    "commit-mono"
-    "cozette"
-    "fantasque-sans-mono"
-    "fira-code"
-    "hasklig"
-    "ibm-plex"
-    "inter"
-    "iosevka"
-    "jetbrains-mono"
-    "juliamono"
-    "manrope"
-    "symbols-only-nerd-font"
-  ];
-
-  mas = [
-    {
-      name = "WireGuard";
-      id = "1451685025";
-    }
-    {
-      name = "Unsplash Wallpapers";
-      id = "1284863847";
-    }
-  ];
 in with lib; {
   home.sessionPath = [ "/opt/homebrew/bin" ];
 
@@ -112,11 +86,7 @@ in with lib; {
         "
       ''
 
-    ) casks) + (concatMapStrings (font:
-      ''cask "font-'' + font + ''
-        "
-      '') fonts) + (concatMapStrings
-        ({ name, id }: ''mas "'' + name + ''", id: '' + id + "\n") mas);
+    ) casks);
     onChange = ''
       /opt/homebrew/bin/brew bundle install --cleanup --verbose --no-upgrade --force --no-lock --global
     '';

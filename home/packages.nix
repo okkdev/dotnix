@@ -5,18 +5,17 @@
 
   home.packages = with pkgs; [
     # Tools
-    delta
     fd
     fzf
     ripgrep
     viddy
     jq
-    nix-info
     httpie
     bottom
     dogdns
     du-dust
     yt-dlp
+    wireguard-tools
     ollama
     krabby
 
@@ -54,11 +53,33 @@
 
     # Nix
     cachix
+
+    # fonts
+    cascadia-code
+    commit-mono
+    cozette
+    fantasque-sans-mono
+    fira-code
+    hasklig
+    ibm-plex
+    inter
+    iosevka
+    jetbrains-mono
+    julia-mono
+    manrope
+    (nerdfonts.override { fonts = [ "NerdFontsSymbolsOnly" ]; })
   ];
 
   programs.bat = {
     enable = true;
     config.theme = "ansi";
+    extraPackages = with pkgs.bat-extras; [
+      batdiff
+      batman
+      batpipe
+      batgrep
+      batwatch
+    ];
   };
 
   programs.zoxide = {
@@ -83,5 +104,10 @@
   programs.tealdeer = {
     enable = true;
     updateOnActivation = true;
+  };
+
+  programs.git.delta = {
+    enable = true;
+    options.syntax-theme = "ansi";
   };
 }

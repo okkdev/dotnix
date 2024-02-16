@@ -12,19 +12,23 @@ with lib; {
       yabai -m config focus_follows_mouse          off
       yabai -m config window_origin_display        default
       yabai -m config window_placement             second_child
-      yabai -m config window_topmost               off
-      yabai -m config window_shadow                on
-      yabai -m config window_opacity               off
-      yabai -m config window_opacity_duration      0.0
-      yabai -m config active_window_opacity        1.0
-      yabai -m config normal_window_opacity        0.90
-      yabai -m config window_border                off
-      yabai -m config window_border_width          6
-      yabai -m config active_window_border_color   0xff775759
-      yabai -m config normal_window_border_color   0xff555555
-      yabai -m config insert_feedback_color        0xffd75f5f
       yabai -m config split_ratio                  0.50
       yabai -m config auto_balance                 off
+
+      ## SIP stuff
+      # yabai -m config window_topmost               off
+      # yabai -m config window_shadow                on
+      # yabai -m config window_opacity               off
+      # yabai -m config window_opacity_duration      0.0
+      # yabai -m config active_window_opacity        1.0
+      # yabai -m config normal_window_opacity        0.90
+      # yabai -m config window_border                off
+      # yabai -m config window_border_width          6
+      # yabai -m config active_window_border_color   0xff775759
+      # yabai -m config normal_window_border_color   0xff555555
+      # yabai -m config insert_feedback_color        0xffd75f5f
+
+      # mouse
       yabai -m config mouse_modifier               cmd
       yabai -m config mouse_action1                move
       yabai -m config mouse_action2                resize
@@ -42,7 +46,6 @@ with lib; {
       # rules
       yabai -m rule --add app="^System Settings$" manage=off
       yabai -m rule --add app="^1Password 7$" manage=off
-      yabai -m rule --add app="^Keka$" manage=off
       yabai -m rule --add title='^Archive Utility$' manage=off
 
       echo "yabai configuration loaded.."
@@ -59,10 +62,10 @@ with lib; {
       modMask = "shift + alt";
       moveMask = "ctrl + shift + alt";
       focusSpaceLeft = ''
-        osascript -e 'tell app "System Events" to key code "4" using {control down, shift down}'
+        && osascript -e 'tell app "System Events" to key code "4" using {control down, shift down}'
       '';
       focusSpaceRight = ''
-        osascript -e 'tell app "System Events" to key code "37" using {control down, shift down}'
+        && osascript -e 'tell app "System Events" to key code "37" using {control down, shift down}'
       '';
     in ''
       # focus window
@@ -83,8 +86,8 @@ with lib; {
       (n: moveMask + " - " + n + " : yabai -m window --space " + n + "\n")
       (map toString (range 1 9))}
       # send window to space and follow focus
-      ${moveMask} - u : yabai -m window --space prev; ${focusSpaceLeft}
-      ${moveMask} - i : yabai -m window --space next; ${focusSpaceRight}
+      ${moveMask} - u : yabai -m window --space prev ${focusSpaceLeft}
+      ${moveMask} - i : yabai -m window --space next ${focusSpaceRight}
       # focus monitor
       ${modMask} - w : yabai -m display --focus prev
       ${modMask} - e : yabai -m display --focus next

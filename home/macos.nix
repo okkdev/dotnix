@@ -22,6 +22,8 @@
 
   home.file.".hushlogin".text = "";
 
+  fonts.fontconfig.enable = true;
+
   launchd.agents.load-ssh-keys = {
     enable = true;
     config = {

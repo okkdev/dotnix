@@ -58,7 +58,7 @@
       fish_add_path $HOME/.cargo/bin
 
       fish_terminal_colors
-      set -U hydro_symbol_prompt " $(tput bold)➜$(tput sgr0)"
+      set -g hydro_symbol_prompt "$(shell_level)$(tput bold)➜$(tput sgr0)"
       set -U hydro_multiline true
     '';
     shellAbbrs = {
@@ -71,6 +71,25 @@
       fish_greeting = {
         description = "Greeting to show when starting a fish shell";
         body = "echo 🐟";
+      };
+      shell_level = {
+        description = "show the current shell level as icon";
+        body = ''
+          switch (math "$SHLVL - 1")
+            case 0
+                echo " "
+            case 1
+                echo ⋅
+            case 2
+                echo ∶
+            case 3
+                echo ∴
+            case 4
+                echo ∷
+            case '*'
+                echo (math "$SHLVL - 1")
+          end
+        '';
       };
       switch_theme = {
         argumentNames = "mode";

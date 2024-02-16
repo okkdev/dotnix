@@ -1,6 +1,5 @@
 ; Nvim settings
 (local o vim.o)
-(local g vim.g)
 
 (set o.autoindent true)
 (set o.autoread true)
@@ -32,6 +31,4 @@
 (set o.undofile true)
 (set o.virtualedit :block)
 (set o.wrap false)
-
-(set g.netrw_banner 0)
 
