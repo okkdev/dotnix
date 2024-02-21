@@ -11,6 +11,7 @@
       contents = {
         user.name = "Jen Stehlik";
         user.email = "js@cyon.ch";
+        user.signingkey = "~/.ssh/id_cyon_ed25519.pub";
       };
     }];
     aliases = {
@@ -55,8 +56,23 @@
       column.ui = "auto";
       commit.gpgsign = true;
       gpg.format = "ssh";
-      user.signingkey = "~/.ssh/id_cyon_ed25519.pub";
+      user.signingkey = "~/.ssh/id_ed25519.pub";
     };
-    delta.enable = true;
+
+    delta = {
+      enable = true;
+      options = {
+        syntax-theme = "ansi";
+        keep-plus-minus-markers = true;
+        minus-emph-style = "reverse red";
+        plus-emph-style = "reverse green";
+
+        features = "rose-pine-dawn";
+        rose-pine-dawn = {
+          minus-style = "syntax #f9d3de";
+          plus-style = "syntax #d7ebef";
+        };
+      };
+    };
   };
 }

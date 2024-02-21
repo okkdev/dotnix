@@ -10,7 +10,8 @@
                                    :typescript [:biome :rustywind]
                                    :nix [:nixfmt]
                                    :lua [:stylua]
-                                   :python [:ruff_format]}
+                                   :python [:ruff_format]
+                                   :toml [:taplo]}
                 ; Toggleable format on save
                 :format_on_save (fn [bufnr]
                                   (let [buffer (. vim.b bufnr)]

@@ -24,5 +24,6 @@ with lib; {
     /programs/neovim
     /programs/tmux.nix
     /programs/helix.nix
+    /programs/simple-bar.nix
   ];
 }

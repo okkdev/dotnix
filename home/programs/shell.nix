@@ -1,6 +1,4 @@
-{ config, pkgs, ... }:
-
-{
+{ config, pkgs, ... }: {
   programs.direnv = {
     enable = true;
     nix-direnv.enable = true;
@@ -91,6 +89,11 @@
           end
         '';
       };
+      os_dark_mode = {
+        description = "checks if macOS dark mode is on";
+        body = ''
+          osascript -l JavaScript -e "Application('System Events').appearancePreferences.darkMode()"'';
+      };
       switch_theme = {
         argumentNames = "mode";
         description = "switches global theme";
@@ -98,11 +101,13 @@
           if [ "$mode" = "dark" ]
             osascript -l JavaScript -e "Application('System Events').appearancePreferences.darkMode = true"
             switch_kitty_theme "Rosé Pine"
+            echo "Dark Theme activated"
           else if [ "$mode" = "light" ]
             osascript -l JavaScript -e "Application('System Events').appearancePreferences.darkMode = false"
             switch_kitty_theme "Rosé Pine Dawn"
+            echo "Light Theme activated"
           else
-            if [ (osascript -l JavaScript -e "Application('System Events').appearancePreferences.darkMode()") = "true" ]
+            if [ os_dark_mode = "true" ]
               switch_theme "light"
             else
               switch_theme "dark"
@@ -125,7 +130,6 @@
             kitty @ --to unix:/tmp/mykitty set-colors -a -c $current_theme
           else
             echo "theme not found"
-            return
           end
         '';
       };

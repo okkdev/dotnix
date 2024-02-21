@@ -48,6 +48,9 @@ with lib; {
       yabai -m rule --add app="^1Password 7$" manage=off
       yabai -m rule --add title='^Archive Utility$' manage=off
 
+      # need to force refresh simple bar
+      osascript -e 'tell application id "tracesOf.Uebersicht" to refresh'
+
       echo "yabai configuration loaded.."
     '';
     onChange = ''

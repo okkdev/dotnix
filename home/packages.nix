@@ -2,6 +2,7 @@
 
 {
   nixpkgs.config.allowUnfree = true;
+  nixpkgs.overlays = [ (import ../overlays/vimPlugins.nix) ];
 
   home.packages = with pkgs; [
     # Tools
@@ -16,6 +17,7 @@
     du-dust
     yt-dlp
     wireguard-tools
+    deploy-rs
     ollama
     krabby
 
@@ -50,6 +52,7 @@
     stylua
     tailwindcss-language-server
     vscode-langservers-extracted
+    taplo
 
     # Nix
     cachix
@@ -104,10 +107,5 @@
   programs.tealdeer = {
     enable = true;
     updateOnActivation = true;
-  };
-
-  programs.git.delta = {
-    enable = true;
-    options.syntax-theme = "ansi";
   };
 }

@@ -1,3 +1,5 @@
+(vim.loader.enable)
+
 (require :settings)
 (require :mapping)
 (require :autocommands)
@@ -22,4 +24,5 @@
 (require :plugins.nvim_tree)
 (require :plugins.gitsigns)
 (require :plugins.oil)
+(require :plugins.kitty_scrollback)
 

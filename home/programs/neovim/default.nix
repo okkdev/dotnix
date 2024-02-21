@@ -1,37 +1,6 @@
 { config, pkgs, lib, ... }:
 
-let
-  tangerine-nvim = pkgs.vimUtils.buildVimPlugin rec {
-    pname = "tangerine-nvim";
-    version = "v2.8";
-    src = pkgs.fetchFromGitHub {
-      owner = "udayvir-singh";
-      repo = "tangerine.nvim";
-      rev = version;
-      sha256 = "sha256-gviY9oltZiOWJR9vWSIgWGd7uVvfcTPNUScmaWjVCm8=";
-    };
-  };
-  tailwindcss-colorizer-cmp = pkgs.vimUtils.buildVimPlugin {
-    pname = "tailwindcss-colorizer-cmp";
-    version = "main";
-    src = pkgs.fetchFromGitHub {
-      owner = "roobert";
-      repo = "tailwindcss-colorizer-cmp.nvim";
-      rev = "bc25c56083939f274edcfe395c6ff7de23b67c50";
-      sha256 = "sha256-4wt4J6pENX7QRG7N1GzE9L6pM5E88tnHbv4NQa5JqSI=";
-    };
-  };
-  bg-nvim = pkgs.vimUtils.buildVimPlugin {
-    pname = "bg-nvim";
-    version = "main";
-    src = pkgs.fetchFromGitHub {
-      owner = "typicode";
-      repo = "bg.nvim";
-      rev = "1c95261cc5e3062e3b277fc5c15d180d51a40f62";
-      sha256 = "sha256-ZocdEdw7m6gVQap0MFr1uymIkHnX9ewjWmR7fYVR9Ko=";
-    };
-  };
-in {
+{
   programs.neovim = {
     enable = true;
     viAlias = true;
@@ -41,6 +10,9 @@ in {
     withNodeJs = true;
     extraPackages = (with pkgs; [ fzf tree-sitter delta fd ]);
     plugins = with pkgs.vimPlugins; [
+      # kitty scrollback support
+      kitty-scrollback-nvim
+
       # Fennel compiler plugin
       tangerine-nvim
 
@@ -98,7 +70,15 @@ in {
       bg-nvim
 
       # themes
-      rose-pine
+      (rose-pine.overrideAttrs (_: {
+        version = "main";
+        src = pkgs.fetchFromGitHub {
+          owner = "rose-pine";
+          repo = "neovim";
+          rev = "f977eeba34b030b37f93ece2fbd792477606203b";
+          sha256 = "sha256-Zukzbs5ZQUjWutZK0oc1VHqFmUbvzWKtu6hb9EDFl9Y=";
+        };
+      }))
       catppuccin-nvim
       neovim-ayu
       oxocarbon-nvim
