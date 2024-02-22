@@ -8,7 +8,7 @@
     vimdiffAlias = true;
     defaultEditor = true;
     withNodeJs = true;
-    extraPackages = (with pkgs; [ fzf tree-sitter delta fd ]);
+    extraPackages = (with pkgs; [ fzf tree-sitter fd ]);
     plugins = with pkgs.vimPlugins; [
       # kitty scrollback support
       kitty-scrollback-nvim

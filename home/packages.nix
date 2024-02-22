@@ -54,9 +54,6 @@
     vscode-langservers-extracted
     taplo
 
-    # Nix
-    cachix
-
     # fonts
     cascadia-code
     commit-mono

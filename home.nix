@@ -1,6 +1,6 @@
 { config, pkgs, lib, ... }:
 
-with lib; {
+{
   home = {
     username = "js";
     homeDirectory = "/Users/js";

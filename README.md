@@ -34,8 +34,8 @@ nix run home-manager -- switch
 
 🚨 Fish needs to be added to `/etc/shells` manually:
 ```sh
-echo /Users/js/.nix-profile/bin/fish | sudo tee -a /etc/shells
-chsh -s /Users/js/.nix-profile/bin/fish
+echo $HOME/.nix-profile/bin/fish | sudo tee -a /etc/shells
+chsh -s $HOME/.nix-profile/bin/fish
 ```
 
 ## Apply new config

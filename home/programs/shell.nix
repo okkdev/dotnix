@@ -39,6 +39,9 @@
     loginShellInit =
       "fish_add_path --move --prepend --path $HOME/.nix-profile/bin /nix/var/nix/profiles/default/bin";
     shellInit = ''
+      fish_add_path /opt/homebrew/sbin
+      fish_add_path /opt/homebrew/bin
+
       if test -d (brew --prefix)"/share/fish/completions"
           set -gx fish_complete_path (brew --prefix)/share/fish/completions $fish_complete_path 
       end
@@ -46,9 +49,6 @@
       if test -d (brew --prefix)"/share/fish/vendor_completions.d"
           set -gx fish_complete_path (brew --prefix)/share/fish/vendor_completions.d $fish_complete_path 
       end
-
-      fish_add_path /opt/homebrew/sbin
-      fish_add_path /opt/homebrew/bin
 
       fish_add_path $HOME/.ghcup/bin
       fish_add_path $HOME/.cabal/bin
@@ -107,7 +107,7 @@
             switch_kitty_theme "Rosé Pine Dawn"
             echo "Light Theme activated"
           else
-            if [ os_dark_mode = "true" ]
+            if [ (os_dark_mode) = "true" ]
               switch_theme "light"
             else
               switch_theme "dark"
