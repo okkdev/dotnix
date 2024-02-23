@@ -29,7 +29,7 @@ ln -s (pwd)/dotnix ~/.config/home-manager
 ```
 5. Activate config
 ```sh
-nix run home-manager -- switch
+nix run . -- switch
 ```
 
 🚨 Fish needs to be added to `/etc/shells` manually:
