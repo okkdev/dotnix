@@ -4,9 +4,8 @@
 
 (luasnip.config.setup {})
 
-; workaround to ignore duplicate vscode snippets
 (let [vscode_loader (require :luasnip.loaders.from_vscode)]
-  (vscode_loader.lazy_load {:paths :$HOME/.local/share/nvim/site/pack/packer/start/friendly-snippets}))
+  (vscode_loader.lazy_load))
 
 (cmp.setup {:mapping (cmp.mapping.preset.insert {:<C-Space> (cmp.mapping.complete {})
                                                  :<C-d> (cmp.mapping.scroll_docs (- 4))

@@ -42,8 +42,7 @@
                                     :telescope {:enabled true :style :nvchad}
                                     :leap true
                                     :flash true
-                                    :which_key true
-                                    :lsp_trouble true}}) ; Customization for Pmenu
+                                    :which_key true}}) ; Customization for Pmenu
   (set_hl 0 :CmpItemAbbrDeprecated
           {:bg :NONE :fg "#7E8294" :strikethrough true})
   (set_hl 0 :CmpItemAbbrMatch {:bg :NONE :bold true :fg "#82AAFF"})

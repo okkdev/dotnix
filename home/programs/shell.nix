@@ -127,7 +127,7 @@
           set -l current_theme (realpath ~/.config/kitty/current-theme.conf)
 
           if kitty +kitten themes --dump-theme $theme_name > $current_theme
-            kitty @ --to unix:/tmp/mykitty set-colors -a -c $current_theme
+            kitty @ --to unix:/tmp/kitty set-colors -a -c $current_theme
           else
             echo "theme not found"
           end

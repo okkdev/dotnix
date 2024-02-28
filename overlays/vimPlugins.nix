@@ -40,5 +40,15 @@ self: super: {
         sha256 = "sha256-pMdvavw+t/xiJ6SRPflG+1s1N6HkHJiqktM+eNsCjUQ=";
       };
     };
+    smart-open-nvim = super.vimUtils.buildVimPlugin {
+      pname = "smart-open-nvim";
+      version = "main";
+      src = super.fetchFromGitHub {
+        owner = "danielfalk";
+        repo = "smart-open.nvim";
+        rev = "3cff486c7074a23c92339a8916ebe42bb0ffd2bf";
+        sha256 = "sha256-N0lDSYiHY6+IQ2AJ3dxZlNqgan49y/yw050LvvMrZdM=";
+      };
+    };
   };
 }

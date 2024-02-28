@@ -8,13 +8,13 @@
     vimdiffAlias = true;
     defaultEditor = true;
     withNodeJs = true;
-    extraPackages = (with pkgs; [ fzf tree-sitter fd ]);
+    extraPackages = (with pkgs; [ fzf tree-sitter fd sqlite ]);
     plugins = with pkgs.vimPlugins; [
-      # kitty scrollback support
-      kitty-scrollback-nvim
-
       # Fennel compiler plugin
       tangerine-nvim
+
+      # kitty scrollback support
+      kitty-scrollback-nvim
 
       # collection of utils
       mini-nvim
@@ -47,10 +47,17 @@
       telescope-undo-nvim
       telescope-fzf-native-nvim
       nvim-tree-lua
-      trouble-nvim
       gitsigns-nvim
       flash-nvim
       oil-nvim
+      smart-open-nvim
+      {
+        # smartopen dependency
+        plugin = sqlite-lua;
+        # macOS: libsqlite3.dylib, other: libsqlite3.so
+        config =
+          "let g:sqlite_clib_path = '${pkgs.sqlite.out}/lib/libsqlite3.dylib'";
+      }
 
       # ui framework
       nui-nvim

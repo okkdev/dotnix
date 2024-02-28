@@ -1,6 +1,9 @@
 ; Formatter with LSP Format fallback
 (local conform (require :conform))
 
+; Disable autoformat by default
+(set vim.g.disable_autoformat true)
+
 (conform.setup {:formatters_by_ft {:css [:prettierd :rustywind]
                                    :elm [:elm_format]
                                    :fennel [:fnlfmt]

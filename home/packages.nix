@@ -103,6 +103,6 @@
 
   programs.tealdeer = {
     enable = true;
-    updateOnActivation = true;
+    # updateOnActivation = true;
   };
 }

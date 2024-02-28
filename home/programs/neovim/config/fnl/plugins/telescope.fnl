@@ -7,7 +7,9 @@
                                      :fuzzy true
                                      :override_file_sorter true
                                      :override_generic_sorter true}
-                               :undo {:use_delta true}}
+                               :undo {:use_delta true}
+                               :smart_open {:match_algorithm :fzf
+                                            :cwd_only true}}
                   :pickers {:buffers {:sort_mru true
                                       :ignore_current_buffer true}
                             :find_files {:find_command [:fd
@@ -20,6 +22,7 @@
 (telescope.load_extension :noice)
 (telescope.load_extension :fzf)
 (telescope.load_extension :undo)
+(telescope.load_extension :smart_open)
 
 ; Keybinds
 
@@ -31,7 +34,10 @@
 (vim.keymap.set :n :<leader>p/ builtin.live_grep
                 {:desc "[p]roject search files"})
 
-(vim.keymap.set :n :<leader><space> builtin.buffers
+(vim.keymap.set :n :<leader>pb builtin.buffers
+                {:desc "Find existing [b]uffers"})
+
+(vim.keymap.set :n :<leader><space> telescope.extensions.smart_open.smart_open
                 {:desc "Find existing buffers"})
 
 (vim.keymap.set :n :<leader>/

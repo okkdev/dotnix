@@ -63,18 +63,21 @@
                         :animation (indent.gen_animation.linear {:duration 5
                                                                  :unit :step})}}))
 
-(set vim.g.miniindentscope_disable true)
+(local ins_filetypes [:elixir
+                      :gleam
+                      :html
+                      :javascript
+                      :nix
+                      :php
+                      :phtml
+                      :python
+                      :typescript])
+
 (vim.api.nvim_create_autocmd :FileType
-                             {:pattern [:elixir
-                                        :gleam
-                                        :html
-                                        :javascript
-                                        :nix
-                                        :php
-                                        :phtml
-                                        :python
-                                        :typescript]
+                             {:pattern "*"
                               :callback (fn []
-                                          (set vim.g.miniindentscope_disable
-                                               false))})
+                                          (when (not (vim.tbl_contains ins_filetypes
+                                                                  vim.bo.filetype))
+                                            (set vim.b.miniindentscope_disable
+                                                 true)))})
 
