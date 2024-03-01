@@ -9,4 +9,5 @@
 (map [:n] :U :<cmd>redo<cr> {:desc :Redo})
 (map [:x] :<leader>r "y:%s/<C-r>0/<C-r>0/gc<left><left><left>"
      {:desc "Replace Selection"})
+(map [:n] :<Esc> :<cmd>nohlsearch<CR> {:desc "Clear search highlights"})
 

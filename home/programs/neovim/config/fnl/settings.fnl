@@ -8,6 +8,7 @@
 (set o.confirm true)
 (set o.cursorline true)
 (set o.expandtab true)
+(set o.hlsearch true)
 (set o.ignorecase true)
 (set o.incsearch true)
 (set o.infercase true)

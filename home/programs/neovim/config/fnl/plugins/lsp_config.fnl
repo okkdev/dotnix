@@ -1,24 +1,41 @@
 ; LSP
-(fn on_attach [_ bufnr]
-  (fn kmap [keys func desc]
-    (vim.keymap.set :n keys func {:buffer bufnr :desc (.. "LSP: " desc)}))
+(local aucmd vim.api.nvim_create_autocmd)
 
-  (kmap :K vim.lsp.buf.hover "Hover Documentation")
-  (kmap :gd vim.lsp.buf.definition "[G]oto [D]efinition")
-  (kmap :gD vim.lsp.buf.declaration "[G]oto [D]eclaration")
-  (kmap :gr (. (require :telescope.builtin) :lsp_references)
-        "[G]oto [R]eferences")
-  (kmap :gI vim.lsp.buf.implementation "[G]oto [I]mplementation")
-  (kmap :<leader>lrn vim.lsp.buf.rename "[R]e[n]ame")
-  (kmap :<leader>lwa vim.lsp.buf.add_workspace_folder
-        "[W]orkspace [A]dd Folder")
-  (kmap :<leader>lwr vim.lsp.buf.remove_workspace_folder
-        "[W]orkspace [R]emove Folder")
-  (kmap :<leader>lwl
-        (fn []
-          (print (vim.inspect (vim.lsp.buf.list_workspace_folders))))
-        "[W]orkspace [L]ist Folders")
-  (kmap :<leader>ld vim.diagnostic.open_float "Show [d]iagnostics"))
+(aucmd :LspAttach
+       {:callback (fn [event]
+                    (fn map [keys func desc]
+                      (vim.keymap.set :n keys func
+                                      {:buffer event.buf
+                                       :desc (.. "LSP: " desc)}))
+
+                    (map :K vim.lsp.buf.hover "Hover Documentation")
+                    (map :gd vim.lsp.buf.definition "[G]oto [D]efinition")
+                    (map :gD vim.lsp.buf.declaration "[G]oto [D]eclaration")
+                    (map :gr (. (require :telescope.builtin) :lsp_references)
+                         "[G]oto [R]eferences")
+                    (map :gI vim.lsp.buf.implementation
+                         "[G]oto [I]mplementation")
+                    (map :<leader>lrn vim.lsp.buf.rename "[R]e[n]ame")
+                    (map :<leader>lwa vim.lsp.buf.add_workspace_folder
+                         "[W]orkspace [A]dd Folder")
+                    (map :<leader>lwr vim.lsp.buf.remove_workspace_folder
+                         "[W]orkspace [R]emove Folder")
+                    (map :<leader>lwl
+                         (fn []
+                           (print (vim.inspect (vim.lsp.buf.list_workspace_folders))))
+                         "[W]orkspace [L]ist Folders")
+                    (map :<leader>ld vim.diagnostic.open_float
+                         "Show [d]iagnostics")
+                    (local client
+                           (vim.lsp.get_client_by_id event.data.client_id))
+                    (when (and client
+                               client.server_capabilities.documentHighlightProvider)
+                      (aucmd [:CursorHold :CursorHoldI]
+                             {:buffer event.buf
+                              :callback vim.lsp.buf.document_highlight})
+                      (aucmd [:CursorMoved :CursorMovedI]
+                             {:buffer event.buf
+                              :callback vim.lsp.buf.clear_references})))})
 
 ; Diagnostic config
 
@@ -48,29 +65,29 @@
 
 (local flags {:debounce_text_changes 150})
 
-(lsp.rust_analyzer.setup {: on_attach :settings {:rust-analyzer {}} : flags})
+(lsp.rust_analyzer.setup {:settings {:rust-analyzer {}} : flags})
 
-(lsp.elixirls.setup {:cmd [:elixir-ls] : on_attach : capabilities : flags})
+(lsp.elixirls.setup {:cmd [:elixir-ls] : capabilities : flags})
 
-(lsp.elmls.setup {: on_attach : capabilities : flags})
+(lsp.elmls.setup {: capabilities : flags})
 
-(lsp.gleam.setup {: on_attach : capabilities : flags})
+(lsp.gleam.setup {: capabilities : flags})
 
-(lsp.nil_ls.setup {: on_attach : capabilities : flags})
+(lsp.nil_ls.setup {: capabilities : flags})
 
-(lsp.fennel_ls.setup {: on_attach : capabilities : flags})
+(lsp.fennel_ls.setup {: capabilities : flags})
 
-(lsp.biome.setup {:single_file_support true : on_attach : capabilities : flags})
+(lsp.biome.setup {:single_file_support true : capabilities : flags})
 
-(lsp.tsserver.setup {: on_attach : capabilities : flags})
+(lsp.tsserver.setup {: capabilities : flags})
 
-(lsp.tailwindcss.setup {: on_attach : capabilities : flags})
+(lsp.tailwindcss.setup {: capabilities : flags})
 
-(lsp.pyright.setup {: on_attach : capabilities : flags})
+(lsp.pyright.setup {: capabilities : flags})
 
-(lsp.cssls.setup {: on_attach : capabilities : flags})
+(lsp.cssls.setup {: capabilities : flags})
 
-(lsp.html.setup {: on_attach : capabilities : flags})
+(lsp.html.setup {: capabilities : flags})
 
-(lsp.jsonls.setup {: on_attach : capabilities : flags})
+(lsp.jsonls.setup {: capabilities : flags})
 
