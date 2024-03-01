@@ -64,7 +64,12 @@
       npm = "pnpm";
       du = "dust";
     };
-    shellAliases = { ssh = "TERM=xterm-256color /usr/bin/ssh"; };
+    shellAliases = {
+      ssh = "TERM=xterm-256color /usr/bin/ssh";
+      nvim = "nvim --listen /tmp/nvim.socket";
+      vim = "nvim";
+      vi = "nvim";
+    };
     functions = {
       fish_greeting = {
         description = "Greeting to show when starting a fish shell";
@@ -101,10 +106,12 @@
           if [ "$mode" = "dark" ]
             osascript -l JavaScript -e "Application('System Events').appearancePreferences.darkMode = true"
             switch_kitty_theme "Rosé Pine"
+            nvim --server /tmp/nvim.socket --remote-send ':DarkTheme<CR>'
             echo "Dark Theme activated"
           else if [ "$mode" = "light" ]
             osascript -l JavaScript -e "Application('System Events').appearancePreferences.darkMode = false"
             switch_kitty_theme "Rosé Pine Dawn"
+            nvim --server /tmp/nvim.socket --remote-send ':LightTheme<CR>'
             echo "Light Theme activated"
           else
             if [ (os_dark_mode) = "true" ]
