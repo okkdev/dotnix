@@ -7,7 +7,6 @@
     stateVersion = "23.05";
     sessionVariables = {
       ERL_AFLAGS = "-kernel shell_history enabled";
-      ELIXIR_EDITOR = "code --goto __FILE__:__LINE__";
     };
   };
 

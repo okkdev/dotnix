@@ -50,5 +50,15 @@ self: super: {
         sha256 = "sha256-N0lDSYiHY6+IQ2AJ3dxZlNqgan49y/yw050LvvMrZdM=";
       };
     };
+    profile-nvim = super.vimUtils.buildVimPlugin {
+      pname = "profile-nvim";
+      version = "main";
+      src = super.fetchFromGitHub {
+        owner = "stevearc";
+        repo = "profile.nvim";
+        rev = "3c5aaf2f8b2e4c2bc48d2cde396a55892e0267ad";
+        sha256 = "sha256-0HnzEq2IEVLMtkHJZ8NXLimJJ8DAL8gtpyWvsUDG1ao=";
+      };
+    };
   };
 }

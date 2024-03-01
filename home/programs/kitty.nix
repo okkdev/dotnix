@@ -15,10 +15,12 @@
       size = 14.5;
     };
     keybindings = {
-      # Kitty scrollback nvim
-      "kitty_mod+h" = "kitty_scrollback_nvim";
+      "kitty_mod+y" = "kitty_scrollback_nvim";
       "kitty_mod+g" =
         "kitty_scrollback_nvim --config ksb_builtin_last_cmd_output";
+      "kitty_mod+h" = "previous_tab";
+      "kitty_mod+l" = "next_tab";
+      "cmd+t" = "new_tab_with_cwd";
     };
     settings = {
       hide_window_decorations = "titlebar-only";
@@ -38,6 +40,10 @@
       # repaint_delay = 10;
       # sync_to_monitor = "no";
       input_delay = 2;
+
+      # Tabs
+      tab_bar_style = "powerline";
+      tab_powerline_style = "round";
     };
     shellIntegration.enableFishIntegration = true;
     extraConfig = ''

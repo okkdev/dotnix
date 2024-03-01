@@ -3,10 +3,8 @@
 let
   taps = [
     "homebrew/bundle"
-    "homebrew/cask"
     "homebrew/cask-versions"
     "homebrew/cask-fonts"
-    "homebrew/core"
     "homebrew/services"
     "koekeishiya/formulae"
   ];
@@ -65,6 +63,7 @@ let
     "ubersicht"
     "utm"
     "visual-studio-code"
+    "zed"
     "zoom"
   ];
 in with lib; {
@@ -88,7 +87,7 @@ in with lib; {
 
     ) casks);
     onChange = ''
-      /opt/homebrew/bin/brew bundle install --cleanup --verbose --no-upgrade --force --no-lock --global
+      /opt/homebrew/bin/brew bundle install --cleanup --no-upgrade --force --no-lock --global
     '';
   };
 }

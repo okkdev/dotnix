@@ -40,9 +40,9 @@
 (let [sj (require :mini.splitjoin)]
   (sj.setup))
 
-; inserts [], ()... pairs
-(let [prs (require :mini.pairs)]
-  (prs.setup))
+; ; inserts [], ()... pairs
+; (let [prs (require :mini.pairs)]
+;   (prs.setup))
 
 ; s command to work with surrounding characters
 (let [surround (require :mini.surround)]
@@ -56,28 +56,28 @@
                                            :pattern "%f[%w]()TODO()%f[%W]"}
                                     :hex_color (hipatterns.gen_highlighter.hex_color)}}))
 
-; Show indent scope
-(let [indent (require :mini.indentscope)]
-  (indent.setup {:symbol "▎"
-                 :draw {:delay 200
-                        :animation (indent.gen_animation.linear {:duration 5
-                                                                 :unit :step})}}))
-
-(local ins_filetypes [:elixir
-                      :gleam
-                      :html
-                      :javascript
-                      :nix
-                      :php
-                      :phtml
-                      :python
-                      :typescript])
-
-(vim.api.nvim_create_autocmd :FileType
-                             {:pattern "*"
-                              :callback (fn []
-                                          (when (not (vim.tbl_contains ins_filetypes
-                                                                  vim.bo.filetype))
-                                            (set vim.b.miniindentscope_disable
-                                                 true)))})
+; ; Show indent scope
+; (let [indent (require :mini.indentscope)]
+;   (indent.setup {:symbol "▎"
+;                  :draw {:delay 200
+;                         :animation (indent.gen_animation.linear {:duration 5
+;                                                                  :unit :step})}}))
+;
+; (local ins_filetypes [:elixir
+;                       :gleam
+;                       :html
+;                       :javascript
+;                       :nix
+;                       :php
+;                       :phtml
+;                       :python
+;                       :typescript])
+;
+; (vim.api.nvim_create_autocmd :FileType
+;                              {:pattern "*"
+;                               :callback (fn []
+;                                           (when (not (vim.tbl_contains ins_filetypes
+;                                                                   vim.bo.filetype))
+;                                             (set vim.b.miniindentscope_disable
+;                                                  true)))})
 
