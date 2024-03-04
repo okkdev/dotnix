@@ -11,23 +11,27 @@ Manages dotfiles and cli tools via Home-Manager/Nix and casks via Homebrew
 curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install
 ```
 > Restart the shell after installation
-2. Install homebrew
+2. Add nix-community cache
+```sh
+nix run nixpkgs#cachix -- use nix-community
+```
+3. Install homebrew
 ```sh
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
 # Disable analytics
 /opt/homebrew/bin/brew analytics off
 ```
-3. Clone config
+4. Clone config
 ```sh
 git clone git@github.com:okkdev/dotnix.git
 ```
-4. Symlink config
+5. Symlink config
 ```sh
 mkdir ~/.config
 ln -s (pwd)/dotnix ~/.config/home-manager
 ```
-5. Activate config
+6. Activate config
 ```sh
 nix run . -- switch
 ```

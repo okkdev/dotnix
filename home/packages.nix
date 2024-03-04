@@ -1,8 +1,7 @@
-{ config, pkgs, ... }:
+{ config, pkgs, neovim-nightly-overlay, ... }:
 
 {
   nixpkgs.config.allowUnfree = true;
-  nixpkgs.overlays = [ (import ../overlays/vimPlugins.nix) ];
 
   home.packages = with pkgs; [
     # Tools
@@ -70,39 +69,41 @@
     (nerdfonts.override { fonts = [ "NerdFontsSymbolsOnly" ]; })
   ];
 
-  programs.bat = {
-    enable = true;
-    config.theme = "ansi";
-    extraPackages = with pkgs.bat-extras; [
-      batdiff
-      batman
-      batpipe
-      batgrep
-      batwatch
-    ];
-  };
+  programs = {
+    bat = {
+      enable = true;
+      config.theme = "ansi";
+      extraPackages = with pkgs.bat-extras; [
+        batdiff
+        batman
+        batpipe
+        batgrep
+        batwatch
+      ];
+    };
 
-  programs.zoxide = {
-    enable = true;
-    enableFishIntegration = true;
-  };
+    zoxide = {
+      enable = true;
+      enableFishIntegration = true;
+    };
 
-  programs.eza = {
-    enable = true;
-    enableAliases = true;
-    icons = true;
-    git = true;
-    extraOptions = [ "--group-directories-first" ];
-  };
+    eza = {
+      enable = true;
+      enableAliases = true;
+      icons = true;
+      git = true;
+      extraOptions = [ "--group-directories-first" ];
+    };
 
-  programs.atuin = {
-    enable = true;
-    enableFishIntegration = true;
-    flags = [ "--disable-up-arrow" ];
-  };
+    atuin = {
+      enable = true;
+      enableFishIntegration = true;
+      flags = [ "--disable-up-arrow" ];
+    };
 
-  programs.tealdeer = {
-    enable = true;
-    # updateOnActivation = true;
+    tealdeer = {
+      enable = true;
+      # updateOnActivation = true;
+    };
   };
 }

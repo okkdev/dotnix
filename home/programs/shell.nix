@@ -41,6 +41,9 @@
     shellInit = ''
       fish_add_path /opt/homebrew/sbin
       fish_add_path /opt/homebrew/bin
+      fish_add_path $HOME/.ghcup/bin
+      fish_add_path $HOME/.cabal/bin
+      fish_add_path $HOME/.cargo/bin
 
       if test -d (brew --prefix)"/share/fish/completions"
           set -gx fish_complete_path (brew --prefix)/share/fish/completions $fish_complete_path 
@@ -50,12 +53,6 @@
           set -gx fish_complete_path (brew --prefix)/share/fish/vendor_completions.d $fish_complete_path 
       end
 
-      fish_add_path $HOME/.ghcup/bin
-      fish_add_path $HOME/.cabal/bin
-
-      fish_add_path $HOME/.cargo/bin
-
-      fish_terminal_colors
       set -g hydro_symbol_prompt "$(shell_level)$(tput bold)➜$(tput sgr0)"
       set -U hydro_multiline true
     '';
@@ -94,27 +91,32 @@
           end
         '';
       };
-      os_dark_mode = {
-        description = "checks if macOS dark mode is on";
+      os_theme = {
+        description = "get the current appearance mode of the system";
         body = ''
-          osascript -l JavaScript -e "Application('System Events').appearancePreferences.darkMode()"'';
+          if [ (defaults read -g AppleInterfaceStyle 2> /dev/null) ]
+            echo "dark"
+          else
+            echo "light"
+          end
+        '';
       };
       switch_theme = {
         argumentNames = "mode";
         description = "switches global theme";
         body = ''
           if [ "$mode" = "dark" ]
-            osascript -l JavaScript -e "Application('System Events').appearancePreferences.darkMode = true"
+            osascript -l JavaScript -e "Application('System Events').appearancePreferences.darkMode = true" > /dev/null
             switch_kitty_theme "Rosé Pine"
             nvim --server /tmp/nvim.socket --remote-send ':DarkTheme<CR>'
-            echo "Dark Theme activated"
+            echo "Switched to Dark Theme"
           else if [ "$mode" = "light" ]
-            osascript -l JavaScript -e "Application('System Events').appearancePreferences.darkMode = false"
+            osascript -l JavaScript -e "Application('System Events').appearancePreferences.darkMode = false" > /dev/null
             switch_kitty_theme "Rosé Pine Dawn"
             nvim --server /tmp/nvim.socket --remote-send ':LightTheme<CR>'
-            echo "Light Theme activated"
+            echo "Switched to Light Theme"
           else
-            if [ (os_dark_mode) = "true" ]
+            if [ (os_theme) = "dark" ]
               switch_theme "light"
             else
               switch_theme "dark"
@@ -134,7 +136,7 @@
           set -l current_theme (realpath ~/.config/kitty/current-theme.conf)
 
           if kitty +kitten themes --dump-theme $theme_name > $current_theme
-            kitty @ --to unix:/tmp/kitty set-colors -a -c $current_theme
+            kitty @ --to unix:/tmp/kitty.socket set-colors -a -c $current_theme
           else
             echo "theme not found"
           end

@@ -1,15 +1,12 @@
-{ config, pkgs, ... }:
-let
-  simple_bar = pkgs.fetchFromGitHub {
-    owner = "Jean-Tinland";
-    repo = "simple-bar";
-    rev = "9d86a56cdc9219b00981646eedabb47a58fc4723";
-    sha256 = "sha256-UDKDZY4xO0gJ/tPIVHNBqlQmfvbZFAg5A1TG6pF0pLQ=";
-  };
-in {
+{ config, pkgs, ... }: {
   home = {
     file."Library/Application Support/Übersicht/widgets/simple-bar".source =
-      simple_bar;
+      pkgs.fetchFromGitHub {
+        owner = "Jean-Tinland";
+        repo = "simple-bar";
+        rev = "9d86a56cdc9219b00981646eedabb47a58fc4723";
+        sha256 = "sha256-UDKDZY4xO0gJ/tPIVHNBqlQmfvbZFAg5A1TG6pF0pLQ=";
+      };
 
     file.".simplebarrc".text = ''
       {

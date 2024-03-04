@@ -3,6 +3,7 @@
 {
   programs.neovim = {
     enable = true;
+    package = pkgs.neovim-nightly;
     vimdiffAlias = true;
     defaultEditor = true;
     withNodeJs = true;

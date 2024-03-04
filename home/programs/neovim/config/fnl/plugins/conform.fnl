@@ -4,7 +4,7 @@
 ; Disable autoformat by default
 (set vim.g.disable_autoformat true)
 
-(conform.setup {:formatters_by_ft {:css [:prettierd :rustywind]
+(conform.setup {:formatters_by_ft {:css [:prettierd :rustywindcss]
                                    :elm [:elm_format]
                                    :fennel [:fnlfmt]
                                    :heex [:rustywind]
@@ -22,6 +22,10 @@
                                             buffer.disable_autoformat)
                                         nil
                                         {:lsp_fallback true :timeout_ms 500})))})
+
+(set conform.formatters.rustywindcss
+     {:command :rustywind
+      :args [:--custom-regex "@apply ([_a-zA\\.-Z0-9\\-:\\[\\] ]+);" :--stdin]})
 
 (vim.api.nvim_create_user_command :Format
                                   (fn [args]

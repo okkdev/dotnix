@@ -26,6 +26,7 @@
                          "[W]orkspace [L]ist Folders")
                     (map :<leader>ld vim.diagnostic.open_float
                          "Show [d]iagnostics")
+                    (map :<leader>lca vim.lsp.buf.code_action "[C]ode [A]ction")
                     (local client
                            (vim.lsp.get_client_by_id event.data.client_id))
                     (when (and client
