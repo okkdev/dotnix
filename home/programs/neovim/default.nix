@@ -74,7 +74,6 @@
       # ease of use stuff
       vim-sleuth
       eyeliner-nvim
-      toggleterm-nvim
       plenary-nvim # telescope dependency
       telescope-nvim
       telescope-undo-nvim

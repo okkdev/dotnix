@@ -9,5 +9,11 @@
 (map [:n] :U :<cmd>redo<cr> {:desc :Redo})
 (map [:x] :<leader>r "y:%s/<C-r>0/<C-r>0/gc<left><left><left>"
      {:desc "Replace Selection"})
+
 (map [:n] :<Esc> :<cmd>nohlsearch<CR> {:desc "Clear search highlights"})
+
+(map [:n :x :i] :<C-h> :<C-w>h {:desc "Focus left window"})
+(map [:n :x :i] :<C-j> :<C-w>j {:desc "Focus bottom window"})
+(map [:n :x :i] :<C-k> :<C-w>k {:desc "Focus top window"})
+(map [:n :x :i] :<C-l> :<C-w>l {:desc "Focus right window"})
 

@@ -20,7 +20,6 @@
 (require :plugins.completions)
 (require :plugins.lsp_config)
 (require :plugins.conform)
-(require :plugins.toggleterm)
 (require :plugins.nvim_tree)
 (require :plugins.gitsigns)
 (require :plugins.oil)

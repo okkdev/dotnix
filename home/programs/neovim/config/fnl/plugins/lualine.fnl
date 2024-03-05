@@ -1,8 +1,7 @@
 ; Bottom info bar
 (local lualine (require :lualine))
 
-(lualine.setup {:extensions [:toggleterm]
-                :inactive_sections {:lualine_a [:filename]
+(lualine.setup {:inactive_sections {:lualine_a [:filename]
                                     :lualine_b []
                                     :lualine_c []
                                     :lualine_x []

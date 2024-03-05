@@ -69,7 +69,6 @@
 ;                       :javascript
 ;                       :nix
 ;                       :php
-;                       :phtml
 ;                       :python
 ;                       :typescript])
 ;

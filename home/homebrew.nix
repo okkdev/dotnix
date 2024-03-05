@@ -42,6 +42,7 @@ let
     "losslesscut"
     "maccy"
     "mark-text"
+    "monitorcontrol"
     "muse"
     "neovide"
     "obs"
