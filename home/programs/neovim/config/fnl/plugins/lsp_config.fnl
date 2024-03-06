@@ -76,7 +76,9 @@
 
 (lsp.nil_ls.setup {: capabilities : flags})
 
-(lsp.fennel_ls.setup {: capabilities : flags})
+(lsp.fennel_ls.setup {: capabilities
+                      : flags
+                      :settings {:fennel-ls {:extra-globals :vim}}})
 
 (lsp.biome.setup {:single_file_support true : capabilities : flags})
 

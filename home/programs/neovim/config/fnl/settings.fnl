@@ -1,5 +1,5 @@
 ; Nvim settings
-(local o vim.o)
+(local o vim.opt)
 
 (set o.autoindent true)
 (set o.autoread true)
@@ -13,12 +13,14 @@
 (set o.incsearch true)
 (set o.infercase true)
 (set o.linebreak true)
+(set o.list false)
+(set o.listchars {:tab "‣ " :trail "·" :nbsp "␣" :space "·"})
 (set o.mouse :a)
 (set o.nu true)
 (set o.number true)
 (set o.relativenumber true)
 (set o.ruler false)
-(set o.scrolloff 8)
+(set o.scrolloff 10)
 (set o.shiftwidth 2)
 (set o.showmode false)
 (set o.signcolumn :yes)

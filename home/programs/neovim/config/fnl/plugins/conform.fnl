@@ -21,11 +21,11 @@
                                     (if (or vim.g.disable_autoformat
                                             buffer.disable_autoformat)
                                         nil
-                                        {:lsp_fallback true :timeout_ms 500})))})
-
-(set conform.formatters.rustywindcss
-     {:command :rustywind
-      :args [:--custom-regex "@apply ([_a-zA\\.-Z0-9\\-:\\[\\] ]+);" :--stdin]})
+                                        {:lsp_fallback true :timeout_ms 500})))
+                :formatters {:rustywindcss {:command :rustywind
+                                            :args [:--custom-regex
+                                                   "@apply ([_a-zA\\.-Z0-9\\-:\\[\\] ]+);"
+                                                   :--stdin]}}})
 
 (vim.api.nvim_create_user_command :Format
                                   (fn [args]

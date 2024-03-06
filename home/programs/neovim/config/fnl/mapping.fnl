@@ -17,3 +17,5 @@
 (map [:n :x :i] :<C-k> :<C-w>k {:desc "Focus top window"})
 (map [:n :x :i] :<C-l> :<C-w>l {:desc "Focus right window"})
 
+(map [:v] :J ":m '>+1<CR>gv=gv" {:desc "Move selected lines down"})
+(map [:v] :K ":m '<-2<CR>gv=gv" {:desc "Move selected lines up"})

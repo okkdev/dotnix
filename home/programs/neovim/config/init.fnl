@@ -7,13 +7,13 @@
 
 ; Plugins
 (require :plugins.theme)
+(require :plugins.mini)
 (require :plugins.alpha)
 (require :plugins.telescope)
 (require :plugins.noice)
 (require :plugins.notify)
 (require :plugins.treesitter)
-(require :plugins.mini)
-(require :plugins.which_key)
+; (require :plugins.which_key)
 (require :plugins.flash)
 (require :plugins.eyeliner)
 (require :plugins.lualine)

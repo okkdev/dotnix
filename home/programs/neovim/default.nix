@@ -7,7 +7,7 @@
     vimdiffAlias = true;
     defaultEditor = true;
     withNodeJs = true;
-    extraPackages = (with pkgs; [ fzf tree-sitter fd sqlite ]);
+    extraPackages = (with pkgs; [ fzf tree-sitter fd ]);
     plugins = with pkgs.vimPlugins; [
       # Fennel compiler plugin
       tangerine-nvim
@@ -78,18 +78,12 @@
       telescope-nvim
       telescope-undo-nvim
       telescope-fzf-native-nvim
+      telescope-frecency-nvim
       nvim-tree-lua
       gitsigns-nvim
       flash-nvim
       oil-nvim
-      smart-open-nvim
-      {
-        # smartopen dependency
-        plugin = sqlite-lua;
-        # macOS: libsqlite3.dylib, other: libsqlite3.so
-        config =
-          "let g:sqlite_clib_path = '${pkgs.sqlite.out}/lib/libsqlite3.dylib'";
-      }
+      diffview-nvim
 
       # ui framework
       nui-nvim
