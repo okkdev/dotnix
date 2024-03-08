@@ -61,7 +61,7 @@
       cmp-buffer
       cmp-cmdline
       cmp-path
-      tailwindcss-colorizer-cmp
+      cmp-tailwind-colors
 
       # snippets
       luasnip

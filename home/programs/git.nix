@@ -61,17 +61,17 @@
 
     delta = {
       enable = true;
+      package = pkgs.writeScriptBin "delta" ''
+        if defaults read -g AppleInterfaceStyle &> /dev/null; then
+          ${pkgs.delta}/bin/delta "$@"
+        else
+          ${pkgs.delta}/bin/delta --light "$@"
+        fi
+      '';
       options = {
         syntax-theme = "ansi";
         keep-plus-minus-markers = true;
-        minus-emph-style = "reverse red";
-        plus-emph-style = "reverse green";
-
-        features = "rose-pine-dawn";
-        rose-pine-dawn = {
-          minus-style = "syntax #f9d3de";
-          plus-style = "syntax #d7ebef";
-        };
+        line-numbers = true;
       };
     };
   };

@@ -49,12 +49,13 @@
   (surround.setup))
 
 ; Highlight NOTE/TODO or other patterns
+; maybe:
+; :note
+; {:group :MiniHipatternsNote :pattern "%f[%w]()NOTE()%f[%W]"}
+; :todo
+; {:group :MiniHipatternsTodo :pattern "%f[%w]()TODO()%f[%W]"}
 (let [hipatterns (require :mini.hipatterns)]
-  (hipatterns.setup {:highlighters {:note {:group :MiniHipatternsNote
-                                           :pattern "%f[%w]()NOTE()%f[%W]"}
-                                    :todo {:group :MiniHipatternsTodo
-                                           :pattern "%f[%w]()TODO()%f[%W]"}
-                                    :hex_color (hipatterns.gen_highlighter.hex_color)}}))
+  (hipatterns.setup {:highlighters {:hex_color (hipatterns.gen_highlighter.hex_color)}}))
 
 (let [clue (require :mini.clue)]
   (clue.setup {:clues [(clue.gen_clues.builtin_completion)
@@ -81,6 +82,9 @@
                           {:keys :z :mode :x}]
                :window {:config {:width :auto :border :solid}}}))
 
+(let [statusline (require :mini.statusline)]
+  (statusline.setup))
+
 ; (let [starter (require :mini.starter)]
 ;   (starter.setup {:header (table.concat ["   ⣴⣶⣤⡤⠦⣤⣀⣤⠆     ⣈⣭⣿⣶⣿⣦⣼⣆          "
 ;                                          "    ⠉⠻⢿⣿⠿⣿⣿⣶⣦⠤⠄⡠⢾⣿⣿⡿⠋⠉⠉⠻⣿⣿⡛⣦       "
@@ -105,22 +109,20 @@
 ;   (indent.setup {:symbol "▎"
 ;                  :draw {:delay 200
 ;                         :animation (indent.gen_animation.linear {:duration 5
-;                                                                  :unit :step})}}))
-;
-; (local ins_filetypes [:elixir
-;                       :gleam
-;                       :html
-;                       :javascript
-;                       :nix
-;                       :php
-;                       :python
-;                       :typescript])
-;
-; (vim.api.nvim_create_autocmd :FileType
-;                              {:pattern "*"
-;                               :callback (fn []
-;                                           (when (not (vim.tbl_contains ins_filetypes
-;                                                                   vim.bo.filetype))
-;                                             (set vim.b.miniindentscope_disable
-;                                                  true)))})
+;                                                                  :unit :step})}})
+;   (local ins_filetypes [:elixir
+;                         :gleam
+;                         :html
+;                         :javascript
+;                         :nix
+;                         :php
+;                         :python
+;                         :typescript])
+;   (vim.api.nvim_create_autocmd :FileType
+;                                {:pattern "*"
+;                                 :callback (fn []
+;                                             (when (not (vim.tbl_contains ins_filetypes
+;                                                                          vim.bo.filetype))
+;                                               (set vim.b.miniindentscope_disable
+;                                                    true)))}))
 

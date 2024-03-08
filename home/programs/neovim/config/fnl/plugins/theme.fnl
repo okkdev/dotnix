@@ -6,6 +6,7 @@
 ; :melange
 ; :oxocarbon
 ; :catppuccin
+; :rose-pine
 
 (local current_theme :rose-pine)
 

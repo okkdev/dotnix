@@ -2,22 +2,22 @@ self: super: {
   vimPlugins = super.vimPlugins // {
     tangerine-nvim = super.vimUtils.buildVimPlugin rec {
       pname = "tangerine-nvim";
-      version = "v2.8";
+      version = "2.8";
       src = super.fetchFromGitHub {
         owner = "udayvir-singh";
         repo = "tangerine.nvim";
-        rev = version;
+        rev = "v${version}";
         sha256 = "sha256-gviY9oltZiOWJR9vWSIgWGd7uVvfcTPNUScmaWjVCm8=";
       };
     };
-    tailwindcss-colorizer-cmp = super.vimUtils.buildVimPlugin {
-      pname = "tailwindcss-colorizer-cmp";
+    cmp-tailwind-colors = super.vimUtils.buildVimPlugin {
+      pname = "cmp-tailwind-colors";
       version = "main";
       src = super.fetchFromGitHub {
-        owner = "roobert";
-        repo = "tailwindcss-colorizer-cmp.nvim";
-        rev = "bc25c56083939f274edcfe395c6ff7de23b67c50";
-        sha256 = "sha256-4wt4J6pENX7QRG7N1GzE9L6pM5E88tnHbv4NQa5JqSI=";
+        owner = "js-everts";
+        repo = "cmp-tailwind-colors";
+        rev = "8ad13923316e2b5ca00420c171268fc23f32c01d";
+        sha256 = "sha256-JdMrbHG5hgrY8HMRkGMXyc7ZFKQi7bSEv4ZPVMlVR24=";
       };
     };
     bg-nvim = super.vimUtils.buildVimPlugin {
@@ -32,11 +32,11 @@ self: super: {
     };
     kitty-scrollback-nvim = super.vimUtils.buildVimPlugin rec {
       pname = "kitty-scrollback-nvim";
-      version = "v4.2.0";
+      version = "4.2.0";
       src = super.fetchFromGitHub {
         owner = "mikesmithgh";
         repo = "kitty-scrollback.nvim";
-        rev = version;
+        rev = "v${version}";
         sha256 = "sha256-pMdvavw+t/xiJ6SRPflG+1s1N6HkHJiqktM+eNsCjUQ=";
       };
     };

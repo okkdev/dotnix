@@ -5,6 +5,7 @@
 
   home.packages = with pkgs; [
     # Tools
+    coreutils
     fd
     fzf
     ripgrep

@@ -15,6 +15,7 @@
 (set o.linebreak true)
 (set o.list false)
 (set o.listchars {:tab "‣ " :trail "·" :nbsp "␣" :space "·"})
+(set o.fillchars {:eob " "})
 (set o.mouse :a)
 (set o.nu true)
 (set o.number true)
