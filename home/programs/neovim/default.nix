@@ -79,6 +79,7 @@
       telescope-undo-nvim
       telescope-fzf-native-nvim
       telescope-frecency-nvim
+      telescope-live-grep-args-nvim
       nvim-tree-lua
       gitsigns-nvim
       flash-nvim
@@ -94,7 +95,6 @@
 
       # ui elements
       lualine-nvim
-      which-key-nvim
       alpha-nvim
       noice-nvim
       nvim-notify

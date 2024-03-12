@@ -36,16 +36,16 @@
                                   :side_padding 0
                                   :winhighlight "Normal:Pmenu,FloatBorder:Pmenu,Search:None"}}
             :formatting {:fields [:kind :abbr :menu]
-                         :format (let [cmpformat (lspkind.cmp_format {:maxwidth 50
-                                                                      :mode :symbol_text
-                                                                      :before tailwind_colors.format})]
-                                   (fn [entry vim_item]
-                                     (let [item (cmpformat entry vim_item)
-                                           [icon typ] (vim.split item.kind "%s"
-                                                                 {:trimempty true})]
-                                       (set item.kind (.. " " (or icon "") " "))
-                                       (set item.menu (.. " (" (or typ "") ")"))
-                                       item)))}
+                         :format (fn [entry vim_item]
+                                   (let [cmpformat (lspkind.cmp_format {:maxwidth 50
+                                                                        :mode :symbol_text
+                                                                        :before tailwind_colors.format})
+                                         item (cmpformat entry vim_item)
+                                         [icon typ] (vim.split item.kind "%s"
+                                                               {:trimempty true})]
+                                     (set item.kind (.. " " (or icon "") " "))
+                                     (set item.menu (.. " (" (or typ "") ")"))
+                                     item))}
             :snippet {:expand (fn [args]
                                 (luasnip.lsp_expand args.body))}
             :sources [{:name :path}

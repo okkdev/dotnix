@@ -24,24 +24,22 @@
 
 ; Keybinds
 
-(vim.keymap.set :n :<leader>pp builtin.find_files {:desc "[p]roject files"})
-
-(vim.keymap.set :n :<leader>pg builtin.git_files
-                {:desc "[p]roject [g]it files"})
-
-(vim.keymap.set :n :<leader>p/ builtin.live_grep
-                {:desc "[p]roject search files"})
-
-(vim.keymap.set :n :<leader>pb builtin.buffers
-                {:desc "Find existing [b]uffers"})
+(vim.keymap.set :n :<leader>ff builtin.find_files {:desc "[f]ind [f]iles"})
+(vim.keymap.set :n :<leader>fg builtin.git_files {:desc "[f]iles [g]it"})
+(vim.keymap.set :n :<leader>f/
+                telescope.extensions.live_grep_args.live_grep_args
+                {:desc "search [f]iles"})
+(vim.keymap.set :n :<leader>fb builtin.buffers {:desc "[f]ind [b]uffers"})
+(vim.keymap.set :n :<leader>fh builtin.help_tags {:desc "[f]ind [h]elp"})
+(vim.keymap.set :n :<leader>fk builtin.keymaps {:desc "[f]ind [k]eymaps"})
+(vim.keymap.set :n :<leader>fr builtin.resume {:desc "[f]ind [r]esume"})
 
 (vim.keymap.set :n :<leader><space> "<Cmd>Telescope frecency workspace=CWD<CR>"
                 {:desc "Find frecent files"})
 
 (vim.keymap.set :n :<leader>/
                 (fn []
-                  (builtin.current_buffer_fuzzy_find (themes.get_dropdown {:previewer false
-                                                                           :winblend 10})))
+                  (builtin.current_buffer_fuzzy_find (themes.get_dropdown {:previewer false})))
                 {:desc "Fuzzily search in current buffer"})
 
 (vim.keymap.set :n :<leader>u "<cmd>Telescope undo<cr>"
