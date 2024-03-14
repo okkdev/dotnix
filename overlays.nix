@@ -50,5 +50,15 @@ self: super: {
         sha256 = "sha256-0HnzEq2IEVLMtkHJZ8NXLimJJ8DAL8gtpyWvsUDG1ao=";
       };
     };
+    everforest-nvim = super.vimUtils.buildVimPlugin {
+      pname = "everforest-nvim";
+      version = "main";
+      src = super.fetchFromGitHub {
+        owner = "neanias";
+        repo = "everforest-nvim";
+        rev = "eedb19079c6bf9d162f74a5c48a6d2759f38cc76";
+        sha256 = "sha256-/k6VBzXuap8FTqMij7EQCh32TWaDPR9vAvEHw20fMCo=";
+      };
+    };
   };
 }

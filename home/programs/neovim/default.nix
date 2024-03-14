@@ -71,10 +71,11 @@
       # formatter
       conform-nvim
 
+      # plugin dependency
+      plenary-nvim
+
       # ease of use stuff
       vim-sleuth
-      eyeliner-nvim
-      plenary-nvim # telescope dependency
       telescope-nvim
       telescope-undo-nvim
       telescope-fzf-native-nvim
@@ -85,6 +86,15 @@
       flash-nvim
       oil-nvim
       diffview-nvim
+      (harpoon.overrideAttrs (_: {
+        version = "2";
+        src = pkgs.fetchFromGitHub {
+          owner = "ThePrimeagen";
+          repo = "harpoon";
+          rev = "a38be6e0dd4c6db66997deab71fc4453ace97f9c";
+          sha256 = "sha256-RjwNUuKQpLkRBX3F9o25Vqvpu3Ah1TCFQ5Dk4jXhsbI=";
+        };
+      }))
 
       # ui framework
       nui-nvim
@@ -112,6 +122,7 @@
           sha256 = "sha256-Zukzbs5ZQUjWutZK0oc1VHqFmUbvzWKtu6hb9EDFl9Y=";
         };
       }))
+      everforest-nvim
       catppuccin-nvim
       neovim-ayu
       oxocarbon-nvim

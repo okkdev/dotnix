@@ -3,10 +3,11 @@
 
 (autocmd [:InsertEnter] {:callback (fn [] (set vim.o.relativenumber false))})
 (autocmd [:InsertLeave] {:callback (fn [] (set vim.o.relativenumber true))})
-(autocmd [:VimEnter]
+
+(autocmd [:UIEnter]
          {:command ":silent !kitty @ set-spacing padding-bottom=10"})
 
-(autocmd [:VimLeave]
+(autocmd [:VimLeavePre]
          {:command ":silent !kitty @ set-spacing padding-bottom=default"})
 
 (autocmd [:TextYankPost]

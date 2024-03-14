@@ -21,7 +21,7 @@
 (set o.number true)
 (set o.relativenumber true)
 (set o.ruler false)
-(set o.scrolloff 10)
+(set o.scrolloff 15)
 (set o.shiftwidth 2)
 (set o.showmode false)
 (set o.signcolumn :yes)
