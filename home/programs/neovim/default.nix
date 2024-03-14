@@ -1,17 +1,38 @@
 { config, pkgs, lib, ... }:
 
-{
+let
+  lua-config = pkgs.stdenv.mkDerivation {
+    name = "lua-config";
+    src = ./config;
+    buildInputs = [ pkgs.fennel ];
+    phases = [ "buildPhase" "installPhase" ];
+    buildPhase = ''
+      shopt -s globstar
+
+      mkdir -p build/lua
+      cp $src/init.fnl build/
+      cp -r --no-preserve=mode,ownership $src/fnl/* build/lua/
+
+      for f in build/**/*.fnl
+      do 
+        fennel --compile --globals vim $f > ''${f%.fnl}.lua
+        rm $f
+      done
+    '';
+    installPhase = ''
+      mkdir -p $out
+      cp -r build/* $out
+    '';
+  };
+in {
   programs.neovim = {
     enable = true;
     package = pkgs.neovim-nightly;
     vimdiffAlias = true;
     defaultEditor = true;
     withNodeJs = true;
-    extraPackages = (with pkgs; [ fzf tree-sitter fd ]);
+    extraPackages = with pkgs; [ fzf tree-sitter fd ];
     plugins = with pkgs.vimPlugins; [
-      # Fennel compiler plugin
-      tangerine-nvim
-
       ## Profiler
       #{
       #  plugin = profile-nvim;
@@ -53,6 +74,7 @@
 
       # treesitter
       nvim-treesitter.withAllGrammars
+      nvim-ts-autotag
 
       # lsp and completions
       nvim-lspconfig
@@ -130,11 +152,8 @@
   };
 
   xdg.configFile."nvim" = {
-    source = ./config;
+    source = lua-config;
     recursive = true;
-    onChange = ''
-      $HOME/.nix-profile/bin/nvim -Es -c ":FnlClean!" -c ":FnlCompile!"
-    '';
   };
 
   xdg.configFile."neovide/config.toml" = {

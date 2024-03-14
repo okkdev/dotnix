@@ -1,15 +1,5 @@
 self: super: {
   vimPlugins = super.vimPlugins // {
-    tangerine-nvim = super.vimUtils.buildVimPlugin rec {
-      pname = "tangerine-nvim";
-      version = "2.8";
-      src = super.fetchFromGitHub {
-        owner = "udayvir-singh";
-        repo = "tangerine.nvim";
-        rev = "v${version}";
-        sha256 = "sha256-gviY9oltZiOWJR9vWSIgWGd7uVvfcTPNUScmaWjVCm8=";
-      };
-    };
     cmp-tailwind-colors = super.vimUtils.buildVimPlugin {
       pname = "cmp-tailwind-colors";
       version = "main";
