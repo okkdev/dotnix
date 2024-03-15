@@ -46,7 +46,10 @@ with lib; {
       # rules
       yabai -m rule --add app="^System Settings$" manage=off
       yabai -m rule --add app="^1Password 7$" manage=off
-      yabai -m rule --add title='^Archive Utility$' manage=off
+      yabai -m rule --add app='^Archive Utility$' manage=off
+      yabai -m rule --add label="Finder" app="^Finder\$" title="(Co(py|nnect)|Move|Info|Pref)" manage=off
+      yabai -m rule --add label="Arc" app="^Arc$" title="^Little Arc.*" manage=off
+      yabai -m rule --add subrole="^AXSystemDialog$" manage=off mouse_follows_focus=off
 
       # need to force refresh simple bar
       osascript -e 'tell application id "tracesOf.Uebersicht" to refresh'

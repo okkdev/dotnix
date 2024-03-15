@@ -20,7 +20,6 @@
 (require :plugins.gitsigns)
 (require :plugins.harpoon)
 (require :plugins.flash)
-; (require :plugins.lualine)
 (require :plugins.nvim_tree)
 (require :plugins.kitty_scrollback)
 

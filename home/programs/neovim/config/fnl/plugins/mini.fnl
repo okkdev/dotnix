@@ -1,29 +1,5 @@
 ; Mini Utilities
 
-; Animations for resize/scroll/cursor with exclusion for mouse scrolling
-; (let [animate (require :mini.animate)]
-;   (var mouse_scrolled false)
-;   (each [_ scroll (ipairs [:Up :Down])]
-;     (local key (.. :<ScrollWheel scroll ">"))
-;     (vim.keymap.set ["" :i] key (fn [] (set mouse_scrolled true) key)
-;                     {:expr true}))
-;   (animate.setup {:cursor {:timing (animate.gen_timing.linear {:duration 100
-;                                                                :unit :total})}
-;                   :resize {:timing (animate.gen_timing.linear {:duration 100
-;                                                                :unit :total})}
-;                   :scroll {:subscroll (animate.gen_subscroll.equal {:predicate (fn [total-scroll]
-;                                                                                  (if mouse_scrolled
-;                                                                                      (do
-;                                                                                        (set mouse_scrolled
-;                                                                                             false)
-;                                                                                        false)
-;                                                                                      vim.g.neovide
-;                                                                                      false
-;                                                                                      (> total-scroll
-;                                                                                         1)))})
-;                            :timing (animate.gen_timing.linear {:duration 125
-;                                                                :unit :total})}}))
-
 ; Highlight words under cursor
 (let [cursorword (require :mini.cursorword)]
   (cursorword.setup))
@@ -40,20 +16,11 @@
 (let [sj (require :mini.splitjoin)]
   (sj.setup))
 
-; ; inserts [], ()... pairs
-; (let [prs (require :mini.pairs)]
-;   (prs.setup))
-
 ; s command to work with surrounding characters
 (let [surround (require :mini.surround)]
   (surround.setup))
 
-; Highlight NOTE/TODO or other patterns
-; maybe:
-; :note
-; {:group :MiniHipatternsNote :pattern "%f[%w]()NOTE()%f[%W]"}
-; :todo
-; {:group :MiniHipatternsTodo :pattern "%f[%w]()TODO()%f[%W]"}
+; Highlight patterns
 (let [hipatterns (require :mini.hipatterns)]
   (hipatterns.setup {:highlighters {:hex_color (hipatterns.gen_highlighter.hex_color)}}))
 
@@ -82,8 +49,97 @@
                           {:keys :z :mode :x}]
                :window {:config {:width :auto :border :solid}}}))
 
-(let [statusline (require :mini.statusline)]
-  (statusline.setup))
+; Status line
+(let [statusline (require :mini.statusline)
+      devicons (require :nvim-web-devicons)]
+  (statusline.setup {:use_icons true})
+
+  (fn section_filename [args]
+    (if (= vim.bo.buftype :terminal) "%t"
+        (= vim.bo.buftype :nofile) ""
+        (statusline.is_truncated args.trunc_width) "%f%m%r"
+        "%F%m%r"))
+
+  (fn section_fileinfo [_args]
+    (let [filetype vim.bo.filetype]
+      (when (or (not= filetype "") (= vim.bo.buftype ""))
+        (local file_name (vim.fn.expand "%:t"))
+        (local file_ext (vim.fn.expand "%:e"))
+        (local icon (devicons.get_icon file_name file_ext {:default true}))
+        (if (not= icon "")
+            (string.format "%s %s" icon filetype)
+            filetype))))
+
+  (fn combine_groups [groups]
+    (table.concat (vim.tbl_map (fn [s]
+                                 (if (= (type s) :string)
+                                     s
+                                     (do
+                                       (local str (table.concat s.strings " "))
+                                       (if (= (str:len) 0)
+                                           (string.format "%%#%s#" s.hl)
+                                           (= s.hl nil)
+                                           (string.format " %s " str)
+                                           (= s.rounded true)
+                                           (let [rev_hl (.. :rev_ s.hl)]
+                                             (string.format "%%#%s#%%#%s#%s%%#%s#"
+                                                            rev_hl s.hl str
+                                                            rev_hl))
+                                           (string.format "%%#%s# %s " s.hl str)))))
+                               groups) ""))
+
+  (set statusline.active
+       (fn []
+         (let [(mode mode_hl) (statusline.section_mode {:trunc_width 120})
+               git (statusline.section_git {:trunc_width 75})
+               filename (section_filename {:trunc_width 140})
+               fileinfo (section_fileinfo {:trunc_width 120})
+               search (statusline.section_searchcount {:trunc_width 75})
+               location "%l|%L"]
+           (combine_groups [{:hl mode_hl :strings [mode] :rounded true}
+                            " "
+                            {:hl :MiniStatuslineDevinfo
+                             :strings [git]
+                             :rounded true}
+                            "%<"
+                            {:hl :MiniStatuslineFilename :strings [filename]}
+                            "%="
+                            {:hl :MiniStatuslineFileinfo
+                             :strings [fileinfo]
+                             :rounded true}
+                            " "
+                            {:hl mode_hl
+                             :strings [search location]
+                             :rounded true}])))))
+
+; create reverse highlight colors
+(vim.api.nvim_create_autocmd [:Colorscheme :UIEnter]
+                             {:callback (fn []
+                                          (fn reverse_hl [name]
+                                            (let [color (vim.api.nvim_get_hl 0
+                                                                             {: name})
+                                                  rev_name (.. :rev_ name)]
+                                              (vim.api.nvim_set_hl 0 rev_name
+                                                                   {:fg color.bg})))
+
+                                          (let [hl_groups [:MiniStatuslineModeNormal
+                                                           :MiniStatuslineModeInsert
+                                                           :MiniStatuslineModeVisual
+                                                           :MiniStatuslineModeReplace
+                                                           :MiniStatuslineModeCommand
+                                                           :MiniStatuslineModeOther
+                                                           :MiniStatuslineDevinfo
+                                                           :MiniStatuslineFilename
+                                                           :MiniStatuslineFileinfo
+                                                           :MiniStatuslineInactive]]
+                                            (each [_ group (pairs hl_groups)]
+                                              (reverse_hl group))))})
+
+; --- UNUSED THINGS ---
+
+; ; inserts [], ()... pairs
+; (let [prs (require :mini.pairs)]
+;   (prs.setup))
 
 ; (let [starter (require :mini.starter)]
 ;   (starter.setup {:header (table.concat ["   ⣴⣶⣤⡤⠦⣤⣀⣤⠆     ⣈⣭⣿⣶⣿⣦⣼⣆          "
@@ -125,4 +181,28 @@
 ;                                                                          vim.bo.filetype))
 ;                                               (set vim.b.miniindentscope_disable
 ;                                                    true)))}))
+
+; Animations for resize/scroll/cursor with exclusion for mouse scrolling
+; (let [animate (require :mini.animate)]
+;   (var mouse_scrolled false)
+;   (each [_ scroll (ipairs [:Up :Down])]
+;     (local key (.. :<ScrollWheel scroll ">"))
+;     (vim.keymap.set ["" :i] key (fn [] (set mouse_scrolled true) key)
+;                     {:expr true}))
+;   (animate.setup {:cursor {:timing (animate.gen_timing.linear {:duration 100
+;                                                                :unit :total})}
+;                   :resize {:timing (animate.gen_timing.linear {:duration 100
+;                                                                :unit :total})}
+;                   :scroll {:subscroll (animate.gen_subscroll.equal {:predicate (fn [total-scroll]
+;                                                                                  (if mouse_scrolled
+;                                                                                      (do
+;                                                                                        (set mouse_scrolled
+;                                                                                             false)
+;                                                                                        false)
+;                                                                                      vim.g.neovide
+;                                                                                      false
+;                                                                                      (> total-scroll
+;                                                                                         1)))})
+;                            :timing (animate.gen_timing.linear {:duration 125
+;                                                                :unit :total})}}))
 

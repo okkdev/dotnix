@@ -49,7 +49,6 @@
 
       # Tabs
       tab_bar_style = "fade";
-      tab_powerline_style = "round";
       tab_fade = "0.5 1";
     };
     shellIntegration.enableFishIntegration = true;

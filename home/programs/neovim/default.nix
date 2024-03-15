@@ -126,12 +126,10 @@ in {
       lspkind-nvim
 
       # ui elements
-      lualine-nvim
       alpha-nvim
       noice-nvim
       nvim-notify
       zen-mode-nvim
-      twilight-nvim
       bg-nvim
 
       # themes
