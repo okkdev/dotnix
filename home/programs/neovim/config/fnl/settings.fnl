@@ -1,5 +1,6 @@
 ; Nvim settings
 (local o vim.opt)
+(local g vim.g)
 
 (set o.autoindent true)
 (set o.autoread true)
@@ -14,7 +15,7 @@
 (set o.infercase true)
 (set o.linebreak true)
 (set o.list false)
-(set o.listchars {:tab "‣ " :trail "·" :nbsp "␣" :space "·"})
+(set o.listchars {:tab "⇥ " :trail "·" :nbsp "␣" :space "·"})
 (set o.fillchars {:eob " "})
 (set o.mouse :a)
 (set o.nu true)
@@ -35,4 +36,7 @@
 (set o.undofile true)
 (set o.virtualedit :block)
 (set o.wrap false)
+
+(set g.loaded_netrw 1)
+(set g.loaded_netrwPlugin 1)
 

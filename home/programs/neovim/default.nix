@@ -74,6 +74,7 @@ in {
 
       # treesitter
       nvim-treesitter.withAllGrammars
+      nvim-treesitter-textobjects
       nvim-ts-autotag
 
       # lsp and completions

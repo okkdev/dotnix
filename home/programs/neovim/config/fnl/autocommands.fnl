@@ -23,3 +23,16 @@
 ; (autocmd [:VimLeavePre]
 ;          {:command ":silent !kitty @ set-colors --reset"})
 ;
+
+(vim.api.nvim_create_user_command :AddSpacers
+                                  (fn []
+                                    (let [bufnr (vim.api.nvim_get_current_buf)
+                                          lines (vim.api.nvim_buf_line_count bufnr)
+                                          ns (vim.api.nvim_create_namespace :VirtSpacers)]
+                                      (for [i 1 lines]
+                                        (vim.api.nvim_buf_set_extmark bufnr ns
+                                                                      (- i 1) 0
+                                                                      {:virt_lines [[[""
+                                                                                      ""]]]}))))
+                                  {:desc "Add Virtual Spacers"})
+

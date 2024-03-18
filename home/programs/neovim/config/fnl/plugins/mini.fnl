@@ -9,8 +9,10 @@
   (cmt.setup))
 
 ; Improved a/i around and inside command
-(let [ai (require :mini.ai)]
-  (ai.setup))
+(let [ai (require :mini.ai)
+      spec ai.gen_spec]
+  (ai.setup {:custom_textobjects {:F (spec.treesitter {:a "@function.outer"
+                                                       :i "@function.inner"})}}))
 
 ; Allows splitting lists/arrays onto multiple lines
 (let [sj (require :mini.splitjoin)]
@@ -57,8 +59,9 @@
   (fn section_filename [args]
     (if (= vim.bo.buftype :terminal) "%t"
         (= vim.bo.buftype :nofile) ""
-        (statusline.is_truncated args.trunc_width) "%f%m%r"
-        "%F%m%r"))
+        (statusline.is_truncated args.trunc_width) (.. (vim.fn.expand "%:t")
+                                                       " %m%r")
+        (.. (vim.fn.expand "%:~:.") " %m%r")))
 
   (fn section_fileinfo [_args]
     (let [filetype vim.bo.filetype]
@@ -88,6 +91,13 @@
                                            (string.format "%%#%s# %s " s.hl str)))))
                                groups) ""))
 
+  (fn section_location []
+    (let [sbar ["🭶" "🭷" "🭸" "🭹" "🭺" "🭻"]
+          curr_line (. (vim.api.nvim_win_get_cursor 0) 1)
+          lines (vim.api.nvim_buf_line_count 0)
+          i (+ (math.floor (* (/ (- curr_line 1) lines) (length sbar))) 1)]
+      (.. "%l " (. sbar i) " %L")))
+
   (set statusline.active
        (fn []
          (let [(mode mode_hl) (statusline.section_mode {:trunc_width 120})
@@ -95,7 +105,7 @@
                filename (section_filename {:trunc_width 140})
                fileinfo (section_fileinfo {:trunc_width 120})
                search (statusline.section_searchcount {:trunc_width 75})
-               location "%l|%L"]
+               location (section_location)]
            (combine_groups [{:hl mode_hl :strings [mode] :rounded true}
                             " "
                             {:hl :MiniStatuslineDevinfo

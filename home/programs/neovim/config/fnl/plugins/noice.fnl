@@ -19,7 +19,8 @@
                                   :relative :editor
                                   :size {:height 10 :width 60}
                                   :win_options {:winhighlight {:FloatBorder :DiagnosticInfo
-                                                               :Normal :NormalFloat}}}}})
+                                                               :Normal :NormalFloat}}}}
+              :routes [{:filter {:event :msg_show :find :written} :view :mini}]})
 
 (local notify (require :notify))
 

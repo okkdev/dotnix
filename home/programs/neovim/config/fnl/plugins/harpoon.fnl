@@ -2,8 +2,13 @@
 
 (harpoon:setup)
 
-(vim.keymap.set :n :<leader>ha (fn [] (: (harpoon:list) :append))
+(vim.keymap.set :n :<leader>ha
+                (fn []
+                  (: (harpoon:list) :append)
+                  (vim.notify (.. "Appended: " (vim.fn.expand "%")) :info
+                              {:title :Harpoon}))
                 {:desc "Harpoon append"})
+
 (vim.keymap.set :n :<leader>hl
                 (fn [] (harpoon.ui:toggle_quick_menu (harpoon:list)))
                 {:desc "Harpoon list menu"})
