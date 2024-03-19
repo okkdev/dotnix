@@ -109,6 +109,7 @@ in {
       flash-nvim
       oil-nvim
       diffview-nvim
+      vim-fugitive
       (harpoon.overrideAttrs (_: {
         version = "2";
         src = pkgs.fetchFromGitHub {

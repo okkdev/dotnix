@@ -1,9 +1,5 @@
 ; Mini Utilities
 
-; Highlight words under cursor
-(let [cursorword (require :mini.cursorword)]
-  (cursorword.setup))
-
 ; Comment lines with gc/gcc
 (let [cmt (require :mini.comment)]
   (cmt.setup))
@@ -21,6 +17,10 @@
 ; s command to work with surrounding characters
 (let [surround (require :mini.surround)]
   (surround.setup))
+
+; inserts [], ()... pairs
+(let [prs (require :mini.pairs)]
+  (prs.setup))
 
 ; Highlight patterns
 (let [hipatterns (require :mini.hipatterns)]
@@ -147,9 +147,9 @@
 
 ; --- UNUSED THINGS ---
 
-; ; inserts [], ()... pairs
-; (let [prs (require :mini.pairs)]
-;   (prs.setup))
+; ; Highlight words under cursor
+; (let [cursorword (require :mini.cursorword)]
+;   (cursorword.setup))
 
 ; (let [starter (require :mini.starter)]
 ;   (starter.setup {:header (table.concat ["   ⣴⣶⣤⡤⠦⣤⣀⣤⠆     ⣈⣭⣿⣶⣿⣦⣼⣆          "
