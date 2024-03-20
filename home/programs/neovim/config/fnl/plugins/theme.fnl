@@ -83,7 +83,26 @@
   (set_hl 0 :CmpItemKindTypeParameter {:bg "#58B5A8" :fg "#D8EEEB"}))
 
 (let [everforest (require :everforest)]
-  (everforest.setup {:background :hard}))
+  (everforest.setup {:background :hard
+                     :on_highlights (fn [hl p]
+                                      (set hl.TelescopeBorder
+                                           {:bg p.bg0 :fg p.bg0})
+                                      (set hl.TelescopeTitle
+                                           {:bg p.bg0 :fg p.bg0})
+                                      (set hl.TelescopePreviewTitle
+                                           {:bg p.bg1 :fg p.none})
+                                      (set hl.TelescopePreviewNormal
+                                           {:bg p.bg1})
+                                      (set hl.TelescopePreviewBorder
+                                           {:bg p.bg1 :fg p.bg1})
+                                      (set hl.TelescopePromptTitle
+                                           {:bg p.aqua :fg p.none})
+                                      (set hl.TelescopePromptBorder
+                                           {:bg p.bg2 :fg p.bg2})
+                                      (set hl.TelescopePromptNormal
+                                           {:bg p.bg2 :fg p.fg})
+                                      (set hl.TelescopePromptCounter
+                                           {:fg p.bg0}))}))
 
 (colorscheme current_theme)
 

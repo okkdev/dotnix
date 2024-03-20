@@ -94,3 +94,5 @@
 
 (lsp.jsonls.setup {: capabilities : flags})
 
+(lsp.gopls.setup {: capabilities : flags})
+

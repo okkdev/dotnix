@@ -98,6 +98,9 @@
           i (+ (math.floor (* (/ (- curr_line 1) lines) (length sbar))) 1)]
       (.. "%l " (. sbar i) " %L")))
 
+  ; (set statusline.inactive
+  ;      (fn []
+  ;        (statusline.section_filename {:trunc_width 140})))
   (set statusline.active
        (fn []
          (let [(mode mode_hl) (statusline.section_mode {:trunc_width 120})
