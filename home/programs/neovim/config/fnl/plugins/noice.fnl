@@ -20,7 +20,15 @@
                                   :size {:height 10 :width 60}
                                   :win_options {:winhighlight {:FloatBorder :DiagnosticInfo
                                                                :Normal :NormalFloat}}}}
-              :routes [{:filter {:event :msg_show :find :written} :view :mini}]})
+              :routes [{:filter {:event :msg_show :find :written} :view :mini}
+                       {:filter {:event :msg_show
+                                 :find "Already at newest change"}
+                        :view :mini}
+                       {:filter {:event :msg_show :find "change;"} :view :mini}
+                       {:filter {:event :msg_show :find "line less;"}
+                        :view :mini}
+                       {:filter {:event :msg_show :find "more line;"}
+                        :view :mini}]})
 
 (local notify (require :notify))
 
