@@ -1,4 +1,45 @@
 self: super: {
+  next-ls = super.stdenv.mkDerivation rec {
+    name = "next-ls-v${version}";
+    version = "0.20.2";
+    src = super.fetchurl {
+      url =
+        "https://github.com/elixir-tools/next-ls/releases/download/v${version}/next_ls_darwin_arm64";
+      sha256 = "sha256-0HS/CMSj4bkvvvC1BNhvEu3W+OEW5FnguoQZ2bwrtkw=";
+    };
+    phases = [ "installPhase" ];
+    installPhase = ''
+      mkdir -p $out/bin
+      cp $src $out/bin/next-ls
+      chmod +x $out/bin/next-ls
+    '';
+  };
+  lexical-lsp = super.stdenv.mkDerivation rec {
+    name = "lexical-v${version}";
+    version = "0.5.2";
+    src = super.fetchurl {
+      url =
+        "https://github.com/lexical-lsp/lexical/releases/download/v${version}/lexical.zip";
+      sha256 = "sha256-quOOkijw5byJKJAZ8Uq/HNjWeFsT04gvm+hDxncN3/k=";
+    };
+    buildInputs = [ super.unzip ];
+    phases = [ "installPhase" ];
+    installPhase = let
+      activate_version_manager =
+        super.writeScript "activate_version_manager.sh" ''
+          true
+        '';
+    in ''
+      mkdir -p $out/bin
+      mkdir lexical
+      unzip $src
+      mv lexical/* $out
+      rm "$out/bin/activate_version_manager.sh"
+      ln -s ${activate_version_manager} "$out/bin/activate_version_manager.sh"
+      chmod +x $out/bin/start_lexical.sh
+      ln -s $out/bin/start_lexical.sh $out/bin/lexical
+    '';
+  };
   vimPlugins = super.vimPlugins // {
     cmp-tailwind-colors = super.vimUtils.buildVimPlugin {
       pname = "cmp-tailwind-colors";

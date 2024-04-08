@@ -60,3 +60,11 @@ brew update
 brew upgrade
 ```
 
+## Troubleshooting
+
+### Too many open files
+
+```sh
+sudo launchctl limit maxfiles 1024 unlimited
+```
+

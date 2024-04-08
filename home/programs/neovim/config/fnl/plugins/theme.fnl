@@ -118,3 +118,20 @@
                                     (colorscheme current_theme))
                                   {:desc "Sets light theme"})
 
+; This shouldn't be necessary, but seems like nightly doesn't detect the correct background color...
+(if (= (os.execute "defaults read -g AppleInterfaceStyle > /dev/null 2> /dev/null")
+       0)
+    (do
+      (set vim.o.background :dark)
+      (colorscheme current_theme))
+    (do
+      (set vim.o.background :light)
+      (colorscheme current_theme)))
+
+; devicon settings
+(let [icons (require :nvim-web-devicons)]
+  (icons.setup {:override {:gleam {:icon ""
+                                   :color "#ffaff3"
+                                   :cterm_color :219
+                                   :name :Gleam}}}))
+

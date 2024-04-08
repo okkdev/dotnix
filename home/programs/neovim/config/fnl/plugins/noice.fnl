@@ -27,7 +27,13 @@
                        {:filter {:event :msg_show :find "change;"} :view :mini}
                        {:filter {:event :msg_show :find "line less;"}
                         :view :mini}
+                       {:filter {:event :msg_show :find "lines less;"}
+                        :view :mini}
                        {:filter {:event :msg_show :find "more line;"}
+                        :view :mini}
+                       {:filter {:event :msg_show :find "more lines"}
+                        :view :mini}
+                       {:filter {:event :msg_show :find "fewer lines"}
                         :view :mini}]})
 
 (local notify (require :notify))

@@ -23,8 +23,10 @@
 ; (map [:n :x :i] :<C-k> :<C-w>k {:desc "Focus top window"})
 ; (map [:n :x :i] :<C-l> :<C-w>l {:desc "Focus right window"})
 
-(map [:v] :<A-j> ":m '>+1<CR>gv=gv" {:desc "Move selected lines down"})
-(map [:v] :<A-k> ":m '<-2<CR>gv=gv" {:desc "Move selected lines up"})
+(map [:v] :<A-j> ":m '>+1<CR>gv=gv"
+     {:desc "Move selected lines down" :silent true})
+(map [:v] :<A-k> ":m '<-2<CR>gv=gv"
+     {:desc "Move selected lines up" :silent true})
 
 (map :n :<C-d> :<C-d>zz {:desc "Scroll down and keep cursor in the center"})
 (map :n :<C-u> :<C-u>zz {:desc "Scroll up and keep cursor in the center"})

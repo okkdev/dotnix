@@ -64,6 +64,7 @@ let
     "ubersicht"
     "utm"
     "visual-studio-code"
+    "wezterm"
     "zed"
     "zoom"
   ];

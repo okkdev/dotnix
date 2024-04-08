@@ -5,7 +5,8 @@
     "com.apple.dock" = {
       autohide = true;
       show-recents = false;
-      static-only = true;
+      # I need my downloads in dock...
+      # static-only = true;
       wvous-bl-corner = 0;
       wvous-br-corner = 0;
       wvous-tl-corner = 0;

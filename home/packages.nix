@@ -1,6 +1,7 @@
 { config, pkgs, neovim-nightly-overlay, ... }:
 
-{
+let otp = pkgs.beam.packages.erlangR26;
+in {
   nixpkgs.config.allowUnfree = true;
 
   home.packages = with pkgs; [
@@ -22,11 +23,12 @@
     krabby
 
     # Programming
-    beam.interpreters.erlangR25
-    beam.packages.erlangR26.elixir_1_15
+    otp.erlang
+    otp.rebar3
+    otp.elixir_1_16
     bun
     corepack_21
-    elmPackages.elm
+    # elmPackages.elm
     fennel
     gleam
     libiconv
@@ -38,7 +40,9 @@
 
     # LSPs and formatters
     biome
-    elixir_ls
+    otp.elixir-ls
+    lexical-lsp
+    next-ls
     elmPackages.elm-format
     fennel-ls
     fnlfmt
@@ -53,6 +57,8 @@
     tailwindcss-language-server
     vscode-langservers-extracted
     taplo
+    phpactor
+    glas
 
     # fonts
     cascadia-code

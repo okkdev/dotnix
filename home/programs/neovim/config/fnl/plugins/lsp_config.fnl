@@ -2,31 +2,29 @@
 (local aucmd vim.api.nvim_create_autocmd)
 
 (aucmd :LspAttach
-       {:callback (fn [event]
+       {:group (vim.api.nvim_create_augroup :UserLspConfig {})
+        :callback (fn [event]
                     (fn map [keys func desc]
                       (vim.keymap.set :n keys func
                                       {:buffer event.buf
                                        :desc (.. "LSP: " desc)}))
 
                     (map :K vim.lsp.buf.hover "Hover Documentation")
-                    (map :gd vim.lsp.buf.definition "[G]oto [D]efinition")
-                    (map :gD vim.lsp.buf.declaration "[G]oto [D]eclaration")
+                    (map :gd vim.lsp.buf.definition "Goto Definition")
+                    (map :gD vim.lsp.buf.declaration "Goto Declaration")
                     (map :gr (. (require :telescope.builtin) :lsp_references)
-                         "[G]oto [R]eferences")
-                    (map :gI vim.lsp.buf.implementation
-                         "[G]oto [I]mplementation")
-                    (map :<leader>lrn vim.lsp.buf.rename "[R]e[n]ame")
+                         "Goto References")
+                    (map :gI vim.lsp.buf.implementation "Goto Implementation")
+                    (map :<leader>lrn vim.lsp.buf.rename :Rename)
                     (map :<leader>lwa vim.lsp.buf.add_workspace_folder
-                         "[W]orkspace [A]dd Folder")
+                         "Workspace Add Folder")
                     (map :<leader>lwr vim.lsp.buf.remove_workspace_folder
-                         "[W]orkspace [R]emove Folder")
+                         "Workspace Remove Folder")
                     (map :<leader>lwl
                          (fn []
                            (print (vim.inspect (vim.lsp.buf.list_workspace_folders))))
-                         "[W]orkspace [L]ist Folders")
-                    (map :<leader>ld vim.diagnostic.open_float
-                         "Show [d]iagnostics")
-                    (map :<leader>lca vim.lsp.buf.code_action "[C]ode [A]ction")
+                         "Workspace List Folders")
+                    (map :<leader>lca vim.lsp.buf.code_action "Code Action")
                     (local client
                            (vim.lsp.get_client_by_id event.data.client_id))
                     (when (and client
@@ -47,6 +45,13 @@
                         :virtual_text {:prefix "●" :source :if_many}
                         :linehl true
                         :float {:style :minimal :source :always}})
+
+(vim.keymap.set :n :<leader>ld vim.diagnostic.open_float
+                {:desc "Show diagnostics"})
+
+(vim.keymap.set :n "]d" vim.diagnostic.goto_next {:desc "Goto next diagnostic"})
+(vim.keymap.set :n "[d" vim.diagnostic.goto_prev
+                {:desc "Goto previous diagnostic"})
 
 (fn dsign [icon typ]
   (let [dtype (.. :DiagnosticSign typ)]
@@ -69,10 +74,12 @@
 (lsp.rust_analyzer.setup {:settings {:rust-analyzer {}} : flags})
 
 (lsp.elixirls.setup {:cmd [:elixir-ls] : capabilities : flags})
+; (lsp.lexical.setup {:cmd [:lexical] : capabilities : flags})
 
 (lsp.elmls.setup {: capabilities : flags})
 
-(lsp.gleam.setup {: capabilities : flags})
+; (lsp.gleam.setup {: capabilities : flags})
+(lsp.gleam.setup {:cmd [:glas :--stdio] : capabilities : flags})
 
 (lsp.nil_ls.setup {: capabilities : flags})
 
@@ -84,7 +91,11 @@
 
 (lsp.tsserver.setup {: capabilities : flags})
 
-(lsp.tailwindcss.setup {: capabilities : flags})
+(lsp.tailwindcss.setup {: capabilities
+                        : flags
+                        :on_attach (fn [client _buffer]
+                                     (set client.server_capabilities.hoverProvider
+                                          false))})
 
 (lsp.pyright.setup {: capabilities : flags})
 
@@ -95,4 +106,6 @@
 (lsp.jsonls.setup {: capabilities : flags})
 
 (lsp.gopls.setup {: capabilities : flags})
+
+(lsp.phpactor.setup {: capabilities : flags})
 
