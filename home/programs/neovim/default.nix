@@ -76,6 +76,7 @@ in {
       nvim-treesitter.withAllGrammars
       nvim-treesitter-textobjects
       nvim-ts-autotag
+      nvim-ts-context-commentstring
 
       # lsp and completions
       nvim-lspconfig
@@ -102,7 +103,15 @@ in {
       telescope-nvim
       telescope-undo-nvim
       telescope-fzf-native-nvim
-      telescope-frecency-nvim
+      (telescope-frecency-nvim.overrideAttrs (_: {
+        version = "2024-4-9";
+        src = pkgs.fetchFromGitHub {
+          owner = "nvim-telescope";
+          repo = "telescope-frecency.nvim";
+          rev = "94a532cb9c4713db83acf5432f5aadfd096e2af9";
+          sha256 = "sha256-t/y7eFhozV6m/9slG1tHL1nVOV0EdbrBoqrNhDQdRJw=";
+        };
+      }))
       telescope-live-grep-args-nvim
       nvim-tree-lua
       gitsigns-nvim
@@ -135,15 +144,7 @@ in {
       bg-nvim
 
       # themes
-      (rose-pine.overrideAttrs (_: {
-        version = "main";
-        src = pkgs.fetchFromGitHub {
-          owner = "rose-pine";
-          repo = "neovim";
-          rev = "f977eeba34b030b37f93ece2fbd792477606203b";
-          sha256 = "sha256-Zukzbs5ZQUjWutZK0oc1VHqFmUbvzWKtu6hb9EDFl9Y=";
-        };
-      }))
+      rose-pine
       everforest-nvim
       catppuccin-nvim
       neovim-ayu

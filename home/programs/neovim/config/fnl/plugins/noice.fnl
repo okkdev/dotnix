@@ -34,15 +34,19 @@
                        {:filter {:event :msg_show :find "more lines"}
                         :view :mini}
                        {:filter {:event :msg_show :find "fewer lines"}
-                        :view :mini}]})
+                        :view :mini}
+                       {:filter {:event :msg_show :find "changes;"}
+                        :view :mini}
+                       {:filter {:event :msg_show :find :>ed} :view :mini}
+                       {:filter {:event :msg_show :find :<ed} :view :mini}]})
 
 (local notify (require :notify))
 
-(vim.keymap.set :n :<leader>nd notify.dismiss {:desc "[d]ismiss notifications"})
+(vim.keymap.set :n :<leader>nd notify.dismiss {:desc "dismiss notifications"})
 
 (vim.keymap.set :n :<leader>na (fn [] (noice.cmd :telescope))
-                {:desc "list [a]ll notifications"})
+                {:desc "list all notifications"})
 
 (vim.keymap.set :n :<leader>nl (fn [] (noice.cmd :last))
-                {:desc "[l]ast notification"})
+                {:desc "last notification"})
 

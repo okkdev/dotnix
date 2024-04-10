@@ -78,8 +78,7 @@
 
 (lsp.elmls.setup {: capabilities : flags})
 
-; (lsp.gleam.setup {: capabilities : flags})
-(lsp.gleam.setup {:cmd [:glas :--stdio] : capabilities : flags})
+(lsp.gleam.setup {: capabilities : flags})
 
 (lsp.nil_ls.setup {: capabilities : flags})
 

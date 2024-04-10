@@ -1,8 +1,13 @@
 ; Mini Utilities
 
 ; Comment lines with gc/gcc
-(let [cmt (require :mini.comment)]
-  (cmt.setup))
+(let [cmt (require :mini.comment)
+      context_comment (require :ts_context_commentstring)]
+  (set vim.g.skip_ts_context_commentstring_module true)
+  (context_comment.setup {:enable_autocmd false})
+  (cmt.setup {:options {:custom_commentstring (fn []
+                                                (or (context_comment.calculate_commentstring)
+                                                    vim.bo.commentstring))}}))
 
 ; Improved a/i around and inside command
 (let [ai (require :mini.ai)
@@ -97,10 +102,6 @@
           lines (vim.api.nvim_buf_line_count 0)
           i (+ (math.floor (* (/ (- curr_line 1) lines) (length sbar))) 1)]
       (.. "%l " (. sbar i) " %L")))
-
-  ; (set statusline.inactive
-  ;      (fn []
-  ;        (statusline.section_filename {:trunc_width 140})))
   (set statusline.active
        (fn []
          (let [(mode mode_hl) (statusline.section_mode {:trunc_width 120})

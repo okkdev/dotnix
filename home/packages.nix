@@ -47,7 +47,7 @@ in {
     fennel-ls
     fnlfmt
     nil
-    nixfmt
+    nixfmt-rfc-style
     nodePackages.pyright
     nodePackages.typescript-language-server
     prettierd
@@ -58,7 +58,6 @@ in {
     vscode-langservers-extracted
     taplo
     phpactor
-    glas
 
     # fonts
     cascadia-code
