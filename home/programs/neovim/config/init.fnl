@@ -1,8 +1,6 @@
-(vim.loader.enable)
-
 (require :settings)
-(require :mapping)
-(require :autocommands)
+(require :mappings)
+(require :commands)
 (require :neovide)
 
 ; Plugins

@@ -20,25 +20,19 @@
                                   :size {:height 10 :width 60}
                                   :win_options {:winhighlight {:FloatBorder :DiagnosticInfo
                                                                :Normal :NormalFloat}}}}
-              :routes [{:filter {:event :msg_show :find :written} :view :mini}
-                       {:filter {:event :msg_show
-                                 :find "Already at newest change"}
-                        :view :mini}
-                       {:filter {:event :msg_show :find "change;"} :view :mini}
-                       {:filter {:event :msg_show :find "line less;"}
-                        :view :mini}
-                       {:filter {:event :msg_show :find "lines less;"}
-                        :view :mini}
-                       {:filter {:event :msg_show :find "more line;"}
-                        :view :mini}
-                       {:filter {:event :msg_show :find "more lines"}
-                        :view :mini}
-                       {:filter {:event :msg_show :find "fewer lines"}
-                        :view :mini}
-                       {:filter {:event :msg_show :find "changes;"}
-                        :view :mini}
-                       {:filter {:event :msg_show :find :>ed} :view :mini}
-                       {:filter {:event :msg_show :find :<ed} :view :mini}]})
+              :routes (let [to_mini [:written
+                                     "Already at newest change"
+                                     "line less;"
+                                     "lines less;"
+                                     "more line"
+                                     "fewer line"
+                                     "lines yanked"
+                                     "changes;"
+                                     "change;"
+                                     :>ed
+                                     :<ed]]
+                        (icollect [_ v (ipairs to_mini)]
+                          {:filter {:event :msg_show :find v} :view :mini}))})
 
 (local notify (require :notify))
 

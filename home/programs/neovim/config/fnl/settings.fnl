@@ -2,6 +2,9 @@
 (local o vim.opt)
 (local g vim.g)
 
+; something to speed up loading idk
+(vim.loader.enable)
+
 (set o.autoindent true)
 (set o.autoread true)
 (set o.breakindent true)
@@ -28,6 +31,7 @@
 (set o.signcolumn :yes)
 (set o.smartcase true)
 (set o.smartindent true)
+(set o.smoothscroll true)
 (set o.softtabstop 2)
 (set o.splitbelow true)
 (set o.splitright true)
