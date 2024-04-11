@@ -1,11 +1,19 @@
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 
 let
   lua-config = pkgs.stdenv.mkDerivation {
     name = "lua-config";
     src = ./config;
     buildInputs = [ pkgs.fennel ];
-    phases = [ "buildPhase" "installPhase" ];
+    phases = [
+      "buildPhase"
+      "installPhase"
+    ];
     buildPhase = ''
       shopt -s globstar
 
@@ -24,14 +32,19 @@ let
       cp -r build/* $out
     '';
   };
-in {
+in
+{
   programs.neovim = {
     enable = true;
     package = pkgs.neovim-nightly;
     vimdiffAlias = true;
     defaultEditor = true;
     withNodeJs = true;
-    extraPackages = with pkgs; [ fzf tree-sitter fd ];
+    extraPackages = with pkgs; [
+      fzf
+      tree-sitter
+      fd
+    ];
     plugins = with pkgs.vimPlugins; [
       ## Profiler
       #{
@@ -98,11 +111,12 @@ in {
       # plugin dependency
       plenary-nvim
 
-      # ease of use stuff
-      vim-sleuth
+      # telescope
       telescope-nvim
-      telescope-undo-nvim
+      telescope-ui-select-nvim
       telescope-fzf-native-nvim
+      telescope-undo-nvim
+      telescope-recent-files-nvim
       (telescope-frecency-nvim.overrideAttrs (_: {
         version = "2024-4-9";
         src = pkgs.fetchFromGitHub {
@@ -113,6 +127,9 @@ in {
         };
       }))
       telescope-live-grep-args-nvim
+
+      # ease of use stuff
+      vim-sleuth
       nvim-tree-lua
       gitsigns-nvim
       flash-nvim

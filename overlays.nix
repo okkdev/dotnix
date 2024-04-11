@@ -3,8 +3,7 @@ self: super: {
     name = "next-ls-v${version}";
     version = "0.20.2";
     src = super.fetchurl {
-      url =
-        "https://github.com/elixir-tools/next-ls/releases/download/v${version}/next_ls_darwin_arm64";
+      url = "https://github.com/elixir-tools/next-ls/releases/download/v${version}/next_ls_darwin_arm64";
       sha256 = "sha256-0HS/CMSj4bkvvvC1BNhvEu3W+OEW5FnguoQZ2bwrtkw=";
     };
     phases = [ "installPhase" ];
@@ -18,34 +17,33 @@ self: super: {
     name = "lexical-v${version}";
     version = "0.5.2";
     src = super.fetchurl {
-      url =
-        "https://github.com/lexical-lsp/lexical/releases/download/v${version}/lexical.zip";
+      url = "https://github.com/lexical-lsp/lexical/releases/download/v${version}/lexical.zip";
       sha256 = "sha256-quOOkijw5byJKJAZ8Uq/HNjWeFsT04gvm+hDxncN3/k=";
     };
     buildInputs = [ super.unzip ];
     phases = [ "installPhase" ];
-    installPhase = let
-      activate_version_manager =
-        super.writeScript "activate_version_manager.sh" ''
+    installPhase =
+      let
+        activate_version_manager = super.writeScript "activate_version_manager.sh" ''
           true
         '';
-    in ''
-      mkdir -p $out/bin
-      mkdir lexical
-      unzip $src
-      mv lexical/* $out
-      rm "$out/bin/activate_version_manager.sh"
-      ln -s ${activate_version_manager} "$out/bin/activate_version_manager.sh"
-      chmod +x $out/bin/start_lexical.sh
-      ln -s $out/bin/start_lexical.sh $out/bin/lexical
-    '';
+      in
+      ''
+        mkdir -p $out/bin
+        mkdir lexical
+        unzip $src
+        mv lexical/* $out
+        rm "$out/bin/activate_version_manager.sh"
+        ln -s ${activate_version_manager} "$out/bin/activate_version_manager.sh"
+        chmod +x $out/bin/start_lexical.sh
+        ln -s $out/bin/start_lexical.sh $out/bin/lexical
+      '';
   };
   gleam = super.stdenv.mkDerivation rec {
     name = "gleam";
     version = "1.1.0-rc2";
     src = super.fetchurl {
-      url =
-        "https://github.com/gleam-lang/gleam/releases/download/v${version}/gleam-v${version}-aarch64-apple-darwin.tar.gz";
+      url = "https://github.com/gleam-lang/gleam/releases/download/v${version}/gleam-v${version}-aarch64-apple-darwin.tar.gz";
       sha256 = "sha256-SZ6/ZHmOafZwiAVlXnpLbR8K41XBqZcBApMbgxhEgWg=";
     };
     phases = [ "installPhase" ];
@@ -76,6 +74,16 @@ self: super: {
         repo = "bg.nvim";
         rev = "1c95261cc5e3062e3b277fc5c15d180d51a40f62";
         sha256 = "sha256-ZocdEdw7m6gVQap0MFr1uymIkHnX9ewjWmR7fYVR9Ko=";
+      };
+    };
+    telescope-recent-files-nvim = super.vimUtils.buildVimPlugin {
+      pname = "telescope-recent-files-nvim";
+      version = "main";
+      src = super.fetchFromGitHub {
+        owner = "mollerhoj";
+        repo = "telescope-recent-files.nvim";
+        rev = "9f8cb7d22b999346ce819390e75a509e4048f4de";
+        sha256 = "sha256-+9BjCfOQTbJyOPIATHak7B8qxn7n6BfJVNT3KRhxLgk=";
       };
     };
     kitty-scrollback-nvim = super.vimUtils.buildVimPlugin rec {
