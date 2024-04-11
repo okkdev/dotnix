@@ -3,6 +3,12 @@
 (local set_hl vim.api.nvim_set_hl)
 (local usercmd vim.api.nvim_create_user_command)
 
+; This shouldn't be necessary, but seems like nightly doesn't detect the correct background color...
+(if (= (os.execute "defaults read -g AppleInterfaceStyle > /dev/null 2> /dev/null")
+       0)
+    (set vim.o.background :dark)
+    (set vim.o.background :light))
+
 (local themes [:ayu :melange :oxocarbon :catppuccin :rose-pine :everforest])
 
 (var current_theme :everforest)
@@ -22,6 +28,13 @@
            (fn []
              (set current_theme t)
              (colorscheme t)) {:desc (.. "Sets theme " t)}))
+
+; devicon settings
+(let [icons (require :nvim-web-devicons)]
+  (icons.setup {:override {:gleam {:icon ""
+                                   :color "#ffaff3"
+                                   :cterm_color :219
+                                   :name :Gleam}}}))
 
 ; Theme settings
 
@@ -120,11 +133,4 @@
 
 ; Activate the initial theme
 (colorscheme current_theme)
-
-; devicon settings
-(let [icons (require :nvim-web-devicons)]
-  (icons.setup {:override {:gleam {:icon ""
-                                   :color "#ffaff3"
-                                   :cterm_color :219
-                                   :name :Gleam}}}))
 

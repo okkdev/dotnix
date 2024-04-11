@@ -44,11 +44,3 @@
 (set g.loaded_netrw 1)
 (set g.loaded_netrwPlugin 1)
 
-; This shouldn't be necessary, but seems like nightly doesn't detect the correct background color...
-(if (= (os.execute "defaults read -g AppleInterfaceStyle > /dev/null 2> /dev/null")
-       0)
-    (do
-      (set o.background :dark))
-    (do
-      (set o.background :light)))
-
