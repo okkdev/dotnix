@@ -1,15 +1,29 @@
 ; Styling
 (local colorscheme vim.cmd.colorscheme)
 (local set_hl vim.api.nvim_set_hl)
+(local usercmd vim.api.nvim_create_user_command)
 
-; :ayu
-; :melange
-; :oxocarbon
-; :catppuccin
-; :rose-pine
-; :everforest
+(local themes [:ayu :melange :oxocarbon :catppuccin :rose-pine :everforest])
 
-(local current_theme :everforest)
+(var current_theme :everforest)
+
+(usercmd :DarkTheme (fn []
+                      (set vim.o.background :dark)
+                      (colorscheme current_theme))
+         {:desc "Sets dark theme"})
+
+(usercmd :LightTheme (fn []
+                       (set vim.o.background :light)
+                       (colorscheme current_theme))
+         {:desc "Sets light theme"})
+
+(each [_ t (ipairs themes)]
+  (usercmd (.. :SetTheme (string.upper (string.gsub t "%A" "") t))
+           (fn []
+             (set current_theme t)
+             (colorscheme t)) {:desc (.. "Sets theme " t)}))
+
+; Theme settings
 
 (let [rose-pine (require :rose-pine)]
   (rose-pine.setup {:highlight_groups {:TelescopeBorder {:bg :overlay
@@ -104,29 +118,8 @@
                                       (set hl.TelescopePromptCounter
                                            {:fg p.bg0}))}))
 
+; Activate the initial theme
 (colorscheme current_theme)
-
-(vim.api.nvim_create_user_command :DarkTheme
-                                  (fn []
-                                    (set vim.o.background :dark)
-                                    (colorscheme current_theme))
-                                  {:desc "Sets dark theme"})
-
-(vim.api.nvim_create_user_command :LightTheme
-                                  (fn []
-                                    (set vim.o.background :light)
-                                    (colorscheme current_theme))
-                                  {:desc "Sets light theme"})
-
-; This shouldn't be necessary, but seems like nightly doesn't detect the correct background color...
-(if (= (os.execute "defaults read -g AppleInterfaceStyle > /dev/null 2> /dev/null")
-       0)
-    (do
-      (set vim.o.background :dark)
-      (colorscheme current_theme))
-    (do
-      (set vim.o.background :light)
-      (colorscheme current_theme)))
 
 ; devicon settings
 (let [icons (require :nvim-web-devicons)]
