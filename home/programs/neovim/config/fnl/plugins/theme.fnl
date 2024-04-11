@@ -9,7 +9,7 @@
     (set vim.o.background :dark)
     (set vim.o.background :light))
 
-(local themes [:ayu :melange :oxocarbon :catppuccin :rose-pine :everforest])
+(local themes [:ayu :oxocarbon :catppuccin :rose-pine :everforest])
 
 (var current_theme :everforest)
 
@@ -52,13 +52,17 @@
                                        :TelescopeTitle {:bg :love :fg :base}
                                        :TelescopePreviewTitle {:bg :iris
                                                                :fg :base}
+                                       :TelescopePreviewBorder {:bg :base
+                                                                :fg :base}
                                        :TelescopePromptTitle {:bg :pine
                                                               :fg :base}
                                        :TelescopePromptBorder {:bg :surface
                                                                :fg :surface}
                                        :TelescopePromptNormal {:bg :surface
                                                                :fg :text}
-                                       :MatchParen {:bg :subtle}}}))
+                                       :MatchParen {:bg :subtle}
+                                       :MiniStatuslineFilename {:fg :muted
+                                                                :bg :base}}}))
 
 (let [catppuccin (require :catppuccin)]
   (catppuccin.setup {:flavour :latte

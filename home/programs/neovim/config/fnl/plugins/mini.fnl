@@ -102,6 +102,7 @@
           lines (vim.api.nvim_buf_line_count 0)
           i (+ (math.floor (* (/ (- curr_line 1) lines) (length sbar))) 1)]
       (.. "%l " (. sbar i) " %L")))
+
   (set statusline.active
        (fn []
          (let [(mode mode_hl) (statusline.section_mode {:trunc_width 120})
@@ -127,27 +128,30 @@
                              :rounded true}])))))
 
 ; create reverse highlight colors
-(vim.api.nvim_create_autocmd [:Colorscheme :UIEnter]
-                             {:callback (fn []
-                                          (fn reverse_hl [name]
-                                            (let [color (vim.api.nvim_get_hl 0
-                                                                             {: name})
-                                                  rev_name (.. :rev_ name)]
-                                              (vim.api.nvim_set_hl 0 rev_name
-                                                                   {:fg color.bg})))
+(let [autocmd vim.api.nvim_create_autocmd]
+  (autocmd [:Colorscheme :UIEnter]
+           {:callback (fn []
+                        (fn reverse_hl [name]
+                          (let [color (vim.api.nvim_get_hl 0 {: name})
+                                rev_name (.. :rev_ name)]
+                            (if (= color.bg nil)
+                                (vim.api.nvim_set_hl 0 rev_name
+                                                     {:link (.. :rev_
+                                                                color.link)})
+                                (vim.api.nvim_set_hl 0 rev_name {:fg color.bg}))))
 
-                                          (let [hl_groups [:MiniStatuslineModeNormal
-                                                           :MiniStatuslineModeInsert
-                                                           :MiniStatuslineModeVisual
-                                                           :MiniStatuslineModeReplace
-                                                           :MiniStatuslineModeCommand
-                                                           :MiniStatuslineModeOther
-                                                           :MiniStatuslineDevinfo
-                                                           :MiniStatuslineFilename
-                                                           :MiniStatuslineFileinfo
-                                                           :MiniStatuslineInactive]]
-                                            (each [_ group (pairs hl_groups)]
-                                              (reverse_hl group))))})
+                        (let [hl_groups [:MiniStatuslineModeNormal
+                                         :MiniStatuslineModeInsert
+                                         :MiniStatuslineModeVisual
+                                         :MiniStatuslineModeReplace
+                                         :MiniStatuslineModeCommand
+                                         :MiniStatuslineModeOther
+                                         :MiniStatuslineDevinfo
+                                         :MiniStatuslineFilename
+                                         :MiniStatuslineFileinfo
+                                         :MiniStatuslineInactive]]
+                          (each [_ group (pairs hl_groups)]
+                            (reverse_hl group))))}))
 
 ; --- UNUSED THINGS ---
 
