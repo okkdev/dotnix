@@ -70,11 +70,10 @@
        (telescope.extensions.recent-files.recent_files {:find_command [:fd
                                                                        :--type
                                                                        :file
-                                                                       :--hidden
-                                                                       :--follow
                                                                        :--color
-                                                                       :never
-                                                                       :--strip-cwd-prefix]
+                                                                       :never]
+                                                        :follow true
+                                                        :hidden true
                                                         :include_current_file false}))
      {:desc "Find frecent files"})
 

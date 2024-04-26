@@ -2,6 +2,7 @@
 (local nvim_tree (require :nvim-tree))
 (nvim_tree.setup {:view {:side :right :width 40}
                   :update_focused_file {:enable true}
+                  :git {:enable false}
                   :filters {:git_ignored false
                             :custom [:^.DS_Store$ :^.direnv$]}})
 

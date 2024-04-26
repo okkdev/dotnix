@@ -38,15 +38,19 @@
                                              {:virt_lines [[["" ""]]]}))))
          {:desc "Add Virtual Spacers"})
 
-(usercmd :WriterOn (fn [] (set vim.o.wrap true)
-                     (vim.keymap.set [:n :x] :j :gj)
-                     (vim.keymap.set [:n :x] :k :gk))
-         {:desc "Enter Writing Mode"})
-
-(usercmd :WriterOff (fn [] (set vim.o.wrap false)
-                      (vim.keymap.set [:n :x] :j :j)
-                      (vim.keymap.set [:n :x] :k :k))
-         {:desc "Leave Writing Mode"})
+(let [zen (require :zen-mode)]
+  (usercmd :WriterOn (fn []
+                       (zen.open)
+                       (set vim.o.wrap true)
+                       (vim.keymap.set [:n :x] :j :gj)
+                       (vim.keymap.set [:n :x] :k :gk))
+           {:desc "Enter Writing Mode"})
+  (usercmd :WriterOff (fn []
+                        (zen.close)
+                        (set vim.o.wrap false)
+                        (vim.keymap.set [:n :x] :j :j)
+                        (vim.keymap.set [:n :x] :k :k))
+           {:desc "Leave Writing Mode"}))
 
 (usercmd :ListCharsOn (fn [] (set vim.o.list true)) {:desc "Enable list chars"})
 (usercmd :ListCharsOff (fn [] (set vim.o.list false))

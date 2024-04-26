@@ -16,6 +16,8 @@
 (map [:x] :<leader>r "\"sy:%s/<C-r>s/<C-r>s/gc<left><left><left>"
      {:desc "Replace Selection"})
 
+(map [:x] "/" "\"sy:/\\V<C-r>s<CR>N" {:desc "Search for selection"})
+
 (map [:n] :<Esc> :<cmd>nohlsearch<CR> {:desc "Clear search highlights"})
 
 ; (map [:n :x :i] :<C-h> :<C-w>h {:desc "Focus left window"})
@@ -25,6 +27,7 @@
 
 (map [:v] :<A-j> ":m '>+1<CR>gv=gv"
      {:desc "Move selected lines down" :silent true})
+
 (map [:v] :<A-k> ":m '<-2<CR>gv=gv"
      {:desc "Move selected lines up" :silent true})
 

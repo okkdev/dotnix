@@ -21,19 +21,20 @@ in {
     deploy-rs
     ollama
     krabby
+    nurl
 
     # Programming
     otp.erlang
     otp.rebar3
     otp.elixir_1_16
     bun
-    corepack_21
+    corepack_20
+    nodejs_20
     # elmPackages.elm
     fennel
     gleam
     libiconv
     llvm
-    nodejs_21
     python39
     rustup
     tailwindcss

@@ -24,7 +24,7 @@
          {:desc "Sets light theme"})
 
 (each [_ t (ipairs themes)]
-  (usercmd (.. :SetTheme (string.upper (string.gsub t "%A" "") t))
+  (usercmd (.. :ThemeSet (string.upper (string.gsub t "%A" "") t))
            (fn []
              (set current_theme t)
              (colorscheme t)) {:desc (.. "Sets theme " t)}))
