@@ -36,7 +36,7 @@
       adjust_line_height = "130%";
       disable_ligatures = "cursor";
       kitty_mod = "shift+cmd";
-      macos_option_as_alt = "yes";
+      # macos_option_as_alt = "yes";
       macos_quit_when_last_window_closed = "yes";
 
       action_alias =

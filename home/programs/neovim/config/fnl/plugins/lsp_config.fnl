@@ -71,6 +71,11 @@
 
 (local flags {:debounce_text_changes 150})
 
+; Debug stuff
+; (vim.lsp.set_log_level vim.lsp.log_levels.DEBUG)
+; ((. (require :vim.lsp.log) :set_format_func) vim.inspect)
+; (vim.lsp.set_log_level :trace)
+
 (lsp.rust_analyzer.setup {:settings {:rust-analyzer {}} : flags})
 
 (lsp.elixirls.setup {:cmd [:elixir-ls] : capabilities : flags})

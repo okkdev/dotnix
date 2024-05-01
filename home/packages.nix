@@ -1,7 +1,14 @@
-{ config, pkgs, neovim-nightly-overlay, ... }:
+{
+  config,
+  pkgs,
+  neovim-nightly-overlay,
+  ...
+}:
 
-let otp = pkgs.beam.packages.erlangR26;
-in {
+let
+  otp = pkgs.beam.packages.erlangR26;
+in
+{
   nixpkgs.config.allowUnfree = true;
 
   home.packages = with pkgs; [
@@ -22,6 +29,8 @@ in {
     ollama
     krabby
     nurl
+    gnused
+    (writeShellScriptBin "gsed" "exec ${gnused}/bin/sed \"$@\"")
 
     # Programming
     otp.erlang

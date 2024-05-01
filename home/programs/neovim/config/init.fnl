@@ -7,7 +7,7 @@
 (require :plugins.treesitter)
 (require :plugins.theme)
 (require :plugins.lsp_config)
-(require :plugins.completions)
+(require :plugins.cmp)
 (require :plugins.mini)
 (require :plugins.telescope)
 (require :plugins.noice)

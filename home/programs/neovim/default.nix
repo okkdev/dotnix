@@ -135,6 +135,7 @@ in
       flash-nvim
       oil-nvim
       diffview-nvim
+      nvim-spectre
       vim-fugitive
       (harpoon.overrideAttrs (_: {
         version = "2";
@@ -157,8 +158,8 @@ in
       alpha-nvim
       noice-nvim
       nvim-notify
-      zen-mode-nvim
       bg-nvim
+      no-neck-pain-nvim
 
       # themes
       rose-pine

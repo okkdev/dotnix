@@ -62,7 +62,9 @@
                                                                :fg :text}
                                        :MatchParen {:bg :subtle}
                                        :MiniStatuslineFilename {:fg :muted
-                                                                :bg :base}}}))
+                                                                :bg :base}
+                                       :StatusLine {:bg :base}
+                                       :StatusLineNC {:bg :base}}}))
 
 (let [catppuccin (require :catppuccin)]
   (catppuccin.setup {:flavour :latte
@@ -133,7 +135,9 @@
                                       (set hl.TelescopePromptNormal
                                            {:bg p.bg2 :fg p.fg})
                                       (set hl.TelescopePromptCounter
-                                           {:fg p.bg0}))}))
+                                           {:fg p.bg0})
+                                      (set hl.StatusLineNC {:bg p.bg0})
+                                      (set hl.StatusLine {:bg p.bg0}))}))
 
 ; Activate the initial theme
 (colorscheme current_theme)

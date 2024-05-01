@@ -7,7 +7,7 @@
 (conform.setup {:formatters_by_ft {:css [:prettierd :rustywindcss]
                                    :elm [:elm_format]
                                    :fennel [:fnlfmt]
-                                   :heex [:rustywind]
+                                   :heex [:rustywind :mix]
                                    :html [:prettierd :rustywind]
                                    :javascript [:biome :rustywind]
                                    :typescript [:biome :rustywind]
@@ -25,7 +25,12 @@
                 :formatters {:rustywindcss {:command :rustywind
                                             :args [:--custom-regex
                                                    "@apply ([_a-zA\\.-Z0-9\\-:\\[\\] ]+);"
-                                                   :--stdin]}}})
+                                                   :--stdin]}
+                             :mix {:command :mix
+                                   :args [:format
+                                          :--stdin-filename
+                                          :$FILENAME
+                                          "-"]}}})
 
 (vim.api.nvim_create_user_command :Format
                                   (fn [args]
