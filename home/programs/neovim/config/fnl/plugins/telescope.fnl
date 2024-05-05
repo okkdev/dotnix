@@ -17,21 +17,6 @@
                                      :override_file_sorter true
                                      :override_generic_sorter true}
                                :ui-select [(themes.get_cursor {})]
-                               :frecency {:hide_current_buffer true
-                                          :workspace_scan_cmd find_cmd
-                                          :default_workspace :CWD
-                                          :recency-values [{:age 240
-                                                            :value 10000}
-                                                           {:age 1440
-                                                            :value 8000}
-                                                           {:age 4320
-                                                            :value 6000}
-                                                           {:age 10080
-                                                            :value 4000}
-                                                           {:age 43200
-                                                            :value 2000}
-                                                           {:age 129600
-                                                            :value 1000}]}
                                :undo {:use_delta false}}
                   :pickers {:buffers {:sort_mru true
                                       :ignore_current_buffer true}
@@ -44,7 +29,6 @@
 (telescope.load_extension :fzf)
 (telescope.load_extension :undo)
 (telescope.load_extension :recent-files)
-(telescope.load_extension :frecency)
 (telescope.load_extension :ui-select)
 
 ; Keybinds
@@ -75,7 +59,7 @@
                                                         :follow true
                                                         :hidden true
                                                         :include_current_file false}))
-     {:desc "Find frecent files"})
+     {:desc "Find recent files"})
 
 (map :n :<leader>/
      (fn []

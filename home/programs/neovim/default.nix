@@ -117,15 +117,6 @@ in
       telescope-fzf-native-nvim
       telescope-undo-nvim
       telescope-recent-files-nvim
-      (telescope-frecency-nvim.overrideAttrs (_: {
-        version = "2024-4-9";
-        src = pkgs.fetchFromGitHub {
-          owner = "nvim-telescope";
-          repo = "telescope-frecency.nvim";
-          rev = "94a532cb9c4713db83acf5432f5aadfd096e2af9";
-          sha256 = "sha256-t/y7eFhozV6m/9slG1tHL1nVOV0EdbrBoqrNhDQdRJw=";
-        };
-      }))
       telescope-live-grep-args-nvim
 
       # ease of use stuff

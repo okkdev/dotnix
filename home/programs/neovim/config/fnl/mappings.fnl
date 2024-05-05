@@ -11,6 +11,8 @@
 (map [:n :x :i] :<D-S-z> :<cmd>redo<cr> {:desc :Redo})
 (map [:n] :U :<cmd>redo<cr> {:desc :Redo})
 
+(map [:n :x] :s :<Nop> {:desc "Disable s binding"})
+
 (map [:x] :<leader>p "\"_dP" {:desc "Paste without overriding the buffer"})
 
 (map [:x] :<leader>r "\"sy:%s$<C-r>s$<C-r>s$gc<left><left><left>"
