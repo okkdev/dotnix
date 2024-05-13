@@ -66,5 +66,7 @@ brew upgrade
 
 ```sh
 sudo launchctl limit maxfiles 1024 unlimited
+sudo launchctl stop org.nixos.nix-daemon
+sudo launchctl start org.nixos.nix-daemon
 ```
 

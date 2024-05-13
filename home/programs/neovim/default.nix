@@ -133,8 +133,8 @@ in
         src = pkgs.fetchFromGitHub {
           owner = "ThePrimeagen";
           repo = "harpoon";
-          rev = "a38be6e0dd4c6db66997deab71fc4453ace97f9c";
-          sha256 = "sha256-RjwNUuKQpLkRBX3F9o25Vqvpu3Ah1TCFQ5Dk4jXhsbI=";
+          rev = "0378a6c428a0bed6a2781d459d7943843f374bce";
+          sha256 = "sha256-FZQH38E02HuRPIPAog/nWM55FuBxKp8AyrEldFkoLYk=";
         };
       }))
 
