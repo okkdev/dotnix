@@ -12,12 +12,12 @@
 (require :plugins.telescope)
 (require :plugins.noice)
 (require :plugins.notify)
+(require :plugins.persisted)
 (require :plugins.conform)
 (require :plugins.flash)
 (require :plugins.harpoon)
 (require :plugins.oil)
 (require :plugins.gitsigns)
 (require :plugins.nvim_tree)
-(require :plugins.alpha)
 (require :plugins.kitty_scrollback)
 

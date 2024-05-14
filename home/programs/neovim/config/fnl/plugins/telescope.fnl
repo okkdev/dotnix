@@ -30,6 +30,7 @@
 (telescope.load_extension :undo)
 (telescope.load_extension :recent-files)
 (telescope.load_extension :ui-select)
+(telescope.load_extension :persisted)
 
 ; Keybinds
 

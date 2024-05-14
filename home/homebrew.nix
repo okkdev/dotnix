@@ -13,7 +13,6 @@ let
 
   casks = [
     "1password"
-    "amethyst"
     "android-file-transfer"
     "appcleaner"
     "arc"
@@ -41,7 +40,6 @@ let
     "logseq"
     "losslesscut"
     "maccy"
-    "mark-text"
     "monitorcontrol"
     "muse"
     "neovide"

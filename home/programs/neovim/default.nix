@@ -128,6 +128,7 @@ in
       diffview-nvim
       nvim-spectre
       vim-fugitive
+      persisted-nvim
       (harpoon.overrideAttrs (_: {
         version = "2";
         src = pkgs.fetchFromGitHub {
@@ -146,8 +147,16 @@ in
       lspkind-nvim
 
       # ui elements
-      alpha-nvim
-      noice-nvim
+      (noice-nvim.overrideAttrs (_: {
+        version = "2024-05-09";
+        src = pkgs.fetchFromGitHub {
+          owner = "folke";
+          repo = "noice.nvim";
+          rev = "09102ca2e9a3e9302119fdaf7a059a034e4a626d";
+          sha256 = "sha256-YWqphpaxr/729/6NTDEWKOi2FnY/8xgjdsDQ9ePj7b8=";
+        };
+      }))
+
       nvim-notify
       bg-nvim
       no-neck-pain-nvim

@@ -1,5 +1,43 @@
 {
   "nodes": {
+    "brew-api": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1715573498,
+        "narHash": "sha256-UZE53biI07jxGG9ovEs5ydA4r/vxSkGjsH3+GMyQMmU=",
+        "owner": "BatteredBunny",
+        "repo": "brew-api",
+        "rev": "510906bab00b2e71cceb164cfd4ac520193d9cd1",
+        "type": "github"
+      },
+      "original": {
+        "owner": "BatteredBunny",
+        "repo": "brew-api",
+        "type": "github"
+      }
+    },
+    "brew-nix": {
+      "inputs": {
+        "brew-api": [
+          "brew-api"
+        ],
+        "flake-utils": "flake-utils",
+        "nixpkgs": "nixpkgs"
+      },
+      "locked": {
+        "lastModified": 1715460005,
+        "narHash": "sha256-q0ztmCxuPNFXZlZJrH3wS6rlDGLo+zXM8ay08KcTvlE=",
+        "owner": "BatteredBunny",
+        "repo": "brew-nix",
+        "rev": "a440dba7425ce5abc55aabd7abb4b50044124d1f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "BatteredBunny",
+        "repo": "brew-nix",
+        "type": "github"
+      }
+    },
     "flake-compat": {
       "flake": false,
       "locked": {
@@ -76,6 +114,24 @@
         "type": "github"
       }
     },
+    "flake-utils_2": {
+      "inputs": {
+        "systems": "systems_2"
+      },
+      "locked": {
+        "lastModified": 1710146030,
+        "narHash": "sha256-SZ5L6eA7HJ/nmkzGG7/ISclqe6oZdOZTNoesiInkXPQ=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "b1d9ab70662946ef0850d488da1c9019f3a9752a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "type": "github"
+      }
+    },
     "hercules-ci-effects": {
       "inputs": {
         "flake-parts": "flake-parts_2",
@@ -120,7 +176,7 @@
     },
     "neovim-flake": {
       "inputs": {
-        "flake-utils": "flake-utils",
+        "flake-utils": "flake-utils_2",
         "nixpkgs": [
           "neovim-nightly-overlay",
           "nixpkgs"
@@ -148,7 +204,7 @@
         "flake-parts": "flake-parts",
         "hercules-ci-effects": "hercules-ci-effects",
         "neovim-flake": "neovim-flake",
-        "nixpkgs": "nixpkgs"
+        "nixpkgs": "nixpkgs_2"
       },
       "locked": {
         "lastModified": 1715558773,
@@ -166,6 +222,22 @@
     },
     "nixpkgs": {
       "locked": {
+        "lastModified": 1715266358,
+        "narHash": "sha256-doPgfj+7FFe9rfzWo1siAV2mVCasW+Bh8I1cToAXEE4=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "f1010e0469db743d14519a1efd37e23f8513d714",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_2": {
+      "locked": {
         "lastModified": 1715499532,
         "narHash": "sha256-9UJLb8rdi2VokYcfOBQHUzP3iNxOPNWcbK++ENElpk0=",
         "owner": "NixOS",
@@ -180,7 +252,7 @@
         "type": "github"
       }
     },
-    "nixpkgs_2": {
+    "nixpkgs_3": {
       "locked": {
         "lastModified": 1715447595,
         "narHash": "sha256-VsVAUQOj/cS1LCOmMjAGeRksXIAdPnFIjCQ0XLkCsT0=",
@@ -198,12 +270,29 @@
     },
     "root": {
       "inputs": {
+        "brew-api": "brew-api",
+        "brew-nix": "brew-nix",
         "home-manager": "home-manager",
         "neovim-nightly-overlay": "neovim-nightly-overlay",
-        "nixpkgs": "nixpkgs_2"
+        "nixpkgs": "nixpkgs_3"
       }
     },
     "systems": {
+      "locked": {
+        "lastModified": 1681028828,
+        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
+        "owner": "nix-systems",
+        "repo": "default",
+        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-systems",
+        "repo": "default",
+        "type": "github"
+      }
+    },
+    "systems_2": {
       "locked": {
         "lastModified": 1681028828,
         "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",

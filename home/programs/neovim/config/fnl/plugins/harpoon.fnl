@@ -4,8 +4,8 @@
 
 (vim.keymap.set :n :<leader>ha
                 (fn []
-                  (: (harpoon:list) :append)
-                  (vim.notify (.. "Appended: " (vim.fn.expand "%")) :info
+                  (: (harpoon:list) :add)
+                  (vim.notify (.. "Added: " (vim.fn.expand "%")) :info
                               {:title :Harpoon}))
                 {:desc "Harpoon append"})
 

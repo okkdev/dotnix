@@ -69,6 +69,9 @@ in
     taplo
     phpactor
 
+    # Brew Casks
+    # brewCasks.mark-text
+
     # fonts
     cascadia-code
     commit-mono
@@ -82,6 +85,7 @@ in
     jetbrains-mono
     julia-mono
     manrope
+    maple-mono-NF
     (nerdfonts.override { fonts = [ "NerdFontsSymbolsOnly" ]; })
   ];
 

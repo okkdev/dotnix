@@ -13,14 +13,9 @@
       "--directory=~"
       "--listen-on=unix:/tmp/kitty.socket"
     ];
-    font = {
-      name = "CommitMonoLiga Nerd Font";
-      size = 14.5;
-    };
     keybindings = {
       "kitty_mod+y" = "kitty_scrollback_nvim";
-      "kitty_mod+g" =
-        "kitty_scrollback_nvim --config ksb_builtin_last_cmd_output";
+      "kitty_mod+g" = "kitty_scrollback_nvim --config ksb_builtin_last_cmd_output";
       "kitty_mod+h" = "previous_tab";
       "kitty_mod+l" = "next_tab";
       "kitty_mod+ctrl+l" = "move_tab_forward";
@@ -28,6 +23,12 @@
       "cmd+t" = "new_tab_with_cwd";
     };
     settings = {
+      font_family = "Maple Mono NF";
+      bold_font = "Maple Mono NF Bold";
+      italic_font = "Maple Mono NF Italic";
+      bold_italic_font = "Maple Mono NF BoldItalic";
+      font_size = 14;
+
       allow_remote_control = "socket-only";
       listen_on = "unix:/tmp/kitty.socket";
       background_opacity = "1";
@@ -39,8 +40,7 @@
       # macos_option_as_alt = "yes";
       macos_quit_when_last_window_closed = "yes";
 
-      action_alias =
-        "kitty_scrollback_nvim kitten ${pkgs.vimPlugins.kitty-scrollback-nvim}/python/kitty_scrollback_nvim.py --nvim-args -n";
+      action_alias = "kitty_scrollback_nvim kitten ${pkgs.vimPlugins.kitty-scrollback-nvim}/python/kitty_scrollback_nvim.py --nvim-args -n";
 
       ## Performance
       # repaint_delay = 10;
@@ -53,6 +53,11 @@
     };
     shellIntegration.enableFishIntegration = true;
     extraConfig = ''
+      font_features MapleMonoNF-Regular +cv01 +cv02 +cv03 +ss01 +ss02 +ss04 +ss05
+      font_features MapleMonoNF-Bold +cv01 +cv02 +cv03 +ss01 +ss02 +ss04 +ss05
+      font_features MapleMonoNF-BoldItalic +cv01 +cv02 +cv03 +ss01 +ss02 +ss04 +ss05
+      font_features MapleMonoNF-Italic +cv01 +cv02 +cv03 +ss01 +ss02 +ss04 +ss05
+
       include current-theme.conf
       mouse_map kitty_mod+right press ungrabbed combine : mouse_select_command_output : kitty_scrollback_nvim --config ksb_builtin_last_visited_cmd_output
     '';

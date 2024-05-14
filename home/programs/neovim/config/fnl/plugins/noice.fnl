@@ -30,9 +30,13 @@
                                      "changes;"
                                      "change;"
                                      :>ed
-                                     :<ed]]
-                        (icollect [_ v (ipairs to_mini)]
-                          {:filter {:event :msg_show :find v} :view :mini}))})
+                                     :<ed]
+                            mini_filters (icollect [_ v (ipairs to_mini)]
+                                           {:filter {:event :msg_show :find v}
+                                            :view :mini})]
+                        (vim.fn.extend [; extra filters
+                                        ]
+                                       mini_filters))})
 
 (local notify (require :notify))
 
