@@ -42,9 +42,9 @@
 
 (vim.keymap.set :n :<leader>nd notify.dismiss {:desc "dismiss notifications"})
 
-(vim.keymap.set :n :<leader>na (fn [] (noice.cmd :telescope))
+(vim.keymap.set :n :<leader>nl (fn [] (noice.cmd :telescope))
                 {:desc "list all notifications"})
 
-(vim.keymap.set :n :<leader>nl (fn [] (noice.cmd :last))
+(vim.keymap.set :n :<leader>nn (fn [] (noice.cmd :last))
                 {:desc "last notification"})
 

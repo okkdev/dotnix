@@ -24,9 +24,9 @@
     };
     settings = {
       font_family = "Maple Mono NF";
-      bold_font = "Maple Mono NF Bold";
+      bold_font = "Maple Mono NF SemiBold";
       italic_font = "Maple Mono NF Italic";
-      bold_italic_font = "Maple Mono NF BoldItalic";
+      bold_italic_font = "Maple Mono NF SemiBold Italic";
       font_size = 14;
 
       allow_remote_control = "socket-only";
@@ -53,10 +53,15 @@
     };
     shellIntegration.enableFishIntegration = true;
     extraConfig = ''
-      font_features MapleMonoNF-Regular +cv01 +cv02 +cv03 +ss01 +ss02 +ss04 +ss05
-      font_features MapleMonoNF-Bold +cv01 +cv02 +cv03 +ss01 +ss02 +ss04 +ss05
-      font_features MapleMonoNF-BoldItalic +cv01 +cv02 +cv03 +ss01 +ss02 +ss04 +ss05
-      font_features MapleMonoNF-Italic +cv01 +cv02 +cv03 +ss01 +ss02 +ss04 +ss05
+      # font_features MapleMonoNF-Regular +cv01 +cv02 +cv03 +ss01 +ss02 +ss04 +ss05
+      # font_features MapleMonoNF-Bold +cv01 +cv02 +cv03 +ss01 +ss02 +ss04 +ss05
+      # font_features MapleMonoNF-BoldItalic +cv01 +cv02 +cv03 +ss01 +ss02 +ss04 +ss05
+      # font_features MapleMonoNF-Italic +cv01 +cv02 +cv03 +ss01 +ss02 +ss04 +ss05
+
+      font_features MapleMono-NF-Regular +zero +cv01 +cv02 +cv03
+      font_features MapleMono-NF-SemiBold +zero +cv01 +cv02 +cv03
+      font_features MapleMono-NF-SemiBoldItalic +zero +cv01 +cv02 +cv03
+      font_features MapleMono-NF-Italic +zero +cv01 +cv02 +cv03
 
       include current-theme.conf
       mouse_map kitty_mod+right press ungrabbed combine : mouse_select_command_output : kitty_scrollback_nvim --config ksb_builtin_last_visited_cmd_output

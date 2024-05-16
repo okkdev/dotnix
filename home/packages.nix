@@ -30,7 +30,7 @@ in
     krabby
     nurl
     gnused
-    (writeShellScriptBin "gsed" "exec ${gnused}/bin/sed \"$@\"")
+    (writeShellScriptBin "gsed" "exec ${gnused}/bin/sed \"$@\"") # macos gsed workaround
 
     # Programming
     otp.erlang
@@ -85,7 +85,7 @@ in
     jetbrains-mono
     julia-mono
     manrope
-    maple-mono-NF
+    # maple-mono-NF
     (nerdfonts.override { fonts = [ "NerdFontsSymbolsOnly" ]; })
   ];
 

@@ -19,5 +19,7 @@
 (require :plugins.oil)
 (require :plugins.gitsigns)
 (require :plugins.nvim_tree)
+(require :plugins.noneckpain)
+(require :plugins.neorg)
 (require :plugins.kitty_scrollback)
 

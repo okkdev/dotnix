@@ -44,7 +44,14 @@ in
       fzf
       tree-sitter
       fd
+      lua51Packages.lua
+      lua51Packages.luarocks
     ];
+    extraLuaPackages =
+      luaPkgs: with luaPkgs; [
+        # luasnip dep
+        jsregexp
+      ];
     plugins = with pkgs.vimPlugins; [
       ## Profiler
       #{
@@ -138,6 +145,9 @@ in
           sha256 = "sha256-FZQH38E02HuRPIPAog/nWM55FuBxKp8AyrEldFkoLYk=";
         };
       }))
+
+      # notes
+      neorg
 
       # ui framework
       nui-nvim
