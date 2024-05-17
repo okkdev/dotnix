@@ -18,20 +18,20 @@
                                                  :<CR> (cmp.mapping.confirm {:behavior cmp.ConfirmBehavior.Replace
                                                                              :select true})
                                                  :<C-e> (cmp.mapping.abort)
-                                                 :<S-Tab> (cmp.mapping (fn [fallback]
-                                                                         (if (cmp.visible)
-                                                                             (cmp.select_prev_item)
-                                                                             (luasnip.jumpable (- 1))
-                                                                             (luasnip.jump (- 1))
-                                                                             (fallback)))
-                                                                       [:i :s])
                                                  :<Tab> (cmp.mapping (fn [fallback]
                                                                        (if (cmp.visible)
                                                                            (cmp.select_next_item)
                                                                            (luasnip.expand_or_jumpable)
                                                                            (luasnip.expand_or_jump)
                                                                            (fallback)))
-                                                                     [:i :s])})
+                                                                     [:i :s])
+                                                 :<S-Tab> (cmp.mapping (fn [fallback]
+                                                                         (if (cmp.visible)
+                                                                             (cmp.select_prev_item)
+                                                                             (luasnip.jumpable (- 1))
+                                                                             (luasnip.jump (- 1))
+                                                                             (fallback)))
+                                                                       [:i :s])})
             :window {:completion {:col_offset (- 3)
                                   :side_padding 0
                                   :winhighlight "Normal:Pmenu,FloatBorder:Pmenu,Search:None"}}

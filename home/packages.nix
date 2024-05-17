@@ -1,9 +1,4 @@
-{
-  config,
-  pkgs,
-  neovim-nightly-overlay,
-  ...
-}:
+{ config, pkgs, ... }:
 
 let
   otp = pkgs.beam.packages.erlangR26;
@@ -85,7 +80,7 @@ in
     jetbrains-mono
     julia-mono
     manrope
-    # maple-mono-NF
+    recursive
     (nerdfonts.override { fonts = [ "NerdFontsSymbolsOnly" ]; })
   ];
 

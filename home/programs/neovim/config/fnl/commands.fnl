@@ -15,6 +15,14 @@
          {:callback (fn [] (vim.highlight.on_yank))
           :desc "Highlight when yanking text"})
 
+(autocmd [:FileType]
+         {:pattern [:markdown :norg :text]
+          :callback (fn []
+                      (set vim.opt_local.wrap true)
+                      (vim.keymap.set [:n :x] :j :gj {:buffer true})
+                      (vim.keymap.set [:n :x] :k :gk {:buffer true}))
+          :desc "Enable wrapping for specific filetypes"})
+
 ; (autocmd [:Colorscheme :UIEnter]
 ;          {:callback (fn []
 ;                       (local bg (. (vim.api.nvim_get_hl_by_name :Normal true)

@@ -14,6 +14,7 @@
 (set o.expandtab true)
 (set o.hlsearch true)
 (set o.ignorecase true)
+(set o.inccommand :split)
 (set o.incsearch true)
 (set o.infercase true)
 (set o.linebreak true)
