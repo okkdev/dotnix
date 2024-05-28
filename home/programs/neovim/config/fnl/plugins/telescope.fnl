@@ -7,6 +7,8 @@
                  :--type
                  :file
                  :--hidden
+                 :--exclude
+                 :.git
                  :--follow
                  :--color
                  :never
@@ -56,7 +58,9 @@
                                                                        :--type
                                                                        :file
                                                                        :--color
-                                                                       :never]
+                                                                       :never
+                                                                       :--exclude
+                                                                       :.git]
                                                         :follow true
                                                         :hidden true
                                                         :include_current_file false}))

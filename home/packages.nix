@@ -22,7 +22,7 @@ in
     wireguard-tools
     deploy-rs
     ollama
-    krabby
+    # krabby
     nurl
     gnused
     (writeShellScriptBin "gsed" "exec ${gnused}/bin/sed \"$@\"") # macos gsed workaround

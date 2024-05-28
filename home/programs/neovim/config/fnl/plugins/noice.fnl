@@ -35,7 +35,9 @@
                                            {:filter {:event :msg_show :find v}
                                             :view :mini})]
                         (vim.fn.extend [; extra filters
-                                        ]
+                                        {:filter {:event :notify
+                                                  :find :Session}
+                                         :view :mini}]
                                        mini_filters))})
 
 (local notify (require :notify))

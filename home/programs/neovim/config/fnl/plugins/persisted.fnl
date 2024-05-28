@@ -4,7 +4,7 @@
 
 (set vim.o.sessionoptions "buffers,curdir,folds,tabpages,winpos,winsize")
 
-(persisted.setup {:autoload true :silent true})
+(persisted.setup {:autoload true :silent true :ignored_dirs ["term://"]})
 
 (autocmd [:User]
          {:pattern :PersistedLoadPost
