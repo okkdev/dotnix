@@ -63,6 +63,7 @@ in
     vscode-langservers-extracted
     taplo
     phpactor
+    nodePackages.bash-language-server
 
     # Brew Casks
     # brewCasks.mark-text

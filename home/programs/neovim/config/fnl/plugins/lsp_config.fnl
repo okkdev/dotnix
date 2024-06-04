@@ -113,3 +113,5 @@
 
 (lsp.phpactor.setup {: capabilities : flags})
 
+(lsp.bashls.setup {: capabilities : flags})
+
