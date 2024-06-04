@@ -39,26 +39,26 @@ self: super: {
         ln -s $out/bin/start_lexical.sh $out/bin/lexical
       '';
   };
-  # gleam = super.stdenv.mkDerivation rec {
-  #   name = "gleam";
-  #   version = "1.2.0-rc1";
-  #   src = super.fetchurl {
-  #     url = "https://github.com/gleam-lang/gleam/releases/download/v${version}/gleam-v${version}-aarch64-apple-darwin.tar.gz";
-  #     sha256 = "sha256-6GHP9Jctzq6sp/80A9IFlIzAQea/Owsl/YDsa49eKAA=";
-  #   };
-  #   phases = [ "installPhase" ];
-  #   installPhase = ''
-  #     mkdir -p $out/bin
-  #     tar -xvf $src -C $out/bin
-  #     chmod +x $out/bin/gleam
-  #   '';
-  # };
+  gleam = super.stdenv.mkDerivation rec {
+    name = "gleam";
+    version = "1.2.0";
+    src = super.fetchurl {
+      url = "https://github.com/gleam-lang/gleam/releases/download/v${version}/gleam-v${version}-aarch64-apple-darwin.tar.gz";
+      sha256 = "sha256-Sss2NWy/beI4qdQpLnqryVH/mZz8/YztREvZP9Z7kOU=";
+    };
+    phases = [ "installPhase" ];
+    installPhase = ''
+      mkdir -p $out/bin
+      tar -xvf $src -C $out/bin
+      chmod +x $out/bin/gleam
+    '';
+  };
 
   # Vim Plugins
   vimPlugins = super.vimPlugins // {
     cmp-tailwind-colors = super.vimUtils.buildVimPlugin {
       pname = "cmp-tailwind-colors";
-      version = "main";
+      version = "2024-01-18";
       src = super.fetchFromGitHub {
         owner = "js-everts";
         repo = "cmp-tailwind-colors";
@@ -66,19 +66,29 @@ self: super: {
         sha256 = "sha256-JdMrbHG5hgrY8HMRkGMXyc7ZFKQi7bSEv4ZPVMlVR24=";
       };
     };
+    # cmp-ai = super.vimUtils.buildVimPlugin {
+    #   pname = "cmp-ai";
+    #   version = "2024-05-30";
+    #   src = super.fetchFromGitHub {
+    #     owner = "tzachar";
+    #     repo = "cmp-ai";
+    #     rev = "b6c3fb81910fd0cef539c90db626f84581c06d26";
+    #     sha256 = "sha256-1IGqxVOneRt20SiXOYu4aErg1UxjMaH1NTuuTyuGXLQ=";
+    #   };
+    # };
     bg-nvim = super.vimUtils.buildVimPlugin {
       pname = "bg-nvim";
-      version = "main";
+      version = "2024-05-10";
       src = super.fetchFromGitHub {
         owner = "typicode";
         repo = "bg.nvim";
-        rev = "1c95261cc5e3062e3b277fc5c15d180d51a40f62";
-        sha256 = "sha256-ZocdEdw7m6gVQap0MFr1uymIkHnX9ewjWmR7fYVR9Ko=";
+        rev = "fe5d5c598c9f621dac315013f53108a307d8f03f";
+        sha256 = "sha256-rjli3YfUTGVdTZF66kpcutj46IeXsSI9eKWNXEaqST4=";
       };
     };
     telescope-recent-files-nvim = super.vimUtils.buildVimPlugin {
       pname = "telescope-recent-files-nvim";
-      version = "main";
+      version = "2024-03-15";
       src = super.fetchFromGitHub {
         owner = "mollerhoj";
         repo = "telescope-recent-files.nvim";
@@ -96,24 +106,14 @@ self: super: {
         sha256 = "sha256-pMdvavw+t/xiJ6SRPflG+1s1N6HkHJiqktM+eNsCjUQ=";
       };
     };
-    profile-nvim = super.vimUtils.buildVimPlugin {
-      pname = "profile-nvim";
-      version = "main";
-      src = super.fetchFromGitHub {
-        owner = "stevearc";
-        repo = "profile.nvim";
-        rev = "3c5aaf2f8b2e4c2bc48d2cde396a55892e0267ad";
-        sha256 = "sha256-0HnzEq2IEVLMtkHJZ8NXLimJJ8DAL8gtpyWvsUDG1ao=";
-      };
-    };
     everforest-nvim = super.vimUtils.buildVimPlugin {
       pname = "everforest-nvim";
-      version = "main";
+      version = "2024-05-20";
       src = super.fetchFromGitHub {
         owner = "neanias";
         repo = "everforest-nvim";
-        rev = "eedb19079c6bf9d162f74a5c48a6d2759f38cc76";
-        sha256 = "sha256-/k6VBzXuap8FTqMij7EQCh32TWaDPR9vAvEHw20fMCo=";
+        rev = "ed4ba26c911696d69cfda26014ec740861d324e1";
+        sha256 = "sha256-kVn6rUc26PtoqzKW/MNuks85sTLYx1lEE/l+7W0bDfg=";
       };
     };
   };

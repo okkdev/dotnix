@@ -3,7 +3,7 @@
 (local set_hl vim.api.nvim_set_hl)
 (local usercmd vim.api.nvim_create_user_command)
 
-; This shouldn't be necessary, but seems like nightly doesn't detect the correct background color...
+; This shouldn't be necessary, but seems like 0.10 doesn't detect background color correct/fast enough...
 (if (= (os.execute "defaults read -g AppleInterfaceStyle > /dev/null 2> /dev/null")
        0)
     (set vim.o.background :dark)

@@ -23,6 +23,11 @@
                       (vim.keymap.set [:n :x] :k :gk {:buffer true}))
           :desc "Enable wrapping for specific filetypes"})
 
+(autocmd [:FileType] {:pattern [:gleam]
+                      :callback (fn []
+                                  (set vim.bo.commentstring "// %s"))
+                      :desc "Gleam comment string"})
+
 ; (autocmd [:Colorscheme :UIEnter]
 ;          {:callback (fn []
 ;                       (local bg (. (vim.api.nvim_get_hl_by_name :Normal true)

@@ -12,17 +12,20 @@ let
     "homebrew/cask-fonts"
     "homebrew/services"
     "koekeishiya/formulae"
+    "support/cyon-tools\", \"git@gitlab.cyon.lan:sup/homebrew-cyon-tools.git"
   ];
 
   brews = [
     "lima"
     "skhd"
     "yabai"
+    "support/cyon-tools/supctl"
   ];
 
   casks = [
     "1password"
     "android-file-transfer"
+    "android-studio"
     "appcleaner"
     "arc"
     "balenaetcher"
@@ -66,6 +69,7 @@ let
     "tableplus"
     "transmission"
     "ubersicht"
+    "upscayl"
     "utm"
     "visual-studio-code"
     "wezterm"
