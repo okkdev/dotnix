@@ -105,7 +105,7 @@
 
 (lsp.cssls.setup {: capabilities : flags})
 
-(lsp.html.setup {: capabilities : flags})
+(lsp.html.setup {: capabilities : flags :filetypes [:html :templ :svg]})
 
 (lsp.jsonls.setup {: capabilities : flags})
 

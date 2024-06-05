@@ -25,12 +25,7 @@
                 :formatters {:rustywindcss {:command :rustywind
                                             :args [:--custom-regex
                                                    "@apply ([_a-zA\\.-Z0-9\\-:\\[\\] ]+);"
-                                                   :--stdin]}
-                             :mix {:command :mix
-                                   :args [:format
-                                          :--stdin-filename
-                                          :$FILENAME
-                                          "-"]}}})
+                                                   :--stdin]}}})
 
 (let [usercmd vim.api.nvim_create_user_command]
   (usercmd :Format
