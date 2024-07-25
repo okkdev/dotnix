@@ -5,6 +5,9 @@
 ; something to speed up loading idk
 (vim.loader.enable)
 
+; connect to default socket
+;(vim.fn.serverstart :/tmp/nvim.socket)
+
 (set o.autoindent true)
 (set o.autoread true)
 (set o.breakindent true)

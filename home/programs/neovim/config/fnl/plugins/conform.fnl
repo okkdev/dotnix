@@ -7,6 +7,7 @@
 (conform.setup {:formatters_by_ft {:css [:prettierd :rustywindcss]
                                    :elm [:elm_format]
                                    :fennel [:fnlfmt]
+                                   :gdformat [:gdscript]
                                    :heex [:rustywind :mix]
                                    :html [:prettierd :rustywind]
                                    :javascript [:biome :rustywind]
@@ -14,7 +15,8 @@
                                    :nix [:nixfmt]
                                    :lua [:stylua]
                                    :python [:ruff_format]
-                                   :toml [:taplo]}
+                                   :toml [:taplo]
+                                   :sh [:shfmt]}
                 ; Toggleable format on save
                 :format_on_save (fn [bufnr]
                                   (let [buffer (. vim.b bufnr)]

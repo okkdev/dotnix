@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 
 let
-  otp = pkgs.beam.packages.erlangR26;
+  otp = pkgs.beam.packages.erlang_27;
 in
 {
   nixpkgs.config.allowUnfree = true;
@@ -26,14 +26,16 @@ in
     nurl
     gnused
     (writeShellScriptBin "gsed" "exec ${gnused}/bin/sed \"$@\"") # macos gsed workaround
+    ouch
+    gping
 
     # Programming
     otp.erlang
     otp.rebar3
-    otp.elixir_1_16
+    otp.elixir_1_17
     bun
-    corepack_20
-    nodejs_20
+    nodejs_22
+    corepack_22
     # elmPackages.elm
     fennel
     gleam
@@ -45,25 +47,29 @@ in
 
     # LSPs and formatters
     biome
-    otp.elixir-ls
-    lexical-lsp
-    next-ls
+    dockerfile-language-server-nodejs
     elmPackages.elm-format
     fennel-ls
     fnlfmt
+    gdtoolkit_4
+    lexical-lsp
+    next-ls
     nil
     nixfmt-rfc-style
-    nodePackages.pyright
+    nodePackages.bash-language-server
     nodePackages.typescript-language-server
+    otp.elixir-ls
+    phpactor
     prettierd
+    pyright
     ruff
     rustywind
+    shfmt
     stylua
     tailwindcss-language-server
-    vscode-langservers-extracted
     taplo
-    phpactor
-    nodePackages.bash-language-server
+    vscode-langservers-extracted
+    yaml-language-server
 
     # Brew Casks
     # brewCasks.mark-text
@@ -101,6 +107,25 @@ in
     zoxide = {
       enable = true;
       enableFishIntegration = true;
+    };
+
+    yazi = {
+      enable = true;
+      enableFishIntegration = true;
+      plugins = {
+        # "mime.yazi" = pkgs.fetchFromGitHub {
+        #   owner = "DreamMaoMao";
+        #   repo = "mime.yazi";
+        #   rev = "8e866b9c281d745ebb5e712fd238fdf103ec2361";
+        #   sha256 = "sha256-RGev5ecsBrzJHlooWw24FWZMjpwUshPMGRUc4UIh5mg=";
+        # };
+        "ouch" = pkgs.fetchFromGitHub {
+          owner = "ndtoan96";
+          repo = "ouch.yazi";
+          rev = "694d149be5f96eaa0af68d677c17d11d2017c976";
+          sha256 = "sha256-J3vR9q4xHjJt56nlfd+c8FrmMVvLO78GiwSNcLkM4OU=";
+        };
+      };
     };
 
     eza = {

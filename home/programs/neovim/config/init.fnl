@@ -1,7 +1,8 @@
 (require :settings)
 (require :mappings)
 (require :commands)
-(require :neovide)
+;(require :neovide)
+(require :specific)
 
 ; Plugins
 (require :plugins.treesitter)
@@ -22,4 +23,5 @@
 (require :plugins.noneckpain)
 (require :plugins.neorg)
 (require :plugins.kitty_scrollback)
+(require :plugins.copilot)
 

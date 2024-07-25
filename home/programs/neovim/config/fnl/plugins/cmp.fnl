@@ -14,9 +14,9 @@
 
 (cmp.setup {:mapping (cmp.mapping.preset.insert {:<C-Space> (cmp.mapping.complete {})
                                                  :<C-d> (cmp.mapping.scroll_docs (- 4))
-                                                 :<C-f> (cmp.mapping.scroll_docs 4)
-                                                 :<CR> (cmp.mapping.confirm {:behavior cmp.ConfirmBehavior.Replace
-                                                                             :select true})
+                                                 :<C-u> (cmp.mapping.scroll_docs 4)
+                                                 :<C-CR> (cmp.mapping.confirm {:behavior cmp.ConfirmBehavior.Replace
+                                                                               :select true})
                                                  :<C-e> (cmp.mapping.abort)
                                                  :<Tab> (cmp.mapping (fn [fallback]
                                                                        (if (cmp.visible)
@@ -39,7 +39,8 @@
                          :format (fn [entry vim_item]
                                    (let [cmpformat (lspkind.cmp_format {:maxwidth 50
                                                                         :mode :symbol_text
-                                                                        :before tailwind_colors.format})
+                                                                        :before tailwind_colors.format
+                                                                        :symbol_map {:Copilot ""}})
                                          item (cmpformat entry vim_item)
                                          [icon typ] (vim.split item.kind "%s"
                                                                {:trimempty true})]
@@ -49,8 +50,9 @@
             :snippet {:expand (fn [args]
                                 (luasnip.lsp_expand args.body))}
             :sources [{:name :path}
-                      {:name :nvim_lsp :keyword_length 1}
-                      {:name :buffer :keyword_length 1}
-                      {:name :luasnip :keyword_length 2}]}
+                      {:name :nvim_lsp :group_index 1}
+                      {:name :buffer :group_index 2 :max_item_count 10}
+                      {:name :copilot :group_index 2}
+                      {:name :luasnip :group_index 2 :max_item_count 10}]}
            [{:name :buffer}])
 

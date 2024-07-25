@@ -7,7 +7,7 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    # neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
+    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
     brew-nix = {
       url = "github:BatteredBunny/brew-nix";
       inputs.brew-api.follows = "brew-api";
@@ -22,7 +22,7 @@
     {
       nixpkgs,
       home-manager,
-      # neovim-nightly-overlay,
+      neovim-nightly-overlay,
       brew-nix,
       ...
     }:
@@ -37,7 +37,7 @@
         modules = [
           {
             nixpkgs.overlays = [
-              # neovim-nightly-overlay.overlay
+              neovim-nightly-overlay.overlays.default
               brew-nix.overlay.${system}
               (import ./overlays.nix)
             ];

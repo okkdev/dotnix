@@ -6,7 +6,7 @@
 }:
 
 let
-  lua-config = pkgs.stdenv.mkDerivation {
+  nvim-config = pkgs.stdenv.mkDerivation {
     name = "lua-config";
     src = ./config;
     buildInputs = [ pkgs.fennel ];
@@ -36,8 +36,11 @@ in
 {
   programs.neovim = {
     enable = true;
-    # package = pkgs.neovim-nightly;
+    # uncomment to enable neovim nightly
+    # package = pkgs.neovim;
     vimdiffAlias = true;
+    viAlias = true;
+    vimAlias = true;
     defaultEditor = true;
     withNodeJs = true;
     extraPackages = with pkgs; [
@@ -71,6 +74,8 @@ in
       cmp-cmdline
       cmp-path
       cmp-tailwind-colors
+      copilot-lua
+      copilot-cmp
 
       # snippets
       luasnip
@@ -121,16 +126,7 @@ in
       lspkind-nvim
 
       # ui elements
-      (noice-nvim.overrideAttrs (_: {
-        version = "2024-05-09";
-        src = pkgs.fetchFromGitHub {
-          owner = "folke";
-          repo = "noice.nvim";
-          rev = "09102ca2e9a3e9302119fdaf7a059a034e4a626d";
-          sha256 = "sha256-YWqphpaxr/729/6NTDEWKOi2FnY/8xgjdsDQ9ePj7b8=";
-        };
-      }))
-
+      noice-nvim
       nvim-notify
       bg-nvim
       no-neck-pain-nvim
@@ -145,7 +141,7 @@ in
   };
 
   xdg.configFile."nvim" = {
-    source = lua-config;
+    source = nvim-config;
     recursive = true;
   };
 

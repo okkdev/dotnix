@@ -111,7 +111,20 @@
 
 (lsp.gopls.setup {: capabilities : flags})
 
+(lsp.gdscript.setup {: capabilities : flags})
+
 (lsp.phpactor.setup {: capabilities : flags})
 
 (lsp.bashls.setup {: capabilities : flags})
+
+(lsp.dartls.setup {: capabilities : flags})
+
+(lsp.dockerls.setup {: capabilities : flags})
+
+(lsp.yamlls.setup {: capabilities
+                   : flags
+                   :settings {:yaml {:schemas {"https://json.schemastore.org/github-workflow.json" :/.github/workflows/*
+                                               "https://json.schemastore.org/github-action.json" "/.github/action.{yaml,yml}"
+                                               "https://gitlab.com/gitlab-org/gitlab/-/raw/master/app/assets/javascripts/editor/schema/ci.json" :.gitlab-ci.yml
+                                               "https://raw.githubusercontent.com/compose-spec/compose-spec/master/schema/compose-spec.json" "docker-compose*.{yml,yaml}"}}}})
 
