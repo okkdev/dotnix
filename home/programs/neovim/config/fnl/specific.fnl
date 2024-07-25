@@ -21,6 +21,6 @@
 
 ; GDScript
 
-(when (vim.fs.root 0 :project.godot)
-  (vim.fn.serverstart :/tmp/godot.socket))
+(when (vim.loop.fs_stat (.. (vim.fn.getcwd) :/project.godot))
+  (vim.fn.serverstart :./godot.sock))
 
