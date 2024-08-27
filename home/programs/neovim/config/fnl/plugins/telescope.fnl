@@ -19,7 +19,11 @@
                                      :override_file_sorter true
                                      :override_generic_sorter true}
                                :ui-select [(themes.get_cursor {})]
-                               :undo {:use_delta false}}
+                               :undo {:use_delta false}
+                               :recent-files {:find_command find_cmd
+                                              :follow true
+                                              :hidden true
+                                              :include_current_file false}}
                   :pickers {:buffers {:sort_mru true
                                       :ignore_current_buffer true}
                             :find_files {:find_command find_cmd}}
@@ -47,23 +51,13 @@
 (map :n :<leader>f/ telescope.extensions.live_grep_args.live_grep_args
      {:desc "search files"})
 
+(map :n :<leader>fd builtin.diagnostics {:desc "find buffers"})
 (map :n :<leader>fb builtin.buffers {:desc "find buffers"})
 (map :n :<leader>fh builtin.help_tags {:desc "find help"})
 (map :n :<leader>fk builtin.keymaps {:desc "find keymaps"})
 (map :n :<leader>fr builtin.resume {:desc "find resume"})
 
-(map :n :<leader><space>
-     (fn []
-       (telescope.extensions.recent-files.recent_files {:find_command [:fd
-                                                                       :--type
-                                                                       :file
-                                                                       :--color
-                                                                       :never
-                                                                       :--exclude
-                                                                       :.git]
-                                                        :follow true
-                                                        :hidden true
-                                                        :include_current_file false}))
+(map :n :<leader><space> telescope.extensions.recent-files.recent_files
      {:desc "Find recent files"})
 
 (map :n :<leader>/

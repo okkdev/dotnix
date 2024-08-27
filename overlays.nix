@@ -39,12 +39,26 @@ self: super: {
         ln -s $out/bin/start_lexical.sh $out/bin/lexical
       '';
   };
+  elp = super.stdenv.mkDerivation rec {
+    name = "elp";
+    version = "2024-08-05";
+    src = super.fetchurl {
+      url = "https://github.com/WhatsApp/erlang-language-platform/releases/download/${version}/elp-macos-x86_64-apple-darwin-otp-26.2.tar.gz";
+      sha256 = "sha256-mLh+aiW5WHuUCHuV0uPLemddnA25YpSRMLq8TdBTKJY=";
+    };
+    phases = [ "installPhase" ];
+    installPhase = ''
+      mkdir -p $out/bin
+      tar -xvf $src -C $out/bin
+      chmod +x $out/bin/elp
+    '';
+  };
   gleam = super.stdenv.mkDerivation rec {
     name = "gleam";
-    version = "1.2.1";
+    version = "1.4.1";
     src = super.fetchurl {
       url = "https://github.com/gleam-lang/gleam/releases/download/v${version}/gleam-v${version}-aarch64-apple-darwin.tar.gz";
-      sha256 = "sha256-BaATEQgj78xfci2iEjvOFNes1J/jsFZwLyUPWLTnxXg=";
+      sha256 = "sha256-z1svlWBWA41aI9bxe7WrF/+rRg8Hov6wL50wfjiPdVc=";
     };
     phases = [ "installPhase" ];
     installPhase = ''
@@ -88,12 +102,12 @@ self: super: {
     };
     telescope-recent-files-nvim = super.vimUtils.buildVimPlugin {
       pname = "telescope-recent-files-nvim";
-      version = "2024-03-15";
+      version = "2024-08-14";
       src = super.fetchFromGitHub {
         owner = "mollerhoj";
         repo = "telescope-recent-files.nvim";
-        rev = "9f8cb7d22b999346ce819390e75a509e4048f4de";
-        sha256 = "sha256-+9BjCfOQTbJyOPIATHak7B8qxn7n6BfJVNT3KRhxLgk=";
+        rev = "23b29aa701cd07c723282b3094e1a4dfc231f557";
+        sha256 = "sha256-nLy1WciLIjIqrD1az6JEXcx5EvaZSn8gBQ6HzQIhAp0=";
       };
     };
     kitty-scrollback-nvim = super.vimUtils.buildVimPlugin rec {

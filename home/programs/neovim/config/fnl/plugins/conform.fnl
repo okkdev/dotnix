@@ -6,6 +6,7 @@
 
 (conform.setup {:formatters_by_ft {:css [:prettierd :rustywindcss]
                                    :elm [:elm_format]
+                                   :erlang [:erlfmt]
                                    :fennel [:fnlfmt]
                                    :gdformat [:gdscript]
                                    :heex [:rustywind :mix]

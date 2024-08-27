@@ -3,15 +3,15 @@
 
 ; Autocommands
 
-(autocmd [:InsertEnter] {:callback (fn [] (set vim.o.relativenumber false))})
-(autocmd [:InsertLeave] {:callback (fn [] (set vim.o.relativenumber true))})
+(autocmd :InsertEnter {:callback (fn [] (set vim.o.relativenumber false))})
+(autocmd :InsertLeave {:callback (fn [] (set vim.o.relativenumber true))})
 
-(autocmd [:UIEnter] {:command ":silent !kitty @ set-spacing padding-bottom=10"})
+(autocmd :UIEnter {:command ":silent !kitty @ set-spacing padding-bottom=10"})
 
-(autocmd [:VimLeavePre]
+(autocmd :VimLeavePre
          {:command ":silent !kitty @ set-spacing padding-bottom=default"})
 
-(autocmd [:TextYankPost]
+(autocmd :TextYankPost
          {:callback (fn [] (vim.highlight.on_yank))
           :desc "Highlight when yanking text"})
 

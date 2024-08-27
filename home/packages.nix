@@ -44,11 +44,14 @@ in
     python39
     rustup
     tailwindcss
+    typescript
 
     # LSPs and formatters
     biome
     dockerfile-language-server-nodejs
     elmPackages.elm-format
+    elp
+    erlfmt
     fennel-ls
     fnlfmt
     gdtoolkit_4
@@ -57,7 +60,7 @@ in
     nil
     nixfmt-rfc-style
     nodePackages.bash-language-server
-    nodePackages.typescript-language-server
+    typescript-language-server
     otp.elixir-ls
     phpactor
     prettierd
@@ -70,9 +73,6 @@ in
     taplo
     vscode-langservers-extracted
     yaml-language-server
-
-    # Brew Casks
-    # brewCasks.mark-text
 
     # fonts
     cascadia-code
@@ -145,6 +145,17 @@ in
     tealdeer = {
       enable = true;
       # updateOnActivation = true;
+    };
+
+    jujutsu = {
+      enable = true;
+      settings = {
+        user = {
+          name = "okkdev";
+          email = "dev@stehlik.me";
+        };
+        ui.diff.tool = "delta";
+      };
     };
   };
 }
