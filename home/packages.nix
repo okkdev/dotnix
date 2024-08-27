@@ -96,7 +96,8 @@ in
       enable = true;
       config.theme = "ansi";
       extraPackages = with pkgs.bat-extras; [
-        batdiff
+        # TODO: reenable after rust 1.80 fix
+        # batdiff
         batman
         batpipe
         batgrep
