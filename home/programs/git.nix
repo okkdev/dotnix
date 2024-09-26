@@ -55,6 +55,7 @@
       core.sshCommand = "/usr/bin/ssh";
       push.default = "current";
       push.autoSetupRemote = true;
+      pull.rebase = true;
       rerere = {
         enabled = true;
         autoUpdate = true;

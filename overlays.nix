@@ -53,12 +53,27 @@ self: super: {
       chmod +x $out/bin/elp
     '';
   };
+  superhtml = super.stdenv.mkDerivation rec {
+    name = "superhtml";
+    version = "0.5.0";
+    src = super.fetchurl {
+      url = "https://github.com/kristoff-it/superhtml/releases/download/v${version}/aarch64-macos.tar.gz";
+      sha256 = "sha256-w/iZ0UxsaY4PUU889Mf9MBkuofKdLilWfARRMnZEO8I=";
+    };
+    phases = [ "installPhase" ];
+    installPhase = ''
+      mkdir -p $out/bin
+      tar -xvf $src
+      mv aarch64-macos/superhtml $out/bin
+      chmod +x $out/bin/superhtml
+    '';
+  };
   gleam = super.stdenv.mkDerivation rec {
     name = "gleam";
-    version = "1.4.1";
+    version = "1.5.0";
     src = super.fetchurl {
       url = "https://github.com/gleam-lang/gleam/releases/download/v${version}/gleam-v${version}-aarch64-apple-darwin.tar.gz";
-      sha256 = "sha256-z1svlWBWA41aI9bxe7WrF/+rRg8Hov6wL50wfjiPdVc=";
+      sha256 = "sha256-YR8qSL7fbC+lc4t25otFcvxZWKVP4OypsPS+iTV7r5Y=";
     };
     phases = [ "installPhase" ];
     installPhase = ''

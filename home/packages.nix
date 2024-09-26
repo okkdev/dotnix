@@ -69,6 +69,7 @@ in
     rustywind
     shfmt
     stylua
+    superhtml
     tailwindcss-language-server
     taplo
     vscode-langservers-extracted
@@ -96,8 +97,7 @@ in
       enable = true;
       config.theme = "ansi";
       extraPackages = with pkgs.bat-extras; [
-        # TODO: reenable after rust 1.80 fix
-        # batdiff
+        batdiff
         batman
         batpipe
         batgrep

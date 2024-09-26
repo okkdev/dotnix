@@ -93,7 +93,7 @@
 
 (lsp.biome.setup {:single_file_support true : capabilities : flags})
 
-(lsp.tsserver.setup {: capabilities : flags})
+(lsp.ts_ls.setup {: capabilities : flags})
 
 (lsp.tailwindcss.setup {: capabilities
                         : flags
@@ -105,7 +105,9 @@
 
 (lsp.cssls.setup {: capabilities : flags})
 
-(lsp.html.setup {: capabilities : flags :filetypes [:html :templ :svg]})
+(lsp.html.setup {: capabilities : flags :filetypes [:templ :svg]})
+
+(lsp.superhtml.setup {: capabilities : flags})
 
 (lsp.jsonls.setup {: capabilities : flags})
 

@@ -24,3 +24,10 @@
 (when (vim.loop.fs_stat (.. (vim.fn.getcwd) :/project.godot))
   (vim.fn.serverstart :./godot.sock))
 
+; Dockerfiles
+
+(autocmd [:BufRead :BufNewFile]
+         {:pattern :Dockerfile*
+          :command "set filetype=dockerfile"
+          :desc "Set filetype for Dockerfiles"})
+
