@@ -20,7 +20,7 @@
 
 (map [:x] "/" "\"sy:/\\V<C-r>s<CR>N" {:desc "Search for selection"})
 
-(map [:n] :<Esc> :<cmd>nohlsearch<CR> {:desc "Clear search highlights"})
+(map [:n] :<Esc> :<cmd>nohlsearch<CR><Esc> {:desc "Clear search highlights"})
 
 ; (map [:n :x :i] :<C-h> :<C-w>h {:desc "Focus left window"})
 ; (map [:n :x :i] :<C-j> :<C-w>j {:desc "Focus bottom window"})

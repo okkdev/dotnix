@@ -127,18 +127,23 @@
         description = "switches global theme";
         body = # fish
           ''
+            set nvims "$TMPDIR"nvim."$USER"/*/nvim.*.0
             if [ "$mode" = "dark" ]
               osascript -l JavaScript -e "Application('System Events').appearancePreferences.darkMode = true" > /dev/null
               switch_kitty_theme "Everforest Dark Hard"
-              for i in (ls "$TMPDIR"nvim."$USER"/*/nvim.*.0)
-                nvim --server $i --remote-send ':DarkTheme<CR>'
+              if count $nvims >/dev/null
+                for i in (ls $nvims)
+                  nvim --server $i --remote-send ':DarkTheme<CR>'
+                end
               end
               echo "Switched to Dark Theme"
             else if [ "$mode" = "light" ]
               osascript -l JavaScript -e "Application('System Events').appearancePreferences.darkMode = false" > /dev/null
               switch_kitty_theme "Everforest Light Hard"
-              for i in (ls "$TMPDIR"nvim."$USER"/*/nvim.*.0)
-                nvim --server $i --remote-send ':LightTheme<CR>'
+              if count $nvims >/dev/null
+                for i in (ls $nvims)
+                  nvim --server $i --remote-send ':LightTheme<CR>'
+                end
               end
               echo "Switched to Light Theme"
             else
