@@ -10,7 +10,7 @@
                                    :fennel [:fnlfmt]
                                    :gdformat [:gdscript]
                                    :heex [:rustywind :mix]
-                                   :html [:prettierd :rustywind]
+                                   :html [:superhtml :rustywind]
                                    :javascript [:biome :rustywind]
                                    :typescript [:biome :rustywind]
                                    :nix [:nixfmt]
