@@ -146,30 +146,48 @@ in
   };
 
   xdg.configFile."neovide/config.toml" = {
-    text = ''
-      frame = "buttonless"
+    text =
+      # toml
+      ''
+        frame = "buttonless"
 
-      [font]
-      normal = ["CommitMonoLiga Nerd Font"]
-      size = 14.5
-    '';
+        [font]
+        normal = ["CommitMonoLiga Nerd Font"]
+        size = 14.5
+      '';
   };
 
   # Default biome config
   home.file."biome.json" = {
-    text = ''
-      {
-        "formatter": {
-          "indentStyle": "space",
-          "formatWithErrors": true
-        },
-        "javascript": {
+    text =
+      # json
+      ''
+        {
           "formatter": {
-            "semicolons": "asNeeded",
-            "trailingComma": "all"
+            "indentStyle": "space",
+            "formatWithErrors": true
+          },
+          "javascript": {
+            "formatter": {
+              "semicolons": "asNeeded",
+              "trailingComma": "all"
+            }
           }
         }
-      }
-    '';
+      '';
   };
+
+  # Default deno config
+  home.file."deno.json" = {
+    text =
+      # json
+      ''
+        {
+          "fmt": {
+            "semiColons": false
+          }
+        }
+      '';
+  };
+
 }

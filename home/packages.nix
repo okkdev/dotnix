@@ -19,10 +19,9 @@ in
     dogdns
     du-dust
     yt-dlp
-    wireguard-tools
+    # wireguard-tools
     deploy-rs
     ollama
-    # krabby
     nurl
     gnused
     (writeShellScriptBin "gsed" "exec ${gnused}/bin/sed \"$@\"") # macos gsed workaround
@@ -33,10 +32,9 @@ in
     otp.erlang
     otp.rebar3
     otp.elixir_1_17
-    bun
+    deno
     nodejs_22
     corepack_22
-    # elmPackages.elm
     fennel
     gleam
     libiconv
@@ -49,7 +47,6 @@ in
     # LSPs and formatters
     biome
     dockerfile-language-server-nodejs
-    elmPackages.elm-format
     elp
     erlfmt
     fennel-ls
@@ -72,6 +69,7 @@ in
     superhtml
     tailwindcss-language-server
     taplo
+    typos-lsp
     vscode-langservers-extracted
     yaml-language-server
 
@@ -132,7 +130,7 @@ in
     eza = {
       enable = true;
       enableFishIntegration = true;
-      icons = true;
+      icons = "auto";
       git = true;
       extraOptions = [ "--group-directories-first" ];
     };

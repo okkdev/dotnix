@@ -92,8 +92,8 @@
                       :settings {:fennel-ls {:extra-globals :vim}}})
 
 (lsp.biome.setup {:single_file_support true : capabilities : flags})
-
 (lsp.ts_ls.setup {: capabilities : flags})
+;(lsp.denols.setup {: capabilities : flags})
 
 (lsp.tailwindcss.setup {: capabilities
                         : flags
@@ -120,6 +120,8 @@
 (lsp.bashls.setup {: capabilities : flags})
 
 (lsp.dartls.setup {: capabilities : flags})
+
+(lsp.typos_lsp.setup {: capabilities : flags})
 
 (lsp.dockerls.setup {: capabilities : flags})
 
