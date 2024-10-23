@@ -41,6 +41,7 @@
 (set o.splitright true)
 (set o.tabstop 2)
 (set o.termguicolors true)
+(set o.textwidth 80)
 (set o.undofile true)
 (set o.virtualedit :block)
 (set o.wrap false)
