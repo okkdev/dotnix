@@ -37,7 +37,7 @@ with lib;
         # yabai -m config insert_feedback_color        0xffd75f5f
 
         # mouse
-        yabai -m config mouse_modifier               cmd
+        # yabai -m config mouse_modifier               cmd
         yabai -m config mouse_action1                move
         yabai -m config mouse_action2                resize
         yabai -m config mouse_drop_action            swap

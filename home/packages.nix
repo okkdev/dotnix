@@ -18,7 +18,6 @@ in
     bottom
     dogdns
     du-dust
-    yt-dlp
     # wireguard-tools
     deploy-rs
     ollama
@@ -69,7 +68,6 @@ in
     superhtml
     tailwindcss-language-server
     taplo
-    typos-lsp
     vscode-langservers-extracted
     yaml-language-server
 

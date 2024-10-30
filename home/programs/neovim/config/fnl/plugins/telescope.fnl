@@ -11,8 +11,7 @@
                  :.git
                  :--follow
                  :--color
-                 :never
-                 :--strip-cwd-prefix])
+                 :never])
 
 (telescope.setup {:extensions {:fzf {:case_mode :smart_case
                                      :fuzzy true
@@ -21,8 +20,6 @@
                                :ui-select [(themes.get_cursor {})]
                                :undo {:use_delta false}
                                :recent-files {:find_command find_cmd
-                                              :follow true
-                                              :hidden true
                                               :include_current_file false}}
                   :pickers {:buffers {:sort_mru true
                                       :ignore_current_buffer true}

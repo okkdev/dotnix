@@ -121,8 +121,6 @@
 
 (lsp.dartls.setup {: capabilities : flags})
 
-(lsp.typos_lsp.setup {: capabilities : flags})
-
 (lsp.dockerls.setup {: capabilities : flags})
 
 (lsp.elp.setup {: capabilities : flags})

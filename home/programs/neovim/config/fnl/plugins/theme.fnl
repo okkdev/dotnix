@@ -3,13 +3,20 @@
 (local set_hl vim.api.nvim_set_hl)
 (local usercmd vim.api.nvim_create_user_command)
 
-; This shouldn't be necessary, but seems like 0.10 doesn't detect background color correct/fast enough...
+; This shouldn't be necessary, but seems like nvim 0.10 doesn't detect background color correct/fast enough...
 (if (= (os.execute "defaults read -g AppleInterfaceStyle > /dev/null 2> /dev/null")
        0)
     (set vim.o.background :dark)
     (set vim.o.background :light))
 
-(local themes [:ayu :oxocarbon :catppuccin :rose-pine :everforest])
+(local themes [:ayu
+               :oxocarbon
+               :catppuccin
+               :rose-pine
+               :everforest
+               :neobones
+               :forestbones
+               :kanagawabones])
 
 (var current_theme :everforest)
 

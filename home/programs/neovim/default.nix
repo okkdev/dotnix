@@ -132,11 +132,13 @@ in
       no-neck-pain-nvim
 
       # themes
+      lush-nvim
       rose-pine
       everforest-nvim
       catppuccin-nvim
       neovim-ayu
       oxocarbon-nvim
+      zenbones-nvim
     ];
   };
 
