@@ -15,6 +15,13 @@
          {:callback (fn [] (vim.highlight.on_yank))
           :desc "Highlight when yanking text"})
 
+(autocmd :TermOpen
+         {:callback (fn []
+                      (set vim.opt_local.number false)
+                      (set vim.opt_local.relativenumber false)
+                      (set vim.opt_local.cursorline false)
+                      (set vim.opt_local.signcolumn :no))})
+
 ; (autocmd [:Colorscheme :UIEnter]
 ;          {:callback (fn []
 ;                       (local bg (. (vim.api.nvim_get_hl_by_name :Normal true)

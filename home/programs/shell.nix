@@ -111,6 +111,15 @@
             eval $nix_shell_cmd
           '';
       };
+      nr = {
+        description = "nix run shorthand";
+        argumentNames = "pkg";
+        body = # fish
+          ''
+            nix run nixpkgs#$pkg -- $argv[2..-1]
+          '';
+      };
+
       os_theme = {
         description = "get the current appearance mode of the system";
         body = # fish

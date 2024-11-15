@@ -125,6 +125,8 @@
 
 (lsp.elp.setup {: capabilities : flags})
 
+(lsp.uiua.setup {: capabilities : flags})
+
 (lsp.yamlls.setup {: capabilities
                    : flags
                    :settings {:yaml {:schemas {"https://json.schemastore.org/github-workflow.json" :/.github/workflows/*

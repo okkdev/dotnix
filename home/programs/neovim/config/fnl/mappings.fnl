@@ -6,6 +6,8 @@
 (map [:n] :Q :<nop> {:desc "Disable Ex mode"})
 (map [:n] "q:" :<nop> {:desc "Disable command history"})
 
+(map [:n] :<leader>k :<C-^> {:desc "Switch to last buffer"})
+
 (map [:n :x :i] :<D-s> :<cmd>w<cr> {:desc :Save})
 (map [:n :x :i] :<D-z> :<cmd>undo<cr> {:desc :Undo})
 (map [:n :x :i] :<D-S-z> :<cmd>redo<cr> {:desc :Redo})

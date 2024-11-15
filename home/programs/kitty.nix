@@ -40,12 +40,15 @@
       # macos_option_as_alt = "yes";
       macos_quit_when_last_window_closed = "yes";
 
-      action_alias = "kitty_scrollback_nvim kitten ${pkgs.vimPlugins.kitty-scrollback-nvim}/python/kitty_scrollback_nvim.py --nvim-args -n";
+      action_alias = "kitty_scrollback_nvim kitten ${pkgs.vimPlugins.kitty-scrollback-nvim}/python/kitty_scrollback_nvim.py";
 
       ## Performance
       # repaint_delay = 10;
       # sync_to_monitor = "no";
       input_delay = 2;
+
+      cursor_trail = 1;
+      cursor_trail_decay = "0.01 0.09";
 
       # Tabs
       tab_bar_style = "fade";

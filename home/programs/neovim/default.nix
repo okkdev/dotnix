@@ -139,6 +139,9 @@ in
       neovim-ayu
       oxocarbon-nvim
       zenbones-nvim
+
+      # language specific plugins
+      uiua-vim
     ];
   };
 

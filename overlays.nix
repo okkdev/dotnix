@@ -87,12 +87,12 @@ self: super: {
   vimPlugins = super.vimPlugins // {
     cmp-tailwind-colors = super.vimUtils.buildVimPlugin {
       pname = "cmp-tailwind-colors";
-      version = "2024-01-18";
+      version = "2024-11-04";
       src = super.fetchFromGitHub {
         owner = "js-everts";
         repo = "cmp-tailwind-colors";
-        rev = "8ad13923316e2b5ca00420c171268fc23f32c01d";
-        sha256 = "sha256-JdMrbHG5hgrY8HMRkGMXyc7ZFKQi7bSEv4ZPVMlVR24=";
+        rev = "91b2621827ef19a374ad7d1e60d567dd2e4b3823";
+        sha256 = "sha256-QBAvPtlfLJK+HWM390nQuJVvOEutNcLawaA/cW4tCyU=";
       };
     };
     # cmp-ai = super.vimUtils.buildVimPlugin {
@@ -127,23 +127,34 @@ self: super: {
     };
     kitty-scrollback-nvim = super.vimUtils.buildVimPlugin rec {
       pname = "kitty-scrollback-nvim";
-      version = "4.2.0";
+      version = "5.0.1";
       src = super.fetchFromGitHub {
         owner = "mikesmithgh";
         repo = "kitty-scrollback.nvim";
         rev = "v${version}";
-        sha256 = "sha256-pMdvavw+t/xiJ6SRPflG+1s1N6HkHJiqktM+eNsCjUQ=";
+        sha256 = "sha256-6aU9lXfRtxJA/MYkaJ4iRQYAnpBBSGI1R6Ny048aJx8=";
       };
     };
     everforest-nvim = super.vimUtils.buildVimPlugin {
       pname = "everforest-nvim";
-      version = "2024-05-20";
+      version = "2024-11-04";
       src = super.fetchFromGitHub {
         owner = "neanias";
         repo = "everforest-nvim";
-        rev = "ed4ba26c911696d69cfda26014ec740861d324e1";
-        sha256 = "sha256-kVn6rUc26PtoqzKW/MNuks85sTLYx1lEE/l+7W0bDfg=";
+        rev = "7c57941d5ef5a150f307b9295c00a59e95d78587";
+        sha256 = "sha256-qmRec0yFR+/nRsu+j/E7nrk70DIDN6EI2sCW6vjeyeo=";
       };
     };
+    uiua-vim = super.vimUtils.buildVimPlugin {
+      pname = "uiua-vim";
+      version = "2024-11-04";
+      src = super.fetchFromGitHub {
+        owner = "Apeiros-46B";
+        repo = "uiua.vim";
+        rev = "0afe909cb98553e5aec886f5e13a0637dcb671bd";
+        sha256 = "sha256-lmVcJgHj6y1emH2W5xrRvkQroed+fiws3o+KLVxQ24M=";
+      };
+    };
+
   };
 }

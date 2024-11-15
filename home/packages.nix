@@ -42,6 +42,7 @@ in
     rustup
     tailwindcss
     typescript
+    uiua
 
     # LSPs and formatters
     biome
@@ -85,6 +86,7 @@ in
     julia-mono
     manrope
     recursive
+    uiua386
     (nerdfonts.override { fonts = [ "NerdFontsSymbolsOnly" ]; })
   ];
 
