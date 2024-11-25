@@ -120,6 +120,7 @@ in
 
       # notes
       neorg
+      typst-preview-nvim
 
       # icons
       nvim-web-devicons

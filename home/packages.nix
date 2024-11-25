@@ -26,6 +26,10 @@ in
     (writeShellScriptBin "gsed" "exec ${gnused}/bin/sed \"$@\"") # macos gsed workaround
     ouch
     gping
+    visidata
+
+    # Docs?
+    typst
 
     # Programming
     otp.erlang
@@ -69,10 +73,13 @@ in
     superhtml
     tailwindcss-language-server
     taplo
+    tinymist
+    typstyle
     vscode-langservers-extracted
     yaml-language-server
 
     # fonts
+    atkinson-hyperlegible
     cascadia-code
     commit-mono
     cozette

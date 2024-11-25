@@ -67,7 +67,9 @@
 (local lsp (require :lspconfig))
 (local cmp_lsp (require :cmp_nvim_lsp))
 (local capabilities
-       (cmp_lsp.default_capabilities (vim.lsp.protocol.make_client_capabilities)))
+       (let [nvim_capabilities (vim.lsp.protocol.make_client_capabilities)
+             cmp_capabilities (cmp_lsp.default_capabilities)]
+         (vim.tbl_deep_extend :force nvim_capabilities cmp_capabilities)))
 
 (local flags {:debounce_text_changes 150})
 
@@ -127,10 +129,13 @@
 
 (lsp.uiua.setup {: capabilities : flags})
 
+(lsp.tinymist.setup {: capabilities
+                     : flags
+                     :settings {:formatterMode :typstyle}})
+
 (lsp.yamlls.setup {: capabilities
                    : flags
                    :settings {:yaml {:schemas {"https://json.schemastore.org/github-workflow.json" :/.github/workflows/*
                                                "https://json.schemastore.org/github-action.json" "/.github/action.{yaml,yml}"
                                                "https://gitlab.com/gitlab-org/gitlab/-/raw/master/app/assets/javascripts/editor/schema/ci.json" :.gitlab-ci.yml
                                                "https://raw.githubusercontent.com/compose-spec/compose-spec/master/schema/compose-spec.json" "docker-compose*.{yml,yaml}"}}}})
-
