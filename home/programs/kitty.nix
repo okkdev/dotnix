@@ -1,5 +1,11 @@
-{ config, pkgs, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 
+with lib;
 {
   programs.kitty = {
     enable = true;
@@ -56,10 +62,14 @@
     };
     shellIntegration.enableFishIntegration = true;
     extraConfig = ''
-      font_features MapleMono-NF-Regular +zero +ss03 +cv01 +cv02 +cv03
-      font_features MapleMono-NF-SemiBold +zero +ss03 +cv01 +cv02 +cv03
-      font_features MapleMono-NF-SemiBoldItalic +zero +ss03 +cv01 +cv02 +cv03
-      font_features MapleMono-NF-Italic +zero +ss03 +cv01 +cv02 +cv03
+      ${concatMapStrings (var: "font_features MapleMono-NF-" + var + " +zero +cv01 +cv02 +cv03 +ss03 +ss08\n")
+        ([
+          "Regular"
+          "SemiBold"
+          "SemiBoldItalic"
+          "Italic"
+        ])
+      }
 
       include current-theme.conf
       mouse_map kitty_mod+right press ungrabbed combine : mouse_select_command_output : kitty_scrollback_nvim --config ksb_builtin_last_visited_cmd_output
