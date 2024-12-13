@@ -45,6 +45,8 @@
                                              {:virt_lines [[["" ""]]]}))))
          {:desc "Add Virtual Spacers"})
 
+(usercmd :W :w {:desc "Save even if I hold shift"})
+
 (usercmd :WriterOn (fn []
                      (set vim.o.wrap true)
                      (vim.keymap.set [:n :x] :j :gj)
@@ -60,4 +62,3 @@
 (usercmd :ListCharsOn (fn [] (set vim.o.list true)) {:desc "Enable list chars"})
 (usercmd :ListCharsOff (fn [] (set vim.o.list false))
          {:desc "Disable list chars"})
-

@@ -32,6 +32,8 @@
       ds = "diff --staged";
       diffs = "diff --staged";
       f = "fetch";
+      m = "merge";
+      me = "merge --no-ff";
 
       a = "add";
       aa = "add .";

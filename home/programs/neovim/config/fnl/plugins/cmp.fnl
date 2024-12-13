@@ -10,28 +10,21 @@
                                   {:fg color :bg nil :text "󰏘 Color"})})
 
 (let [vscode_loader (require :luasnip.loaders.from_vscode)]
-  (vscode_loader.lazy_load))
+  (vscode_loader.lazy_load {}))
 
 (cmp.setup {:mapping (cmp.mapping.preset.insert {:<C-Space> (cmp.mapping.complete {})
-                                                 :<C-d> (cmp.mapping.scroll_docs (- 4))
-                                                 :<C-u> (cmp.mapping.scroll_docs 4)
-                                                 :<C-CR> (cmp.mapping.confirm {:behavior cmp.ConfirmBehavior.Replace
-                                                                               :select true})
+                                                 :<C-f> (cmp.mapping.scroll_docs (- 4))
+                                                 :<C-b> (cmp.mapping.scroll_docs 4)
+                                                 :<C-CR> (cmp.mapping.confirm {:select true})
                                                  :<C-e> (cmp.mapping.abort)
-                                                 :<Tab> (cmp.mapping (fn [fallback]
-                                                                       (if (cmp.visible)
-                                                                           (cmp.select_next_item)
-                                                                           (luasnip.expand_or_jumpable)
-                                                                           (luasnip.expand_or_jump)
-                                                                           (fallback)))
-                                                                     [:i :s])
-                                                 :<S-Tab> (cmp.mapping (fn [fallback]
-                                                                         (if (cmp.visible)
-                                                                             (cmp.select_prev_item)
-                                                                             (luasnip.jumpable (- 1))
-                                                                             (luasnip.jump (- 1))
-                                                                             (fallback)))
-                                                                       [:i :s])})
+                                                 :<C-n> (cmp.mapping.select_next_item)
+                                                 :<C-p> (cmp.mapping.select_prev_item)
+                                                 :<C-l> (cmp.mapping (fn []
+                                                                       (if (luasnip.expand_or_locally_jumpable)
+                                                                           (luasnip.expand_or_jump))))
+                                                 :<C-h> (cmp.mapping (fn []
+                                                                       (if (luasnip.locally_jumpable -1)
+                                                                           (luasnip.jump -1))))})
             :window {:completion {:col_offset (- 3)
                                   :side_padding 0
                                   :winhighlight "Normal:Pmenu,FloatBorder:Pmenu,Search:None"}}
@@ -47,12 +40,11 @@
                                      (set item.kind (.. " " (or icon "") " "))
                                      (set item.menu (.. " (" (or typ "") ")"))
                                      item))}
+            :performace {:max_view_entries 20}
             :snippet {:expand (fn [args]
                                 (luasnip.lsp_expand args.body))}
-            :sources [{:name :path}
-                      {:name :nvim_lsp :group_index 1}
-                      {:name :buffer :group_index 2 :max_item_count 10}
-                      {:name :copilot :group_index 2}
-                      {:name :luasnip :group_index 2 :max_item_count 10}]}
-           [{:name :buffer}])
-
+            :sources [{:name :nvim_lsp}
+                      {:name :luasnip}
+                      {:name :copilot}
+                      {:name :path}
+                      {:name :buffer}]})

@@ -97,11 +97,19 @@
 (lsp.ts_ls.setup {: capabilities : flags})
 ;(lsp.denols.setup {: capabilities : flags})
 
+;(lsp.tailwindcss.setup {: capabilities
+;                        : flags
+;                        :on_attach (fn [client _buffer]
+;                                     (set client.server_capabilities.hoverProvider
+;                                          false))})
 (lsp.tailwindcss.setup {: capabilities
                         : flags
-                        :on_attach (fn [client _buffer]
-                                     (set client.server_capabilities.hoverProvider
-                                          false))})
+                        :settings {:tailwindCSS {:includeLanguages {:elixir :html-eex
+                                                                    :eelixir :html-eex
+                                                                    :heex :html-eex}
+                                                 :experimental {:classRegex ["class= \"([^\"]*)"
+                                                                             "class: \"([^\"]*)"
+                                                                             "~H\"\"\".*class=\"([^\"]*)\".*\"\"\""]}}}})
 
 (lsp.pyright.setup {: capabilities : flags})
 

@@ -5,6 +5,7 @@
 (set vim.g.disable_autoformat true)
 
 (conform.setup {:formatters_by_ft {:css [:prettierd :rustywindcss]
+                                   :elixir [:rustywind :mix]
                                    :elm [:elm_format]
                                    :erlang [:erlfmt]
                                    :fennel [:fnlfmt]
@@ -55,4 +56,3 @@
            {:desc "Enable autoformat-on-save"}))
 
 (vim.keymap.set [:n :x] :<leader>lf :<cmd>Format<cr> {:desc :format})
-

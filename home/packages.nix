@@ -16,6 +16,7 @@ in
     jq
     httpie
     bottom
+    btop
     dogdns
     du-dust
     # wireguard-tools

@@ -48,6 +48,7 @@ let
     "kicad"
     "kitty"
     "krita"
+    "lagrange"
     "logseq"
     "losslesscut"
     "maccy"

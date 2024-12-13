@@ -15,6 +15,7 @@
 (set o.confirm true)
 (set o.cursorline true)
 (set o.expandtab true)
+(set o.formatoptions :cqj)
 (set o.hlsearch true)
 (set o.ignorecase true)
 (set o.inccommand :split)
@@ -48,4 +49,3 @@
 
 (set g.loaded_netrw 1)
 (set g.loaded_netrwPlugin 1)
-

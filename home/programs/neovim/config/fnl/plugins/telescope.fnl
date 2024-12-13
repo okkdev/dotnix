@@ -19,10 +19,8 @@
                                      :override_generic_sorter true}
                                :ui-select [(themes.get_cursor {})]
                                :undo {:use_delta false}
-                               :recent-files {:find_command find_cmd
-                                              :include_current_file false}}
-                  :pickers {:buffers {:sort_mru true
-                                      :ignore_current_buffer true}
+                               :recent-files {:find_command find_cmd}}
+                  :pickers {:buffers {:sort_mru true}
                             :find_files {:find_command find_cmd}}
                   :defaults {:prompt_prefix "   "
                              :selection_caret "  "
@@ -48,7 +46,7 @@
 (map :n :<leader>f/ telescope.extensions.live_grep_args.live_grep_args
      {:desc "search files"})
 
-(map :n :<leader>fd builtin.diagnostics {:desc "find buffers"})
+(map :n :<leader>fd builtin.diagnostics {:desc "find diagnostics"})
 (map :n :<leader>fb builtin.buffers {:desc "find buffers"})
 (map :n :<leader>fh builtin.help_tags {:desc "find help"})
 (map :n :<leader>fk builtin.keymaps {:desc "find keymaps"})
@@ -63,4 +61,3 @@
      {:desc "Fuzzily search in current buffer"})
 
 (map :n :<leader>u "<cmd>Telescope undo<cr>" {:desc "open undo history"})
-
