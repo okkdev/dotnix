@@ -24,6 +24,7 @@
     /programs/shell.nix
     /programs/git.nix
     /programs/kitty.nix
+    /programs/ghostty.nix
     /programs/yabai.nix
     /programs/neovim
     /programs/tmux.nix

@@ -95,7 +95,7 @@ in
     manrope
     recursive
     uiua386
-    (nerdfonts.override { fonts = [ "NerdFontsSymbolsOnly" ]; })
+    nerd-fonts.symbols-only
   ];
 
   programs = {

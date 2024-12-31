@@ -40,6 +40,7 @@ let
     "figma"
     "firefox@developer-edition"
     "freecad"
+    "ghostty"
     "godot"
     "handbrake"
     "iina"
