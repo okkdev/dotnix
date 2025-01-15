@@ -103,11 +103,45 @@
 ;                                          false))})
 (lsp.tailwindcss.setup {: capabilities
                         : flags
+                        :filetypes [:astro
+                                    :astro-markdown
+                                    :clojure
+                                    :eelixir
+                                    :elixir
+                                    :gleam
+                                    :gohtml
+                                    :gohtmltmpl
+                                    :handlebars
+                                    :html
+                                    :htmlangular
+                                    :html-eex
+                                    :heex
+                                    :markdown
+                                    :mdx
+                                    :php
+                                    :slim
+                                    :twig
+                                    :css
+                                    :less
+                                    :postcss
+                                    :sass
+                                    :scss
+                                    :javascript
+                                    :javascriptreact
+                                    :reason
+                                    :rescript
+                                    :typescript
+                                    :typescriptreact
+                                    :vue
+                                    :svelte
+                                    :templ]
                         :settings {:tailwindCSS {:includeLanguages {:elixir :html-eex
                                                                     :eelixir :html-eex
-                                                                    :heex :html-eex}
+                                                                    :heex :html-eex
+                                                                    :gleam :html}
                                                  :experimental {:classRegex ["class= \"([^\"]*)"
                                                                              "class: \"([^\"]*)"
+                                                                             "class\\(\\s*\"([^\"]*)\"\\s*\\)"
                                                                              "~H\"\"\".*class=\"([^\"]*)\".*\"\"\""]}}}})
 
 (lsp.pyright.setup {: capabilities : flags})

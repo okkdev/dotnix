@@ -38,7 +38,13 @@
                                                    [:label :label_description]
                                                    [:kind]]
                                          :components {:label {:width {:fill true
-                                                                      :max 40}}}}}
+                                                                      :max 40}}
+                                                      :kind_icon {:text (fn [ctx]
+                                                                          (let [tailwind (require :blink.cmp.completion.windows.render.tailwind)]
+                                                                            (if (tailwind.get_hex_color ctx.item)
+                                                                                "󰏘"
+                                                                                (.. ctx.kind_icon
+                                                                                    ctx.icon_gap))))}}}}
                            :ghost_text {:enabled true}}
               :keymap {:preset :default
                        :<C-CR> [(fn [cmp] (cmp.select_and_accept))]}
