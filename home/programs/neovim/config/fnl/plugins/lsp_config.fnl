@@ -65,11 +65,10 @@
 ; Language Servers
 
 (local lsp (require :lspconfig))
-(local cmp_lsp (require :cmp_nvim_lsp))
-(local capabilities
-       (let [nvim_capabilities (vim.lsp.protocol.make_client_capabilities)
-             cmp_capabilities (cmp_lsp.default_capabilities)]
-         (vim.tbl_deep_extend :force nvim_capabilities cmp_capabilities)))
+
+; Can be removed when Neovim 0.11+ and Blink.cmp 0.10+
+(local blink (require :blink.cmp))
+(local capabilities (blink.get_lsp_capabilities))
 
 (local flags {:debounce_text_changes 150})
 

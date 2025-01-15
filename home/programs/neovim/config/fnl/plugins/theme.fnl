@@ -18,7 +18,7 @@
                :forestbones
                :kanagawabones])
 
-(var current_theme :everforest)
+(var current_theme :rose-pine)
 
 (usercmd :DarkTheme (fn []
                       (set vim.o.background :dark)
@@ -61,6 +61,7 @@
                                                                :fg :base}
                                        :TelescopePreviewBorder {:bg :base
                                                                 :fg :base}
+                                       :TelescopePreviewNormal {:bg :base}
                                        :TelescopePromptTitle {:bg :pine
                                                               :fg :base}
                                        :TelescopePromptBorder {:bg :surface
@@ -71,7 +72,9 @@
                                        :MiniStatuslineFilename {:fg :muted
                                                                 :bg :base}
                                        :StatusLine {:bg :base}
-                                       :StatusLineNC {:bg :base}}}))
+                                       :StatusLineNC {:bg :base}
+                                       :BlinkCmpDoc {:bg :surface}
+                                       :BlinkCmpDocBorder {:bg :surface}}}))
 
 (let [catppuccin (require :catppuccin)]
   (catppuccin.setup {:flavour :latte
@@ -148,4 +151,3 @@
 
 ; Activate the initial theme
 (colorscheme current_theme)
-

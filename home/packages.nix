@@ -27,6 +27,7 @@ in
     (writeShellScriptBin "gsed" "exec ${gnused}/bin/sed \"$@\"") # macos gsed workaround
     ouch
     gping
+    tealdeer
     visidata
 
     # Docs?
@@ -147,11 +148,6 @@ in
       enable = true;
       enableFishIntegration = true;
       flags = [ "--disable-up-arrow" ];
-    };
-
-    tealdeer = {
-      enable = true;
-      # updateOnActivation = true;
     };
 
     jujutsu = {

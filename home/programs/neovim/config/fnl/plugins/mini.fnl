@@ -204,28 +204,3 @@
 ;                                                                          vim.bo.filetype))
 ;                                               (set vim.b.miniindentscope_disable
 ;                                                    true)))}))
-
-; Animations for resize/scroll/cursor with exclusion for mouse scrolling
-; (let [animate (require :mini.animate)]
-;   (var mouse_scrolled false)
-;   (each [_ scroll (ipairs [:Up :Down])]
-;     (local key (.. :<ScrollWheel scroll ">"))
-;     (vim.keymap.set ["" :i] key (fn [] (set mouse_scrolled true) key)
-;                     {:expr true}))
-;   (animate.setup {:cursor {:timing (animate.gen_timing.linear {:duration 100
-;                                                                :unit :total})}
-;                   :resize {:timing (animate.gen_timing.linear {:duration 100
-;                                                                :unit :total})}
-;                   :scroll {:subscroll (animate.gen_subscroll.equal {:predicate (fn [total-scroll]
-;                                                                                  (if mouse_scrolled
-;                                                                                      (do
-;                                                                                        (set mouse_scrolled
-;                                                                                             false)
-;                                                                                        false)
-;                                                                                      vim.g.neovide
-;                                                                                      false
-;                                                                                      (> total-scroll
-;                                                                                         1)))})
-;                            :timing (animate.gen_timing.linear {:duration 125
-;                                                                :unit :total})}}))
-

@@ -1,14 +1,13 @@
 (require :settings)
 (require :mappings)
 (require :commands)
-;(require :neovide)
 (require :specific)
 
 ; Plugins
 (require :plugins.treesitter)
 (require :plugins.theme)
 (require :plugins.lsp_config)
-(require :plugins.cmp)
+(require :plugins.blink)
 (require :plugins.mini)
 (require :plugins.telescope)
 (require :plugins.noice)

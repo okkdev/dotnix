@@ -70,10 +70,10 @@ self: super: {
   };
   gleam = super.stdenv.mkDerivation rec {
     name = "gleam";
-    version = "1.6.2";
+    version = "1.7.0";
     src = super.fetchurl {
       url = "https://github.com/gleam-lang/gleam/releases/download/v${version}/gleam-v${version}-aarch64-apple-darwin.tar.gz";
-      sha256 = "sha256-A25uOr9kuqhx35T5WuFHt0x1DiILxwzLzD5gkTUuJNg=";
+      sha256 = "sha256-plQR/sjkemGEEncPbbshibLFy7JBnV7vc9RnVjhTzY8=";
     };
     phases = [ "installPhase" ];
     installPhase = ''
@@ -85,26 +85,6 @@ self: super: {
 
   # Vim Plugins
   vimPlugins = super.vimPlugins // {
-    cmp-tailwind-colors = super.vimUtils.buildVimPlugin {
-      pname = "cmp-tailwind-colors";
-      version = "2024-11-04";
-      src = super.fetchFromGitHub {
-        owner = "js-everts";
-        repo = "cmp-tailwind-colors";
-        rev = "91b2621827ef19a374ad7d1e60d567dd2e4b3823";
-        sha256 = "sha256-QBAvPtlfLJK+HWM390nQuJVvOEutNcLawaA/cW4tCyU=";
-      };
-    };
-    # cmp-ai = super.vimUtils.buildVimPlugin {
-    #   pname = "cmp-ai";
-    #   version = "2024-05-30";
-    #   src = super.fetchFromGitHub {
-    #     owner = "tzachar";
-    #     repo = "cmp-ai";
-    #     rev = "b6c3fb81910fd0cef539c90db626f84581c06d26";
-    #     sha256 = "sha256-1IGqxVOneRt20SiXOYu4aErg1UxjMaH1NTuuTyuGXLQ=";
-    #   };
-    # };
     bg-nvim = super.vimUtils.buildVimPlugin {
       pname = "bg-nvim";
       version = "2024-05-10";

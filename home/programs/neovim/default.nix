@@ -66,20 +66,13 @@ in
       nvim-treesitter-textobjects
       nvim-ts-autotag
 
-      # lsp and completions
+      # lsp
       nvim-lspconfig
-      nvim-cmp
-      cmp-nvim-lsp
-      cmp-buffer
-      cmp-cmdline
-      cmp-path
-      cmp-tailwind-colors
-      copilot-lua
-      copilot-cmp
 
-      # snippets
-      luasnip
-      cmp_luasnip
+      # completions
+      blink-cmp
+      copilot-lua
+      blink-cmp-copilot
       friendly-snippets
 
       # formatter
@@ -108,15 +101,7 @@ in
       nvim-spectre
       vim-fugitive
       persisted-nvim
-      (harpoon.overrideAttrs (_: {
-        version = "2";
-        src = pkgs.fetchFromGitHub {
-          owner = "ThePrimeagen";
-          repo = "harpoon";
-          rev = "0378a6c428a0bed6a2781d459d7943843f374bce";
-          sha256 = "sha256-FZQH38E02HuRPIPAog/nWM55FuBxKp8AyrEldFkoLYk=";
-        };
-      }))
+      harpoon2
 
       # notes
       neorg
@@ -149,18 +134,6 @@ in
   xdg.configFile."nvim" = {
     source = nvim-config;
     recursive = true;
-  };
-
-  xdg.configFile."neovide/config.toml" = {
-    text =
-      # toml
-      ''
-        frame = "buttonless"
-
-        [font]
-        normal = ["CommitMonoLiga Nerd Font"]
-        size = 14.5
-      '';
   };
 
   # Default biome config

@@ -1,8 +1,5 @@
 (local copilot (require :copilot))
-(local copilot_cmp (require :copilot_cmp))
 (local autocmd vim.api.nvim_create_autocmd)
-
-(copilot_cmp.setup {:fix_pairs true})
 
 (autocmd :InsertEnter {:callback (fn []
                                    (copilot.setup {:suggestion {:enabled false}
@@ -17,4 +14,3 @@
                                                                :svn false
                                                                :yaml false}}))
                        :once true})
-
