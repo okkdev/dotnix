@@ -38,8 +38,8 @@ in
     otp.rebar3
     otp.elixir_1_17
     deno
-    nodejs_22
-    corepack_22
+    nodejs_23
+    corepack_23
     fennel
     gleam
     libiconv
@@ -58,8 +58,6 @@ in
     fennel-ls
     fnlfmt
     gdtoolkit_4
-    lexical-lsp
-    next-ls
     nil
     nixfmt-rfc-style
     nodePackages.bash-language-server
@@ -73,6 +71,7 @@ in
     shfmt
     stylua
     superhtml
+    sql-formatter
     tailwindcss-language-server
     taplo
     tinymist

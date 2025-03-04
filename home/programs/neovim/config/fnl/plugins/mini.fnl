@@ -14,10 +14,6 @@
 (let [surround (require :mini.surround)]
   (surround.setup))
 
-; inserts [], ()... pairs
-(let [prs (require :mini.pairs)]
-  (prs.setup))
-
 ; Highlight patterns
 (let [hipatterns (require :mini.hipatterns)]
   (hipatterns.setup {:highlighters {:hex_color (hipatterns.gen_highlighter.hex_color)}}))
@@ -147,41 +143,9 @@
 
 ; --- UNUSED THINGS ---
 
-;(let [sessions (require :mini.sessions)]
-;  (when (= vim.v.this_session "") ; Create session if it doesn't exist
-;    (sessions.write (.. (string.gsub (vim.fn.getcwd) "/" "%%") :.vim)
-;                    {:force true}))
-;  (sessions.setup {:autoread true
-;                   :autowrite true
-;                   :hooks {:post {:read (fn []
-;                                          (vim.notify "Session loaded" :info
-;                                                      {:title :Sessions}))
-;                                  :write (fn []
-;                                           (vim.notify "Session saved" :info
-;                                                       {:title :Sessions}))}}}))
-
-; ; Highlight words under cursor
-; (let [cursorword (require :mini.cursorword)]
-;   (cursorword.setup))
-
-;(let [starter (require :mini.starter)]
-;  (starter.setup {:header (table.concat ["   ⣴⣶⣤⡤⠦⣤⣀⣤⠆     ⣈⣭⣿⣶⣿⣦⣼⣆          "
-;                                         "    ⠉⠻⢿⣿⠿⣿⣿⣶⣦⠤⠄⡠⢾⣿⣿⡿⠋⠉⠉⠻⣿⣿⡛⣦       "
-;                                         "          ⠈⢿⣿⣟⠦ ⣾⣿⣿⣷    ⠻⠿⢿⣿⣧⣄     "
-;                                         "           ⣸⣿⣿⢧ ⢻⠻⣿⣿⣷⣄⣀⠄⠢⣀⡀⠈⠙⠿⠄    "
-;                                         "          ⢠⣿⣿⣿⠈    ⣻⣿⣿⣿⣿⣿⣿⣿⣛⣳⣤⣀⣀   "
-;                                         "   ⢠⣧⣶⣥⡤⢄ ⣸⣿⣿⠘  ⢀⣴⣿⣿⡿⠛⣿⣿⣧⠈⢿⠿⠟⠛⠻⠿⠄  "
-;                                         "  ⣰⣿⣿⠛⠻⣿⣿⡦⢹⣿⣷   ⢊⣿⣿⡏  ⢸⣿⣿⡇ ⢀⣠⣄⣾⠄   "
-;                                         " ⣠⣿⠿⠛ ⢀⣿⣿⣷⠘⢿⣿⣦⡀ ⢸⢿⣿⣿⣄ ⣸⣿⣿⡇⣪⣿⡿⠿⣿⣷⡄  "
-;                                         " ⠙⠃   ⣼⣿⡟  ⠈⠻⣿⣿⣦⣌⡇⠻⣿⣿⣷⣿⣿⣿ ⣿⣿⡇ ⠛⠻⢷⣄ "
-;                                         "      ⢻⣿⣿⣄   ⠈⠻⣿⣿⣿⣷⣿⣿⣿⣿⣿⡟ ⠫⢿⣿⡆     "
-;                                         "       ⠻⣿⣿⣿⣿⣶⣶⣾⣿⣿⣿⣿⣿⣿⣿⣿⡟⢀⣀⣤⣾⡿⠃     "]
-;                                        "\n")
-;                  :items [(starter.sections.recent_files 10 true true)]
-;                  :content_hooks [(starter.gen_hook.adding_bullet)
-;                                  (starter.gen_hook.aligning :center :top)]
-;                  :footer ""
-;                  :query_updaters :abcdefghilmnopqrstuvwxyz0123456789_-.}))
+;; inserts [], ()... pairs
+;(let [prs (require :mini.pairs)]
+;  (prs.setup))
 
 ; ; Show indent scope
 ; (let [indent (require :mini.indentscope)]

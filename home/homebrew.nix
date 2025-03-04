@@ -12,11 +12,13 @@ let
     "homebrew/cask-fonts"
     "homebrew/services"
     "koekeishiya/formulae"
+    "FelixKratz/formulae"
     "support/cyon-tools\", \"git@gitlab.cyon.lan:sup/homebrew-cyon-tools.git"
   ];
 
   brews = [
     "lima"
+    "sketchybar"
     "skhd"
     "yabai"
     "support/cyon-tools/supctl"
@@ -74,6 +76,7 @@ let
     "utm"
     "visual-studio-code"
     "wezterm"
+    "yaak"
     "zed"
     "zoom"
   ];

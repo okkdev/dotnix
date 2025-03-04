@@ -1,44 +1,4 @@
 self: super: {
-  next-ls = super.stdenv.mkDerivation rec {
-    name = "next-ls-v${version}";
-    version = "0.20.2";
-    src = super.fetchurl {
-      url = "https://github.com/elixir-tools/next-ls/releases/download/v${version}/next_ls_darwin_arm64";
-      sha256 = "sha256-0HS/CMSj4bkvvvC1BNhvEu3W+OEW5FnguoQZ2bwrtkw=";
-    };
-    phases = [ "installPhase" ];
-    installPhase = ''
-      mkdir -p $out/bin
-      cp $src $out/bin/next-ls
-      chmod +x $out/bin/next-ls
-    '';
-  };
-  lexical-lsp = super.stdenv.mkDerivation rec {
-    name = "lexical-v${version}";
-    version = "0.5.2";
-    src = super.fetchurl {
-      url = "https://github.com/lexical-lsp/lexical/releases/download/v${version}/lexical.zip";
-      sha256 = "sha256-quOOkijw5byJKJAZ8Uq/HNjWeFsT04gvm+hDxncN3/k=";
-    };
-    buildInputs = [ super.unzip ];
-    phases = [ "installPhase" ];
-    installPhase =
-      let
-        activate_version_manager = super.writeScript "activate_version_manager.sh" ''
-          true
-        '';
-      in
-      ''
-        mkdir -p $out/bin
-        mkdir lexical
-        unzip $src
-        mv lexical/* $out
-        rm "$out/bin/activate_version_manager.sh"
-        ln -s ${activate_version_manager} "$out/bin/activate_version_manager.sh"
-        chmod +x $out/bin/start_lexical.sh
-        ln -s $out/bin/start_lexical.sh $out/bin/lexical
-      '';
-  };
   elp = super.stdenv.mkDerivation rec {
     name = "elp";
     version = "2024-08-05";
@@ -70,10 +30,10 @@ self: super: {
   };
   gleam = super.stdenv.mkDerivation rec {
     name = "gleam";
-    version = "1.7.0";
+    version = "1.8.1";
     src = super.fetchurl {
       url = "https://github.com/gleam-lang/gleam/releases/download/v${version}/gleam-v${version}-aarch64-apple-darwin.tar.gz";
-      sha256 = "sha256-plQR/sjkemGEEncPbbshibLFy7JBnV7vc9RnVjhTzY8=";
+      sha256 = "sha256-A7CGxXa8uxJfLFRnUFGZQLzN0KIE5LUEUFZlpaomtGg=";
     };
     phases = [ "installPhase" ];
     installPhase = ''

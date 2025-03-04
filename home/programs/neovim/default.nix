@@ -68,6 +68,7 @@ in
 
       # lsp
       nvim-lspconfig
+      SchemaStore-nvim
 
       # completions
       blink-cmp
@@ -118,7 +119,7 @@ in
       no-neck-pain-nvim
 
       # themes
-      lush-nvim
+      # lush-nvim # broken...
       rose-pine
       everforest-nvim
       catppuccin-nvim
@@ -150,6 +151,13 @@ in
             "formatter": {
               "semicolons": "asNeeded",
               "trailingComma": "all"
+            }
+          },
+          "linter": {
+            "rules": {
+              "suspicious": {
+                "noShadowRestrictedNames": "warn"
+              }
             }
           }
         }

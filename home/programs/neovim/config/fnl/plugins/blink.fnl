@@ -57,7 +57,7 @@
                         :providers {:copilot {:async true
                                               :module :blink-cmp-copilot
                                               :name :copilot
-                                              :score_offset 100
+                                              :score_offset 0
                                               :transform_items (fn [_ items]
                                                                  (let [blink_types (require :blink.cmp.types)
                                                                        item_kind blink_types.CompletionItemKind

@@ -23,4 +23,3 @@
 (require :plugins.neorg)
 (require :plugins.kitty_scrollback)
 (require :plugins.copilot)
-

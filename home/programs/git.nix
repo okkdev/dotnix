@@ -37,7 +37,8 @@
 
       a = "add";
       aa = "add .";
-      ap = "add -N . -p";
+      ap = "add -p";
+      ai = "add -i";
 
       c = "commit";
       amend = "commit --amend --no-edit";

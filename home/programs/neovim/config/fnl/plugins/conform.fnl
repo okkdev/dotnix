@@ -4,12 +4,16 @@
 ; Disable autoformat by default
 (set vim.g.disable_autoformat true)
 
-(conform.setup {:formatters_by_ft {:css [:prettierd :rustywindcss]
+(conform.setup {:formatters_by_ft {:css [:prettierd :rustywind_css]
                                    :elixir [:rustywind :mix]
                                    :elm [:elm_format]
                                    :erlang [:erlfmt]
                                    :fennel [:fnlfmt]
                                    :gdformat [:gdscript]
+                                   :gleam [:rustywind_gleam
+                                           :gleam
+                                           ;:lsp_format :first
+                                           ]
                                    :heex [:rustywind :mix]
                                    :html [:superhtml :rustywind]
                                    :javascript [:biome :rustywind]
@@ -18,7 +22,9 @@
                                    :lua [:stylua]
                                    :python [:ruff_format]
                                    :toml [:taplo]
-                                   :sh [:shfmt]}
+                                   :sh [:shfmt]
+                                   :sql [:sql_formatter]}
+                :default_format_opts {:lsp_format :fallback}
                 ; Toggleable format on save
                 :format_on_save (fn [bufnr]
                                   (let [buffer (. vim.b bufnr)]
@@ -26,10 +32,14 @@
                                             buffer.disable_autoformat)
                                         nil
                                         {:lsp_fallback true :timeout_ms 500})))
-                :formatters {:rustywindcss {:command :rustywind
-                                            :args [:--custom-regex
-                                                   "@apply ([_a-zA\\.-Z0-9\\-:\\[\\] ]+);"
-                                                   :--stdin]}}})
+                :formatters {:rustywind_css {:command :rustywind
+                                             :args [:--custom-regex
+                                                    "@apply ([_a-zA\\.-Z0-9\\-:\\[\\] ]+);"
+                                                    :--stdin]}
+                             :rustywind_gleam {:command :rustywind
+                                               :args [:--custom-regex
+                                                      "class\\(\\s*\"([^\"]*)\"\\s*\\)"
+                                                      :--stdin]}}})
 
 (let [usercmd vim.api.nvim_create_user_command]
   (usercmd :Format

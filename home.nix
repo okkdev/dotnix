@@ -27,9 +27,10 @@
     /programs/ghostty.nix
     /programs/yabai.nix
     /programs/neovim
-    /programs/tmux.nix
-    /programs/zellij.nix
+    # /programs/tmux.nix
+    # /programs/zellij.nix
     /programs/helix.nix
     /programs/simple-bar.nix
+    /programs/sketchybar.nix
   ];
 }

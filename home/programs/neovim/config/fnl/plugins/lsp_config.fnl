@@ -15,7 +15,7 @@
                     (map :gr (. (require :telescope.builtin) :lsp_references)
                          "Goto References")
                     (map :gI vim.lsp.buf.implementation "Goto Implementation")
-                    (map :<leader>lrn vim.lsp.buf.rename :Rename)
+                    (map :<leader>lr vim.lsp.buf.rename :Rename)
                     (map :<leader>lwa vim.lsp.buf.add_workspace_folder
                          "Workspace Add Folder")
                     (map :<leader>lwr vim.lsp.buf.remove_workspace_folder
@@ -24,7 +24,7 @@
                          (fn []
                            (print (vim.inspect (vim.lsp.buf.list_workspace_folders))))
                          "Workspace List Folders")
-                    (map :<leader>lca vim.lsp.buf.code_action "Code Action")
+                    (map :<leader>lc vim.lsp.buf.code_action "Code Action")
                     (local client
                            (vim.lsp.get_client_by_id event.data.client_id))
                     (when (and client
@@ -65,6 +65,7 @@
 ; Language Servers
 
 (local lsp (require :lspconfig))
+(local schemastore (require :schemastore))
 
 ; Can be removed when Neovim 0.11+ and Blink.cmp 0.10+
 (local blink (require :blink.cmp))
@@ -80,7 +81,6 @@
 (lsp.rust_analyzer.setup {:settings {:rust-analyzer {}} : flags})
 
 (lsp.elixirls.setup {:cmd [:elixir-ls] : capabilities : flags})
-; (lsp.lexical.setup {:cmd [:lexical] : capabilities : flags})
 
 (lsp.elmls.setup {: capabilities : flags})
 
@@ -152,7 +152,10 @@
 
 (lsp.superhtml.setup {: capabilities : flags})
 
-(lsp.jsonls.setup {: capabilities : flags})
+(lsp.jsonls.setup {: capabilities
+                   : flags
+                   :settings {:json {:schemas (schemastore.json.schemas)
+                                     :validate {:enable true}}}})
 
 (lsp.gopls.setup {: capabilities : flags})
 
@@ -176,7 +179,8 @@
 
 (lsp.yamlls.setup {: capabilities
                    : flags
-                   :settings {:yaml {:schemas {"https://json.schemastore.org/github-workflow.json" :/.github/workflows/*
-                                               "https://json.schemastore.org/github-action.json" "/.github/action.{yaml,yml}"
-                                               "https://gitlab.com/gitlab-org/gitlab/-/raw/master/app/assets/javascripts/editor/schema/ci.json" :.gitlab-ci.yml
-                                               "https://raw.githubusercontent.com/compose-spec/compose-spec/master/schema/compose-spec.json" "docker-compose*.{yml,yaml}"}}}})
+                   :settings {:yaml {:schemaStore {:enable false :url ""}
+                                     :schemas (schemastore.yaml.schemas {:extra {:description "More permissive Compose schema"
+                                                                                 :fileMatch "docker-compose*.{yml,yaml}"
+                                                                                 :name :docker-compose
+                                                                                 :url "https://raw.githubusercontent.com/compose-spec/compose-spec/master/schema/compose-spec.json"}})}}})

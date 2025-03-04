@@ -37,7 +37,7 @@ with lib;
         # yabai -m config insert_feedback_color        0xffd75f5f
 
         # mouse
-        # yabai -m config mouse_modifier               cmd
+        yabai -m config mouse_modifier               alt
         yabai -m config mouse_action1                move
         yabai -m config mouse_action2                resize
         yabai -m config mouse_drop_action            swap
@@ -45,7 +45,6 @@ with lib;
         # general space settings
         yabai -m config layout                       bsp
         yabai -m config external_bar                 all:40:0
-        # yabai -m config top_padding                  40
         yabai -m config bottom_padding               20
         yabai -m config left_padding                 20
         yabai -m config right_padding                20
@@ -106,18 +105,26 @@ with lib;
       # sh
       ''
         # focus window
-        ${modMask} - h : yabai -m window --focus west
+        ${modMask} - h : yabai -m window --focus west || yabai -m window --focus stack.prev
         ${modMask} - j : yabai -m window --focus south
         ${modMask} - k : yabai -m window --focus north
-        ${modMask} - l : yabai -m window --focus east
+        ${modMask} - l : yabai -m window --focus east || yabai -m window --focus stack.next
         # swap managed window
         ${moveMask} - h : yabai -m window --swap west
         ${moveMask} - j : yabai -m window --swap south
         ${moveMask} - k : yabai -m window --swap north
         ${moveMask} - l : yabai -m window --swap east
+        # change space
+        ${modMask} - b : yabai -m space --layout bsp
+        ${modMask} - s : yabai -m space --layout stack
+        ${modMask} - f : yabai -m space --layout float
         # rotate space
         ${moveMask} - n : yabai -m space --rotate 270
         ${moveMask} - m : yabai -m space --rotate 90
+        # , comma
+        ${moveMask} - 0x2B : yabai -m space --mirror y-axis
+        # . dot
+        ${moveMask} - 0x2F : yabai -m space --mirror x-axis
         # send window to space
         ${concatMapStrings (n: moveMask + " - " + n + " : yabai -m window --space " + n + "\n") (
           map toString (range 1 9)
@@ -135,6 +142,8 @@ with lib;
         ${moveMask} - r : yabai -m window --display recent; yabai -m display --focus recent
         # balance size of windows
         ${modMask} - space : yabai -m space --balance
+        # fullscreen window
+        ${modMask} - return : yabai -m window --toggle zoom-fullscreen
         # increase window size
         ${modMask} - left : yabai -m window --resize left:-20:0
         ${modMask} - right : yabai -m window --resize right:20:0
