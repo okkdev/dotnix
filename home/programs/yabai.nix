@@ -37,7 +37,7 @@ with lib;
         # yabai -m config insert_feedback_color        0xffd75f5f
 
         # mouse
-        yabai -m config mouse_modifier               alt
+        #yabai -m config mouse_modifier               alt
         yabai -m config mouse_action1                move
         yabai -m config mouse_action2                resize
         yabai -m config mouse_drop_action            swap
@@ -63,7 +63,7 @@ with lib;
         yabai -m rule --add subrole="^AXSystemDialog$" sticky=on sub-layer=above mouse_follows_focus=off manage=off
 
         # need to force refresh simple bar
-        osascript -e 'tell application id "tracesOf.Uebersicht" to refresh'
+        #osascript -e 'tell application id "tracesOf.Uebersicht" to refresh'
 
         echo "yabai configuration loaded.."
       '';
@@ -95,12 +95,6 @@ with lib;
       let
         modMask = "shift + alt";
         moveMask = "ctrl + shift + alt";
-        focusSpaceLeft = ''
-          && osascript -e 'tell app "System Events" to key code "4" using {control down, shift down}'
-        '';
-        focusSpaceRight = ''
-          && osascript -e 'tell app "System Events" to key code "37" using {control down, shift down}'
-        '';
       in
       # sh
       ''
@@ -130,8 +124,8 @@ with lib;
           map toString (range 1 9)
         )}
         # send window to space and follow focus
-        ${moveMask} - u : yabai -m window --space prev ${focusSpaceLeft}
-        ${moveMask} - i : yabai -m window --space next ${focusSpaceRight}
+        ${moveMask} - u : yabai -m window --space prev
+        ${moveMask} - i : yabai -m window --space next
         # focus monitor
         ${modMask} - w : yabai -m display --focus prev
         ${modMask} - e : yabai -m display --focus next
@@ -141,22 +135,20 @@ with lib;
         ${moveMask} - e : yabai -m window --display next; yabai -m display --focus next
         ${moveMask} - r : yabai -m window --display recent; yabai -m display --focus recent
         # balance size of windows
-        ${modMask} - space : yabai -m space --balance
+        ${modMask} - return : yabai -m space --balance
         # fullscreen window
-        ${modMask} - return : yabai -m window --toggle zoom-fullscreen
-        # increase window size
-        ${modMask} - left : yabai -m window --resize left:-20:0
+        ${modMask} - space : yabai -m window --toggle zoom-fullscreen
+        # window size
+        ${modMask} - left : yabai -m window --resize right:-20:0
         ${modMask} - right : yabai -m window --resize right:20:0
-        ${modMask} - up : yabai -m window --resize top:-20:0
-        ${modMask} - down : yabai -m window --resize bottom:20:0
-        # decrease window size
-        ${moveMask} - left : yabai -m window --resize left:20:0
-        ${moveMask} - right : yabai -m window --resize right:-20:0
-        ${moveMask} - up : yabai -m window --resize top:20:0
-        ${moveMask} - down : yabai -m window --resize bottom:-20:0
+        ${modMask} - up : yabai -m window --resize bottom:0:-20
+        ${modMask} - down : yabai -m window --resize bottom:0:20
+        ${moveMask} - left : yabai -m window --resize left:-20:0
+        ${moveMask} - right : yabai -m window --resize left:20:0
+        ${moveMask} - up : yabai -m window --resize top:-20:0
+        ${moveMask} - down : yabai -m window --resize top:20:0
         # float / unfloat window and center on screen
-        ${modMask} - t : yabai -m window --toggle float; \
-                  yabai -m window --grid 4:4:1:1:2:2
+        ${modMask} - t : yabai -m window --toggle float; yabai -m window --grid 4:4:1:1:2:2
 
         # unbind hide window shortcut
         cmd - h : skhd -k ""
