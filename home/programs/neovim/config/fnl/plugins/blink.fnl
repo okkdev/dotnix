@@ -38,13 +38,7 @@
                                                    [:label :label_description]
                                                    [:kind]]
                                          :components {:label {:width {:fill true
-                                                                      :max 40}}
-                                                      :kind_icon {:text (fn [ctx]
-                                                                          (let [tailwind (require :blink.cmp.completion.windows.render.tailwind)]
-                                                                            (if (tailwind.get_hex_color ctx.item)
-                                                                                "󰏘"
-                                                                                (.. ctx.kind_icon
-                                                                                    ctx.icon_gap))))}}}}
+                                                                      :max 40}}}}}
                            :ghost_text {:enabled true}}
               :keymap {:preset :default
                        :<C-CR> [(fn [cmp] (cmp.select_and_accept))]}
@@ -52,9 +46,10 @@
                           ;wait for 0.11
                           ;:window {:show_documentation false}
                           }
+              :cmdline {:sources {}}
               :sources {:default [:lsp :path :snippets :buffer :copilot]
-                        :cmdline {}
-                        :providers {:copilot {:async true
+                        :providers {:lsp {:opts {:tailwind_color_icon "󰏘"}}
+                                    :copilot {:async true
                                               :module :blink-cmp-copilot
                                               :name :copilot
                                               :score_offset 0
