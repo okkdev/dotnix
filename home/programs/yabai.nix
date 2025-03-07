@@ -99,10 +99,10 @@ with lib;
       # sh
       ''
         # focus window
-        ${modMask} - h : yabai -m window --focus west || yabai -m window --focus stack.prev
+        ${modMask} - h : yabai -m window --focus west || yabai -m window --focus stack.prev || yabai -m window --focus stack.last
         ${modMask} - j : yabai -m window --focus south
         ${modMask} - k : yabai -m window --focus north
-        ${modMask} - l : yabai -m window --focus east || yabai -m window --focus stack.next
+        ${modMask} - l : yabai -m window --focus east || yabai -m window --focus stack.next || yabai -m window --focus stack.first
         # swap managed window
         ${moveMask} - h : yabai -m window --swap west
         ${moveMask} - j : yabai -m window --swap south

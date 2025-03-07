@@ -65,16 +65,6 @@ self: super: {
         sha256 = "sha256-nLy1WciLIjIqrD1az6JEXcx5EvaZSn8gBQ6HzQIhAp0=";
       };
     };
-    kitty-scrollback-nvim = super.vimUtils.buildVimPlugin rec {
-      pname = "kitty-scrollback-nvim";
-      version = "5.0.1";
-      src = super.fetchFromGitHub {
-        owner = "mikesmithgh";
-        repo = "kitty-scrollback.nvim";
-        rev = "v${version}";
-        sha256 = "sha256-6aU9lXfRtxJA/MYkaJ4iRQYAnpBBSGI1R6Ny048aJx8=";
-      };
-    };
     everforest-nvim = super.vimUtils.buildVimPlugin {
       pname = "everforest-nvim";
       version = "2024-11-04";

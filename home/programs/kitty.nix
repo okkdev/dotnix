@@ -20,8 +20,6 @@ with lib;
       "--listen-on=unix:/tmp/kitty.socket"
     ];
     keybindings = {
-      "kitty_mod+y" = "kitty_scrollback_nvim";
-      "kitty_mod+g" = "kitty_scrollback_nvim --config ksb_builtin_last_cmd_output";
       "kitty_mod+h" = "previous_tab";
       "kitty_mod+l" = "next_tab";
       "kitty_mod+ctrl+l" = "move_tab_forward";
@@ -46,8 +44,6 @@ with lib;
       # macos_option_as_alt = "yes";
       macos_quit_when_last_window_closed = "yes";
 
-      action_alias = "kitty_scrollback_nvim kitten ${pkgs.vimPlugins.kitty-scrollback-nvim}/python/kitty_scrollback_nvim.py";
-
       ## Performance
       # repaint_delay = 10;
       # sync_to_monitor = "no";
@@ -62,7 +58,8 @@ with lib;
     };
     shellIntegration.enableFishIntegration = true;
     extraConfig = ''
-      ${concatMapStrings (var: "font_features MapleMono-NF-" + var + " +zero +cv01 +cv02 +cv03 +ss03 +ss08\n")
+      ${concatMapStrings
+        (var: "font_features MapleMono-NF-" + var + " +zero +cv01 +cv02 +cv03 +ss03 +ss08\n")
         ([
           "Regular"
           "SemiBold"
@@ -72,7 +69,6 @@ with lib;
       }
 
       include current-theme.conf
-      mouse_map kitty_mod+right press ungrabbed combine : mouse_select_command_output : kitty_scrollback_nvim --config ksb_builtin_last_visited_cmd_output
     '';
   };
 }

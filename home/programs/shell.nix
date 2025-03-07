@@ -16,26 +16,8 @@
         src = pkgs.fetchFromGitHub {
           owner = "jorgebucaran";
           repo = "hydro";
-          rev = "41b46a05c84a15fe391b9d43ecb71c7a243b5703";
-          sha256 = "sha256-zmEa/GJ9jtjzeyJUWVNSz/wYrU2FtqhcHdgxzi6ANHg=";
-        };
-      }
-      {
-        name = "bass";
-        src = pkgs.fetchFromGitHub {
-          owner = "edc";
-          repo = "bass";
-          rev = "79b62958ecf4e87334f24d6743e5766475bcf4d0";
-          sha256 = "sha256-3d/qL+hovNA4VMWZ0n1L+dSM1lcz7P5CQJyy+/8exTc=";
-        };
-      }
-      {
-        name = "puffer-fish";
-        src = pkgs.fetchFromGitHub {
-          owner = "nickeb96";
-          repo = "puffer-fish";
-          rev = "41721259f16b9695d582a8de8d656d4e429d7eea";
-          sha256 = "sha256-TdGyrAlL7aMxNtemxzOwTaOI+bbQ4zML2N2tV300FM8=";
+          rev = "75ab7168a35358b3d08eeefad4ff0dd306bd80d4";
+          sha256 = "sha256-QYq4sU41/iKvDUczWLYRGqDQpVASF/+6brJJ8IxypjE=";
         };
       }
     ];

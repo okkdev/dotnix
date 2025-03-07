@@ -55,9 +55,6 @@ in
         jsregexp # for luasnip
       ];
     plugins = with pkgs.vimPlugins; [
-      # kitty scrollback support
-      kitty-scrollback-nvim
-
       # collection of utils
       mini-nvim
 
