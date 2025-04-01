@@ -115,6 +115,10 @@ with lib;
         # rotate space
         ${moveMask} - n : yabai -m space --rotate 270
         ${moveMask} - m : yabai -m space --rotate 90
+        # split window vertically
+        ${moveMask} - u : yabai -m window --focus west && yabai -m window --insert south && yabai -m window --focus east && yabai -m window --warp west
+        # split window horizontally
+        ${moveMask} - i : yabai -m window --focus north && yabai -m window --insert east && yabai -m window --focus south && yabai -m window --warp north
         # , comma
         ${moveMask} - 0x2B : yabai -m space --mirror y-axis
         # . dot
@@ -123,9 +127,6 @@ with lib;
         ${concatMapStrings (n: moveMask + " - " + n + " : yabai -m window --space " + n + "\n") (
           map toString (range 1 9)
         )}
-        # send window to space and follow focus
-        ${moveMask} - u : yabai -m window --space prev
-        ${moveMask} - i : yabai -m window --space next
         # focus monitor
         ${modMask} - w : yabai -m display --focus prev
         ${modMask} - e : yabai -m display --focus next

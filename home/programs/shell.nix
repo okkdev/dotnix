@@ -121,7 +121,6 @@
             set nvims "$TMPDIR"nvim."$USER"/*/nvim.*.0
             if [ "$mode" = "dark" ]
               osascript -l JavaScript -e "Application('System Events').appearancePreferences.darkMode = true" > /dev/null
-              switch_kitty_theme "Everforest Dark Hard"
               if count $nvims >/dev/null
                 for i in (ls $nvims)
                   nvim --server $i --remote-send ':DarkTheme<CR>'
@@ -130,7 +129,6 @@
               echo "Switched to Dark Theme"
             else if [ "$mode" = "light" ]
               osascript -l JavaScript -e "Application('System Events').appearancePreferences.darkMode = false" > /dev/null
-              switch_kitty_theme "Everforest Light Hard"
               if count $nvims >/dev/null
                 for i in (ls $nvims)
                   nvim --server $i --remote-send ':LightTheme<CR>'
@@ -143,25 +141,6 @@
               else
                 switch_theme "dark"
               end
-            end
-          '';
-      };
-      switch_kitty_theme = {
-        argumentNames = "theme_name";
-        description = "changes the kitty terminal theme";
-        body = # fish
-          ''
-            if [ -z "$theme_name" ]
-              echo "please pass a theme as argument"
-              return
-            end
-
-            set -l current_theme (realpath ~/.config/kitty/current-theme.conf)
-
-            if kitty +kitten themes --dump-theme $theme_name > $current_theme
-              kitty @ --to unix:/tmp/kitty.socket set-colors -a -c $current_theme
-            else
-              echo "theme not found"
             end
           '';
       };

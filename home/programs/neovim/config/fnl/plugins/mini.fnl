@@ -107,6 +107,13 @@
                             "%<"
                             {:hl :MiniStatuslineFilename :strings [filename]}
                             "%="
+                            (if (not= (vim.fn.reg_recording) "")
+                                {:hl :MiniStatuslineFileinfo
+                                 :strings [(.. "Recording @"
+                                               (vim.fn.reg_recording))]
+                                 :rounded true}
+                                "")
+                            " "
                             {:hl :MiniStatuslineFileinfo
                              :strings [fileinfo]
                              :rounded true}

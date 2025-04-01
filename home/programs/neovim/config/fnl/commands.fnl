@@ -6,11 +6,6 @@
 (autocmd :InsertEnter {:callback (fn [] (set vim.o.relativenumber false))})
 (autocmd :InsertLeave {:callback (fn [] (set vim.o.relativenumber true))})
 
-(autocmd :UIEnter {:command ":silent !kitty @ set-spacing padding-bottom=10"})
-
-(autocmd :VimLeavePre
-         {:command ":silent !kitty @ set-spacing padding-bottom=default"})
-
 (autocmd :TextYankPost
          {:callback (fn [] (vim.highlight.on_yank))
           :desc "Highlight when yanking text"})
@@ -21,17 +16,6 @@
                       (set vim.opt_local.relativenumber false)
                       (set vim.opt_local.cursorline false)
                       (set vim.opt_local.signcolumn :no))})
-
-; (autocmd [:Colorscheme :UIEnter]
-;          {:callback (fn []
-;                       (local bg (. (vim.api.nvim_get_hl_by_name :Normal true)
-;                                    :background))
-;                       (local bghex (string.format "#%06x" bg))
-;                       (os.execute (.. "kitty @ set-colors -c background=\"" bghex
-;                                       "\"")))})
-; (autocmd [:VimLeavePre]
-;          {:command ":silent !kitty @ set-colors --reset"})
-;
 
 ; User Commands
 

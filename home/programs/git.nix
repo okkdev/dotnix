@@ -72,13 +72,6 @@
 
     delta = {
       enable = true;
-      package = pkgs.writeScriptBin "delta" ''
-        if defaults read -g AppleInterfaceStyle &> /dev/null; then
-          ${pkgs.delta}/bin/delta "$@"
-        else
-          ${pkgs.delta}/bin/delta --light "$@"
-        fi
-      '';
       options = {
         syntax-theme = "ansi";
         keep-plus-minus-markers = true;

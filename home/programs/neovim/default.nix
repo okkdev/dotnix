@@ -126,6 +126,7 @@ in
 
       # language specific plugins
       uiua-vim
+      d2-vim
     ];
   };
 

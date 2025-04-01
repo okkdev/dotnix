@@ -29,6 +29,7 @@ in
     gping
     tealdeer
     visidata
+    inetutils
 
     # Docs?
     typst
@@ -49,6 +50,7 @@ in
     tailwindcss
     typescript
     uiua
+    d2
 
     # LSPs and formatters
     biome
