@@ -42,11 +42,8 @@
                            :ghost_text {:enabled true}}
               :keymap {:preset :default
                        :<C-CR> [(fn [cmp] (cmp.select_and_accept))]}
-              :signature {:enabled true
-                          ;wait for 0.11
-                          ;:window {:show_documentation false}
-                          }
-              :cmdline {:sources {}}
+              :signature {:enabled true :window {:show_documentation false}}
+              :cmdline {:enabled false}
               :sources {:default [:lsp :path :snippets :buffer :copilot]
                         :providers {:lsp {:opts {:tailwind_color_icon "󰏘"}}
                                     :copilot {:async true

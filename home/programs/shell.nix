@@ -123,7 +123,7 @@
               osascript -l JavaScript -e "Application('System Events').appearancePreferences.darkMode = true" > /dev/null
               if count $nvims >/dev/null
                 for i in (ls $nvims)
-                  nvim --server $i --remote-send ':DarkTheme<CR>'
+                  nvim --server $i --remote-send '<ESC>:DarkTheme<CR>'
                 end
               end
               echo "Switched to Dark Theme"
@@ -131,7 +131,7 @@
               osascript -l JavaScript -e "Application('System Events').appearancePreferences.darkMode = false" > /dev/null
               if count $nvims >/dev/null
                 for i in (ls $nvims)
-                  nvim --server $i --remote-send ':LightTheme<CR>'
+                  nvim --server $i --remote-send '<ESC>:LightTheme<CR>'
                 end
               end
               echo "Switched to Light Theme"
