@@ -95,5 +95,16 @@ self: super: {
         sha256 = "sha256-+mT4pEbtq7f9ZXhOop3Jnjr7ulxU32VtahffIwQqYF4=";
       };
     };
+    # remove once >0.3.0 is released
+    nui-nvim = super.vimUtils.buildVimPlugin {
+      pname = "nui-nvim";
+      version = "2025-04-01";
+      src = super.fetchFromGitHub {
+        owner = "MunifTanjim";
+        repo = "nui.nvim";
+        rev = "8d3bce9764e627b62b07424e0df77f680d47ffdb";
+        sha256 = "sha256-BYTY2ezYuxsneAl/yQbwL1aQvVWKSsN3IVqzTlrBSEU=";
+      };
+    };
   };
 }
