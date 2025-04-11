@@ -51,6 +51,7 @@ in
     typescript
     uiua
     d2
+    chez
 
     # LSPs and formatters
     biome

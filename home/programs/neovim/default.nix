@@ -100,6 +100,7 @@ in
       vim-fugitive
       persisted-nvim
       harpoon2
+      # rainbow-delimiters-nvim
 
       # notes
       neorg

@@ -147,31 +147,3 @@
                                          :MiniStatuslineInactive]]
                           (each [_ group (pairs hl_groups)]
                             (reverse_hl group))))}))
-
-; --- UNUSED THINGS ---
-
-;; inserts [], ()... pairs
-;(let [prs (require :mini.pairs)]
-;  (prs.setup))
-
-; ; Show indent scope
-; (let [indent (require :mini.indentscope)]
-;   (indent.setup {:symbol "▎"
-;                  :draw {:delay 200
-;                         :animation (indent.gen_animation.linear {:duration 5
-;                                                                  :unit :step})}})
-;   (local ins_filetypes [:elixir
-;                         :gleam
-;                         :html
-;                         :javascript
-;                         :nix
-;                         :php
-;                         :python
-;                         :typescript])
-;   (vim.api.nvim_create_autocmd :FileType
-;                                {:pattern "*"
-;                                 :callback (fn []
-;                                             (when (not (vim.tbl_contains ins_filetypes
-;                                                                          vim.bo.filetype))
-;                                               (set vim.b.miniindentscope_disable
-;                                                    true)))}))
