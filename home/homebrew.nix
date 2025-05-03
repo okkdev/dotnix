@@ -7,10 +7,6 @@
 
 let
   taps = [
-    "homebrew/bundle"
-    "homebrew/cask-versions"
-    "homebrew/cask-fonts"
-    "homebrew/services"
     "koekeishiya/formulae"
     "FelixKratz/formulae"
     "support/cyon-tools\", \"git@gitlab.cyon.lan:sup/homebrew-cyon-tools.git"
@@ -69,6 +65,7 @@ let
     "stremio"
     "tableplus"
     "ubersicht"
+    "unity-hub"
     "upscayl"
     "utm"
     "visual-studio-code"
@@ -111,7 +108,7 @@ with lib;
 
       ) casks);
     onChange = ''
-      /opt/homebrew/bin/brew bundle install --cleanup --no-upgrade --force --no-lock --global
+      /opt/homebrew/bin/brew bundle install --cleanup --no-upgrade --force --global
     '';
   };
 }

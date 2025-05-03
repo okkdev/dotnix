@@ -31,24 +31,24 @@ in
     visidata
     inetutils
 
-    # Docs?
-    typst
-
     # Programming
     otp.erlang
     otp.rebar3
     otp.elixir_1_17
     deno
+    dotnet-sdk_9
+    mono
     nodejs_23
     corepack_23
     fennel
     gleam
     libiconv
     llvm
-    python39
+    python313
     rustup
     tailwindcss
     typescript
+    typst
     uiua
     d2
     chez
@@ -56,7 +56,7 @@ in
     # LSPs and formatters
     biome
     dockerfile-language-server-nodejs
-    elp
+    erlang-language-platform
     erlfmt
     fennel-ls
     fnlfmt
@@ -79,6 +79,7 @@ in
     taplo
     tinymist
     typstyle
+    omnisharp-roslyn
     vscode-langservers-extracted
     yaml-language-server
 

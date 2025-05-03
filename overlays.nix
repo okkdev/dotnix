@@ -1,39 +1,10 @@
 self: super: {
-  elp = super.stdenv.mkDerivation rec {
-    name = "elp";
-    version = "2024-08-05";
-    src = super.fetchurl {
-      url = "https://github.com/WhatsApp/erlang-language-platform/releases/download/${version}/elp-macos-x86_64-apple-darwin-otp-26.2.tar.gz";
-      sha256 = "sha256-mLh+aiW5WHuUCHuV0uPLemddnA25YpSRMLq8TdBTKJY=";
-    };
-    phases = [ "installPhase" ];
-    installPhase = ''
-      mkdir -p $out/bin
-      tar -xvf $src -C $out/bin
-      chmod +x $out/bin/elp
-    '';
-  };
-  superhtml = super.stdenv.mkDerivation rec {
-    name = "superhtml";
-    version = "0.5.0";
-    src = super.fetchurl {
-      url = "https://github.com/kristoff-it/superhtml/releases/download/v${version}/aarch64-macos.tar.gz";
-      sha256 = "sha256-w/iZ0UxsaY4PUU889Mf9MBkuofKdLilWfARRMnZEO8I=";
-    };
-    phases = [ "installPhase" ];
-    installPhase = ''
-      mkdir -p $out/bin
-      tar -xvf $src
-      mv aarch64-macos/superhtml $out/bin
-      chmod +x $out/bin/superhtml
-    '';
-  };
   gleam = super.stdenv.mkDerivation rec {
     name = "gleam";
-    version = "1.9.0-rc1";
+    version = "1.10.0";
     src = super.fetchurl {
       url = "https://github.com/gleam-lang/gleam/releases/download/v${version}/gleam-v${version}-aarch64-apple-darwin.tar.gz";
-      sha256 = "sha256-oOevWHmv0y7kANsaFED9J58/gMV6Y1791ny4ToU/2WE=";
+      sha256 = "sha256-kNhxdQXxS5JYeUMuF3cIVQpd0pyaYg4IXyHwrXU8wZo=";
     };
     phases = [ "installPhase" ];
     installPhase = ''

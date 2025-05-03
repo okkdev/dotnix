@@ -161,6 +161,11 @@
 
 (lsp.uiua.setup {: capabilities : flags})
 
+(lsp.omnisharp.setup {:cmd [:OmniSharp]
+                      :settings {:useModernNet false}
+                      : capabilities
+                      : flags})
+
 (lsp.tinymist.setup {: capabilities
                      : flags
                      :settings {:formatterMode :typstyle}})
@@ -169,6 +174,6 @@
                    : flags
                    :settings {:yaml {:schemaStore {:enable false :url ""}
                                      :schemas (schemastore.yaml.schemas {:extra {:description "More permissive Compose schema"
-                                                                                 :fileMatch "docker-compose*.{yml,yaml}"
+                                                                                 :fileMatch "{,docker-}compose*.{yml,yaml}"
                                                                                  :name :docker-compose
                                                                                  :url "https://raw.githubusercontent.com/compose-spec/compose-spec/master/schema/compose-spec.json"}})}}})
