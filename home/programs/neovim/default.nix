@@ -100,6 +100,7 @@ in
       vim-fugitive
       persisted-nvim
       harpoon2
+      visual-whitespace-nvim
       # rainbow-delimiters-nvim
 
       # notes
@@ -124,7 +125,7 @@ in
       neovim-ayu
       oxocarbon-nvim
       zenbones-nvim
-
+      
       # language specific plugins
       uiua-vim
       d2-vim
