@@ -71,6 +71,7 @@ let
     "visual-studio-code"
     "wezterm"
     "zed"
+    "zen-browser"
     "zoom"
   ];
 in

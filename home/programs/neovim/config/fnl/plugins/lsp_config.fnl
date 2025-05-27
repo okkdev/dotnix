@@ -35,7 +35,8 @@
                                        vim.diagnostic.severity.WARN ""
                                        vim.diagnostic.severity.INFO ""
                                        vim.diagnostic.severity.HINT ""}}
-                        :virtual_lines {:current_line true}
+                        ; :virtual_lines {:current_line true}
+                        :virtual_text {:current_line true}
                         :linehl true
                         :float {:style :minimal :source :always}})
 

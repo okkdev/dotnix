@@ -18,12 +18,12 @@ self: super: {
   vimPlugins = super.vimPlugins // {
     bg-nvim = super.vimUtils.buildVimPlugin {
       pname = "bg-nvim";
-      version = "2024-05-10";
+      version = "2025-05-18";
       src = super.fetchFromGitHub {
         owner = "typicode";
         repo = "bg.nvim";
-        rev = "fe5d5c598c9f621dac315013f53108a307d8f03f";
-        sha256 = "sha256-rjli3YfUTGVdTZF66kpcutj46IeXsSI9eKWNXEaqST4=";
+        rev = "df916e4df2493ee302eea62185ed014ba7ca40d9";
+        sha256 = "sha256-H+ZFX0hE9te6qo+fzUuWngHOEf0zGyHkEIQIYvyTzTI=";
       };
     };
     telescope-recent-files-nvim = super.vimUtils.buildVimPlugin {
@@ -38,12 +38,12 @@ self: super: {
     };
     everforest-nvim = super.vimUtils.buildVimPlugin {
       pname = "everforest-nvim";
-      version = "2024-11-04";
+      version = "2025-05-18";
       src = super.fetchFromGitHub {
         owner = "neanias";
         repo = "everforest-nvim";
-        rev = "7c57941d5ef5a150f307b9295c00a59e95d78587";
-        sha256 = "sha256-qmRec0yFR+/nRsu+j/E7nrk70DIDN6EI2sCW6vjeyeo=";
+        rev = "2eb7c348f880ba93de4d98cae049c9441f5d4d49";
+        sha256 = "sha256-LMIGPDhKZVqriGuPR9ICVo55QdyByLXOoRK82KfsRxU=";
       };
     };
     uiua-vim = super.vimUtils.buildVimPlugin {
@@ -66,15 +66,15 @@ self: super: {
         sha256 = "sha256-+mT4pEbtq7f9ZXhOop3Jnjr7ulxU32VtahffIwQqYF4=";
       };
     };
-    # remove once >0.3.0 is released
+    # remove once 0.4.0 is on nixpkgs
     nui-nvim = super.vimUtils.buildVimPlugin {
       pname = "nui-nvim";
       version = "2025-04-01";
       src = super.fetchFromGitHub {
         owner = "MunifTanjim";
         repo = "nui.nvim";
-        rev = "8d3bce9764e627b62b07424e0df77f680d47ffdb";
-        sha256 = "sha256-BYTY2ezYuxsneAl/yQbwL1aQvVWKSsN3IVqzTlrBSEU=";
+        rev = "0.4.0";
+        sha256 = "sha256-SJc9nfV6cnBKYwRWsv0iHy+RbET8frNV85reICf+pt8=";
       };
     };
   };

@@ -18,6 +18,7 @@ with lib;
         yabai -m config mouse_follows_focus          on
         yabai -m config focus_follows_mouse          off
         yabai -m config window_origin_display        default
+        yabai -m config window_zoom_persist          off
         yabai -m config window_placement             second_child
         yabai -m config split_ratio                  0.50
         yabai -m config auto_balance                 off

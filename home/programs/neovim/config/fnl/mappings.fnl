@@ -24,19 +24,16 @@
 
 (map [:n] :<Esc> :<cmd>nohlsearch<CR><Esc> {:desc "Clear search highlights"})
 
-; (map [:n :x :i] :<C-h> :<C-w>h {:desc "Focus left window"})
-; (map [:n :x :i] :<C-j> :<C-w>j {:desc "Focus bottom window"})
-; (map [:n :x :i] :<C-k> :<C-w>k {:desc "Focus top window"})
-; (map [:n :x :i] :<C-l> :<C-w>l {:desc "Focus right window"})
+(map [:n] "<" "<<" {:desc "simpler unindent"})
+(map [:n] ">" ">>" {:desc "simpler indent"})
 
-(map [:v] :<A-j> ":m '>+1<CR>gv=gv"
-     {:desc "Move selected lines down" :silent true})
+(map [:x] "<" :<gv {:desc "unindent without losing selection"})
+(map [:x] ">" :>gv {:desc "indent without losing selection"})
 
-(map [:v] :<A-k> ":m '<-2<CR>gv=gv"
-     {:desc "Move selected lines up" :silent true})
+(map [:i] :<Esc> :<Esc>l
+     {:desc "exiting insert mode after 'i' wont move the cursor"})
 
 (map :n :<C-d> :<C-d>zz {:desc "Scroll down and keep cursor in the center"})
 (map :n :<C-u> :<C-u>zz {:desc "Scroll up and keep cursor in the center"})
 (map :n :n :nzzzv {:desc "Find next and keep cursor in the center"})
 (map :n :N :Nzzzv {:desc "Find previous and keep cursor in the center"})
-

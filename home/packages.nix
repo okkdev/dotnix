@@ -14,7 +14,8 @@ in
     ripgrep
     viddy
     jq
-    httpie
+    httpie # replace with xh?
+    xh
     bottom
     btop
     dogdns
@@ -64,6 +65,7 @@ in
     nil
     nixfmt-rfc-style
     nodePackages.bash-language-server
+    shellcheck
     typescript-language-server
     otp.elixir-ls
     phpactor

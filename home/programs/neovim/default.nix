@@ -95,13 +95,13 @@ in
       gitsigns-nvim
       flash-nvim
       oil-nvim
-      diffview-nvim
       nvim-spectre
-      vim-fugitive
+      git-conflict-nvim
       persisted-nvim
       harpoon2
       visual-whitespace-nvim
       # rainbow-delimiters-nvim
+      parinfer-rust
 
       # notes
       neorg
@@ -125,7 +125,7 @@ in
       neovim-ayu
       oxocarbon-nvim
       zenbones-nvim
-      
+
       # language specific plugins
       uiua-vim
       d2-vim
