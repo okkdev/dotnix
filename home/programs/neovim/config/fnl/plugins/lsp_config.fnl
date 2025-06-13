@@ -53,128 +53,105 @@
 
 ; Language Servers
 
-(local lsp (require :lspconfig))
+(local lsp vim.lsp)
 (local schemastore (require :schemastore))
-
-; Can be removed when Neovim 0.11+ and Blink.cmp 0.10+
-(local blink (require :blink.cmp))
-(local capabilities (blink.get_lsp_capabilities))
-
-(local flags {:debounce_text_changes 150})
 
 ; Debug stuff
 ; (vim.lsp.set_log_level vim.lsp.log_levels.DEBUG)
 ; ((. (require :vim.lsp.log) :set_format_func) vim.inspect)
 ; (vim.lsp.set_log_level :trace)
 
-(lsp.rust_analyzer.setup {:settings {:rust-analyzer {}} : flags})
+; Simple LSP servers
 
-(lsp.elixirls.setup {:cmd [:elixir-ls] : capabilities : flags})
+(lsp.enable :bashls)
+(lsp.enable :biome)
+(lsp.enable :cssls)
+(lsp.enable :dartls)
+(lsp.enable :dockerls)
+(lsp.enable :elmls)
+(lsp.enable :elp)
+(lsp.enable :gdscript)
+(lsp.enable :gleam)
+(lsp.enable :gopls)
+(lsp.enable :nil_ls)
+(lsp.enable :phpactor)
+(lsp.enable :pyright)
+(lsp.enable :rust_analyzer)
+(lsp.enable :superhtml)
+(lsp.enable :ts_ls)
+(lsp.enable :uiua)
+; (lsp.enable :scheme_langserver)
+; (lsp.enable :denols)
 
-(lsp.elmls.setup {: capabilities : flags})
+; LSP servers with configs
 
-(lsp.gleam.setup {: capabilities : flags})
+(lsp.enable :elixirls)
+(lsp.config :elixirls {:cmd [:elixir-ls]})
 
-(lsp.nil_ls.setup {: capabilities : flags})
+(lsp.enable :fennel_ls)
+(lsp.config :fennel_ls {:settings {:fennel-ls {:extra-globals :vim}}})
 
-(lsp.fennel_ls.setup {: capabilities
-                      : flags
-                      :settings {:fennel-ls {:extra-globals :vim}}})
+(lsp.enable :tailwindcss)
+(lsp.config :tailwindcss
+            {:filetypes [:astro
+                         :astro-markdown
+                         :clojure
+                         :eelixir
+                         :elixir
+                         :gleam
+                         :gohtml
+                         :gohtmltmpl
+                         :handlebars
+                         :html
+                         :htmlangular
+                         :html-eex
+                         :heex
+                         :markdown
+                         :mdx
+                         :php
+                         :slim
+                         :twig
+                         :css
+                         :less
+                         :postcss
+                         :sass
+                         :scss
+                         :javascript
+                         :javascriptreact
+                         :reason
+                         :rescript
+                         :typescript
+                         :typescriptreact
+                         :vue
+                         :svelte
+                         :templ]
+             :settings {:tailwindCSS {:includeLanguages {:elixir :html-eex
+                                                         :eelixir :html-eex
+                                                         :heex :html-eex
+                                                         :gleam :html}
+                                      :experimental {:classRegex ["class= \"([^\"]*)"
+                                                                  "class: \"([^\"]*)"
+                                                                  "class\\(\\s*\"([^\"]*)\"\\s*\\)"
+                                                                  "~H\"\"\".*class=\"([^\"]*)\".*\"\"\""]}}}})
 
-(lsp.biome.setup {:single_file_support true : capabilities : flags})
-(lsp.ts_ls.setup {: capabilities : flags})
-;(lsp.denols.setup {: capabilities : flags})
+(lsp.enable :html)
+(lsp.config :html {:filetypes [:templ :svg]})
 
-;(lsp.tailwindcss.setup {: capabilities
-;                        : flags
-;                        :on_attach (fn [client _buffer]
-;                                     (set client.server_capabilities.hoverProvider
-;                                          false))})
-(lsp.tailwindcss.setup {: capabilities
-                        : flags
-                        :filetypes [:astro
-                                    :astro-markdown
-                                    :clojure
-                                    :eelixir
-                                    :elixir
-                                    :gleam
-                                    :gohtml
-                                    :gohtmltmpl
-                                    :handlebars
-                                    :html
-                                    :htmlangular
-                                    :html-eex
-                                    :heex
-                                    :markdown
-                                    :mdx
-                                    :php
-                                    :slim
-                                    :twig
-                                    :css
-                                    :less
-                                    :postcss
-                                    :sass
-                                    :scss
-                                    :javascript
-                                    :javascriptreact
-                                    :reason
-                                    :rescript
-                                    :typescript
-                                    :typescriptreact
-                                    :vue
-                                    :svelte
-                                    :templ]
-                        :settings {:tailwindCSS {:includeLanguages {:elixir :html-eex
-                                                                    :eelixir :html-eex
-                                                                    :heex :html-eex
-                                                                    :gleam :html}
-                                                 :experimental {:classRegex ["class= \"([^\"]*)"
-                                                                             "class: \"([^\"]*)"
-                                                                             "class\\(\\s*\"([^\"]*)\"\\s*\\)"
-                                                                             "~H\"\"\".*class=\"([^\"]*)\".*\"\"\""]}}}})
+(lsp.enable :jsonls)
+(lsp.config :jsonls
+            {:settings {:json {:schemas (schemastore.json.schemas)
+                               :validate {:enable true}}}})
 
-(lsp.pyright.setup {: capabilities : flags})
+(lsp.enable :omnisharp)
+(lsp.config :omnisharp {:cmd [:OmniSharp :settings {:useModernNet false}]})
 
-(lsp.cssls.setup {: capabilities : flags})
+(lsp.enable :tinymist)
+(lsp.config :tinymist {:settings {:formatterMode :typstyle}})
 
-(lsp.html.setup {: capabilities : flags :filetypes [:templ :svg]})
-
-(lsp.superhtml.setup {: capabilities : flags})
-
-(lsp.jsonls.setup {: capabilities
-                   : flags
-                   :settings {:json {:schemas (schemastore.json.schemas)
-                                     :validate {:enable true}}}})
-
-(lsp.gopls.setup {: capabilities : flags})
-
-(lsp.gdscript.setup {: capabilities : flags})
-
-(lsp.phpactor.setup {: capabilities : flags})
-
-(lsp.bashls.setup {: capabilities : flags})
-
-(lsp.dartls.setup {: capabilities : flags})
-
-(lsp.dockerls.setup {: capabilities : flags})
-
-(lsp.elp.setup {: capabilities : flags})
-
-(lsp.uiua.setup {: capabilities : flags})
-
-(lsp.omnisharp.setup {:cmd [:OmniSharp]
-                      :settings {:useModernNet false}
-                      : capabilities
-                      : flags})
-
-(lsp.tinymist.setup {: capabilities
-                     : flags
-                     :settings {:formatterMode :typstyle}})
-
-(lsp.yamlls.setup {: capabilities
-                   : flags
-                   :settings {:yaml {:schemaStore {:enable false :url ""}
-                                     :schemas (schemastore.yaml.schemas {:extra {:description "More permissive Compose schema"
-                                                                                 :fileMatch "{,docker-}compose*.{yml,yaml}"
-                                                                                 :name :docker-compose
-                                                                                 :url "https://raw.githubusercontent.com/compose-spec/compose-spec/master/schema/compose-spec.json"}})}}})
+(lsp.enable :yamlls)
+(lsp.config :yamlls
+            {:settings {:yaml {:schemaStore {:enable false :url ""}
+                               :schemas (schemastore.yaml.schemas {:extra {:description "More permissive Compose schema"
+                                                                           :fileMatch "{,docker-}compose*.{yml,yaml}"
+                                                                           :name :docker-compose
+                                                                           :url "https://raw.githubusercontent.com/compose-spec/compose-spec/master/schema/compose-spec.json"}})}}})

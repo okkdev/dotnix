@@ -9,22 +9,20 @@ let
   nvim-config = pkgs.stdenv.mkDerivation {
     name = "lua-config";
     src = ./config;
-    buildInputs = [ pkgs.fennel ];
+    nativeBuildInputs = [ pkgs.fennel ];
     phases = [
       "buildPhase"
       "installPhase"
     ];
     buildPhase = ''
-      shopt -s globstar
-
       mkdir -p build/lua
       cp $src/init.fnl build/
       cp -r --no-preserve=mode,ownership $src/fnl/* build/lua/
 
-      for f in build/**/*.fnl
-      do 
-        fennel --compile --globals vim $f > ''${f%.fnl}.lua
-        rm $f
+      find build -name "*.fnl" -type f | while read -r f; do
+        echo "Compiling $f..."
+        fennel --compile --globals vim "$f" > "''${f%.fnl}.lua" || exit 1
+        rm "$f"
       done
     '';
     installPhase = ''
@@ -102,6 +100,7 @@ in
       visual-whitespace-nvim
       # rainbow-delimiters-nvim
       parinfer-rust
+      conjure
 
       # notes
       neorg

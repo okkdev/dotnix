@@ -29,9 +29,11 @@
       rb = "rebase";
       sw = "switch";
       swc = "switch -c";
+      co = "checkout";
       d = "diff";
       ds = "diff --staged";
-      diffs = "diff --staged";
+      dt = "-c diff.external=difft diff";
+      dts = "-c diff.external=difft diff --staged";
       f = "fetch";
       m = "merge";
       me = "merge --no-ff";

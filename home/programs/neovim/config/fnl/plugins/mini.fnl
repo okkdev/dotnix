@@ -99,11 +99,11 @@
                fileinfo (section_fileinfo {:trunc_width 120})
                search (statusline.section_searchcount {:trunc_width 75})
                location (section_location)]
-           (combine_groups [{:hl mode_hl :strings [mode] :rounded true}
-                            " "
+           (combine_groups [{:hl mode_hl :strings [mode] :rounded false}
+                            ; " "
                             {:hl :MiniStatuslineDevinfo
                              :strings [git]
-                             :rounded true}
+                             :rounded false}
                             "%<"
                             {:hl :MiniStatuslineFilename :strings [filename]}
                             "%="
@@ -111,16 +111,16 @@
                                 {:hl :MiniStatuslineFileinfo
                                  :strings [(.. "Recording @"
                                                (vim.fn.reg_recording))]
-                                 :rounded true}
+                                 :rounded false}
                                 "")
-                            " "
+                            ; " "
                             {:hl :MiniStatuslineFileinfo
                              :strings [fileinfo]
-                             :rounded true}
-                            " "
+                             :rounded false}
+                            ; " "
                             {:hl mode_hl
                              :strings [search location]
-                             :rounded true}])))))
+                             :rounded false}])))))
 
 ; create reverse highlight colors
 (let [autocmd vim.api.nvim_create_autocmd]

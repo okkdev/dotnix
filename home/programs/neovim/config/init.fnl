@@ -19,6 +19,7 @@
 (require :plugins.oil)
 (require :plugins.gitsigns)
 (require :plugins.gitconflict)
+(require :plugins.conjure)
 (require :plugins.nvim_tree)
 (require :plugins.visual_whitespace)
 (require :plugins.noneckpain)

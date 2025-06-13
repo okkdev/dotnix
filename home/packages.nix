@@ -31,16 +31,19 @@ in
     tealdeer
     visidata
     inetutils
+    rainfrog
+    difftastic
+    mergiraf
 
     # Programming
     otp.erlang
     otp.rebar3
-    otp.elixir_1_17
+    otp.elixir_1_18
     deno
     dotnet-sdk_9
     mono
-    nodejs_23
-    corepack_23
+    nodejs_24
+    corepack_24
     fennel
     gleam
     libiconv
@@ -84,12 +87,12 @@ in
     omnisharp-roslyn
     vscode-langservers-extracted
     yaml-language-server
+    # akkuPackages.scheme-langserver
 
     # fonts
     atkinson-hyperlegible
     cascadia-code
     commit-mono
-    cozette
     fantasque-sans-mono
     fira-code
     hasklig
@@ -99,6 +102,7 @@ in
     jetbrains-mono
     julia-mono
     manrope
+    miracode
     recursive
     uiua386
     nerd-fonts.symbols-only

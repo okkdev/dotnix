@@ -21,6 +21,7 @@ with lib;
         "ss03"
         "ss08"
       ]}
+      font-thicken = false
 
       theme = dark:rose-pine-moon,light:rose-pine-dawn
 
