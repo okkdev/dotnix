@@ -65,12 +65,19 @@
             (string.format "%s %s" icon filetype)
             filetype))))
 
+  (fn section_location [args]
+    (if (statusline.is_truncated args.trunc_width) "%l|%L"
+        "%2v|%-2{virtcol(\"$\") - 1} %l|%L %P"))
+
   (fn combine_groups [groups]
     (table.concat (vim.tbl_map (fn [s]
                                  (if (= (type s) :string)
                                      s
                                      (do
-                                       (local str (table.concat s.strings " "))
+                                       (local str
+                                              (table.concat (icollect [_ v (ipairs s.strings)]
+                                                              (if (not= v "") v))
+                                                            " "))
                                        (if (= (str:len) 0)
                                            (string.format "%%#%s#" s.hl)
                                            (= s.hl nil)
@@ -83,13 +90,6 @@
                                            (string.format "%%#%s# %s " s.hl str)))))
                                groups) ""))
 
-  (fn section_location []
-    (let [sbar ["🭶" "🭷" "🭸" "🭹" "🭺" "🭻"]
-          curr_line (. (vim.api.nvim_win_get_cursor 0) 1)
-          lines (vim.api.nvim_buf_line_count 0)
-          i (+ (math.floor (* (/ (- curr_line 1) lines) (length sbar))) 1)]
-      (.. "%l " (. sbar i) " %L")))
-
   (set statusline.inactive (fn [] ""))
   (set statusline.active
        (fn []
@@ -98,7 +98,7 @@
                filename (section_filename {:trunc_width 140})
                fileinfo (section_fileinfo {:trunc_width 120})
                search (statusline.section_searchcount {:trunc_width 75})
-               location (section_location)]
+               location (section_location {:trunc_width 75})]
            (combine_groups [{:hl mode_hl :strings [mode] :rounded false}
                             ; " "
                             {:hl :MiniStatuslineDevinfo

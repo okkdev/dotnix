@@ -53,6 +53,11 @@ in
         jsregexp # for luasnip
       ];
     plugins = with pkgs.vimPlugins; [
+      # plugin dependencies
+      plenary-nvim
+      nvim-nio
+      nui-nvim
+
       # collection of utils
       mini-nvim
 
@@ -69,15 +74,11 @@ in
       blink-cmp
       copilot-lua
       blink-cmp-copilot
+      minuet-ai-nvim
       friendly-snippets
 
       # formatter
       conform-nvim
-
-      # plugin dependencies
-      plenary-nvim
-      nvim-nio
-      nui-nvim
 
       # telescope
       telescope-nvim
@@ -87,8 +88,12 @@ in
       telescope-recent-files-nvim
       telescope-live-grep-args-nvim
 
+      # editing
+      dial-nvim
+      parinfer-rust
+      conjure
+
       # ease of use stuff
-      vim-sleuth
       nvim-tree-lua
       gitsigns-nvim
       flash-nvim
@@ -99,8 +104,6 @@ in
       harpoon2
       visual-whitespace-nvim
       # rainbow-delimiters-nvim
-      parinfer-rust
-      conjure
 
       # notes
       neorg
@@ -117,7 +120,7 @@ in
       no-neck-pain-nvim
 
       # themes
-      # lush-nvim # broken...
+      lush-nvim
       rose-pine
       everforest-nvim
       catppuccin-nvim

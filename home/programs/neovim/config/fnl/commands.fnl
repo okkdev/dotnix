@@ -7,7 +7,7 @@
 (autocmd :InsertLeave {:callback (fn [] (set vim.o.relativenumber true))})
 
 (autocmd :TextYankPost
-         {:callback (fn [] (vim.highlight.on_yank))
+         {:callback (fn [] (vim.hl.on_yank))
           :desc "Highlight when yanking text"})
 
 (autocmd :TermOpen

@@ -14,6 +14,7 @@
 (require :plugins.notify)
 (require :plugins.persisted)
 (require :plugins.conform)
+(require :plugins.dial)
 (require :plugins.flash)
 (require :plugins.harpoon)
 (require :plugins.oil)
@@ -25,3 +26,4 @@
 (require :plugins.noneckpain)
 (require :plugins.neorg)
 (require :plugins.copilot)
+(require :plugins.minuet)

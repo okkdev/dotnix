@@ -74,6 +74,7 @@
                                        :StatusLine {:bg :base}
                                        :StatusLineNC {:bg :base}
                                        :BlinkCmpDoc {:bg :surface}
+                                       :BlinkCmpDocSeparator {:bg :surface}
                                        :BlinkCmpDocBorder {:bg :surface}}}))
 
 (let [catppuccin (require :catppuccin)]

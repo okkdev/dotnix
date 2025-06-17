@@ -10,11 +10,9 @@
                                    :elm [:elm_format]
                                    :erlang [:erlfmt]
                                    :fennel [:fnlfmt]
-                                   :gdformat [:gdscript]
-                                   :gleam [:rustywind_gleam
-                                           :gleam
-                                           ;:lsp_format :first
-                                           ]
+                                   :gdscript [:gdformat]
+                                   :gleam [:rustywind_gleam :gleam]
+                                   ;:lsp_format :first
                                    :heex [:rustywind :mix]
                                    :html [:superhtml :rustywind]
                                    :javascript [:biome :rustywind]
