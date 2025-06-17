@@ -24,7 +24,8 @@
                             :find_files {:find_command find_cmd}}
                   :defaults {:prompt_prefix "   "
                              :selection_caret "  "
-                             :entry_prefix "   "}})
+                             :entry_prefix "   "
+                             :borderchars [" " " " " " " " " " " " " " " "]}})
 
 (telescope.load_extension :noice)
 (telescope.load_extension :fzf)

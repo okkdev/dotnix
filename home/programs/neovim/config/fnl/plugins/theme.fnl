@@ -1,6 +1,5 @@
 ; Styling
 (local colorscheme vim.cmd.colorscheme)
-(local set_hl vim.api.nvim_set_hl)
 (local usercmd vim.api.nvim_create_user_command)
 
 ; This shouldn't be necessary, but seems like nvim 0.10 doesn't detect background color correct/fast enough...
@@ -79,37 +78,7 @@
                                     :telescope {:enabled true :style :nvchad}
                                     :leap true
                                     :flash true
-                                    :which_key true}}) ; Customization for Pmenu
-  (set_hl 0 :CmpItemAbbrDeprecated
-          {:bg :NONE :fg "#7E8294" :strikethrough true})
-  (set_hl 0 :CmpItemAbbrMatch {:bg :NONE :bold true :fg "#82AAFF"})
-  (set_hl 0 :CmpItemAbbrMatchFuzzy {:bg :NONE :bold true :fg "#82AAFF"})
-  (set_hl 0 :CmpItemMenu {:bg :NONE :fg "#C792EA" :italic true})
-  (set_hl 0 :CmpItemKindField {:bg "#B5585F" :fg "#EED8DA"})
-  (set_hl 0 :CmpItemKindProperty {:bg "#B5585F" :fg "#EED8DA"})
-  (set_hl 0 :CmpItemKindEvent {:bg "#B5585F" :fg "#EED8DA"})
-  (set_hl 0 :CmpItemKindText {:bg "#9FBD73" :fg "#C3E88D"})
-  (set_hl 0 :CmpItemKindEnum {:bg "#9FBD73" :fg "#C3E88D"})
-  (set_hl 0 :CmpItemKindKeyword {:bg "#9FBD73" :fg "#C3E88D"})
-  (set_hl 0 :CmpItemKindConstant {:bg "#D4BB6C" :fg "#FFE082"})
-  (set_hl 0 :CmpItemKindConstructor {:bg "#D4BB6C" :fg "#FFE082"})
-  (set_hl 0 :CmpItemKindReference {:bg "#D4BB6C" :fg "#FFE082"})
-  (set_hl 0 :CmpItemKindFunction {:bg "#A377BF" :fg "#EADFF0"})
-  (set_hl 0 :CmpItemKindStruct {:bg "#A377BF" :fg "#EADFF0"})
-  (set_hl 0 :CmpItemKindClass {:bg "#A377BF" :fg "#EADFF0"})
-  (set_hl 0 :CmpItemKindModule {:bg "#A377BF" :fg "#EADFF0"})
-  (set_hl 0 :CmpItemKindOperator {:bg "#A377BF" :fg "#EADFF0"})
-  (set_hl 0 :CmpItemKindVariable {:bg "#7E8294" :fg "#C5CDD9"})
-  (set_hl 0 :CmpItemKindFile {:bg "#7E8294" :fg "#C5CDD9"})
-  (set_hl 0 :CmpItemKindUnit {:bg "#D4A959" :fg "#F5EBD9"})
-  (set_hl 0 :CmpItemKindSnippet {:bg "#D4A959" :fg "#F5EBD9"})
-  (set_hl 0 :CmpItemKindFolder {:bg "#D4A959" :fg "#F5EBD9"})
-  (set_hl 0 :CmpItemKindMethod {:bg "#6C8ED4" :fg "#DDE5F5"})
-  (set_hl 0 :CmpItemKindValue {:bg "#6C8ED4" :fg "#DDE5F5"})
-  (set_hl 0 :CmpItemKindEnumMember {:bg "#6C8ED4" :fg "#DDE5F5"})
-  (set_hl 0 :CmpItemKindInterface {:bg "#58B5A8" :fg "#D8EEEB"})
-  (set_hl 0 :CmpItemKindColor {:bg "#58B5A8" :fg "#D8EEEB"})
-  (set_hl 0 :CmpItemKindTypeParameter {:bg "#58B5A8" :fg "#D8EEEB"}))
+                                    :which_key true}}))
 
 (let [everforest (require :everforest)]
   (everforest.setup {:background :hard
@@ -134,6 +103,19 @@
                                            {:fg p.bg0})
                                       (set hl.StatusLineNC {:bg p.bg0})
                                       (set hl.StatusLine {:bg p.bg0}))}))
+
+; Zenbones Settings
+(let [autocmd vim.api.nvim_create_autocmd
+      set_hl vim.api.nvim_set_hl]
+  (autocmd :ColorScheme
+           {:callback (fn []
+                        (when (= vim.g.colors_name :zenbones)
+                          (set_hl 0 :TelescopePromptNormal {:link :NormalFloat})
+                          (set_hl 0 :TelescopePromptBorder {:link :NormalFloat})
+                          (set_hl 0 :TelescopeResultsNormal
+                                  {:link :NormalFloat})
+                          (set_hl 0 :TelescopeResultsBorder
+                                  {:link :NormalFloat})))}))
 
 ; Activate the initial theme
 (colorscheme current_theme)
