@@ -44,7 +44,6 @@ let
     "inkscape"
     "insomnia"
     "kicad"
-    "kitty"
     "krita"
     "lagrange"
     "logseq"
