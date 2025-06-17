@@ -23,7 +23,7 @@ with lib;
       ]}
       font-thicken = false
 
-      theme = dark:rose-pine-moon,light:rose-pine-dawn
+      theme = dark:zenbones_dark,light:zenbones_light
 
       adjust-cell-height = 40%
 

@@ -9,32 +9,17 @@
     (set vim.o.background :dark)
     (set vim.o.background :light))
 
-(local themes [:ayu
-               :oxocarbon
-               :catppuccin
-               :rose-pine
-               :everforest
-               :neobones
-               :forestbones
-               :kanagawabones])
-
-(var current_theme :rose-pine)
+(local current_theme :zenbones)
 
 (usercmd :DarkTheme (fn []
                       (set vim.o.background :dark)
-                      (colorscheme current_theme))
+                      (colorscheme vim.g.colors_name))
          {:desc "Sets dark theme"})
 
 (usercmd :LightTheme (fn []
                        (set vim.o.background :light)
-                       (colorscheme current_theme))
+                       (colorscheme vim.g.colors_name))
          {:desc "Sets light theme"})
-
-(each [_ t (ipairs themes)]
-  (usercmd (.. :ThemeSet (string.upper (string.gsub t "%A" "") t))
-           (fn []
-             (set current_theme t)
-             (colorscheme t)) {:desc (.. "Sets theme " t)}))
 
 ; devicon settings
 (let [icons (require :nvim-web-devicons)]
