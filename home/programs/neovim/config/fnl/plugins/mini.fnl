@@ -90,17 +90,17 @@
                                            (string.format "%%#%s# %s " s.hl str)))))
                                groups) ""))
 
-  (set statusline.inactive (fn []
-                             (.. "%=" (section_filename {:trunc_width 100})
-                                 "%=")))
+  (set statusline.inactive
+       (fn []
+         (.. "%=" (section_filename {:trunc_width 75}) "%=")))
   (set statusline.active
        (fn []
          (let [(mode mode_hl) (statusline.section_mode {:trunc_width 120})
                git (statusline.section_git {:trunc_width 75})
-               filename (section_filename {:trunc_width 120})
-               fileinfo (section_fileinfo {:trunc_width 120})
+               filename (section_filename {:trunc_width 75})
+               fileinfo (section_fileinfo {:trunc_width 100})
                search (statusline.section_searchcount {:trunc_width 75})
-               location (section_location {:trunc_width 75})]
+               location (section_location {:trunc_width 100})]
            (combine_groups [{:hl mode_hl :strings [mode] :rounded false}
                             ; " "
                             {:hl :MiniStatuslineDevinfo
