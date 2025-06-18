@@ -55,15 +55,17 @@
                                                        " %m%r")
         (.. (vim.fn.expand "%:~:.") " %m%r")))
 
-  (fn section_fileinfo [_args]
-    (let [filetype vim.bo.filetype]
-      (when (or (not= filetype "") (= vim.bo.buftype ""))
-        (local file_name (vim.fn.expand "%:t"))
-        (local file_ext (vim.fn.expand "%:e"))
-        (local icon (devicons.get_icon file_name file_ext {:default true}))
-        (if (not= icon "")
-            (string.format "%s %s" icon filetype)
-            filetype))))
+  (fn section_fileinfo [args]
+    (if (statusline.is_truncated args.trunc_width)
+        ""
+        (let [filetype vim.bo.filetype]
+          (when (or (not= filetype "") (= vim.bo.buftype ""))
+            (local file_name (vim.fn.expand "%:t"))
+            (local file_ext (vim.fn.expand "%:e"))
+            (local icon (devicons.get_icon file_name file_ext {:default true}))
+            (if (not= icon "")
+                (string.format "%s %s" icon filetype)
+                filetype)))))
 
   (fn section_location [args]
     (if (statusline.is_truncated args.trunc_width) "%l|%L"
