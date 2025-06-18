@@ -2,6 +2,7 @@
 (local map vim.keymap.set)
 
 (set vim.g.mapleader " ")
+(set vim.g.maplocalleader :<leader>)
 
 (map [:n] :Q :<nop> {:desc "Disable Ex mode"})
 (map [:n] "q:" :<nop> {:desc "Disable command history"})

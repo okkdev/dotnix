@@ -5,9 +5,6 @@
 ; something to speed up loading idk
 (vim.loader.enable)
 
-; connect to default socket
-;(vim.fn.serverstart :/tmp/nvim.socket)
-
 (set o.autoindent true)
 (set o.autoread true)
 (set o.breakindent true)
@@ -45,6 +42,7 @@
 (set o.textwidth 80)
 (set o.undofile true)
 (set o.virtualedit :block)
+(set o.winborder :none)
 (set o.wrap false)
 
 (set g.loaded_netrw 1)

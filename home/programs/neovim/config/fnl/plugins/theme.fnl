@@ -115,7 +115,11 @@
                           (set_hl 0 :TelescopeResultsNormal
                                   {:link :NormalFloat})
                           (set_hl 0 :TelescopeResultsBorder
-                                  {:link :NormalFloat})))}))
+                                  {:link :NormalFloat})
+                          (let [bg (-> (vim.api.nvim_get_hl 0
+                                                            {:name :NormalFloat})
+                                       (. :bg))]
+                            (set_hl 0 :FloatBorder {: bg :fg bg}))))}))
 
 ; Activate the initial theme
 (colorscheme current_theme)
