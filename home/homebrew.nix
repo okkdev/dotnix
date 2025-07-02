@@ -63,7 +63,6 @@ let
     "steam"
     "stremio"
     "tableplus"
-    "ubersicht"
     "unity-hub"
     "upscayl"
     "utm"

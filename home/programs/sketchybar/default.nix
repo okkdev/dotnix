@@ -1,11 +1,12 @@
 {
-  config,
-  pkgs,
-  lib,
   ...
 }:
 
 {
+  xdg.configFile."sketchybar/plugins" = {
+    source = ./plugins;
+    recursive = true;
+  };
   xdg.configFile."sketchybar/sketchybarrc" = {
     executable = true;
     text =
@@ -104,8 +105,6 @@
         sketchybar --update
       '';
     onChange = ''
-      mkdir -p $HOME/.config/sketchybar/plugins/
-      cp -r /opt/homebrew/share/sketchybar/examples/plugins/ $HOME/.config/sketchybar/
       /opt/homebrew/bin/sketchybar --reload
     '';
   };

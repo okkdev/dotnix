@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 
 let
-  otp = pkgs.beam.packages.erlang_27;
+  otp = pkgs.beam.packages.erlang_28;
 in
 {
   nixpkgs.config.allowUnfree = true;

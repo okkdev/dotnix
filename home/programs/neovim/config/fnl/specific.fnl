@@ -5,7 +5,7 @@
 ; Note taking
 
 (autocmd [:FileType]
-         {:pattern [:markdown :norg :text]
+         {:pattern [:markdown :norg :text :codecompanion]
           :callback (fn []
                       (set vim.opt_local.wrap true)
                       (vim.keymap.set [:n :x] :j :gj {:buffer true})
@@ -14,10 +14,9 @@
 
 ; Gleam
 
-(autocmd [:FileType] {:pattern [:gleam]
-                      :callback (fn []
-                                  (set vim.bo.commentstring "// %s"))
-                      :desc "Gleam comment string"})
+; (autocmd [:FileType] {:pattern [:gleam]
+;                       :callback (fn [])
+;                       :desc "Gleam stuff"})
 
 ; GDScript
 
@@ -31,3 +30,9 @@
           :command "set filetype=dockerfile"
           :desc "Set filetype for Dockerfiles"})
 
+; env files
+
+(autocmd [:BufRead :BufNewFile]
+         {:pattern :.env*
+          :command "set filetype=sh"
+          :desc "Set filetype for .env files"})

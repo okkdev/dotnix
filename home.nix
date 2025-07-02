@@ -29,7 +29,6 @@
     # /programs/tmux.nix
     # /programs/zellij.nix
     /programs/helix.nix
-    /programs/simple-bar.nix
-    /programs/sketchybar.nix
+    /programs/sketchybar
   ];
 }

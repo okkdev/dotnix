@@ -1,7 +1,5 @@
 {
-  config,
   pkgs,
-  lib,
   ...
 }:
 
@@ -42,9 +40,11 @@ in
     defaultEditor = true;
     withNodeJs = true;
     extraPackages = with pkgs; [
+      curl
       fzf
       tree-sitter
       fd
+      ripgrep
     ];
     extraLuaPackages =
       luaPkgs: with luaPkgs; [
@@ -72,10 +72,13 @@ in
 
       # completions
       blink-cmp
-      copilot-lua
       blink-cmp-copilot
-      minuet-ai-nvim
       friendly-snippets
+
+      # AI 🫥
+      copilot-lua
+      minuet-ai-nvim
+      codecompanion-nvim
 
       # formatter
       conform-nvim
@@ -108,6 +111,7 @@ in
       # notes
       neorg
       typst-preview-nvim
+      markview-nvim
 
       # icons
       nvim-web-devicons

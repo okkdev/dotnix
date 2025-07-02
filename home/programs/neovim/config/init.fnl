@@ -24,6 +24,8 @@
 (require :plugins.nvim_tree)
 (require :plugins.visual_whitespace)
 (require :plugins.noneckpain)
+(require :plugins.markview)
 (require :plugins.neorg)
 (require :plugins.copilot)
+(require :plugins.codecompanion)
 (require :plugins.minuet)
