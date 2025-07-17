@@ -40,8 +40,29 @@
                         :linehl true
                         :float {:style :minimal :source :always}})
 
-(vim.keymap.set :n :<leader>ld vim.diagnostic.open_float
-                {:desc "show diagnostics"})
+; (vim.keymap.set :n :<leader>ld vim.diagnostic.open_float
+;                 {:desc "show diagnostics"})
+
+(vim.keymap.set :n :<leader>ld
+                (fn []
+                  (if vim.b.diagnostics_open
+                      (do
+                        (vim.diagnostic.config {:virtual_lines false})
+                        (set vim.b.diagnostics_open false))
+                      (do
+                        (vim.diagnostic.config {:virtual_lines {:current_line true}})
+                        (set vim.b.diagnostics_open true))))
+                {:desc "toggle diagnostics"})
+
+(aucmd :CursorMoved
+       {:callback (fn []
+                    (let [current_line (vim.fn.line ".")
+                          last_line (or vim.b.last_cursor_line 0)]
+                      (when (not= current_line last_line)
+                        (set vim.b.last_cursor_line current_line)
+                        (when vim.b.diagnostics_open
+                          (vim.diagnostic.config {:virtual_lines false})
+                          (set vim.b.diagnostics_open false)))))})
 
 (vim.keymap.set :n :<leader>ln
                 (fn [] (vim.diagnostic.jump {:count 1 :float false}))
@@ -72,12 +93,13 @@
 (lsp.enable :gdscript)
 (lsp.enable :gleam)
 (lsp.enable :gopls)
-(lsp.enable :nil_ls)
+(lsp.enable :nixd)
 (lsp.enable :phpactor)
 (lsp.enable :pyright)
 (lsp.enable :rust_analyzer)
 (lsp.enable :superhtml)
 (lsp.enable :ts_ls)
+(lsp.enable :tombi)
 (lsp.enable :uiua)
 ; (lsp.enable :scheme_langserver)
 ; (lsp.enable :denols)

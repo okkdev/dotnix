@@ -1,9 +1,10 @@
 self: super: {
   gleam = super.stdenv.mkDerivation rec {
     name = "gleam";
-    version = "1.11.1";
+    version = "v1.11.1";
+    # version = "nightly";
     src = super.fetchurl {
-      url = "https://github.com/gleam-lang/gleam/releases/download/v${version}/gleam-v${version}-aarch64-apple-darwin.tar.gz";
+      url = "https://github.com/gleam-lang/gleam/releases/download/${version}/gleam-${version}-aarch64-apple-darwin.tar.gz";
       sha256 = "sha256-otSSWS2GU5sfUa6B80Tf9xhwsjR5v00A14USxvnq8eU=";
     };
     phases = [ "installPhase" ];
@@ -64,17 +65,6 @@ self: super: {
         repo = "d2-vim";
         rev = "981c87dccb63df2887cc41b96e84bf550f736c57";
         sha256 = "sha256-+mT4pEbtq7f9ZXhOop3Jnjr7ulxU32VtahffIwQqYF4=";
-      };
-    };
-    # remove once 0.4.0 is on nixpkgs
-    nui-nvim = super.vimUtils.buildVimPlugin {
-      pname = "nui-nvim";
-      version = "2025-04-01";
-      src = super.fetchFromGitHub {
-        owner = "MunifTanjim";
-        repo = "nui.nvim";
-        rev = "0.4.0";
-        sha256 = "sha256-SJc9nfV6cnBKYwRWsv0iHy+RbET8frNV85reICf+pt8=";
       };
     };
   };

@@ -45,6 +45,8 @@
       top = "btm";
       npm = "pnpm";
       du = "dust";
+      cat = "bat";
+      man = "batman";
     };
     shellAliases = {
       ssh = "TERM=xterm-256color /usr/bin/ssh";

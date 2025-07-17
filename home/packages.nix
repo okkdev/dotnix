@@ -65,7 +65,7 @@ in
     fennel-ls
     fnlfmt
     gdtoolkit_4
-    nil
+    nixd
     nixfmt-rfc-style
     nodePackages.bash-language-server
     shellcheck
@@ -82,6 +82,7 @@ in
     sql-formatter
     tailwindcss-language-server
     taplo
+    tombi
     tinymist
     typstyle
     omnisharp-roslyn
@@ -111,7 +112,10 @@ in
   programs = {
     bat = {
       enable = true;
-      config.theme = "ansi";
+      config = {
+        theme = "ansi";
+        style = "plain";
+      };
       extraPackages = with pkgs.bat-extras; [
         batdiff
         batman
@@ -124,25 +128,6 @@ in
     zoxide = {
       enable = true;
       enableFishIntegration = true;
-    };
-
-    yazi = {
-      enable = true;
-      enableFishIntegration = true;
-      plugins = {
-        # "mime.yazi" = pkgs.fetchFromGitHub {
-        #   owner = "DreamMaoMao";
-        #   repo = "mime.yazi";
-        #   rev = "8e866b9c281d745ebb5e712fd238fdf103ec2361";
-        #   sha256 = "sha256-RGev5ecsBrzJHlooWw24FWZMjpwUshPMGRUc4UIh5mg=";
-        # };
-        "ouch" = pkgs.fetchFromGitHub {
-          owner = "ndtoan96";
-          repo = "ouch.yazi";
-          rev = "694d149be5f96eaa0af68d677c17d11d2017c976";
-          sha256 = "sha256-J3vR9q4xHjJt56nlfd+c8FrmMVvLO78GiwSNcLkM4OU=";
-        };
-      };
     };
 
     eza = {

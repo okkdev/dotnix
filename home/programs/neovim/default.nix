@@ -48,8 +48,6 @@ in
     ];
     extraLuaPackages =
       luaPkgs: with luaPkgs; [
-        pathlib-nvim # for neorg
-        lua-utils-nvim # for neorg
         jsregexp # for luasnip
       ];
     plugins = with pkgs.vimPlugins; [
@@ -109,7 +107,6 @@ in
       # rainbow-delimiters-nvim
 
       # notes
-      neorg
       typst-preview-nvim
       markview-nvim
 
@@ -121,7 +118,6 @@ in
       noice-nvim
       nvim-notify
       bg-nvim
-      no-neck-pain-nvim
 
       # themes
       lush-nvim
