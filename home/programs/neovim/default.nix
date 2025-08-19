@@ -46,10 +46,6 @@ in
       fd
       ripgrep
     ];
-    extraLuaPackages =
-      luaPkgs: with luaPkgs; [
-        jsregexp # for luasnip
-      ];
     plugins = with pkgs.vimPlugins; [
       # plugin dependencies
       plenary-nvim
@@ -112,7 +108,6 @@ in
 
       # icons
       nvim-web-devicons
-      lspkind-nvim
 
       # ui elements
       noice-nvim
@@ -152,7 +147,7 @@ in
           "javascript": {
             "formatter": {
               "semicolons": "asNeeded",
-              "trailingComma": "all"
+              "trailingCommas": "all"
             }
           },
           "linter": {

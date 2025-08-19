@@ -62,6 +62,7 @@ let
     "spotify"
     "steam"
     "stremio"
+    "syncthing-app"
     "tableplus"
     "unity-hub"
     "upscayl"

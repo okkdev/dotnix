@@ -1,11 +1,11 @@
 self: super: {
   gleam = super.stdenv.mkDerivation rec {
     name = "gleam";
-    version = "v1.11.1";
+    version = "v1.12.0";
     # version = "nightly";
     src = super.fetchurl {
       url = "https://github.com/gleam-lang/gleam/releases/download/${version}/gleam-${version}-aarch64-apple-darwin.tar.gz";
-      sha256 = "sha256-otSSWS2GU5sfUa6B80Tf9xhwsjR5v00A14USxvnq8eU=";
+      sha256 = "sha256-iFOW6EX7vAFCU92V2kk0ObeFZBAi+5LEVleyuTbPMX8=";
     };
     phases = [ "installPhase" ];
     installPhase = ''

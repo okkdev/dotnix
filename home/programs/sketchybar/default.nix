@@ -1,8 +1,33 @@
 {
+  pkgs,
   ...
 }:
 
+let
+  sketchybar-font-version = "v2.0.40";
+  sketchybar-font = pkgs.stdenv.mkDerivation {
+    name = "sketchybar-app-font";
+    phases = [ "installPhase" ];
+    src = pkgs.fetchurl {
+      url = "https://github.com/kvndrsslr/sketchybar-app-font/releases/download/${sketchybar-font-version}/sketchybar-app-font.ttf";
+      sha256 = "sha256:835604784960fff458b849cfb5c69d1c7d7aa7a712d3e03c17c5f3798bbc1d98";
+    };
+    installPhase = ''
+      mkdir -p $out/share/fonts/truetype
+      cp $src $out/share/fonts/truetype/sketchybar-app-font.ttf
+    '';
+  };
+  sketchybar-icon-map = pkgs.fetchurl {
+    url = "https://github.com/kvndrsslr/sketchybar-app-font/releases/download/${sketchybar-font-version}/icon_map.sh";
+    sha256 = "sha256:5740822adec758dcc807391a8ea9440ed635f85f69c55a29f5606b7e0b527145";
+  };
+in
 {
+  home.packages = [ sketchybar-font ];
+  xdg.configFile."sketchybar/icon_map.sh" = {
+    source = sketchybar-icon-map;
+    executable = true;
+  };
   xdg.configFile."sketchybar/plugins" = {
     source = ./plugins;
     recursive = true;
@@ -12,11 +37,6 @@
     text =
       # sh
       ''
-        # This is a demo config to showcase some of the most important commands.
-        # It is meant to be changed and configured, as it is intentionally kept sparse.
-        # For a (much) more advanced configuration example see my dotfiles:
-        # https://github.com/FelixKratz/dotfiles
-
         PLUGIN_DIR="$CONFIG_DIR/plugins"
 
         ##### Bar Appearance #####
@@ -26,7 +46,7 @@
         # If you are looking for other colors, see the color picker:
         # https://felixkratz.github.io/SketchyBar/config/tricks#color-picker
 
-        sketchybar --bar position=top height=34 blur_radius=30 color=0x40000000
+        sketchybar --bar position=top height=34
 
         ##### Changing Defaults #####
         # We now change some default values, which are applied to all further items.
@@ -52,23 +72,50 @@
         # https://felixkratz.github.io/SketchyBar/config/components#space----associate-mission-control-spaces-with-an-item
         # to indicate active and available mission control spaces.
 
-        SPACE_ICONS=("1" "2" "3" "4" "5" "6" "7" "8" "9" "10")
-        for i in "''${!SPACE_ICONS[@]}"
+        YABAI_SPACES=($(yabai -m query --spaces | jq -r '.[].index'))
+
+        source "$HOME/.config/sketchybar/icon_map.sh"
+
+        for sid in "''${YABAI_SPACES[@]}"
         do
-          sid="$(($i+1))"
-          space=(
-            space="$sid"
-            icon="''${SPACE_ICONS[i]}"
-            icon.padding_left=7
-            icon.padding_right=7
-            background.color=0x40ffffff
-            background.corner_radius=5
-            background.height=25
-            label.drawing=off
-            script="$PLUGIN_DIR/space.sh"
-            click_script="yabai -m space --focus $sid"
-          )
-          sketchybar --add space space."$sid" left --set space."$sid" "''${space[@]}"
+            # Get windows in this space
+            windows=$(yabai -m query --windows --space "$sid" | jq -r '.[] | select(.["is-minimized"] == false) | .app')
+
+            # Create icon string from open applications
+            icon_string=""
+            if [[ -n "$windows" ]]; then
+                while IFS= read -r app; do
+                    if [[ -n "$app" ]]; then
+                        # Get icon for this app using sketchybar-app-font
+                        __icon_map "$app"
+                        if [[ -n "$icon_result" ]]; then
+                            icon_string+="$icon_result"
+                        else
+                            # Fallback to first letter if no icon found
+                            icon_string+="''${app:0:1}"
+                        fi
+                    fi
+                done <<< "$windows"
+            fi
+
+            # Use space index if no windows, otherwise use app icons
+            display_icon="''${icon_string:-$sid}"
+
+            space=(
+                space="$sid"
+                icon="$display_icon"
+                icon.font="sketchybar-app-font:Regular:16.0"
+                icon.padding_left=7
+                icon.padding_right=7
+                background.color=0x40ffffff
+                background.corner_radius=5
+                background.height=25
+                label.drawing=off
+                script="$PLUGIN_DIR/space.sh"
+                click_script="yabai -m space --focus $sid"
+            )
+
+            sketchybar --add space space."$sid" left --set space."$sid" "''${space[@]}"
         done
 
         ##### Adding Left Items #####

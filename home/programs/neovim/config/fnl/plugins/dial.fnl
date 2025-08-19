@@ -10,6 +10,22 @@
                                         (. augend.date.alias "%m/%d")
                                         (. augend.date.alias "%H:%M")
                                         augend.constant.alias.bool
+                                        (augend.constant.new {:elements [:yes
+                                                                         :no]
+                                                              :word true
+                                                              :cyclic true})
+                                        (augend.constant.new {:elements [:Yes
+                                                                         :No]
+                                                              :word true
+                                                              :cyclic true})
+                                        (augend.constant.new {:elements [:on
+                                                                         :off]
+                                                              :word true
+                                                              :cyclic true})
+                                        (augend.constant.new {:elements [:On
+                                                                         :Off]
+                                                              :word true
+                                                              :cyclic true})
                                         (augend.constant.new {:elements [:True
                                                                          :False]
                                                               :word true

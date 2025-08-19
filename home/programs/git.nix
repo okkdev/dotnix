@@ -22,21 +22,25 @@
     ];
     aliases = {
       s = "status";
+
+      f = "fetch";
       p = "pull";
       pp = "push";
       ppf = "push --force-with-lease";
       ppt = "push --tags";
-      rb = "rebase";
+
       sw = "switch";
       swc = "switch -c";
       co = "checkout";
+
+      rb = "rebase";
+      m = "merge";
+      me = "merge --no-ff";
+
       d = "diff";
       ds = "diff --staged";
       dt = "-c diff.external=difft diff";
       dts = "-c diff.external=difft diff --staged";
-      f = "fetch";
-      m = "merge";
-      me = "merge --no-ff";
 
       a = "add";
       aa = "add .";

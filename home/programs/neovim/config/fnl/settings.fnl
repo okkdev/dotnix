@@ -1,9 +1,8 @@
 ; Nvim settings
 (local o vim.opt)
-(local g vim.g)
 
 ; something to speed up loading idk
-(vim.loader.enable)
+(vim.loader.enable {:enable true})
 
 (set o.autoindent true)
 (set o.autoread true)
@@ -44,6 +43,3 @@
 (set o.virtualedit :block)
 (set o.winborder :none)
 (set o.wrap false)
-
-(set g.loaded_netrw 1)
-(set g.loaded_netrwPlugin 1)

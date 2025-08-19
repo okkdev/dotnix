@@ -12,7 +12,6 @@
                                    :fennel [:fnlfmt]
                                    :gdscript [:gdformat]
                                    :gleam [:rustywind_gleam :gleam]
-                                   ;:lsp_format :first
                                    :heex [:rustywind :mix]
                                    :html [:superhtml :rustywind]
                                    :javascript [:biome :rustywind]

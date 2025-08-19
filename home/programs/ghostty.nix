@@ -13,14 +13,16 @@ with lib;
       font-family = "Maple Mono"
       font-variation = wght=500
       font-variation-italic = wght=500
-      ${concatMapStrings (var: "font-feature = " + var + "\n") [
-        "zero"
-        "cv01"
-        "cv02"
-        "cv03"
-        "ss03"
-        "ss08"
-      ]}
+      font-feature = ${
+        concatMapStrings (var: var + ", ") [
+          "zero"
+          "cv01"
+          "cv02"
+          "cv03"
+          "ss03"
+          "ss08"
+        ]
+      }
       font-thicken = false
 
       # fallback font

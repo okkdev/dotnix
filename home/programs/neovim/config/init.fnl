@@ -6,7 +6,7 @@
 ; Plugins
 (require :plugins.treesitter)
 (require :plugins.theme)
-(require :plugins.lsp_config)
+(require :plugins.lsp)
 (require :plugins.blink)
 (require :plugins.mini)
 (require :plugins.telescope)
