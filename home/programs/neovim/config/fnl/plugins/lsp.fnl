@@ -107,10 +107,10 @@
 ; LSP servers with configs
 
 (lsp.enable :elixirls)
-(lsp.config :elixirls {:cmd [:elixir-ls]})
+(lsp.config :elixirls {:cmd [:expert]})
 
 (lsp.enable :fennel_ls)
-(lsp.config :fennel_ls {:settings {:extra-globals :vim}})
+(lsp.config :fennel_ls {:settings {:fennel-ls {:extra-globals :vim}}})
 
 (lsp.enable :tailwindcss)
 (lsp.config :tailwindcss

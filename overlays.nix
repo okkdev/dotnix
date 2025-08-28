@@ -14,6 +14,20 @@ self: super: {
       chmod +x $out/bin/gleam
     '';
   };
+  expert-lsp = super.stdenv.mkDerivation rec {
+    name = "expert-lsp";
+    version = "nightly";
+    src = super.fetchurl {
+      url = "https://github.com/elixir-lang/expert/releases/download/${version}/expert_darwin_arm64";
+      sha256 = "sha256-gajxecirlwUYTIHOz4ym0+HXP6GgttUVQX3lKOTvojQ=";
+    };
+    phases = [ "installPhase" ];
+    installPhase = ''
+      mkdir -p $out/bin
+      cp $src $out/bin/expert
+      chmod +x $out/bin/expert
+    '';
+  };
 
   # Vim Plugins
   vimPlugins = super.vimPlugins // {

@@ -62,6 +62,8 @@ in
     dockerfile-language-server-nodejs
     erlang-language-platform
     erlfmt
+    otp.elixir-ls
+    expert-lsp
     fennel-ls
     fnlfmt
     gdtoolkit_4
@@ -70,7 +72,6 @@ in
     nodePackages.bash-language-server
     shellcheck
     typescript-language-server
-    otp.elixir-ls
     phpactor
     prettierd
     pyright
@@ -143,17 +144,6 @@ in
       enable = true;
       enableFishIntegration = true;
       flags = [ "--disable-up-arrow" ];
-    };
-
-    jujutsu = {
-      enable = true;
-      settings = {
-        user = {
-          name = "okkdev";
-          email = "dev@stehlik.me";
-        };
-        ui.diff.tool = "delta";
-      };
     };
   };
 }
