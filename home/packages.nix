@@ -14,7 +14,6 @@ in
     ripgrep
     viddy
     jq
-    httpie # replace with xh?
     xh
     bottom
     btop
@@ -38,9 +37,9 @@ in
     # Programming
     otp.erlang
     otp.rebar3
-    otp.elixir_1_18
+    otp.elixir_1_19
     deno
-    dotnet-sdk_9
+    dotnetCorePackages.dotnet_9.sdk
     mono
     nodejs_24
     corepack_24
@@ -48,7 +47,8 @@ in
     gleam
     libiconv
     llvm
-    python313
+    python314
+    uv
     rustup
     tailwindcss
     typescript
@@ -75,6 +75,7 @@ in
     prettierd
     pyright
     ruff
+    ty
     rustywind
     shfmt
     stylua
