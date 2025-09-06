@@ -1,7 +1,4 @@
-{
-  pkgs,
-  ...
-}:
+{ pkgs, ... }:
 
 let
   nvim-config = pkgs.stdenv.mkDerivation {

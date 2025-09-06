@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ ... }:
 
 {
   programs.helix = {
@@ -17,7 +17,9 @@
           display-inlay-hints = true;
         };
       };
-      keys.normal = { space.space = "file_picker"; };
+      keys.normal = {
+        space.space = "file_picker";
+      };
     };
     languages = {
       language = [

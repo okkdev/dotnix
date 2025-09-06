@@ -32,7 +32,5 @@
           ./home.nix
         ];
       };
-
-      defaultPackage.${system} = home-manager.defaultPackage.${system};
     };
 }

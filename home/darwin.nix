@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ ... }:
 
 {
   targets.darwin.defaults = {
@@ -29,7 +29,10 @@
     enable = true;
     config = {
       UserName = "js";
-      ProgramArguments = [ "/usr/bin/ssh-add" "--apple-load-keychain" ];
+      ProgramArguments = [
+        "/usr/bin/ssh-add"
+        "--apple-load-keychain"
+      ];
       RunAtLoad = true;
     };
   };

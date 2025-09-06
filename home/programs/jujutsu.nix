@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ ... }:
 
 {
   programs.jujutsu = {
@@ -14,7 +14,11 @@
         email = "dev@stehlik.me";
       };
       ui = {
-        pager = ["delta" "--pager" "less -FRX"];
+        pager = [
+          "delta"
+          "--pager"
+          "less -FRX"
+        ];
         diff-formatter = ":git";
       };
       aliases = {
@@ -26,11 +30,21 @@
           "--to"
           "@-"
         ];
-        gf = ["git" "fetch"];
-        gp = ["git" "push" "--allow-new"];
-        s = ["status"];
-        d = ["diff"];
-        cm = ["commit" "-m"];
+        gf = [
+          "git"
+          "fetch"
+        ];
+        gp = [
+          "git"
+          "push"
+          "--allow-new"
+        ];
+        s = [ "status" ];
+        d = [ "diff" ];
+        cm = [
+          "commit"
+          "-m"
+        ];
       };
     };
   };
