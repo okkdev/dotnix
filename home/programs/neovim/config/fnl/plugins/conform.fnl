@@ -16,12 +16,13 @@
                                    :html [:superhtml :rustywind]
                                    :javascript [:biome :rustywind]
                                    :typescript [:biome :rustywind]
-                                   :nix [:nixfmt]
+                                   :nix [:nixfmt :nixpkgs_fmt]
                                    :lua [:stylua]
                                    :python [:ruff_format]
                                    :toml [:taplo]
                                    :sh [:shfmt]
                                    :sql [:sql_formatter]}
+                                   ; :svelte {1 :rustywind :lsp-format :last}}
                 :default_format_opts {:lsp_format :fallback}
                 ; Toggleable format on save
                 :format_on_save (fn [bufnr]

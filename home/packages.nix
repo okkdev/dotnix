@@ -69,9 +69,12 @@ in
     gdtoolkit_4
     nixd
     nixfmt-rfc-style
+    nixpkgs-lint-community
     nodePackages.bash-language-server
     shellcheck
+    tailwindcss-language-server
     typescript-language-server
+    svelte-language-server
     phpactor
     prettierd
     pyright
@@ -82,7 +85,6 @@ in
     stylua
     superhtml
     sql-formatter
-    tailwindcss-language-server
     taplo
     tombi
     tinymist
@@ -99,10 +101,10 @@ in
     fantasque-sans-mono
     fira-code
     hasklig
-    ibm-plex
+    # ibm-plex
     inter
-    iosevka
-    jetbrains-mono
+    # iosevka
+    # jetbrains-mono
     julia-mono
     manrope
     miracode

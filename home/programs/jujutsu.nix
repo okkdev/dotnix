@@ -13,6 +13,19 @@
         name = "okkdev";
         email = "dev@stehlik.me";
       };
+
+      # cyon config
+      "--scope" = [
+        {
+          "--when".repositories = [ "~/Documents/git/work" ];
+          user = {
+            name = "Jen Stehlik";
+            email = "js@cyon.ch";
+          };
+          signing.key = "~/.ssh/id_cyon_ed25519.pub";
+        }
+      ];
+
       ui = {
         pager = [
           "delta"
@@ -20,6 +33,7 @@
           "less -FRX"
         ];
         diff-formatter = ":git";
+        default-command = "log";
       };
       aliases = {
         tug = [
@@ -41,6 +55,8 @@
         ];
         s = [ "status" ];
         d = [ "diff" ];
+        e = [ "edit" ];
+        n = [ "new" ];
         cm = [
           "commit"
           "-m"

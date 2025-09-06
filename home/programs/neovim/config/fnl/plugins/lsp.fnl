@@ -85,7 +85,6 @@
 ; Simple LSP servers
 
 (lsp.enable :bashls)
-(lsp.enable :biome)
 (lsp.enable :cssls)
 (lsp.enable :dockerls)
 ; (lsp.enable :elmls)
@@ -94,6 +93,7 @@
 (lsp.enable :gleam)
 (lsp.enable :gopls)
 (lsp.enable :nixd)
+(lsp.enable :svelte)
 (lsp.enable :phpactor)
 (lsp.enable :pyright)
 (lsp.enable :rust_analyzer)
@@ -111,6 +111,19 @@
 
 (lsp.enable :fennel_ls)
 (lsp.config :fennel_ls {:settings {:fennel-ls {:extra-globals :vim}}})
+
+(lsp.enable :biome)
+(lsp.config :biome {:filetypes [:css
+                                :graphql
+                                :html
+                                :javascript
+                                :javascriptreact
+                                :json
+                                :jsonc
+                                :typescript
+                                :typescript.tsx
+                                :typescriptreact
+                                :vue]})
 
 (lsp.enable :tailwindcss)
 (lsp.config :tailwindcss

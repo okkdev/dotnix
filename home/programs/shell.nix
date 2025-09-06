@@ -15,10 +15,10 @@
       {
         name = "hydro";
         src = pkgs.fetchFromGitHub {
-          owner = "trmcnvn";
-          repo = "hydro-jj";
-          rev = "720442fa65bfcc397bfaa49e9cbf9e267f021fc9";
-          sha256 = "sha256-GGJHHYtmaghxakgRmA4Bfi/KwGJIzXhDS+LxCc+9LUo=";
+          owner = "okkdev";
+          repo = "hydro";
+          rev = "85dc56ea6a492fcac7f2dd75be29536fc6752b42";
+          sha256 = "sha256-cLE5WiPLi7IUe4R4r5FzjGhYb7irISCBaYwKGyckRfo=";
         };
       }
     ];

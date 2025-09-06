@@ -23,7 +23,7 @@ with lib;
       # fallback font
       font-family = "MapleMono Nerd Font"
 
-      theme = dark:zenbones_dark,light:zenbones_light
+      theme = dark:Zenbones Dark,light:Zenbones Light
 
       adjust-cell-height = 40%
 
