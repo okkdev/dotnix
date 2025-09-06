@@ -18,8 +18,8 @@
   programs.home-manager.enable = true;
 
   imports = map (x: ./home + x) [
-    /macos.nix
     /packages.nix
+    /darwin.nix
     /homebrew.nix
     /programs/shell.nix
     /programs/git.nix
