@@ -112,6 +112,8 @@ in
   ];
 
   programs = {
+    zoxide.enable = true;
+
     bat = {
       enable = true;
       config = {
@@ -127,14 +129,8 @@ in
       ];
     };
 
-    zoxide = {
-      enable = true;
-      enableFishIntegration = true;
-    };
-
     eza = {
       enable = true;
-      enableFishIntegration = true;
       icons = "auto";
       git = true;
       extraOptions = [ "--group-directories-first" ];
@@ -142,7 +138,6 @@ in
 
     atuin = {
       enable = true;
-      enableFishIntegration = true;
       flags = [ "--disable-up-arrow" ];
     };
   };

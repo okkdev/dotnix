@@ -40,8 +40,8 @@
                         :linehl true
                         :float {:style :minimal :source :always}})
 
-; (vim.keymap.set :n :<leader>ld vim.diagnostic.open_float
-;                 {:desc "show diagnostics"})
+(vim.keymap.set :n :<leader>lo vim.diagnostic.open_float
+                {:desc "show diagnostics"})
 
 (vim.keymap.set :n :<leader>ld
                 (fn []

@@ -26,6 +26,11 @@
           "--to"
           "@-"
         ];
+        gf = ["git" "fetch"];
+        gp = ["git" "push" "--allow-new"];
+        s = ["status"];
+        d = ["diff"];
+        cm = ["commit" "-m"];
       };
     };
   };
