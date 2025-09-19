@@ -17,8 +17,8 @@
         src = pkgs.fetchFromGitHub {
           owner = "okkdev";
           repo = "hydro";
-          rev = "85dc56ea6a492fcac7f2dd75be29536fc6752b42";
-          sha256 = "sha256-cLE5WiPLi7IUe4R4r5FzjGhYb7irISCBaYwKGyckRfo=";
+          rev = "02994b1141f7";
+          sha256 = "sha256-EFmH+NrDRGRS4006zN/y3fVPJfVjZBnyIPYa/ycKezc=";
         };
       }
     ];
@@ -39,7 +39,7 @@
             set -gx fish_complete_path (brew --prefix)/share/fish/vendor_completions.d $fish_complete_path 
         end
 
-        set -g hydro_symbol_prompt "$(shell_level)$(tput bold)✨$(tput sgr0)"
+        set -g hydro_symbol_prompt "$(shell_level)✨"
         set -U hydro_multiline true
       '';
     shellAbbrs = {

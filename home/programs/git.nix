@@ -8,8 +8,6 @@
       ".DS_Store"
       ".direnv"
     ];
-    userName = "okkdev";
-    userEmail = "dev@stehlik.me";
     includes = [
       {
         condition = "gitdir:~/Documents/git/work/";
@@ -20,47 +18,50 @@
         };
       }
     ];
-    aliases = {
-      s = "status";
 
-      f = "fetch";
-      p = "pull";
-      pp = "push";
-      ppf = "push --force-with-lease";
-      ppt = "push --tags";
+    settings = {
+      user.name = "okkdev";
+      user.email = "dev@stehlik.me";
+      alias = {
+        s = "status";
 
-      sw = "switch";
-      swc = "switch -c";
-      co = "checkout";
+        f = "fetch";
+        p = "pull";
+        pp = "push";
+        ppf = "push --force-with-lease";
+        ppt = "push --tags";
 
-      rb = "rebase";
-      m = "merge";
-      me = "merge --no-ff";
+        sw = "switch";
+        swc = "switch -c";
+        co = "checkout";
 
-      d = "diff";
-      ds = "diff --staged";
-      dt = "-c diff.external=difft diff";
-      dts = "-c diff.external=difft diff --staged";
+        rb = "rebase";
+        m = "merge";
+        me = "merge --no-ff";
 
-      a = "add";
-      aa = "add .";
-      ap = "add -p";
-      ai = "add -i";
+        d = "diff";
+        ds = "diff --staged";
+        dt = "-c diff.external=difft diff";
+        dts = "-c diff.external=difft diff --staged";
 
-      c = "commit";
-      amend = "commit --amend --no-edit";
-      cm = "commit -m";
+        a = "add";
+        aa = "add .";
+        ap = "add -p";
+        ai = "add -i";
 
-      staash = "stash -all";
+        c = "commit";
+        amend = "commit --amend --no-edit";
+        cm = "commit -m";
 
-      r = "reset";
-      rhead = "reset HEAD";
-      rhard = "reset --hard";
-      undo = "reset HEAD~1 --mixed";
+        staash = "stash -all";
 
-      l = "log --graph --abbrev-commit --decorate --format=format:'%C(blue)%h%C(reset) - %C(green)(%ar)%C(reset) %s %C(italic)- %an%C(reset)%C(magenta bold)%d%C(reset)' --all";
-    };
-    extraConfig = {
+        r = "reset";
+        rhead = "reset HEAD";
+        rhard = "reset --hard";
+        undo = "reset HEAD~1 --mixed";
+
+        l = "log --graph --abbrev-commit --decorate --format=format:'%C(blue)%h%C(reset) - %C(green)(%ar)%C(reset) %s %C(italic)- %an%C(reset)%C(magenta bold)%d%C(reset)' --all";
+      };
       init.defaultBranch = "main";
       core.sshCommand = "/usr/bin/ssh";
       push.default = "current";
@@ -75,15 +76,6 @@
       commit.gpgsign = true;
       gpg.format = "ssh";
       user.signingkey = "~/.ssh/id_ed25519.pub";
-    };
-
-    delta = {
-      enable = true;
-      options = {
-        syntax-theme = "ansi";
-        keep-plus-minus-markers = true;
-        line-numbers = true;
-      };
     };
   };
 }

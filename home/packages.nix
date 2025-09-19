@@ -142,5 +142,15 @@ in
       enable = true;
       flags = [ "--disable-up-arrow" ];
     };
+
+    delta = {
+      enable = true;
+      enableGitIntegration = true;
+      options = {
+        syntax-theme = "ansi";
+        keep-plus-minus-markers = true;
+        line-numbers = true;
+      };
+    };
   };
 }

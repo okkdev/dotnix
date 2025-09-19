@@ -21,7 +21,7 @@
     /programs/shell.nix
     /programs/git.nix
     /programs/jujutsu.nix
-    /programs/ghostty.nix
+    /programs/ghostty
     /programs/yabai.nix
     /programs/neovim
     # /programs/tmux.nix

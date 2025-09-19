@@ -52,6 +52,10 @@ in
           background.color=0xffefedec
           background.corner_radius=99
           background.height=25
+          background.shadow.drawing=on
+          background.shadow.color=0x10000000
+          background.shadow.distance=3
+          background.shadow.angle=45
         )
 
         sketchybar --default "''${default[@]}"
@@ -66,12 +70,16 @@ in
 
         sketchybar --add item clock right \
                    --set clock script="$PLUGIN_DIR/clock.sh" \
-                   --add item volume right \
-                   --set volume script="$PLUGIN_DIR/volume.sh" \
-                   --subscribe volume volume_change \
                    --add item battery right \
                    --set battery script="$PLUGIN_DIR/battery.sh" \
                    --subscribe battery system_woke power_source_change \
+                   --add item volume right \
+                   --set volume script="$PLUGIN_DIR/volume.sh" \
+                   --subscribe volume volume_change
+
+                   # --add item music right \
+                   # --set music script="$PLUGIN_DIR/music.sh" \
+                   # --subscribe music media_change system_woke
 
         sketchybar --update
       '';

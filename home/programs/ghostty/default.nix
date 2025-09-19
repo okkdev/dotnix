@@ -25,6 +25,9 @@ with lib;
 
       theme = dark:Zenbones Dark,light:Zenbones Light
 
+      # custom-shader = shaders/party_sparks.glsl
+      # custom-shader = shaders/cursor_smear_rainbow.glsl
+
       adjust-cell-height = 40%
 
       window-padding-x = 20
@@ -38,5 +41,10 @@ with lib;
       keybind = super+shift+ctrl+h=move_tab:-1
       keybind = super+shift+ctrl+l=move_tab:+1
     '';
+  };
+
+  xdg.configFile."ghostty/shaders" = {
+    source = ./shaders;
+    recursive = true;
   };
 }

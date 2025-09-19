@@ -4,12 +4,14 @@ let
   taps = [
     "koekeishiya/formulae"
     "FelixKratz/formulae"
+    "jackielii/tap"
     "support/cyon-tools\", \"git@gitlab.cyon.lan:sup/homebrew-cyon-tools.git"
   ];
 
   brews = [
     "lima"
     "sketchybar"
+    # "jackielii/tap/skhd-zig"
     "skhd"
     "yabai"
     "support/cyon-tools/supctl"
