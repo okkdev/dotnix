@@ -68,7 +68,7 @@ in
 
       # AI 🫥
       copilot-lua
-      minuet-ai-nvim
+      # minuet-ai-nvim
       codecompanion-nvim
 
       # formatter
@@ -93,7 +93,8 @@ in
       flash-nvim
       oil-nvim
       nvim-spectre
-      git-conflict-nvim
+      # git-conflict-nvim
+      vcmarkers-nvim
       persisted-nvim
       harpoon2
       visual-whitespace-nvim
@@ -130,6 +131,18 @@ in
     source = nvim-config;
     recursive = true;
   };
+
+  # fennel nvim docset
+  xdg.dataFile."fennel-ls/docsets/nvim.lua".source =
+    let
+      nvim-docset = pkgs.fetchFromSourcehut {
+        owner = "~micampe";
+        repo = "fennel-ls-nvim-docs";
+        rev = "main";
+        hash = "sha256-DVGw6xbSzxV9zXaQM3aDPWim3t/yIT3Hxorc4ugHDfo=";
+      };
+    in
+    "${nvim-docset}/nvim.lua";
 
   # Default biome config
   home.file."biome.json" = {

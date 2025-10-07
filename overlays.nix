@@ -1,11 +1,11 @@
 self: super: {
   gleam = super.stdenv.mkDerivation rec {
     name = "gleam";
-    version = "v1.12.0";
+    version = "v1.13.0-rc1";
     # version = "nightly";
     src = super.fetchurl {
       url = "https://github.com/gleam-lang/gleam/releases/download/${version}/gleam-${version}-aarch64-apple-darwin.tar.gz";
-      sha256 = "sha256-iFOW6EX7vAFCU92V2kk0ObeFZBAi+5LEVleyuTbPMX8=";
+      sha256 = "sha256-qPCV2fOEE7KtZqgrMkZerqbPOcNJJ+paB7OqyvCunUk=";
     };
     phases = [ "installPhase" ];
     installPhase = ''
@@ -30,7 +30,7 @@ self: super: {
   };
 
   # Vim Plugins
-  vimPlugins = super.vimPlugins // {
+  vimPlugins = super.vimPlugins // rec {
     bg-nvim = super.vimUtils.buildVimPlugin {
       pname = "bg-nvim";
       version = "2025-05-18";
@@ -39,6 +39,27 @@ self: super: {
         repo = "bg.nvim";
         rev = "df916e4df2493ee302eea62185ed014ba7ca40d9";
         sha256 = "sha256-H+ZFX0hE9te6qo+fzUuWngHOEf0zGyHkEIQIYvyTzTI=";
+      };
+    };
+    vclib-nvim = super.vimUtils.buildVimPlugin {
+      pname = "vclib-nvim";
+      version = "2025-09-19";
+      src = super.fetchFromGitHub {
+        owner = "algmyr";
+        repo = "vclib.nvim";
+        rev = "429bc13051b604c5f750913c57c0a07b11ddf94d";
+        sha256 = "sha256-0Vhd+zyrDnXhM0q0HAbQWjlG7TP9RHIoOJP6FBedJCE=";
+      };
+    };
+    vcmarkers-nvim = super.vimUtils.buildVimPlugin {
+      dependencies = [ vclib-nvim ];
+      pname = "vcmarkers-nvim";
+      version = "2025-09-19";
+      src = super.fetchFromGitHub {
+        owner = "algmyr";
+        repo = "vcmarkers.nvim";
+        rev = "f5e540ac078fd0f7b2e08c3a3cc565bdb262f531";
+        sha256 = "sha256-K8Vb+lErFJzYYQo9xJk/yGCLljn/r9wcILmLlWhmhm0=";
       };
     };
     telescope-recent-files-nvim = super.vimUtils.buildVimPlugin {

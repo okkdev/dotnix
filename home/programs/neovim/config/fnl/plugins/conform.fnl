@@ -19,10 +19,11 @@
                                    :nix [:nixfmt :nixpkgs_fmt]
                                    :lua [:stylua]
                                    :python [:ruff_format]
+                                   :racket [:racket_fmt]
                                    :toml [:taplo]
                                    :sh [:shfmt]
                                    :sql [:sql_formatter]}
-                                   ; :svelte {1 :rustywind :lsp-format :last}}
+                ; :svelte {1 :rustywind :lsp-format :last}
                 :default_format_opts {:lsp_format :fallback}
                 ; Toggleable format on save
                 :format_on_save (fn [bufnr]
@@ -38,7 +39,8 @@
                              :rustywind_gleam {:command :rustywind
                                                :args [:--custom-regex
                                                       "class\\(\\s*\"([^\"]*)\"\\s*\\)"
-                                                      :--stdin]}}})
+                                                      :--stdin]}
+                             :racket_fmt {:command :raco :args [:fmt]}}})
 
 (let [usercmd vim.api.nvim_create_user_command]
   (usercmd :Format

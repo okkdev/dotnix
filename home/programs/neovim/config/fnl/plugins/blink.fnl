@@ -46,18 +46,8 @@
                        :<C-CR> [(fn [cmp] (cmp.select_and_accept))]}
               :signature {:enabled true :window {:show_documentation false}}
               :cmdline {:enabled false}
-              :sources {:default [:lsp
-                                  :path
-                                  :snippets
-                                  :buffer
-                                  :minuet
-                                  :copilot]
+              :sources {:default [:lsp :path :snippets :buffer :copilot]
                         :providers {:lsp {:opts {:tailwind_color_icon "󰏘"}}
-                                    :minuet {:name :minuet
-                                             :module :minuet.blink
-                                             :async true
-                                             :timeout_ms 3000
-                                             :score_offset 50}
                                     :copilot {:async true
                                               :module :blink-cmp-copilot
                                               :name :copilot

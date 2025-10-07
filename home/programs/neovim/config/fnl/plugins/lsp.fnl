@@ -27,7 +27,6 @@
                               :callback vim.lsp.buf.clear_references})))})
 
 ; Diagnostic config
-
 (vim.diagnostic.config {:severity_sort true
                         :update_in_insert false
                         :underline {:severity {:min vim.diagnostic.severity.INFO}}
@@ -47,10 +46,12 @@
                 (fn []
                   (if vim.b.diagnostics_open
                       (do
-                        (vim.diagnostic.config {:virtual_lines false})
+                        (vim.diagnostic.config {:virtual_lines false
+                                                :virtual_text {:current_line true}})
                         (set vim.b.diagnostics_open false))
                       (do
-                        (vim.diagnostic.config {:virtual_lines {:current_line true}})
+                        (vim.diagnostic.config {:virtual_lines {:current_line true}
+                                                :virtual_text false})
                         (set vim.b.diagnostics_open true))))
                 {:desc "toggle diagnostics"})
 
@@ -61,7 +62,8 @@
                       (when (not= current_line last_line)
                         (set vim.b.last_cursor_line current_line)
                         (when vim.b.diagnostics_open
-                          (vim.diagnostic.config {:virtual_lines false})
+                          (vim.diagnostic.config {:virtual_lines false
+                                                  :virtual_text {:current_line true}})
                           (set vim.b.diagnostics_open false)))))})
 
 (vim.keymap.set :n :<leader>ln
@@ -87,7 +89,6 @@
 (lsp.enable :bashls)
 (lsp.enable :cssls)
 (lsp.enable :dockerls)
-; (lsp.enable :elmls)
 (lsp.enable :elp)
 (lsp.enable :gdscript)
 (lsp.enable :gleam)
@@ -95,12 +96,14 @@
 (lsp.enable :nixd)
 (lsp.enable :svelte)
 (lsp.enable :phpactor)
+(lsp.enable :ty)
 (lsp.enable :pyright)
 (lsp.enable :rust_analyzer)
 (lsp.enable :superhtml)
 (lsp.enable :ts_ls)
 (lsp.enable :tombi)
 (lsp.enable :uiua)
+; (lsp.enable :racket_langserver)
 ; (lsp.enable :scheme_langserver)
 ; (lsp.enable :denols)
 

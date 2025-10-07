@@ -33,16 +33,30 @@
           "less -FRX"
         ];
         diff-formatter = ":git";
-        default-command = "log";
+        default-command = [
+          "log"
+          "--limit"
+          "6"
+        ];
       };
       aliases = {
+        init = [
+          "git"
+          "init"
+          "--colocate"
+        ];
+        clone = [
+          "git"
+          "clone"
+          "--colocate"
+        ];
         tug = [
           "bookmark"
           "move"
           "--from"
-          "heads(::@- & bookmarks())"
+          "closest_bookmark(@-)"
           "--to"
-          "@-"
+          "closest_pushable(@-)"
         ];
         gf = [
           "git"
@@ -53,14 +67,22 @@
           "push"
           "--allow-new"
         ];
-        s = [ "status" ];
-        d = [ "diff" ];
-        e = [ "edit" ];
-        n = [ "new" ];
         cm = [
           "commit"
           "-m"
         ];
+        c = [ "commit" ];
+        s = [ "status" ];
+        d = [ "diff" ];
+        e = [ "edit" ];
+        n = [ "new" ];
+        l = [ "log" ];
+        rb = [ "rebase" ];
+      };
+      revset-aliases = {
+        "closest_bookmark(to)" = "heads(::to & bookmarks())";
+        "closest_pushable(to)" =
+          "heads(::to & mutable() & ~description(exact:\"\") & (~empty() | merges()))";
       };
     };
   };

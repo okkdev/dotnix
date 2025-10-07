@@ -59,7 +59,7 @@ in
 
     # LSPs and formatters
     biome
-    dockerfile-language-server-nodejs
+    dockerfile-language-server
     erlang-language-platform
     erlfmt
     otp.elixir-ls
