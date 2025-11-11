@@ -4,7 +4,7 @@ let
   nvim-config = pkgs.stdenv.mkDerivation {
     name = "lua-config";
     src = ./config;
-    nativeBuildInputs = [ pkgs.fennel ];
+    nativeBuildInputs = [ pkgs.luaPackages.fennel ];
     phases = [
       "buildPhase"
       "installPhase"

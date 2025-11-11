@@ -18,7 +18,7 @@ in
     bottom
     btop
     dogdns
-    du-dust
+    dust
     # wireguard-tools
     deploy-rs
     ollama
@@ -43,7 +43,7 @@ in
     mono
     nodejs_24
     corepack_24
-    fennel
+    luaPackages.fennel
     gleam
     libiconv
     llvm
@@ -115,6 +115,14 @@ in
 
   programs = {
     zoxide.enable = true;
+
+    direnv = {
+      enable = true;
+      nix-direnv.enable = true;
+      config.global = {
+        load_dotenv = true;
+      };
+    };
 
     bat = {
       enable = true;

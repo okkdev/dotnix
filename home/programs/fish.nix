@@ -1,12 +1,8 @@
 { pkgs, ... }:
 
 {
-  programs.direnv = {
-    enable = true;
-    nix-direnv.enable = true;
-    config.global = {
-      load_dotenv = true;
-    };
+  home.sessionVariables = {
+    ERL_AFLAGS = "-kernel shell_history enabled";
   };
 
   programs.fish = {
@@ -25,19 +21,28 @@
     loginShellInit = "fish_add_path --move --prepend --path $HOME/.nix-profile/bin /nix/var/nix/profiles/default/bin";
     shellInit = # fish
       ''
-        fish_add_path /opt/homebrew/sbin
-        fish_add_path /opt/homebrew/bin
+        ${
+          if pkgs.stdenv.isDarwin then
+            #fish
+            ''
+              fish_add_path /opt/homebrew/sbin
+              fish_add_path /opt/homebrew/bin
+
+              if test -d (brew --prefix)"/share/fish/completions"
+                  set -gx fish_complete_path (brew --prefix)/share/fish/completions $fish_complete_path 
+              end
+
+              if test -d (brew --prefix)"/share/fish/vendor_completions.d"
+                  set -gx fish_complete_path (brew --prefix)/share/fish/vendor_completions.d $fish_complete_path 
+              end
+            ''
+          else
+            ""
+        }
+
         fish_add_path $HOME/.ghcup/bin
         fish_add_path $HOME/.cabal/bin
         fish_add_path $HOME/.cargo/bin
-
-        if test -d (brew --prefix)"/share/fish/completions"
-            set -gx fish_complete_path (brew --prefix)/share/fish/completions $fish_complete_path 
-        end
-
-        if test -d (brew --prefix)"/share/fish/vendor_completions.d"
-            set -gx fish_complete_path (brew --prefix)/share/fish/vendor_completions.d $fish_complete_path 
-        end
 
         set -g hydro_symbol_prompt "$(shell_level)✨"
         set -U hydro_multiline true

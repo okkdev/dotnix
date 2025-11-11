@@ -1,6 +1,12 @@
 { ... }:
 
 {
+  imports = [
+    ./homebrew.nix
+    ./yabai.nix
+    ./sketchybar
+  ];
+
   targets.darwin.defaults = {
     "com.apple.dock" = {
       autohide = true;

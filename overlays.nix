@@ -19,7 +19,7 @@ self: super: {
     version = "nightly";
     src = super.fetchurl {
       url = "https://github.com/elixir-lang/expert/releases/download/${version}/expert_darwin_arm64";
-      sha256 = "sha256-gajxecirlwUYTIHOz4ym0+HXP6GgttUVQX3lKOTvojQ=";
+      sha256 = "sha256-mzMSq645OnuOnMp017yQwC+B3Ijy+XImk+Ur+V4J/6E=";
     };
     phases = [ "installPhase" ];
     installPhase = ''
