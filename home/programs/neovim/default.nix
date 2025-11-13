@@ -74,13 +74,8 @@ in
       # formatter
       conform-nvim
 
-      # telescope
-      telescope-nvim
-      telescope-ui-select-nvim
-      telescope-fzf-native-nvim
-      telescope-undo-nvim
-      telescope-recent-files-nvim
-      telescope-live-grep-args-nvim
+      # picker
+      fzf-lua
 
       # editing
       dial-nvim

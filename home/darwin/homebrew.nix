@@ -11,7 +11,6 @@ let
   brews = [
     "lima"
     "sketchybar"
-    # "jackielii/tap/skhd-zig"
     "skhd"
     "yabai"
     "support/cyon-tools/supctl"
@@ -38,7 +37,6 @@ let
     "godot"
     "iina"
     "inkscape"
-    "insomnia"
     "kicad"
     "krita"
     "lagrange"

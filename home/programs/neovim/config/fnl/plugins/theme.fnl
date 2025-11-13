@@ -30,29 +30,7 @@
 ; Theme settings
 
 (let [rose-pine (require :rose-pine)]
-  (rose-pine.setup {:highlight_groups {:TelescopeBorder {:bg :overlay
-                                                         :fg :overlay}
-                                       :TelescopeNormal {:bg :overlay
-                                                         :fg :subtle}
-                                       :TelescopeSelection {:bg :highlight_med
-                                                            :fg :text}
-                                       :TelescopeSelectionCaret {:bg :highlight_med
-                                                                 :fg :love}
-                                       :TelescopeMultiSelection {:bg :highlight_high
-                                                                 :fg :text}
-                                       :TelescopeTitle {:bg :love :fg :base}
-                                       :TelescopePreviewTitle {:bg :iris
-                                                               :fg :base}
-                                       :TelescopePreviewBorder {:bg :base
-                                                                :fg :base}
-                                       :TelescopePreviewNormal {:bg :base}
-                                       :TelescopePromptTitle {:bg :pine
-                                                              :fg :base}
-                                       :TelescopePromptBorder {:bg :surface
-                                                               :fg :surface}
-                                       :TelescopePromptNormal {:bg :surface
-                                                               :fg :text}
-                                       :MatchParen {:bg :subtle}
+  (rose-pine.setup {:highlight_groups {:MatchParen {:bg :subtle}
                                        :MiniStatuslineFilename {:fg :muted
                                                                 :bg :base}
                                        :StatusLine {:bg :base}
@@ -74,8 +52,6 @@
                                     :nvimtree true
                                     :treesitter true
                                     :noice true
-                                    :nvimtree true
-                                    :telescope {:enabled true :style :nvchad}
                                     :leap true
                                     :flash true
                                     :which_key true}}))
@@ -83,43 +59,8 @@
 (let [everforest (require :everforest)]
   (everforest.setup {:background :hard
                      :on_highlights (fn [hl p]
-                                      (set hl.TelescopeBorder
-                                           {:bg p.bg0 :fg p.bg0})
-                                      (set hl.TelescopeTitle
-                                           {:bg p.bg0 :fg p.bg0})
-                                      (set hl.TelescopePreviewTitle
-                                           {:bg p.bg1 :fg p.none})
-                                      (set hl.TelescopePreviewNormal
-                                           {:bg p.bg1})
-                                      (set hl.TelescopePreviewBorder
-                                           {:bg p.bg1 :fg p.bg1})
-                                      (set hl.TelescopePromptTitle
-                                           {:bg p.aqua :fg p.none})
-                                      (set hl.TelescopePromptBorder
-                                           {:bg p.bg2 :fg p.bg2})
-                                      (set hl.TelescopePromptNormal
-                                           {:bg p.bg2 :fg p.fg})
-                                      (set hl.TelescopePromptCounter
-                                           {:fg p.bg0})
                                       (set hl.StatusLineNC {:bg p.bg0})
                                       (set hl.StatusLine {:bg p.bg0}))}))
-
-; Zenbones Settings
-(let [autocmd vim.api.nvim_create_autocmd
-      set_hl vim.api.nvim_set_hl]
-  (autocmd :ColorScheme
-           {:callback (fn []
-                        (when (= vim.g.colors_name :zenbones)
-                          (set_hl 0 :TelescopePromptNormal {:link :NormalFloat})
-                          (set_hl 0 :TelescopePromptBorder {:link :NormalFloat})
-                          (set_hl 0 :TelescopeResultsNormal
-                                  {:link :NormalFloat})
-                          (set_hl 0 :TelescopeResultsBorder
-                                  {:link :NormalFloat})
-                          (let [bg (-> (vim.api.nvim_get_hl 0
-                                                            {:name :NormalFloat})
-                                       (. :bg))]
-                            (set_hl 0 :FloatBorder {: bg :fg bg}))))}))
 
 ; Activate the initial theme
 (colorscheme current_theme)

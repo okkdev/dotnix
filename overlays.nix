@@ -62,16 +62,6 @@ self: super: {
         sha256 = "sha256-K8Vb+lErFJzYYQo9xJk/yGCLljn/r9wcILmLlWhmhm0=";
       };
     };
-    telescope-recent-files-nvim = super.vimUtils.buildVimPlugin {
-      pname = "telescope-recent-files-nvim";
-      version = "2024-08-14";
-      src = super.fetchFromGitHub {
-        owner = "mollerhoj";
-        repo = "telescope-recent-files.nvim";
-        rev = "23b29aa701cd07c723282b3094e1a4dfc231f557";
-        sha256 = "sha256-nLy1WciLIjIqrD1az6JEXcx5EvaZSn8gBQ6HzQIhAp0=";
-      };
-    };
     everforest-nvim = super.vimUtils.buildVimPlugin {
       pname = "everforest-nvim";
       version = "2025-05-18";

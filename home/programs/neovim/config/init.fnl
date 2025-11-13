@@ -9,7 +9,7 @@
 (require :plugins.lsp)
 (require :plugins.blink)
 (require :plugins.mini)
-(require :plugins.telescope)
+(require :plugins.fzf)
 (require :plugins.noice)
 (require :plugins.notify)
 (require :plugins.persisted)
