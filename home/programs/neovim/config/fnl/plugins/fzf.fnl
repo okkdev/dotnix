@@ -3,7 +3,7 @@
 (fzf.setup {:winopts {:backdrop 95
                       :border [" " " " " " " " " " " " " " " "]
                       :preview {:border :noborder}}
-            :fzf_opts {:--layout :default :--separator " "}})
+            :fzf_opts {:--layout :default :--separator " " :--gutter " "}})
 
 (local map vim.keymap.set)
 
@@ -16,4 +16,7 @@
 (map :n :<leader>fh fzf.helptags {:desc "find help"})
 (map :n :<leader>fk fzf.keymaps {:desc "find keymaps"})
 (map :n :<leader>fr fzf.resume {:desc "find resume"})
-(map :n :<leader><space> fzf.git_files {:desc "Find recent files"})
+(map :n :<leader><space>
+     (fn []
+       (fzf.files {:cmd "rg --files --color=never --hidden -g \"!.git\" --sortr accessed"
+                   :cwd_prompt false})) {:desc "Find recent files"})
