@@ -88,12 +88,10 @@ in
       flash-nvim
       oil-nvim
       nvim-spectre
-      # git-conflict-nvim
       vcmarkers-nvim
       persisted-nvim
       harpoon2
       visual-whitespace-nvim
-      # rainbow-delimiters-nvim
 
       # notes
       typst-preview-nvim
@@ -102,7 +100,7 @@ in
       # icons
       nvim-web-devicons
 
-      # ui elements
+      # ui
       noice-nvim
       nvim-notify
       bg-nvim

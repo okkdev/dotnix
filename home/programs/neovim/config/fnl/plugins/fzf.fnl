@@ -3,7 +3,8 @@
 (fzf.setup {:winopts {:backdrop 95
                       :border [" " " " " " " " " " " " " " " "]
                       :preview {:border :noborder}}
-            :fzf_opts {:--layout :default :--separator " " :--gutter " "}})
+            :fzf_opts {:--layout :default :--separator " " :--gutter " "}
+            :fzf_colors true})
 
 (local map vim.keymap.set)
 

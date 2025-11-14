@@ -89,6 +89,7 @@
 (lsp.enable :cssls)
 (lsp.enable :dockerls)
 (lsp.enable :elp)
+(lsp.enable :fennel_ls)
 (lsp.enable :gdscript)
 (lsp.enable :gleam)
 (lsp.enable :gopls)
@@ -110,9 +111,6 @@
 
 (lsp.enable :elixirls)
 (lsp.config :elixirls {:cmd [:expert]})
-
-(lsp.enable :fennel_ls)
-(lsp.config :fennel_ls {:settings {:fennel-ls {:extra-globals :vim}}})
 
 (lsp.enable :biome)
 (lsp.config :biome {:filetypes [:css
