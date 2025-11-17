@@ -85,6 +85,7 @@ in
       # debugging
       nvim-dap
       nvim-dap-view
+      nvim-dap-virtual-text
 
       # ease of use stuff
       nvim-tree-lua
