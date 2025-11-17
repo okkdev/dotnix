@@ -92,6 +92,9 @@ in
     omnisharp-roslyn
     vscode-langservers-extracted
     yaml-language-server
+    (writeShellScriptBin "php-debug-adapter" ''
+      node ${pkgs.vscode-extensions.xdebug.php-debug}/share/vscode/extensions/xdebug.php-debug/out/phpDebug.js
+    '')
     # akkuPackages.scheme-langserver
 
     # fonts

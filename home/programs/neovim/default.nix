@@ -82,6 +82,10 @@ in
       parinfer-rust
       conjure
 
+      # debugging
+      nvim-dap
+      nvim-dap-view
+
       # ease of use stuff
       nvim-tree-lua
       gitsigns-nvim
