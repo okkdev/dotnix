@@ -48,6 +48,7 @@
       devicons (require :nvim-web-devicons)]
   (statusline.setup {:use_icons true})
 
+  ; Display filename: full path when space available, just name when truncated
   (fn section_filename [args]
     (if (= vim.bo.buftype :terminal) "%t"
         (= vim.bo.buftype :nofile) ""
@@ -55,6 +56,7 @@
                                                        " %m%r")
         (.. (vim.fn.expand "%:~:.") " %m%r")))
 
+  ; Display filetype with icon from nvim-web-devicons
   (fn section_fileinfo [args]
     (if (statusline.is_truncated args.trunc_width)
         ""
@@ -67,10 +69,12 @@
                 (string.format "%s %s" icon filetype)
                 filetype)))))
 
+  ; Display cursor location: column|total-cols line|total-lines percentage
   (fn section_location [args]
     (if (statusline.is_truncated args.trunc_width) "%l|%L"
-        "%2v|%-2{virtcol(\"$\") - 1} %l|%L %P"))
+        "%2v|%-2{virtcol(\"$\") - 1} %l|%L %3P"))
 
+  ; Combine statusline groups with highlight groups and optional rounded separators
   (fn combine_groups [groups]
     (table.concat (vim.tbl_map (fn [s]
                                  (if (= (type s) :string)
@@ -80,7 +84,7 @@
                                               (table.concat (icollect [_ v (ipairs s.strings)]
                                                               (if (not= v "") v))
                                                             " "))
-                                       (if (= (str:len) 0)
+                                       (if (= (length str) 0)
                                            (string.format "%%#%s#" s.hl)
                                            (= s.hl nil)
                                            (string.format " %s " str)
@@ -126,7 +130,9 @@
                              :strings [search location]
                              :rounded false}])))))
 
-; create reverse highlight colors
+; Create reverse highlight colors for statusline separators
+; This generates highlight groups with reversed foreground colors (using bg as fg)
+; to create seamless transitions between statusline sections
 (let [autocmd vim.api.nvim_create_autocmd]
   (autocmd [:Colorscheme :UIEnter]
            {:callback (fn []

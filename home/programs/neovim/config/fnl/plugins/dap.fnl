@@ -3,6 +3,8 @@
 
 (set dap.adapters.php {:type :executable :command :php-debug-adapter :args []})
 
+; PHP Debug configuration for Xdebug
+; Note: pathMappings is project-specific - adjust for your environment
 (set dap.configurations.php
      [{:type :php
        :request :launch

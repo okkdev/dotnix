@@ -5,10 +5,11 @@ with lib;
   xdg.configFile."ghostty/config" = {
     text = ''
       font-size = 14
-      font-family = "Maple Mono"
-      font-variation = wght=500
-      font-variation-italic = wght=500
-      font-feature = ${
+      # font-family = "Maple Mono"
+      font-family = "Departure Mono"
+      # font-variation = wght=500
+      # font-variation-italic = wght=500
+      # font-feature = ${
         concatMapStrings (var: var + ", ") [
           "zero"
           "cv01"
@@ -18,10 +19,11 @@ with lib;
           "ss08"
         ]
       }
-      font-thicken = false
+      font-thicken = true
+      bold-is-bright = true
 
       # fallback font
-      font-family = "MapleMono Nerd Font"
+      # font-family = "MapleMono Nerd Font"
 
       theme = dark:Zenbones Dark,light:Zenbones Light
 

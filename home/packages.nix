@@ -21,7 +21,6 @@ in
     dust
     # wireguard-tools
     deploy-rs
-    ollama
     nurl
     gnused
     (writeShellScriptBin "gsed" "exec ${gnused}/bin/sed \"$@\"") # macos gsed workaround
@@ -33,6 +32,10 @@ in
     rainfrog
     difftastic
     mergiraf
+
+    # AI 🤖
+    ollama
+    claude-code
 
     # Programming
     otp.erlang
@@ -101,6 +104,7 @@ in
     atkinson-hyperlegible
     cascadia-code
     commit-mono
+    departure-mono
     fantasque-sans-mono
     fira-code
     hasklig

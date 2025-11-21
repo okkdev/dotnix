@@ -1,7 +1,7 @@
 ; Nvim settings
 (local o vim.opt)
 
-; something to speed up loading idk
+; Enable Lua module loader cache for faster startup
 (vim.loader.enable {:enable true})
 
 (set o.autoindent true)
@@ -22,7 +22,6 @@
 (set o.listchars {:tab "⇥ " :trail "·" :nbsp "␣" :space "·"})
 (set o.fillchars {:eob " "})
 (set o.mouse :a)
-(set o.nu true)
 (set o.number true)
 (set o.relativenumber true)
 (set o.ruler false)

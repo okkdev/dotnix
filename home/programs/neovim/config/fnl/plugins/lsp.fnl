@@ -1,29 +1,29 @@
 ; LSP
-(local aucmd vim.api.nvim_create_autocmd)
+(local autocmd vim.api.nvim_create_autocmd)
 
-(aucmd :LspAttach
-       {:group (vim.api.nvim_create_augroup :UserLspConfig {})
-        :callback (fn [event]
-                    (fn map [keys func desc]
-                      (vim.keymap.set :n keys func {:buffer event.buf : desc}))
+(autocmd :LspAttach
+         {:group (vim.api.nvim_create_augroup :UserLspConfig {})
+          :callback (fn [event]
+                      (fn map [keys func desc]
+                        (vim.keymap.set :n keys func {:buffer event.buf : desc}))
 
-                    (map :K vim.lsp.buf.hover "hover documentation")
-                    (map :gd vim.lsp.buf.definition "goto definition")
-                    (map :gD vim.lsp.buf.declaration "goto declaration")
-                    (map :gr vim.lsp.buf.references "goto references")
-                    (map :gI vim.lsp.buf.implementation "goto implementation")
-                    (map :<leader>lr vim.lsp.buf.rename :rename)
-                    (map :<leader>lc vim.lsp.buf.code_action "code action")
-                    (local client
-                           (vim.lsp.get_client_by_id event.data.client_id))
-                    (when (and client
-                               client.server_capabilities.documentHighlightProvider)
-                      (aucmd [:CursorHold :CursorHoldI]
-                             {:buffer event.buf
-                              :callback vim.lsp.buf.document_highlight})
-                      (aucmd [:CursorMoved :CursorMovedI]
-                             {:buffer event.buf
-                              :callback vim.lsp.buf.clear_references})))})
+                      (map :K vim.lsp.buf.hover "hover documentation")
+                      (map :gd vim.lsp.buf.definition "goto definition")
+                      (map :gD vim.lsp.buf.declaration "goto declaration")
+                      (map :gr vim.lsp.buf.references "goto references")
+                      (map :gI vim.lsp.buf.implementation "goto implementation")
+                      (map :<leader>lr vim.lsp.buf.rename :rename)
+                      (map :<leader>lc vim.lsp.buf.code_action "code action")
+                      (local client
+                             (vim.lsp.get_client_by_id event.data.client_id))
+                      (when (and client
+                                 client.server_capabilities.documentHighlightProvider)
+                        (autocmd [:CursorHold :CursorHoldI]
+                                 {:buffer event.buf
+                                  :callback vim.lsp.buf.document_highlight})
+                        (autocmd [:CursorMoved :CursorMovedI]
+                                 {:buffer event.buf
+                                  :callback vim.lsp.buf.clear_references})))})
 
 ; Diagnostic config
 (vim.diagnostic.config {:severity_sort true
@@ -41,29 +41,31 @@
 (vim.keymap.set :n :<leader>lo vim.diagnostic.open_float
                 {:desc "show diagnostics"})
 
+; Helper for enabling/disabling virtual lines diagnostics
+(local virtual
+       {:lines {:virtual_lines {:current_line true} :virtual_text false}
+        :text {:virtual_lines false :virtual_text {:current_line true}}})
+
 (vim.keymap.set :n :<leader>ld
                 (fn []
                   (if vim.b.diagnostics_open
                       (do
-                        (vim.diagnostic.config {:virtual_lines false
-                                                :virtual_text {:current_line true}})
+                        (vim.diagnostic.config virtual.text)
                         (set vim.b.diagnostics_open false))
                       (do
-                        (vim.diagnostic.config {:virtual_lines {:current_line true}
-                                                :virtual_text false})
+                        (vim.diagnostic.config virtual.lines)
                         (set vim.b.diagnostics_open true))))
                 {:desc "toggle diagnostics"})
 
-(aucmd :CursorMoved
-       {:callback (fn []
-                    (let [current_line (vim.fn.line ".")
-                          last_line (or vim.b.last_cursor_line 0)]
-                      (when (not= current_line last_line)
-                        (set vim.b.last_cursor_line current_line)
-                        (when vim.b.diagnostics_open
-                          (vim.diagnostic.config {:virtual_lines false
-                                                  :virtual_text {:current_line true}})
-                          (set vim.b.diagnostics_open false)))))})
+(autocmd :CursorMoved
+         {:callback (fn []
+                      (let [current_line (vim.fn.line ".")
+                            last_line (or vim.b.last_cursor_line 0)]
+                        (when (not= current_line last_line)
+                          (set vim.b.last_cursor_line current_line)
+                          (when vim.b.diagnostics_open
+                            (vim.diagnostic.config virtual.text)
+                            (set vim.b.diagnostics_open false)))))})
 
 (vim.keymap.set :n :<leader>ln
                 (fn [] (vim.diagnostic.jump {:count 1 :float false}))

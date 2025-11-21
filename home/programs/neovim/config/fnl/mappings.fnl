@@ -2,7 +2,8 @@
 (local map vim.keymap.set)
 
 (set vim.g.mapleader " ")
-(set vim.g.maplocalleader :<leader>)
+; Set maplocalleader to space for buffer-local mappings
+(set vim.g.maplocalleader " ")
 
 (map [:n] :Q :<nop> {:desc "Disable Ex mode"})
 (map [:n] "q:" :<nop> {:desc "Disable command history"})
@@ -14,11 +15,15 @@
 (map [:n :x :i] :<D-S-z> :<cmd>redo<cr> {:desc :Redo})
 (map [:n] :U :<cmd>redo<cr> {:desc :Redo})
 
+(map [:n] :<leader>s "?[(,]<cr>ldt,a <esc>pld/[),]<cr>F,P<esc>"
+     {:desc "swap around comma"})
+
 (map [:n :x] :s :<Nop> {:desc "Disable s binding"})
 
 (map [:x] :<leader>p "\"_dP" {:desc "Paste without overriding the buffer"})
 
-(map [:x] :<leader>r "\"sy:%s$<C-r>s$<C-r>s$gc<left><left><left>"
+; Replace selection: yanks to 's' register and sets up substitution command
+(map [:x] :<leader>r "\"sy:%s\\<C-r>s\\<C-r>s\\gc<left><left><left>"
      {:desc "Replace Selection"})
 
 (map [:x] "/" "\"sy:/\\V<C-r>s<CR>N" {:desc "Search for selection"})

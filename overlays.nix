@@ -78,8 +78,8 @@ self: super: {
       src = super.fetchFromGitHub {
         owner = "Apeiros-46B";
         repo = "uiua.vim";
-        rev = "0afe909cb98553e5aec886f5e13a0637dcb671bd";
-        sha256 = "sha256-lmVcJgHj6y1emH2W5xrRvkQroed+fiws3o+KLVxQ24M=";
+        rev = "7088832aa53258a30ec50639193af8510f621f69";
+        sha256 = "sha256-UERcpf+3kKKgJjWT6FSWu4BJOcKYOSzwqArJVWlocIE=";
       };
     };
     d2-vim = super.vimUtils.buildVimPlugin {
