@@ -1,5 +1,5 @@
 {
-  description = "My macOS Home Manager config 🥵";
+  description = "my systems :)";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
@@ -15,22 +15,42 @@
       home-manager,
       ...
     }:
-    let
-      system = "aarch64-darwin";
-      pkgs = nixpkgs.legacyPackages.${system};
-    in
     {
-      homeConfigurations.js = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
+      # Standalone home-manager (macOS)
+      homeConfigurations = {
+        boook = home-manager.lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages.aarch64-darwin;
 
-        modules = [
-          {
-            nixpkgs.overlays = [
-              (import ./overlays.nix)
-            ];
-          }
-          ./home.nix
-        ];
+          modules = [
+            {
+              nixpkgs.config.allowUnfree = true;
+              nixpkgs.overlays = [ (import ./overlays.nix) ];
+            }
+
+            ./hosts/boook
+          ];
+        };
+      };
+
+      # NixOS system configurations
+      nixosConfigurations = {
+        fork = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          modules = [
+            {
+              nixpkgs.config.allowUnfree = true;
+              nixpkgs.overlays = [ (import ./overlays.nix) ];
+            }
+
+            home-manager.nixosModules.home-manager
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+            }
+
+            ./hosts/fork
+          ];
+        };
       };
     };
 }

@@ -178,8 +178,8 @@
             {:settings {:json {:schemas (schemastore.json.schemas)
                                :validate {:enable true}}}})
 
-(lsp.enable :omnisharp)
-(lsp.config :omnisharp {:cmd [:OmniSharp :settings {:useModernNet false}]})
+; (lsp.enable :omnisharp)
+; (lsp.config :omnisharp {:cmd [:OmniSharp :settings {:useModernNet false}]})
 
 (lsp.enable :tinymist)
 (lsp.config :tinymist {:settings {:formatterMode :typstyle}})

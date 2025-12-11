@@ -3,10 +3,18 @@ self: super: {
     name = "gleam";
     version = "v1.13.0";
     # version = "nightly";
-    src = super.fetchurl {
-      url = "https://github.com/gleam-lang/gleam/releases/download/${version}/gleam-${version}-aarch64-apple-darwin.tar.gz";
-      sha256 = "sha256-I5jRoTCxu0Br20pcLOotyYZ8Z3z0iz1sResgCmU9uzY=";
-    };
+    src = super.fetchurl (
+      if super.stdenv.isDarwin then
+        {
+          url = "https://github.com/gleam-lang/gleam/releases/download/${version}/gleam-${version}-aarch64-apple-darwin.tar.gz";
+          sha256 = "sha256-I5jRoTCxu0Br20pcLOotyYZ8Z3z0iz1sResgCmU9uzY=";
+        }
+      else
+        {
+          url = "https://github.com/gleam-lang/gleam/releases/download/${version}/gleam-${version}-x86_64-unknown-linux-musl.tar.gz";
+          sha256 = "";
+        }
+    );
     phases = [ "installPhase" ];
     installPhase = ''
       mkdir -p $out/bin
@@ -17,10 +25,18 @@ self: super: {
   expert-lsp = super.stdenv.mkDerivation rec {
     name = "expert-lsp";
     version = "nightly";
-    src = super.fetchurl {
-      url = "https://github.com/elixir-lang/expert/releases/download/${version}/expert_darwin_arm64";
-      sha256 = "sha256-mzMSq645OnuOnMp017yQwC+B3Ijy+XImk+Ur+V4J/6E=";
-    };
+    src = super.fetchurl (
+      if super.stdenv.isDarwin then
+        {
+          url = "https://github.com/elixir-lang/expert/releases/download/${version}/expert_darwin_arm64";
+          sha256 = "sha256-mzMSq645OnuOnMp017yQwC+B3Ijy+XImk+Ur+V4J/6E=";
+        }
+      else
+        {
+          url = "https://github.com/elixir-lang/expert/releases/download/${version}/expert_linux_amd64";
+          sha256 = "";
+        }
+    );
     phases = [ "installPhase" ];
     installPhase = ''
       mkdir -p $out/bin

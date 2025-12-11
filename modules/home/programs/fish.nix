@@ -1,10 +1,6 @@
 { pkgs, ... }:
 
 {
-  home.sessionVariables = {
-    ERL_AFLAGS = "-kernel shell_history enabled";
-  };
-
   programs.fish = {
     enable = true;
     plugins = [
@@ -48,7 +44,6 @@
         set -U hydro_multiline true
       '';
     shellAbbrs = {
-      top = "btm";
       npm = "pnpm";
       du = "dust";
       cat = "bat";
@@ -110,7 +105,7 @@
           '';
       };
 
-      os_theme = {
+      os_theme = pkgs.lib.mkIf pkgs.stdenv.isDarwin {
         description = "get the current appearance mode of the system";
         body = # fish
           ''
@@ -121,7 +116,7 @@
             end
           '';
       };
-      switch_theme = {
+      switch_theme = pkgs.lib.mkIf pkgs.stdenv.isDarwin {
         argumentNames = "mode";
         description = "switches global theme";
         body = # fish

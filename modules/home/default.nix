@@ -4,7 +4,9 @@ let
   otp = pkgs.beam.packages.erlang_28;
 in
 {
-  nixpkgs.config.allowUnfree = true;
+  home.sessionVariables = {
+    ERL_AFLAGS = "-kernel shell_history enabled";
+  };
 
   home.packages = with pkgs; [
     # Tools
@@ -12,26 +14,20 @@ in
     fd
     fzf
     ripgrep
-    viddy
     jq
+    pv
     xh
     bottom
     btop
-    dogdns
     dust
-    # wireguard-tools
     deploy-rs
-    nurl
     gnused
     (writeShellScriptBin "gsed" "exec ${gnused}/bin/sed \"$@\"") # macos gsed workaround
     ouch
-    gping
     tealdeer
-    visidata
     inetutils
     rainfrog
     difftastic
-    mergiraf
 
     # AI 🤖
     ollama
@@ -41,11 +37,12 @@ in
     otp.erlang
     otp.rebar3
     otp.elixir_1_19
+    # dotnetCorePackages.dotnet_9.sdk
+    # mono
     deno
-    dotnetCorePackages.dotnet_9.sdk
-    mono
     nodejs_24
     corepack_24
+    typescript
     luaPackages.fennel
     gleam
     libiconv
@@ -54,7 +51,6 @@ in
     uv
     rustup
     tailwindcss
-    typescript
     typst
     uiua
     d2
@@ -92,7 +88,7 @@ in
     tombi
     tinymist
     typstyle
-    omnisharp-roslyn
+    # omnisharp-roslyn
     vscode-langservers-extracted
     yaml-language-server
     (writeShellScriptBin "php-debug-adapter" ''
