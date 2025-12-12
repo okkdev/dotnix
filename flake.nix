@@ -7,12 +7,14 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nixos-hardware.url = "github:nixos/nixos-hardware/master";
   };
 
   outputs =
     {
       nixpkgs,
       home-manager,
+      nixos-hardware,
       ...
     }:
     {
@@ -47,6 +49,8 @@
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
             }
+
+            nixos-hardware.nixosModules.framework-amd-ai-300-series
 
             ./hosts/fork
           ];

@@ -5,7 +5,7 @@ let
 in
 {
   imports = [
-    ./hardware-configuration.nix
+    /etc/nixos/hardware-configuration.nix
   ];
 
   # SYSTEM
@@ -21,6 +21,9 @@ in
   # locale
   time.timeZone = "Europe/Zurich";
   i18n.defaultLocale = "en_US.UTF-8";
+
+  # bios updates
+  services.fwupd.enable = true;
 
   # X11 config so maybe not needed?
   services.xserver.xkb = {
