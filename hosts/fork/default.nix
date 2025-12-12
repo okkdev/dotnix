@@ -40,6 +40,7 @@ in
     ];
     shell = pkgs.fish;
   };
+  programs.fish.enable = true;
 
   # system packages
   environment.systemPackages = with pkgs; [
@@ -73,9 +74,9 @@ in
       /home/programs/fish.nix
       /home/programs/git.nix
       /home/programs/jujutsu.nix
-      /home/programs/ghostty
+      # /home/programs/ghostty
       /home/programs/neovim
-      /home/programs/helix.nix
+      # /home/programs/helix.nix
     ];
   };
 }
