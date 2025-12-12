@@ -5,7 +5,7 @@ let
 in
 {
   imports = [
-    /etc/nixos/hardware-configuration.nix
+    ./hardware-configuration.nix
   ];
 
   # SYSTEM
@@ -52,10 +52,10 @@ in
 
   # HOME
 
-  home-manager.users.jen = {
+  home-manager.users.${username} = {
     home = {
-      username = "jen";
-      homeDirectory = "/home/jen";
+      inherit username;
+      homeDirectory = "/home/${username}";
       stateVersion = "25.11";
     };
 
