@@ -29,7 +29,7 @@ self: super: {
       if super.stdenv.isDarwin then
         {
           url = "https://github.com/elixir-lang/expert/releases/download/${version}/expert_darwin_arm64";
-          sha256 = "sha256-mzMSq645OnuOnMp017yQwC+B3Ijy+XImk+Ur+V4J/6E=";
+          sha256 = "sha256-Tq31CjLZOgg7r6MXrqxqIf5HDDGb/4pSB2BPkxx5zSI=";
         }
       else
         {

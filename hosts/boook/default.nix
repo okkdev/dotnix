@@ -10,7 +10,7 @@
   programs.home-manager.enable = true;
 
   programs.fish.shellAliases = {
-    switch = "home-manager switch --flake '.#boook'";
+    nsw = "home-manager switch --flake '.#boook'";
   };
 
   imports = map (x: ../../modules + x) [

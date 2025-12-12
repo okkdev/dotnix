@@ -136,8 +136,8 @@ in
       nvim-docset = pkgs.fetchFromSourcehut {
         owner = "~micampe";
         repo = "fennel-ls-nvim-docs";
-        rev = "main";
-        hash = "sha256-DVGw6xbSzxV9zXaQM3aDPWim3t/yIT3Hxorc4ugHDfo=";
+        rev = "d8998d3f1d063ead58a97ec5aa5f638b6ed461e8";
+        hash = "sha256-FpvKVno9/qkTqGzjl2bwpDWjt0bbwomQafU/S2rPV4g=";
       };
     in
     "${nvim-docset}/nvim.lua";

@@ -66,7 +66,7 @@ in
     programs.home-manager.enable = true;
 
     programs.fish.shellAliases = {
-      switch = "sudo nixos-rebuild switch --flake '.#fork'";
+      nsw = "sudo nixos-rebuild switch --flake '.#fork'";
     };
 
     imports = map (x: ../../modules + x) [
