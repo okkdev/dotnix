@@ -12,7 +12,7 @@ self: super: {
       else
         {
           url = "https://github.com/gleam-lang/gleam/releases/download/${version}/gleam-${version}-x86_64-unknown-linux-musl.tar.gz";
-          sha256 = "";
+          sha256 = "sha256:8b372488e5ccaa54d8acc2feb9852c9e7916e480566049edd565caa1d8c74eec";
         }
     );
     phases = [ "installPhase" ];
@@ -34,7 +34,7 @@ self: super: {
       else
         {
           url = "https://github.com/elixir-lang/expert/releases/download/${version}/expert_linux_amd64";
-          sha256 = "";
+          sha256 = "sha256:13b68bbd284d9c01df0ed12625618a26b5ae8554aaa880aac694906442c5fe9f";
         }
     );
     phases = [ "installPhase" ];

@@ -42,6 +42,9 @@ in
   };
   programs.fish.enable = true;
 
+  # nix settings
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
   # system packages
   environment.systemPackages = with pkgs; [
     vim
