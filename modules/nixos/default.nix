@@ -8,4 +8,8 @@
     enable = true;
     x11Support = false;
   };
+
+  programs = {
+    niri.enable = true;
+  };
 }
