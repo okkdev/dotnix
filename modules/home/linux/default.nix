@@ -12,8 +12,11 @@
   ];
 
   programs = {
-    mako.enable = true;
     fuzzel.enable = true;
     swaylock.enable = true;
+  };
+
+  services = {
+    mako.enable = true;
   };
 }
