@@ -14,14 +14,7 @@
   };
 
   imports = map (x: ../../modules + x) [
-    /darwin
-
     /home
-    /home/programs/fish.nix
-    /home/programs/git.nix
-    /home/programs/jujutsu.nix
-    /home/programs/ghostty
-    /home/programs/neovim
-    /home/programs/helix.nix
+    /home/darwin
   ];
 }

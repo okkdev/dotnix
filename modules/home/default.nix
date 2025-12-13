@@ -1,120 +1,130 @@
 { pkgs, ... }:
 
-let
-  otp = pkgs.beam.packages.erlang_28;
-in
 {
+  imports = [
+    ./common/fish.nix
+    ./common/git.nix
+    ./common/jujutsu.nix
+    ./common/ghostty.nix
+    ./common/neovim
+    ./common/helix.nix
+  ];
+
   home.sessionVariables = {
     ERL_AFLAGS = "-kernel shell_history enabled";
   };
 
-  home.packages = with pkgs; [
-    # Tools
-    coreutils
-    fd
-    fzf
-    ripgrep
-    jq
-    pv
-    xh
-    bottom
-    btop
-    dust
-    deploy-rs
-    gnused
-    (writeShellScriptBin "gsed" "exec ${gnused}/bin/sed \"$@\"") # macos gsed workaround
-    ouch
-    tealdeer
-    inetutils
-    rainfrog
-    difftastic
+  home.packages =
+    with pkgs;
+    let
+      otp = pkgs.beam.packages.erlang_28;
+    in
+    [
+      # Tools
+      coreutils
+      fd
+      fzf
+      ripgrep
+      jq
+      pv
+      xh
+      bottom
+      btop
+      dust
+      gnused
+      (writeShellScriptBin "gsed" "exec ${gnused}/bin/sed \"$@\"") # macos gsed workaround
+      ouch
+      tealdeer
+      inetutils
+      rainfrog
+      difftastic
 
-    # AI 🤖
-    ollama
-    claude-code
+      # AI 🤖
+      ollama
+      claude-code
 
-    # Programming
-    otp.erlang
-    otp.rebar3
-    otp.elixir_1_19
-    # dotnetCorePackages.dotnet_9.sdk
-    # mono
-    deno
-    nodejs_24
-    corepack_24
-    typescript
-    luaPackages.fennel
-    gleam
-    libiconv
-    llvm
-    python314
-    uv
-    rustup
-    tailwindcss
-    typst
-    uiua
-    d2
-    chez
+      # Programming
+      otp.erlang
+      otp.rebar3
+      otp.elixir_1_19
+      # dotnetCorePackages.dotnet_9.sdk
+      # mono
+      deno
+      nodejs_24
+      corepack_24
+      typescript
+      luaPackages.fennel
+      gleam
+      libiconv
+      llvm
+      python314
+      uv
+      rustup
+      tailwindcss
+      typst
+      uiua
+      d2
+      chez
 
-    # LSPs and formatters
-    biome
-    dockerfile-language-server
-    erlang-language-platform
-    erlfmt
-    otp.elixir-ls
-    expert-lsp
-    fennel-ls
-    fnlfmt
-    gdtoolkit_4
-    nixd
-    nixfmt-rfc-style
-    nixpkgs-lint-community
-    nodePackages.bash-language-server
-    shellcheck
-    tailwindcss-language-server
-    typescript-language-server
-    svelte-language-server
-    phpactor
-    prettierd
-    pyright
-    ruff
-    ty
-    rustywind
-    shfmt
-    stylua
-    superhtml
-    sql-formatter
-    taplo
-    tombi
-    tinymist
-    typstyle
-    # omnisharp-roslyn
-    vscode-langservers-extracted
-    yaml-language-server
-    (writeShellScriptBin "php-debug-adapter" ''
-      node ${pkgs.vscode-extensions.xdebug.php-debug}/share/vscode/extensions/xdebug.php-debug/out/phpDebug.js
-    '')
-    # akkuPackages.scheme-langserver
+      # LSPs and formatters
+      biome
+      dockerfile-language-server
+      erlang-language-platform
+      erlfmt
+      otp.elixir-ls
+      expert-lsp
+      fennel-ls
+      fnlfmt
+      gdtoolkit_4
+      nixd
+      nixfmt-rfc-style
+      nixpkgs-lint-community
+      nodePackages.bash-language-server
+      shellcheck
+      tailwindcss-language-server
+      typescript-language-server
+      svelte-language-server
+      phpactor
+      prettierd
+      pyright
+      ruff
+      ty
+      rustywind
+      shfmt
+      stylua
+      superhtml
+      sql-formatter
+      taplo
+      tombi
+      tinymist
+      typstyle
+      # omnisharp-roslyn
+      vscode-langservers-extracted
+      yaml-language-server
+      (writeShellScriptBin "php-debug-adapter" ''
+        node ${pkgs.vscode-extensions.xdebug.php-debug}/share/vscode/extensions/xdebug.php-debug/out/phpDebug.js
+      '')
+      # akkuPackages.scheme-langserver
 
-    # fonts
-    atkinson-hyperlegible
-    cascadia-code
-    commit-mono
-    departure-mono
-    fantasque-sans-mono
-    fira-code
-    hasklig
-    # ibm-plex
-    inter
-    # iosevka
-    # jetbrains-mono
-    julia-mono
-    manrope
-    miracode
-    recursive
-    uiua386
-    nerd-fonts.symbols-only
-  ];
+      # fonts
+      atkinson-hyperlegible
+      cascadia-code
+      commit-mono
+      departure-mono
+      fantasque-sans-mono
+      fira-code
+      hasklig
+      # ibm-plex
+      inter
+      # iosevka
+      # jetbrains-mono
+      julia-mono
+      manrope
+      miracode
+      recursive
+      uiua386
+      nerd-fonts.symbols-only
+    ];
 
   programs = {
     zoxide.enable = true;

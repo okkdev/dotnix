@@ -3,20 +3,34 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixos-hardware.url = "github:nixos/nixos-hardware/master";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nixos-hardware.url = "github:nixos/nixos-hardware/master";
+    stylix = {
+      url = "github:nix-community/stylix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    niri = {
+      url = "github:/sodiboo/niri-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    noctalia = {
+      url = "github:noctalia-dev/noctalia-shell";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
     {
       nixpkgs,
       home-manager,
+      stylix,
+      niri,
       nixos-hardware,
       ...
-    }:
+    }@inputs:
     {
       # Standalone home-manager (macOS)
       homeConfigurations = {
@@ -39,18 +53,22 @@
         fork = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           modules = [
+            nixos-hardware.nixosModules.framework-amd-ai-300-series
+            home-manager.nixosModules.home-manager
+            stylix.nixosModules.stylix
+            niri.nixosModules.niri
+
             {
               nixpkgs.config.allowUnfree = true;
-              nixpkgs.overlays = [ (import ./overlays.nix) ];
-            }
+              nixpkgs.overlays = [
+                (import ./overlays.nix)
+                niri.overlays.niri
+              ];
 
-            home-manager.nixosModules.home-manager
-            {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
+              home-manager.extraSpecialArgs = { inherit inputs; };
             }
-
-            nixos-hardware.nixosModules.framework-amd-ai-300-series
 
             ./hosts/fork
           ];

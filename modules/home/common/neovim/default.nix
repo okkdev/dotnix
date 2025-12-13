@@ -92,7 +92,7 @@ in
       gitsigns-nvim
       flash-nvim
       oil-nvim
-      nvim-spectre
+      grug-far-nvim
       vcmarkers-nvim
       persisted-nvim
       harpoon2

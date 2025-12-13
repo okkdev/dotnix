@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 let
   username = "jen";
@@ -6,9 +6,11 @@ in
 {
   imports = [
     ./hardware-configuration.nix
+    ../../modules/nixos
   ];
 
   # SYSTEM
+  system.stateVersion = "25.11";
 
   # boot loader
   boot.loader.systemd-boot.enable = true;
@@ -17,6 +19,7 @@ in
   # networking
   networking.hostName = "fork";
   networking.networkmanager.enable = true;
+  hardware.bluetooth.enable = true;
 
   # locale
   time.timeZone = "Europe/Zurich";
@@ -31,6 +34,35 @@ in
     variant = "";
   };
 
+  # power management
+  services.power-profiles-daemon.enable = true;
+  services.upower.enable = true;
+
+  # security
+  security.pam.services.swaylock = {
+    enable = true;
+
+    # Using `fprintAuth = true` does not allow password-only unlocking
+    text = ''
+      auth sufficient pam_unix.so
+      auth sufficient ${pkgs.fprintd}/lib/security/pam_fprintd.so
+      auth required pam_deny.so
+    '';
+  };
+
+  # nix settings
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
+
+  # system packages
+  environment.systemPackages = with pkgs; [
+    vim
+    wget
+    git
+  ];
+
   # users
   users.users.${username} = {
     isNormalUser = true;
@@ -42,20 +74,7 @@ in
   };
   programs.fish.enable = true;
 
-  # nix settings
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
-
-  # system packages
-  environment.systemPackages = with pkgs; [
-    vim
-    wget
-    git
-  ];
-
-  system.stateVersion = "25.11";
-
   # HOME
-
   home-manager.users.${username} = {
     home = {
       inherit username;
@@ -70,16 +89,8 @@ in
     };
 
     imports = map (x: ../../modules + x) [
-      # Common home configuration
       /home
-
-      # Cross-platform programs
-      /home/programs/fish.nix
-      /home/programs/git.nix
-      /home/programs/jujutsu.nix
-      # /home/programs/ghostty
-      /home/programs/neovim
-      # /home/programs/helix.nix
+      /home/linux
     ];
   };
 }
