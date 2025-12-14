@@ -10,8 +10,4 @@
       };
     };
   };
-
-  stylix.targets.zen-browser.profileNames = [
-    "jen"
-  ];
 }

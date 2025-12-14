@@ -4,7 +4,6 @@
   programs.helix = {
     enable = true;
     settings = {
-      theme = "rose_pine_dawn";
       editor = {
         line-number = "relative";
         cursorline = true;

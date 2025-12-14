@@ -19,4 +19,12 @@
   services = {
     mako.enable = true;
   };
+
+  stylix.targets = {
+    bat.colors.enable = false;
+    ghostty.colors.enable = false;
+    zen-browser.profileNames = [
+      "jen"
+    ];
+  };
 }
