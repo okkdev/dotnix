@@ -2,6 +2,7 @@
 {
   imports = [
     ./niri.nix
+    ./noctalia.nix
     ./zen-browser.nix
   ];
 
