@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 
 {
   programs.fish = {
@@ -50,7 +50,7 @@
       man = "batman";
     };
     shellAliases = {
-      ssh = "TERM=xterm-256color /usr/bin/ssh";
+      ssh = lib.mkIf pkgs.stdenv.isDarwin "TERM=xterm-256color /usr/bin/ssh";
       llat = "lla -snew";
     };
     functions = {

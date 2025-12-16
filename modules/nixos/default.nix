@@ -1,8 +1,8 @@
-{ username, ... }:
+{ username, pkgs, ... }:
 {
   imports = [
-    ./stylix.nix
     ./wireguard.nix
+    ./stylix.nix
   ];
 
   services = {
@@ -16,11 +16,19 @@
 
   programs = {
     niri.enable = true;
+    zoom-us.enable = true;
+
     _1password.enable = true;
     _1password-gui = {
       enable = true;
       polkitPolicyOwners = [ username ];
     };
-    zoom-us.enable = true;
+
+    steam = {
+      enable = true;
+      extraCompatPackages = with pkgs; [
+        proton-ge-bin
+      ];
+    };
   };
 }

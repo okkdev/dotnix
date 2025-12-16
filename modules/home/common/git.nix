@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, lib, ... }:
 
 {
   programs.git = {
@@ -11,6 +11,14 @@
     includes = [
       {
         condition = "gitdir:~/Documents/git/work/";
+        contents = {
+          user.name = "Jen Stehlik";
+          user.email = "js@cyon.ch";
+          user.signingkey = "~/.ssh/id_cyon_ed25519.pub";
+        };
+      }
+      {
+        condition = "gitdir:~/code/work/";
         contents = {
           user.name = "Jen Stehlik";
           user.email = "js@cyon.ch";
@@ -63,7 +71,7 @@
         l = "log --graph --abbrev-commit --decorate --format=format:'%C(blue)%h%C(reset) - %C(green)(%ar)%C(reset) %s %C(italic)- %an%C(reset)%C(magenta bold)%d%C(reset)' --all";
       };
       init.defaultBranch = "main";
-      core.sshCommand = "/usr/bin/ssh";
+      core.sshCommand = lib.mkIf pkgs.stdenv.isDarwin "/usr/bin/ssh";
       push.default = "current";
       push.autoSetupRemote = true;
       pull.rebase = true;

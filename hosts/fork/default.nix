@@ -12,6 +12,18 @@
   # boot loader
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader.systemd-boot.configurationLimit = 10;
+
+  # latest kernel
+  boot.kernelPackages = pkgs.linuxPackages_latest;
+
+  # swap
+  swapDevices = [
+    {
+      device = "/swapfile";
+      size = 8192;
+    }
+  ];
 
   # networking
   networking.hostName = "fork";
@@ -28,7 +40,7 @@
   # keyboard
   services.xserver.xkb = {
     layout = "us";
-    variant = "";
+    variant = "altgr-intl";
   };
   # remap laptop keyboard (caps to ctrl, lalt <-> meta)
   services.udev.extraHwdb = ''
@@ -65,6 +77,17 @@
     wget
     git
   ];
+
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 30d";
+    persistent = true;
+  };
+
+  nix.optimise.automatic = true;
+
+  services.printing.enable = true;
 
   # users
   users.users.${username} = {

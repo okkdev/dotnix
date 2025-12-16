@@ -1,8 +1,8 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 
 let
   nvim-config = pkgs.stdenv.mkDerivation {
-    name = "lua-config";
+    name = "nvim-config";
     src = ./config;
     nativeBuildInputs = [ pkgs.luaPackages.fennel ];
     phases = [
@@ -10,7 +10,7 @@ let
       "installPhase"
     ];
     buildPhase = ''
-      mkdir -p build/lua
+      mkdir -p build/lua/
       cp $src/init.fnl build/
       cp -r --no-preserve=mode,ownership $src/fnl/* build/lua/
 
@@ -108,7 +108,7 @@ in
       # ui
       noice-nvim
       nvim-notify
-      bg-nvim
+      # bg-nvim
 
       # themes
       lush-nvim
@@ -123,10 +123,13 @@ in
       uiua-vim
       d2-vim
     ];
+
+    # we need to remove the return that fennel adds implicitly to the end of the module
+    extraLuaConfig = lib.replaceString "return " "" (lib.readFile "${nvim-config}/init.lua");
   };
 
-  xdg.configFile."nvim" = {
-    source = nvim-config;
+  xdg.configFile."nvim/lua" = {
+    source = nvim-config + /lua;
     recursive = true;
   };
 
@@ -140,7 +143,7 @@ in
         hash = "sha256-FpvKVno9/qkTqGzjl2bwpDWjt0bbwomQafU/S2rPV4g=";
       };
     in
-    "${nvim-docset}/nvim.lua";
+    nvim-docset + /nvim.lua;
 
   # Default biome config
   home.file."biome.json" = {
@@ -181,5 +184,4 @@ in
         }
       '';
   };
-
 }

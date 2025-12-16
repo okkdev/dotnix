@@ -1,7 +1,8 @@
 ; Floating UI system
 (local noice (require :noice))
 
-(noice.setup {:lsp {:override {:cmp.entry.get_documentation false
+(noice.setup {:cmdline {:view :cmdline}
+              :lsp {:override {:cmp.entry.get_documentation false
                                :vim.lsp.util.convert_input_to_markdown_lines true
                                :vim.lsp.util.stylize_markdown true}}
               :presets {:bottom_search true

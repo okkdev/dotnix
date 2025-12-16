@@ -10,8 +10,9 @@
         position = "top";
         showCapsule = true;
         backgroundOpacity = lib.mkForce 0.0;
-        marginHorizontal = 4.0;
-        marginVertical = 2.0;
+        marginHorizontal = 0.50;
+        marginVertical = 0.15;
+        floating = true;
 
         widgets = {
           left = [
@@ -31,11 +32,6 @@
           ];
           right = [
             {
-              id = "Tray";
-              colorizeIcons = false;
-              blacklist = [ ];
-            }
-            {
               id = "Volume";
             }
             {
@@ -51,6 +47,14 @@
               formatHorizontal = "HH:mm ddd, MMM dd";
             }
             {
+              id = "Tray";
+              colorizeIcons = false;
+              blacklist = [ ];
+            }
+            {
+              id = "NotificationHistory";
+            }
+            {
               id = "ControlCenter";
               useDistroLogo = true;
             }
@@ -61,7 +65,7 @@
         name = "Basel";
       };
 
-      wallpaper.enabled = false;
+      wallpaper.enabled = true;
       dock.enabled = false;
     };
   };

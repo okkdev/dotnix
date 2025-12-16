@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ pkgs, ... }:
 {
   imports = [
     ./niri.nix
@@ -17,6 +17,9 @@
     nautilus-open-any-terminal
     ungoogled-chromium
     slack
+    spotify
+    kicad
+    hyprpicker
   ];
 
   programs = {
@@ -31,21 +34,20 @@
         };
       };
     };
+    swaylock = {
+      enable = true;
+      settings = {
+        clock = true;
+      };
+    };
 
-    swaylock.enable = true;
+    imv.enable = true;
+    mpv.enable = true;
+    vesktop.enable = true;
   };
 
   services = {
     mako.enable = true;
     udiskie.enable = true;
-  };
-
-  stylix.targets = {
-    bat.enable = false;
-    ghostty.enable = false;
-    fish.enable = false;
-    zen-browser.profileNames = [
-      "jen"
-    ];
   };
 }

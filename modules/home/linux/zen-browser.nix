@@ -6,8 +6,7 @@
     enable = true;
 
     profiles = {
-      jen = {
-      };
+      jen = { };
     };
 
     policies = {

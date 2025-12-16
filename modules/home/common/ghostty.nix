@@ -30,7 +30,7 @@
       # fallback font
       # font-family = "MapleMono Nerd Font";
 
-      theme = "dark:Zenbones Dark,light:Zenbones Light";
+      # theme = "dark:Zenbones Dark,light:Zenbones Light";
 
       adjust-cell-height = "40%";
 

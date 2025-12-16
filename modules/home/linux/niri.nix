@@ -1,13 +1,13 @@
-{ config, ... }:
+{ config, pkgs, ... }:
 {
   programs.niri.settings = {
     spawn-at-startup = [
       {
         command = [ "noctalia-shell" ];
       }
-      {
-        sh = "vicinae server";
-      }
+      # {
+      #   sh = "vicinae server";
+      # }
     ];
 
     cursor.hide-when-typing = true;
@@ -60,14 +60,6 @@
         clip-to-geometry = true;
       }
     ];
-
-    switch-events = {
-      lid-close.action.spawn = [
-        "systemctl"
-        "suspend"
-        "-i"
-      ];
-    };
 
     binds = with config.lib.niri.actions; {
       # System & overlay & stuff
@@ -151,7 +143,57 @@
           "ipc"
           "call"
           "volume"
-          "muteOutuput"
+          "muteOutput"
+        ];
+      };
+      "XF86AudioPlay" = {
+        allow-when-locked = true;
+        action.spawn = [
+          "noctalia-shell"
+          "ipc"
+          "call"
+          "media"
+          "playPause"
+        ];
+      };
+      "XF86AudioNext" = {
+        allow-when-locked = true;
+        action.spawn = [
+          "noctalia-shell"
+          "ipc"
+          "call"
+          "media"
+          "next"
+        ];
+      };
+      "XF86AudioPrev" = {
+        allow-when-locked = true;
+        action.spawn = [
+          "noctalia-shell"
+          "ipc"
+          "call"
+          "media"
+          "previous"
+        ];
+      };
+      "XF86MonBrightnessUp" = {
+        allow-when-locked = true;
+        action.spawn = [
+          "noctalia-shell"
+          "ipc"
+          "call"
+          "brightness"
+          "increase"
+        ];
+      };
+      "XF86MonBrightnessDown" = {
+        allow-when-locked = true;
+        action.spawn = [
+          "noctalia-shell"
+          "ipc"
+          "call"
+          "brightness"
+          "decrease"
         ];
       };
 
