@@ -3,41 +3,155 @@
   programs.niri.settings = {
     spawn-at-startup = [
       {
-        command = [
-          "noctalia-shell"
-        ];
+        command = [ "noctalia-shell" ];
+      }
+      {
+        sh = "vicinae server";
       }
     ];
 
+    cursor.hide-when-typing = true;
+    clipboard.disable-primary = true;
+    prefer-no-csd = true;
+    hotkey-overlay.skip-at-startup = true;
+    screenshot-path = "~/Pictures/Screenshots/screenshot_%Y-%m-%d_%H-%M-%S.png";
+
+    input = {
+      keyboard = {
+        repeat-delay = 250;
+        repeat-rate = 50;
+      };
+
+      touchpad = {
+        scroll-factor = 0.5;
+      };
+    };
+
+    outputs = {
+      # Framework 13 Screen
+      "BOE NE135A1M-NY1 Unknown" = {
+        mode = {
+          width = 2880;
+          height = 1920;
+        };
+        scale = 1.5;
+        position.x = 0;
+        position.y = 0;
+        variable-refresh-rate = "on-demand";
+      };
+    };
+
+    animations = {
+      slowdown = 0.5;
+    };
+
+    layout = {
+      struts.top = -10;
+    };
+
+    window-rules = [
+      {
+        geometry-corner-radius = {
+          bottom-left = 10.0;
+          bottom-right = 10.0;
+          top-left = 10.0;
+          top-right = 10.0;
+        };
+        clip-to-geometry = true;
+      }
+    ];
+
+    switch-events = {
+      lid-close.action.spawn = [
+        "systemctl"
+        "suspend"
+        "-i"
+      ];
+    };
+
     binds = with config.lib.niri.actions; {
-      # System & overlay
+      # System & overlay & stuff
       "Mod+Shift+Slash".action = show-hotkey-overlay;
       "Mod+Shift+E".action = quit;
       "Mod+Shift+P".action = power-off-monitors;
+      "Mod+Escape" = {
+        allow-inhibiting = false;
+        action = toggle-keyboard-shortcuts-inhibit;
+      };
+      "Mod+O" = {
+        repeat = false;
+        action = toggle-overview;
+      };
 
       # Application launching
-      "Mod+T".action = spawn "ghostty";
-      "Mod+Space".action = spawn "fuzzel";
-      "Mod+Alt+L".action = spawn "swaylock";
-      "Mod+E".action = spawn "nautilus";
+      "Mod+Return".action.spawn = "ghostty";
+      # "Mod+Space".action.spawn = "fuzzel";
+      "Mod+Space".action.spawn = [
+        "vicinae"
+        "toggle"
+      ];
+      "Mod+Alt+L".action.spawn = "swaylock";
+      "Mod+E".action.spawn = "nautilus";
+
+      # macOS style keybinds
+      "Mod+C".action.spawn = [
+        "wtype"
+        "-k"
+        "XF86Copy"
+      ];
+      "Mod+V".action.spawn = [
+        "wtype"
+        "-k"
+        "XF86Paste"
+      ];
+      "Mod+X".action.spawn = [
+        "wtype"
+        "-k"
+        "XF86Cut"
+      ];
+      "Mod+A".action.spawn = [
+        "wtype"
+        "-M"
+        "ctrl"
+        "-k"
+        "a"
+        "-m"
+        "ctrl"
+      ];
+      "Mod+Shift+V".action.spawn = [
+        "vicinae"
+        "vicinae://extensions/vicinae/clipboard/history"
+      ];
 
       # Audio control
       "XF86AudioRaiseVolume" = {
         allow-when-locked = true;
         action.spawn = [
-          "wpctl"
-          "set-volume"
-          "@DEFAULT_AUDIO_SINK@"
-          "0.1+"
+          "noctalia-shell"
+          "ipc"
+          "call"
+          "volume"
+          "increase"
         ];
       };
       "XF86AudioLowerVolume" = {
         allow-when-locked = true;
         action.spawn = [
-          "wpctl"
-          "set-volume"
-          "@DEFAULT_AUDIO_SINK@"
-          "0.1-"
+          "noctalia-shell"
+          "ipc"
+          "call"
+          "volume"
+          "decrease"
+        ];
+      };
+      "XF86AudioMute" = {
+        allow-when-locked = true;
+        action.spawn = [
+          "noctalia-shell"
+          "ipc"
+          "call"
+          "volume"
+          "muteOutuput"
         ];
       };
 
@@ -143,16 +257,30 @@
       # Column operations
       "Mod+Comma".action = consume-window-into-column;
       "Mod+Period".action = expel-window-from-column;
+      "Mod+BracketLeft".action = consume-or-expel-window-left;
+      "Mod+BracketRight".action = consume-or-expel-window-right;
+      "Mod+W".action = toggle-column-tabbed-display;
 
       # Column/Window sizing
       "Mod+R".action = switch-preset-column-width;
       "Mod+F".action = maximize-column;
       "Mod+Shift+F".action = fullscreen-window;
-      "Mod+C".action = center-column;
+      "Mod+Ctrl+F".action = expand-column-to-available-width;
+      "Mod+S".action = center-column;
+      "Mod+Ctrl+S".action = center-visible-columns;
       "Mod+Minus".action.set-column-width = "-10%";
       "Mod+Equal".action.set-column-width = "+10%";
       "Mod+Shift+Minus".action.set-window-height = "-10%";
       "Mod+Shift+Equal".action.set-window-height = "+10%";
+
+      # Floating
+      "Mod+Alt+F".action = toggle-window-floating;
+      "Mod+Tab".action = switch-focus-between-floating-and-tiling;
+
+      # Screenshots
+      "Mod+Shift+S".action.screenshot = [ ];
+      "Mod+Ctrl+Shift+S".action.screenshot-screen = [ ];
+      "Mod+Alt+Shift+S".action.screenshot-window = [ ];
     };
   };
 }

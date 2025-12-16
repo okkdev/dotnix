@@ -1,8 +1,5 @@
-{ pkgs, ... }:
+{ username, pkgs, ... }:
 
-let
-  username = "jen";
-in
 {
   imports = [
     ./hardware-configuration.nix
@@ -28,11 +25,18 @@ in
   # bios updates
   services.fwupd.enable = true;
 
-  # X11 config so maybe not needed?
+  # keyboard
   services.xserver.xkb = {
     layout = "us";
     variant = "";
   };
+  # remap laptop keyboard (caps to ctrl, lalt <-> meta)
+  services.udev.extraHwdb = ''
+    evdev:atkbd:dmi:*
+     KEYBOARD_KEY_3a=leftctrl
+     KEYBOARD_KEY_38=leftmeta
+     KEYBOARD_KEY_db=leftalt
+  '';
 
   # power management
   services.power-profiles-daemon.enable = true;
@@ -42,7 +46,6 @@ in
   security.pam.services.swaylock = {
     enable = true;
 
-    # Using `fprintAuth = true` does not allow password-only unlocking
     text = ''
       auth sufficient pam_unix.so
       auth sufficient ${pkgs.fprintd}/lib/security/pam_fprintd.so

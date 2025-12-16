@@ -8,7 +8,7 @@
     package = lib.mkIf pkgs.stdenv.isDarwin null;
 
     settings = {
-      font-size = 14;
+      font-size = if pkgs.stdenv.isDarwin then 14 else 11;
       # font-family = "Maple Mono";
       font-family = "Departure Mono";
       # font-variation = "wght=500";
@@ -21,8 +21,11 @@
       #   "ss03"
       #   "ss08"
       # ];
+      bold-color = "bright";
+
+      # macOS stuff
       font-thicken = true;
-      bold-is-bright = true;
+      macos-titlebar-style = "hidden";
 
       # fallback font
       # font-family = "MapleMono Nerd Font";
@@ -35,13 +38,10 @@
       window-padding-y = 20;
       window-padding-balance = true;
       window-theme = "auto";
-      macos-titlebar-style = "hidden";
+      window-decoration = "none";
 
       keybind = [
-        "super+shift+h=previous_tab"
-        "super+shift+l=next_tab"
-        "super+shift+ctrl+h=move_tab:-1"
-        "super+shift+ctrl+l=move_tab:+1"
+        "ctrl+enter=unbind"
       ];
     };
   };

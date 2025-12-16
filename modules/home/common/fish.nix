@@ -62,7 +62,7 @@
         description = "show the current shell level as icon";
         body = # fish
           ''
-            switch (math "$SHLVL - 1")
+            switch (math "$SHLVL - ${if pkgs.stdenv.isDarwin then "1" else "2"}")
               case 0
                   echo " "
               case 1

@@ -25,6 +25,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.home-manager.follows = "home-manager";
     };
+    vicinae = {
+      url = "github:vicinaehq/vicinae";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -57,6 +61,9 @@
       nixosConfigurations = {
         fork = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
+          specialArgs = {
+            username = "jen";
+          };
           modules = [
             nixos-hardware.nixosModules.framework-amd-ai-300-series
             home-manager.nixosModules.home-manager

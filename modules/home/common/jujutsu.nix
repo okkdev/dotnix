@@ -10,14 +10,17 @@
         key = "~/.ssh/id_ed25519.pub";
       };
       user = {
-        name = "okkdev";
+        name = "Jen Stehlik";
         email = "dev@stehlik.me";
       };
 
       # cyon config
       "--scope" = [
         {
-          "--when".repositories = [ "~/Documents/git/work" ];
+          "--when".repositories = [
+            "~/Documents/git/work"
+            "~/code/work"
+          ];
           user = {
             name = "Jen Stehlik";
             email = "js@cyon.ch";
