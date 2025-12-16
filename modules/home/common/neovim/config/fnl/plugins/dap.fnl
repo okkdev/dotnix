@@ -10,7 +10,8 @@
        :request :launch
        :port 9003
        :name "Listen for Xdebug"
-       :pathMappings {:/var/www/mycyon "${workspaceFolder}"}}])
+       :pathMappings {:/var/www/mycyon "${workspaceFolder}"
+                      :/var/www/froox "${workspaceFolder}"}}])
 
 (local map vim.keymap.set)
 

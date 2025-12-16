@@ -68,7 +68,6 @@
         gp = [
           "git"
           "push"
-          "--allow-new"
         ];
         cm = [
           "commit"
@@ -80,6 +79,11 @@
         e = [ "edit" ];
         n = [ "new" ];
         l = [ "log" ];
+        lb = [
+          "log"
+          "--revisions"
+          "bookmarks()"
+        ];
         rb = [ "rebase" ];
       };
       revset-aliases = {
