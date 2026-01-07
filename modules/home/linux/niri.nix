@@ -1,13 +1,10 @@
-{ config, pkgs, ... }:
+{ config, ... }:
 {
   programs.niri.settings = {
     spawn-at-startup = [
       {
         command = [ "noctalia-shell" ];
       }
-      # {
-      #   sh = "vicinae server";
-      # }
     ];
 
     cursor.hide-when-typing = true;
@@ -25,6 +22,11 @@
       touchpad = {
         scroll-factor = 0.5;
       };
+
+      mouse = {
+        accel-speed = 0.5;
+        accel-profile = "flat";
+      };
     };
 
     outputs = {
@@ -41,12 +43,18 @@
       };
     };
 
+    # overview = {
+    #   backdrop-color = config.lib.stylix.colors.withHashtag.base01;
+    # };
+
     animations = {
       slowdown = 0.5;
     };
 
     layout = {
-      struts.top = -10;
+      # struts.top = -8;
+      gaps = 10;
+      tab-indicator.place-within-column = true;
     };
 
     window-rules = [
@@ -83,6 +91,13 @@
         "toggle"
       ];
       "Mod+Alt+L".action.spawn = "swaylock";
+      "Mod+Alt+K" = {
+        allow-when-locked = true;
+        action.spawn = [
+          "systemctl"
+          "suspend"
+        ];
+      };
       "Mod+E".action.spawn = "nautilus";
 
       # macOS style keybinds
@@ -257,22 +272,22 @@
       "Mod+Shift+Ctrl+K".action = move-column-to-monitor-up;
 
       # Workspace navigation
-      "Mod+Page_Down".action = focus-workspace-down;
-      "Mod+Page_Up".action = focus-workspace-up;
       "Mod+U".action = focus-workspace-down;
       "Mod+I".action = focus-workspace-up;
+
+      # Move workspace
+      "Mod+Shift+U".action = move-workspace-down;
+      "Mod+Shift+I".action = move-workspace-up;
+
+      # Move workspace monitor
+      "Mod+Shift+Ctrl+U".action = move-workspace-to-monitor-next;
+      "Mod+Shift+Ctrl+I".action = move-workspace-to-monitor-previous;
 
       # Move column to workspace
       "Mod+Ctrl+Page_Down".action = move-column-to-workspace-down;
       "Mod+Ctrl+Page_Up".action = move-column-to-workspace-up;
       "Mod+Ctrl+U".action = move-column-to-workspace-down;
       "Mod+Ctrl+I".action = move-column-to-workspace-up;
-
-      # Move workspace
-      "Mod+Shift+Page_Down".action = move-workspace-down;
-      "Mod+Shift+Page_Up".action = move-workspace-up;
-      "Mod+Shift+U".action = move-workspace-down;
-      "Mod+Shift+I".action = move-workspace-up;
 
       # Direct workspace access (1-9)
       "Mod+1".action.focus-workspace = 1;
@@ -323,6 +338,12 @@
       "Mod+Shift+S".action.screenshot = [ ];
       "Mod+Ctrl+Shift+S".action.screenshot-screen = [ ];
       "Mod+Alt+Shift+S".action.screenshot-window = [ ];
+
+      # Duplicate Output workaround
+      "Mod+P" = {
+        repeat = false;
+        action.spawn-sh = "wl-mirror $(niri msg --json focused-output | jq -r .name)";
+      };
     };
   };
 }

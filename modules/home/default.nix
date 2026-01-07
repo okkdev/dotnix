@@ -38,6 +38,7 @@
       inetutils
       rainfrog
       difftastic
+      wireguard-tools
 
       # AI 🤖
       ollama
@@ -77,7 +78,7 @@
       fnlfmt
       gdtoolkit_4
       nixd
-      nixfmt-rfc-style
+      nixfmt
       nixpkgs-lint-community
       nodePackages.bash-language-server
       shellcheck
@@ -119,8 +120,8 @@
       # iosevka
       # jetbrains-mono
       julia-mono
-      manrope
       miracode
+      noto-fonts
       recursive
       uiua386
       nerd-fonts.symbols-only

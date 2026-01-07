@@ -11,15 +11,26 @@
     # meta shizzle
     xwayland-satellite
     wtype
+    wl-mirror
+    openssl
 
     # applications
     nautilus
     nautilus-open-any-terminal
+    pavucontrol
+    kdePackages.okular
     ungoogled-chromium
     slack
     spotify
     kicad
     hyprpicker
+    networkmanagerapplet
+    pixieditor
+    podman-desktop
+    podman-compose
+    docker-compose
+    orca-slicer
+    obsidian
   ];
 
   programs = {
@@ -34,20 +45,16 @@
         };
       };
     };
-    swaylock = {
-      enable = true;
-      settings = {
-        clock = true;
-      };
-    };
 
+    swaylock.enable = true;
     imv.enable = true;
     mpv.enable = true;
     vesktop.enable = true;
   };
 
   services = {
-    mako.enable = true;
+    # mako.enable = true;
     udiskie.enable = true;
+    network-manager-applet.enable = true;
   };
 }

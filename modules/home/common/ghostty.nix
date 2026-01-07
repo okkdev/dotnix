@@ -10,7 +10,7 @@
     settings = {
       font-size = if pkgs.stdenv.isDarwin then 14 else 11;
       # font-family = "Maple Mono";
-      font-family = "Departure Mono";
+      # font-family = "Departure Mono";
       # font-variation = "wght=500";
       # font-variation-italic = "wght=500";
       # font-feature = [
@@ -34,8 +34,8 @@
 
       adjust-cell-height = "40%";
 
-      window-padding-x = 20;
-      window-padding-y = 20;
+      window-padding-x = 15;
+      window-padding-y = 10;
       window-padding-balance = true;
       window-theme = "auto";
       window-decoration = "none";

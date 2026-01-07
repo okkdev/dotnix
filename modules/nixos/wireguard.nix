@@ -1,6 +1,0 @@
-{ ... }:
-{
-  networking.wireguard = {
-    enable = true;
-  };
-}

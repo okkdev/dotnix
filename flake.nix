@@ -59,7 +59,7 @@
 
       # NixOS system configurations
       nixosConfigurations = {
-        fork = nixpkgs.lib.nixosSystem {
+        fork = nixpkgs.lib.nixosSystem rec {
           system = "x86_64-linux";
           specialArgs = {
             username = "jen";
@@ -77,9 +77,11 @@
                 niri.overlays.niri
               ];
 
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.extraSpecialArgs = { inherit inputs; };
+              home-manager = {
+                useGlobalPkgs = true;
+                useUserPackages = true;
+                extraSpecialArgs = { inherit inputs; };
+              };
             }
 
             ./hosts/fork

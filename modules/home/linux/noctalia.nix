@@ -8,19 +8,22 @@
       bar = {
         density = "default";
         position = "top";
-        showCapsule = true;
-        backgroundOpacity = lib.mkForce 0.0;
+        showCapsule = false;
         marginHorizontal = 0.50;
         marginVertical = 0.15;
-        floating = true;
+        backgroundOpacity = lib.mkForce 0.0;
+        useSeparateOpacity = false;
+        floating = false;
 
         widgets = {
           left = [
             {
               id = "ActiveWindow";
+              maxWidth = 250;
             }
             {
               id = "MediaMini";
+              maxWidth = 300;
             }
           ];
           center = [
@@ -36,6 +39,9 @@
             }
             {
               id = "WiFi";
+            }
+            {
+              id = "VPN";
             }
             {
               id = "Battery";

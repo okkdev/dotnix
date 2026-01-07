@@ -27,7 +27,10 @@
 
   # networking
   networking.hostName = "fork";
-  networking.networkmanager.enable = true;
+  networking.networkmanager = {
+    enable = true;
+    wifi.powersave = true;
+  };
   hardware.bluetooth.enable = true;
 
   # locale
@@ -51,25 +54,38 @@
   '';
 
   # power management
-  services.power-profiles-daemon.enable = true;
-  services.upower.enable = true;
+  services = {
+    power-profiles-daemon.enable = true;
+    upower.enable = true;
+    logind.settings.Login = {
+      HandleLidSwitch = "suspend";
+      IdleAction = "suspend";
+      IdleActionSec = "30min";
+    };
+  };
 
   # security
-  security.pam.services.swaylock = {
-    enable = true;
+  services.fprintd.enable = true;
+  security = {
+    pam.services = {
+      swaylock.fprintAuth = true;
+      "1password".fprintAuth = true;
+    };
 
-    text = ''
-      auth sufficient pam_unix.so
-      auth sufficient ${pkgs.fprintd}/lib/security/pam_fprintd.so
-      auth required pam_deny.so
+    sudo.extraConfig = ''
+      Defaults timestamp_timeout=30
+      Defaults timestamp_type=global
     '';
   };
 
-  # nix settings
-  nix.settings.experimental-features = [
-    "nix-command"
-    "flakes"
-  ];
+  # audio
+  security.rtkit.enable = true;
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
+  };
 
   # system packages
   environment.systemPackages = with pkgs; [
@@ -78,14 +94,35 @@
     git
   ];
 
-  nix.gc = {
-    automatic = true;
-    dates = "weekly";
-    options = "--delete-older-than 30d";
-    persistent = true;
+  # virtualisation
+  virtualisation = {
+    containers.enable = true;
+    podman = {
+      enable = true;
+      defaultNetwork.settings.dns_enabled = true;
+    };
+    docker = {
+      enable = true;
+      storageDriver = "btrfs";
+    };
   };
 
-  nix.optimise.automatic = true;
+  # nix settings
+  nix = {
+    settings.experimental-features = [
+      "nix-command"
+      "flakes"
+    ];
+
+    gc = {
+      automatic = true;
+      dates = "weekly";
+      options = "--delete-older-than 30d";
+      persistent = true;
+    };
+
+    optimise.automatic = true;
+  };
 
   services.printing.enable = true;
 
@@ -95,6 +132,8 @@
     extraGroups = [
       "wheel"
       "networkmanager"
+      "podman"
+      "docker"
     ];
     shell = pkgs.fish;
   };

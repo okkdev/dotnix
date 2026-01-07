@@ -34,7 +34,7 @@ self: super: {
       else
         {
           url = "https://github.com/elixir-lang/expert/releases/download/${version}/expert_linux_amd64";
-          sha256 = "sha256:13b68bbd284d9c01df0ed12625618a26b5ae8554aaa880aac694906442c5fe9f";
+          sha256 = "sha256-EwT+FLYclFnT7Rkwgfo3c4AT9FSTZW+CF83qbNlfzpQ=";
         }
     );
     phases = [ "installPhase" ];

@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 {
   stylix = {
     enable = true;
@@ -14,11 +14,11 @@
     # base16Scheme = "${pkgs.base16-schemes}/share/themes/chinoiserie-morandi.yaml";
     # base16Scheme = "${pkgs.base16-schemes}/share/themes/vesper.yaml";
     # base16Scheme = "${pkgs.base16-schemes}/share/themes/chalk.yaml";
-    # base16Scheme = "${pkgs.base16-schemes}/share/themes/kanagawa-dragon.yaml";
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/kanagawa-dragon.yaml";
     # base16Scheme = "${pkgs.base16-schemes}/share/themes/mountain.yaml";
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/ashes.yaml";
+    # base16Scheme = "${pkgs.base16-schemes}/share/themes/ashes.yaml";
 
-    image = ../../assets/wallpapers/lei-min-31.jpg;
+    image = ../../assets/wallpapers/laindespairdark.jpg;
 
     cursor = {
       # name = "Maple";
@@ -30,6 +30,31 @@
       name = "Bibata-Modern-Ice";
       package = pkgs.bibata-cursors;
       size = 24;
+    };
+
+    fonts = {
+      serif = {
+        package = pkgs.literata;
+        name = "Literata";
+      };
+
+      sansSerif = {
+        package = pkgs.overpass;
+        name = "Overpass";
+      };
+
+      # serif = config.stylix.fonts.monospace;
+      # sansSerif = config.stylix.fonts.monospace;
+
+      monospace = {
+        package = pkgs.departure-mono;
+        name = "Departure Mono";
+      };
+
+      emoji = {
+        package = pkgs.noto-fonts-color-emoji;
+        name = "Noto Color Emoji";
+      };
     };
 
     icons = {
@@ -53,6 +78,7 @@
           # };
         };
         ghostty.enable = true;
+        btop.enable = true;
 
         # os
         niri.enable = true;
@@ -67,7 +93,6 @@
         # programs
         vicinae.enable = true;
         mpv.enable = true;
-        btop.enable = true;
         vesktop.enable = true;
         zen-browser = {
           enable = true;

@@ -1,4 +1,4 @@
-(let [configs (require :nvim-treesitter.configs)]
+(let [configs (require :nvim-treesitter.config)]
   (configs.setup {:sync_install false
                   :auto_install false
                   :indent {:enable true}
