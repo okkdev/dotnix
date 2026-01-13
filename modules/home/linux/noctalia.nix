@@ -11,7 +11,7 @@
         showCapsule = false;
         marginHorizontal = 0.50;
         marginVertical = 0.15;
-        backgroundOpacity = lib.mkForce 0.0;
+        # backgroundOpacity = lib.mkForce 0.0;
         useSeparateOpacity = false;
         floating = false;
 
@@ -38,7 +38,7 @@
               id = "Volume";
             }
             {
-              id = "WiFi";
+              id = "Network";
             }
             {
               id = "VPN";

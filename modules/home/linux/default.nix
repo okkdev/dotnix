@@ -17,6 +17,7 @@
     # applications
     nautilus
     nautilus-open-any-terminal
+    gedit
     pavucontrol
     kdePackages.okular
     ungoogled-chromium
