@@ -14,11 +14,11 @@
     # base16Scheme = "${pkgs.base16-schemes}/share/themes/chinoiserie-morandi.yaml";
     # base16Scheme = "${pkgs.base16-schemes}/share/themes/vesper.yaml";
     # base16Scheme = "${pkgs.base16-schemes}/share/themes/chalk.yaml";
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/kanagawa-dragon.yaml";
-    # base16Scheme = "${pkgs.base16-schemes}/share/themes/mountain.yaml";
+    # base16Scheme = "${pkgs.base16-schemes}/share/themes/kanagawa-dragon.yaml";
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/mountain.yaml";
     # base16Scheme = "${pkgs.base16-schemes}/share/themes/ashes.yaml";
 
-    image = ../../assets/wallpapers/laindespairdark.jpg;
+    image = ../../assets/wallpapers/kanamori_sayaka_asakusa_midori_and_mizusaki_tsubame_eizouken_ni_wa_te_wo_dasu_na_drawn_by_goblet.jpg;
 
     cursor = {
       # name = "Maple";
@@ -43,12 +43,15 @@
         name = "Overpass";
       };
 
+      # full monospace
       # serif = config.stylix.fonts.monospace;
       # sansSerif = config.stylix.fonts.monospace;
 
       monospace = {
-        package = pkgs.departure-mono;
-        name = "Departure Mono";
+        # package = pkgs.departure-mono;
+        # name = "Departure Mono";
+        package = pkgs.agave;
+        name = "Agave";
       };
 
       emoji = {
@@ -94,6 +97,7 @@
         vicinae.enable = true;
         mpv.enable = true;
         vesktop.enable = true;
+        gedit.enable = true;
         zen-browser = {
           enable = true;
           profileNames = [

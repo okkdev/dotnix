@@ -28,7 +28,6 @@
       jq
       pv
       xh
-      bottom
       btop
       dust
       gnused
@@ -111,6 +110,9 @@
       atkinson-hyperlegible
       cascadia-code
       commit-mono
+      creep
+      scientifica
+      agave
       departure-mono
       fantasque-sans-mono
       fira-code

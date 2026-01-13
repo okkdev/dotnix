@@ -17,6 +17,9 @@
   # latest kernel
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
+  # emulation
+  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
+
   # swap
   swapDevices = [
     {
@@ -68,9 +71,21 @@
   services.fprintd.enable = true;
   security = {
     pam.services = {
-      swaylock.fprintAuth = true;
+      login = {
+        fprintAuth = true;
+        enableGnomeKeyring = true;
+      };
+      swaylock = {
+        unixAuth = true;
+        fprintAuth = true;
+      };
+
+      sudo.fprintAuth = true;
       "1password".fprintAuth = true;
+      polkit-1.fprintAuth = true;
     };
+
+    polkit.enable = true;
 
     sudo.extraConfig = ''
       Defaults timestamp_timeout=30
@@ -86,6 +101,10 @@
     alsa.support32Bit = true;
     pulse.enable = true;
   };
+  # keep audio awake
+  boot.extraModprobeConfig = ''
+    options snd_hda_intel power_save=0
+  '';
 
   # system packages
   environment.systemPackages = with pkgs; [

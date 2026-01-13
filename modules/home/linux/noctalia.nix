@@ -15,6 +15,10 @@
         useSeparateOpacity = false;
         floating = false;
 
+        notifications = {
+          saveToHistory.low = false;
+        };
+
         widgets = {
           left = [
             {

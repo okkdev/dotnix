@@ -53,9 +53,9 @@ in
       mini-nvim
 
       # treesitter
-      nvim-treesitter.withAllGrammars
-      nvim-treesitter-textobjects
-      nvim-ts-autotag
+      nvim-treesitter-legacy.withAllGrammars
+      # nvim-treesitter-textobjects
+      # nvim-ts-autotag
 
       # lsp
       nvim-lspconfig

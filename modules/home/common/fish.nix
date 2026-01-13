@@ -40,7 +40,7 @@
         fish_add_path $HOME/.cabal/bin
         fish_add_path $HOME/.cargo/bin
 
-        set -g hydro_symbol_prompt "$(shell_level)✨"
+        set -g hydro_symbol_prompt "$(shell_level)💕"
         set -U hydro_multiline true
       '';
     shellAbbrs = {

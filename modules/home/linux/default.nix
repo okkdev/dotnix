@@ -12,40 +12,54 @@
     xwayland-satellite
     wtype
     wl-mirror
+    wl-clipboard
     openssl
 
     # applications
+    figma-linux
+    gedit
+    gnome-disk-utility
+    hyprpicker
+    kdePackages.kdenlive
+    kdePackages.okular
+    kicad
     nautilus
     nautilus-open-any-terminal
-    gedit
+    networkmanagerapplet
+    obsidian
+    orca-slicer
     pavucontrol
-    kdePackages.okular
-    ungoogled-chromium
+    pixieditor
+    popsicle
     slack
     spotify
-    kicad
-    hyprpicker
-    networkmanagerapplet
-    pixieditor
-    podman-desktop
-    podman-compose
+    sushi
+    ungoogled-chromium
+
+    # virtualisation
     docker-compose
-    orca-slicer
-    obsidian
+    podman-compose
+    podman-desktop
+
+    # office
+    libreoffice-qt6
+    hunspell
+    hunspellDicts.de_CH
+    hunspellDicts.en_US
   ];
 
   programs = {
-    fuzzel = {
-      enable = true;
-      settings = {
-        main = {
-          prompt = "\"⚡ \"";
-          horizontal-pad = 20;
-          vertical-pad = 15;
-          inner-pad = 10;
-        };
-      };
-    };
+    # fuzzel = {
+    #   enable = true;
+    #   settings = {
+    #     main = {
+    #       prompt = "\"⚡ \"";
+    #       horizontal-pad = 20;
+    #       vertical-pad = 15;
+    #       inner-pad = 10;
+    #     };
+    #   };
+    # };
 
     swaylock.enable = true;
     imv.enable = true;
@@ -57,5 +71,25 @@
     # mako.enable = true;
     udiskie.enable = true;
     network-manager-applet.enable = true;
+
+    swayidle = {
+      enable = true;
+      events = {
+        "before-sleep" = "${pkgs.swaylock}/bin/swaylock -fF";
+      };
+    };
+  };
+
+  # add hyprpicker to launcher
+  xdg.desktopEntries.hyprpicker = {
+    name = "Hyprpicker";
+    comment = "Color picker for Wayland";
+    exec = "hyprpicker -a";
+    icon = "color-select-symbolic";
+    terminal = false;
+    categories = [
+      "Utility"
+      "Graphics"
+    ];
   };
 }

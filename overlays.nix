@@ -1,7 +1,7 @@
 self: super: {
-  gleam = super.stdenv.mkDerivation rec {
+  gleam = super.stdenvNoCC.mkDerivation rec {
     name = "gleam";
-    version = "v1.13.0";
+    version = "v1.14.0";
     # version = "nightly";
     src = super.fetchurl (
       if super.stdenv.isDarwin then
@@ -12,7 +12,7 @@ self: super: {
       else
         {
           url = "https://github.com/gleam-lang/gleam/releases/download/${version}/gleam-${version}-x86_64-unknown-linux-musl.tar.gz";
-          sha256 = "sha256:8b372488e5ccaa54d8acc2feb9852c9e7916e480566049edd565caa1d8c74eec";
+          sha256 = "sha256-XcZqu/PrgPIJ8cJh7PxE3BQE3YrFA+SDNp03GCpPzOg=";
         }
     );
     phases = [ "installPhase" ];
@@ -22,7 +22,7 @@ self: super: {
       chmod +x $out/bin/gleam
     '';
   };
-  expert-lsp = super.stdenv.mkDerivation rec {
+  expert-lsp = super.stdenvNoCC.mkDerivation rec {
     name = "expert-lsp";
     version = "nightly";
     src = super.fetchurl (
@@ -34,7 +34,7 @@ self: super: {
       else
         {
           url = "https://github.com/elixir-lang/expert/releases/download/${version}/expert_linux_amd64";
-          sha256 = "sha256-EwT+FLYclFnT7Rkwgfo3c4AT9FSTZW+CF83qbNlfzpQ=";
+          sha256 = "sha256-9RsFJTrTCGIx72vXQR/HIHCYjYi+lyX+f7wfZIVAHP8=";
         }
     );
     phases = [ "installPhase" ];
