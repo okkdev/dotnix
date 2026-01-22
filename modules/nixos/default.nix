@@ -7,6 +7,10 @@
 
   networking.wireguard.enable = true;
 
+  # enable niri and disable kde polkit agent
+  programs.niri.enable = true;
+  systemd.user.services.niri-flake-polkit.enable = false;
+
   # make bash available at /bin/bash
   system.activationScripts.binbash = ''
     mkdir -p /bin
@@ -20,6 +24,7 @@
       xdg-desktop-portal-gtk
       xdg-desktop-portal-gnome
     ];
+    config.common.default = [ "gtk" ];
   };
 
   services = {
@@ -54,7 +59,6 @@
   };
 
   programs = {
-    niri.enable = true;
     zoom-us.enable = true;
 
     _1password.enable = true;

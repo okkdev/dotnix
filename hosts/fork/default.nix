@@ -71,10 +71,6 @@
   services.fprintd.enable = true;
   security = {
     pam.services = {
-      login = {
-        fprintAuth = true;
-        enableGnomeKeyring = true;
-      };
       swaylock = {
         unixAuth = true;
         fprintAuth = true;
@@ -86,6 +82,7 @@
     };
 
     polkit.enable = true;
+    soteria.enable = true;
 
     sudo.extraConfig = ''
       Defaults timestamp_timeout=30

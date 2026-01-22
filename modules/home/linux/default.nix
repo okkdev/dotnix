@@ -28,7 +28,7 @@
     networkmanagerapplet
     obsidian
     orca-slicer
-    pavucontrol
+    pwvucontrol
     pixieditor
     popsicle
     slack
@@ -70,10 +70,10 @@
   services = {
     # mako.enable = true;
     udiskie.enable = true;
-    network-manager-applet.enable = true;
 
     swayidle = {
       enable = true;
+      systemdTarget = "niri.service";
       events = {
         "before-sleep" = "${pkgs.swaylock}/bin/swaylock -fF";
       };
