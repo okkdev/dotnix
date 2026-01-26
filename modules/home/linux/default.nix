@@ -20,7 +20,7 @@
     gedit
     gnome-disk-utility
     hyprpicker
-    kdePackages.kdenlive
+    # kdePackages.kdenlive
     kdePackages.okular
     kicad
     nautilus

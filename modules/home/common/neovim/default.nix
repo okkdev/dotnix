@@ -53,7 +53,7 @@ in
       mini-nvim
 
       # treesitter
-      nvim-treesitter-legacy.withAllGrammars
+      nvim-treesitter.withAllGrammars
       # nvim-treesitter-textobjects
       # nvim-ts-autotag
 
@@ -125,7 +125,7 @@ in
     ];
 
     # we need to remove the return that fennel adds implicitly to the end of the module
-    extraLuaConfig = lib.replaceString "return " "" (lib.readFile "${nvim-config}/init.lua");
+    initLua = lib.replaceString "return " "" (lib.readFile "${nvim-config}/init.lua");
   };
 
   xdg.configFile."nvim/lua" = {

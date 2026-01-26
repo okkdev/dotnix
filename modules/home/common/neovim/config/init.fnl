@@ -4,7 +4,6 @@
 (require :specific)
 
 ; Plugins
-(require :plugins.treesitter)
 ; (require :plugins.theme)
 (require :plugins.lsp)
 (require :plugins.blink)

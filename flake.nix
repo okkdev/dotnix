@@ -59,7 +59,7 @@
 
       # NixOS system configurations
       nixosConfigurations = {
-        fork = nixpkgs.lib.nixosSystem rec {
+        fork = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           specialArgs = {
             username = "jen";

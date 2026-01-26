@@ -17,6 +17,13 @@
                       (set vim.opt_local.cursorline false)
                       (set vim.opt_local.signcolumn :no))})
 
+; enable treesitter for all files
+(autocmd :FileType
+         {:callback (fn [args]
+                      (let [lang (vim.treesitter.language.get_lang args.match)]
+                        (when (and lang (vim.treesitter.language.add lang))
+                          (vim.treesitter.start args.buf lang))))})
+
 ; User Commands
 
 (usercmd :AddSpacers

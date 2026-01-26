@@ -7,6 +7,7 @@
     ignores = [
       ".DS_Store"
       ".direnv"
+      ".claude"
     ];
     includes = [
       {

@@ -50,7 +50,7 @@
       man = "batman";
     };
     shellAliases = {
-      ssh = lib.mkIf pkgs.stdenv.isDarwin "TERM=xterm-256color /usr/bin/ssh";
+      ssh = "TERM=xterm-256color ${pkgs.openssh}/bin/ssh";
       llat = "lla -snew";
     };
     functions = {
