@@ -17,7 +17,7 @@
                       (set vim.opt_local.cursorline false)
                       (set vim.opt_local.signcolumn :no))})
 
-; enable treesitter for all files
+; enable treesitter for all available filetypes
 (autocmd :FileType
          {:callback (fn [args]
                       (let [lang (vim.treesitter.language.get_lang args.match)]
