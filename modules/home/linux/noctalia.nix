@@ -23,6 +23,7 @@
           left = [
             {
               id = "ActiveWindow";
+              colorizeIcons = false;
               maxWidth = 250;
             }
             {

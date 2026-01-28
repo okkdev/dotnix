@@ -76,6 +76,11 @@
         fprintAuth = true;
       };
 
+      login = {
+        unixAuth = true;
+        fprintAuth = true;
+      };
+
       sudo.fprintAuth = true;
       "1password".fprintAuth = true;
       polkit-1.fprintAuth = true;
@@ -88,6 +93,15 @@
       Defaults timestamp_timeout=30
       Defaults timestamp_type=global
     '';
+
+    wrappers = {
+      polkit-agent-helper-1 = {
+        setuid = true;
+        owner = "root";
+        group = "root";
+        source = "${pkgs.polkit.out}/lib/polkit-1/polkit-agent-helper-1";
+      };
+    };
   };
 
   # audio
@@ -140,7 +154,7 @@
     optimise.automatic = true;
   };
 
-  services.printing.enable = true;
+  services.printing.enable = false;
 
   # users
   users.users.${username} = {
@@ -150,6 +164,7 @@
       "networkmanager"
       "podman"
       "docker"
+      "lp"
     ];
     shell = pkgs.fish;
   };

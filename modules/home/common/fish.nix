@@ -52,6 +52,7 @@
     shellAliases = {
       ssh = "TERM=xterm-256color ${pkgs.openssh}/bin/ssh";
       llat = "lla -snew";
+      tree = "eza --tree";
     };
     functions = {
       fish_greeting = {

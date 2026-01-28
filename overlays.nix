@@ -22,6 +22,7 @@ self: super: {
       chmod +x $out/bin/gleam
     '';
   };
+
   expert-lsp = super.stdenvNoCC.mkDerivation rec {
     name = "expert-lsp";
     version = "nightly";
@@ -42,6 +43,59 @@ self: super: {
       mkdir -p $out/bin
       cp $src $out/bin/expert
       chmod +x $out/bin/expert
+    '';
+  };
+
+  claude-code-wrapped = super.writeShellApplication {
+    name = "claude";
+
+    runtimeInputs = with super; [
+      claude-code
+      bubblewrap
+      git
+    ];
+
+    text = ''
+      mkdir -p "$HOME/.claude"
+      touch "$HOME/.claude.json"
+
+      HIDE_BINDS=""
+      if git rev-parse --git-dir > /dev/null 2>&1; then
+        while IFS= read -r file; do
+          [[ "$file" =~ ^\.claude(/|$) ]] && continue
+          [[ -d "$PWD/$file" ]] && HIDE_BINDS+="--tmpfs $PWD/$file "
+          [[ -f "$PWD/$file" ]] && HIDE_BINDS+="--ro-bind /dev/null $PWD/$file "
+        done < <(git ls-files --ignored --exclude-standard --others --directory)
+      fi
+
+      # shellcheck disable=SC2086
+      bwrap \
+        --ro-bind /usr /usr \
+        --ro-bind /lib64 /lib64 \
+        --ro-bind /bin /bin \
+        --ro-bind /nix /nix \
+        --ro-bind /run/current-system /run/current-system \
+        --ro-bind /etc/resolv.conf /etc/resolv.conf \
+        --ro-bind /etc/hosts /etc/hosts \
+        --ro-bind /etc/passwd /etc/passwd \
+        --ro-bind /etc/group /etc/group \
+        --ro-bind ${super.cacert}/etc/ssl/certs/ca-bundle.crt /etc/ssl/certs/ca-bundle.crt \
+        --symlink /etc/ssl/certs/ca-bundle.crt /etc/ssl/certs/ca-certificates.crt \
+        --bind "$PWD" "$PWD" \
+        --bind "$HOME/.claude" "$HOME/.claude" \
+        --bind "$HOME/.claude.json" "$HOME/.claude.json" \
+        --setenv HOME "$HOME" \
+        --setenv USER "$USER" \
+        --setenv SSL_CERT_FILE /etc/ssl/certs/ca-bundle.crt \
+        --tmpfs /tmp \
+        --proc /proc \
+        --dev /dev \
+        --share-net \
+        --unshare-pid \
+        --die-with-parent \
+        --chdir "$PWD" \
+        $HIDE_BINDS \
+        claude "$@"
     '';
   };
 

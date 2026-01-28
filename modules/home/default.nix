@@ -41,7 +41,7 @@
 
       # AI 🤖
       ollama
-      claude-code
+      claude-code-wrapped
 
       # Programming
       otp.erlang
@@ -107,26 +107,27 @@
       # akkuPackages.scheme-langserver
 
       # fonts
+      # ibm-plex
+      # jetbrains-mono
+      agave
       atkinson-hyperlegible
       cascadia-code
       commit-mono
+      corefonts
       creep
-      scientifica
-      agave
       departure-mono
       fantasque-sans-mono
       fira-code
       hasklig
-      # ibm-plex
       inter
-      # iosevka
-      # jetbrains-mono
       julia-mono
       miracode
+      nerd-fonts.symbols-only
       noto-fonts
       recursive
+      scientifica
       uiua386
-      nerd-fonts.symbols-only
+      vista-fonts
     ];
 
   programs = {

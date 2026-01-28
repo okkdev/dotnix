@@ -76,4 +76,14 @@
 
     nix-ld.enable = true;
   };
+
+  # allow 1password extension in zen
+  environment.etc."1password/custom_allowed_browsers" = {
+    text = ''
+      zen
+      .zen-wrapped
+      .zen-beta-wrapped
+    '';
+    mode = "0755";
+  };
 }

@@ -8,32 +8,36 @@
   ];
 
   home.packages = with pkgs; [
-    # meta shizzle
+    # meta stuff
     xwayland-satellite
     wtype
     wl-mirror
     wl-clipboard
     openssl
+    p11-kit
+    alsa-ucm-conf
+
+    # core applications
+    gedit
+    gnome-disk-utility
+    nautilus
+    nautilus-open-any-terminal
+    networkmanagerapplet
+    pwvucontrol
+    sushi
 
     # applications
     figma-linux
-    gedit
-    gnome-disk-utility
     hyprpicker
     # kdePackages.kdenlive
     kdePackages.okular
     kicad
-    nautilus
-    nautilus-open-any-terminal
-    networkmanagerapplet
     obsidian
-    orca-slicer
-    pwvucontrol
     pixieditor
     popsicle
+    orca-slicer
     slack
     spotify
-    sushi
     ungoogled-chromium
 
     # virtualisation

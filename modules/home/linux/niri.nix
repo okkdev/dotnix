@@ -59,6 +59,15 @@
 
     window-rules = [
       {
+        matches = [
+          {
+            app-id = "org.gnome.NautilusPreviewer";
+          }
+        ];
+        open-floating = true;
+      }
+
+      {
         geometry-corner-radius = {
           bottom-left = 10.0;
           bottom-right = 10.0;
@@ -98,7 +107,10 @@
           "suspend"
         ];
       };
-      "Mod+E".action.spawn = "nautilus";
+      "Mod+E".action.spawn = [
+        "nautilus"
+        "--new-window"
+      ];
 
       # macOS style keybinds
       "Mod+C".action.spawn = [

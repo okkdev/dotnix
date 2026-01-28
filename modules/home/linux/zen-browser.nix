@@ -1,4 +1,4 @@
-{ inputs, ... }:
+{ pkgs, inputs, ... }:
 {
   imports = [ inputs.zen-browser.homeModules.beta ];
 
@@ -25,6 +25,12 @@
         Locked = true;
         Cryptomining = true;
         Fingerprinting = true;
+      };
+      Certificates = {
+        ImportEnterpriseRoots = true;
+      };
+      SecurityDevices = {
+        "p11-kit-trust" = "${pkgs.p11-kit}/lib/pkcs11/p11-kit-trust.so";
       };
     };
   };
