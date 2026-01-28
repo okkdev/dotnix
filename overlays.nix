@@ -71,10 +71,12 @@ self: super: {
       # shellcheck disable=SC2086
       bwrap \
         --ro-bind /usr /usr \
-        --ro-bind /lib64 /lib64 \
         --ro-bind /bin /bin \
-        --ro-bind /nix /nix \
-        --ro-bind /run/current-system /run/current-system \
+        --ro-bind-try /lib /lib \
+        --ro-bind-try /lib64 /lib64 \
+        --ro-bind-try /nix /nix \
+        --ro-bind-try /etc/profiles /etc/profiles \
+        --ro-bind-try /etc/static/profiles /etc/static/profiles \
         --ro-bind /etc/resolv.conf /etc/resolv.conf \
         --ro-bind /etc/hosts /etc/hosts \
         --ro-bind /etc/passwd /etc/passwd \
@@ -86,6 +88,7 @@ self: super: {
         --bind "$HOME/.claude.json" "$HOME/.claude.json" \
         --setenv HOME "$HOME" \
         --setenv USER "$USER" \
+        --setenv PATH "$PATH" \
         --setenv SSL_CERT_FILE /etc/ssl/certs/ca-bundle.crt \
         --tmpfs /tmp \
         --proc /proc \
