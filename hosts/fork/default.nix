@@ -62,8 +62,6 @@
     upower.enable = true;
     logind.settings.Login = {
       HandleLidSwitch = "suspend";
-      IdleAction = "suspend";
-      IdleActionSec = "30min";
     };
   };
 
@@ -165,6 +163,8 @@
       "podman"
       "docker"
       "lp"
+      "kvm"
+      "adbusers"
     ];
     shell = pkgs.fish;
   };

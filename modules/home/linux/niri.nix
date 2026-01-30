@@ -63,6 +63,9 @@
           {
             app-id = "org.gnome.NautilusPreviewer";
           }
+          {
+            app-id = "Emulator";
+          }
         ];
         open-floating = true;
       }

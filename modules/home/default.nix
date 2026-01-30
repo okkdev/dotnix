@@ -22,6 +22,8 @@
     [
       # Tools
       coreutils
+      dnsutils
+      inetutils
       fd
       fzf
       ripgrep
@@ -34,7 +36,6 @@
       (writeShellScriptBin "gsed" "exec ${gnused}/bin/sed \"$@\"") # macos gsed workaround
       ouch
       tealdeer
-      inetutils
       rainfrog
       difftastic
       wireguard-tools

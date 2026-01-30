@@ -3,8 +3,9 @@
   imports = [
     ./niri.nix
     ./noctalia.nix
-    ./zen-browser.nix
     ./vicinae.nix
+
+    ./zen-browser
   ];
 
   home.packages = with pkgs; [
@@ -72,7 +73,6 @@
   };
 
   services = {
-    # mako.enable = true;
     udiskie.enable = true;
 
     swayidle = {
@@ -81,6 +81,20 @@
       events = {
         "before-sleep" = "${pkgs.swaylock}/bin/swaylock -fF";
       };
+      timeouts = [
+        {
+          timeout = 60 * 15;
+          command = "${pkgs.niri}/bin/niri msg action power-off-monitors";
+        }
+        {
+          timeout = 60 * 15;
+          command = "${pkgs.swaylock}/bin/swaylock -fF";
+        }
+        {
+          timeout = 60 * 30;
+          command = "${pkgs.systemd}/bin/systemctl suspend";
+        }
+      ];
     };
   };
 

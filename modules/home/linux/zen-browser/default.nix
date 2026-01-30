@@ -1,4 +1,10 @@
-{ pkgs, inputs, ... }:
+{
+  lib,
+  pkgs,
+  inputs,
+  config,
+  ...
+}:
 {
   imports = [ inputs.zen-browser.homeModules.beta ];
 
@@ -6,7 +12,9 @@
     enable = true;
 
     profiles = {
-      jen = { };
+      jen = {
+        userContent = lib.mkForce (import ./userContent.nix { colors = config.lib.stylix.colors; });
+      };
     };
 
     policies = {
