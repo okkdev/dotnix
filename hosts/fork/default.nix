@@ -165,6 +165,7 @@
       "lp"
       "kvm"
       "adbusers"
+      "dialout"
     ];
     shell = pkgs.fish;
   };

@@ -17,6 +17,7 @@
     openssl
     p11-kit
     alsa-ucm-conf
+    inotify-tools
 
     # core applications
     gedit

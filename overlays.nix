@@ -63,6 +63,9 @@ self: super: {
       if git rev-parse --git-dir > /dev/null 2>&1; then
         while IFS= read -r file; do
           [[ "$file" =~ ^\.claude(/|$) ]] && continue
+          [[ "$file" =~ ^node_modules(/|$) ]] && continue
+          [[ "$file" =~ ^vendor(/|$) ]] && continue
+          [[ "$file" =~ ^build(/|$) ]] && continue
           [[ -d "$PWD/$file" ]] && HIDE_BINDS+="--tmpfs $PWD/$file "
           [[ -f "$PWD/$file" ]] && HIDE_BINDS+="--ro-bind /dev/null $PWD/$file "
         done < <(git ls-files --ignored --exclude-standard --others --directory)
