@@ -18,6 +18,7 @@
     p11-kit
     alsa-ucm-conf
     inotify-tools
+    gettext
 
     # core applications
     gedit
@@ -55,22 +56,28 @@
   ];
 
   programs = {
-    # fuzzel = {
-    #   enable = true;
-    #   settings = {
-    #     main = {
-    #       prompt = "\"⚡ \"";
-    #       horizontal-pad = 20;
-    #       vertical-pad = 15;
-    #       inner-pad = 10;
-    #     };
-    #   };
-    # };
-
     swaylock.enable = true;
     imv.enable = true;
     mpv.enable = true;
     vesktop.enable = true;
+
+    iamb = {
+      enable = true;
+      settings = {
+        default_profile = "user";
+        profiles.user.user_id = "@jen:goo.garden";
+        settings = {
+          notifications.enabled = true;
+          image_preview.protocol = {
+            type = "kitty";
+            size = {
+              height = 10;
+              width = 66;
+            };
+          };
+        };
+      };
+    };
   };
 
   services = {

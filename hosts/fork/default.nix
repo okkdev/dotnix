@@ -24,7 +24,7 @@
   swapDevices = [
     {
       device = "/swapfile";
-      size = 8192;
+      size = 49152;
     }
   ];
 
@@ -61,17 +61,25 @@
     power-profiles-daemon.enable = true;
     upower.enable = true;
     logind.settings.Login = {
-      HandleLidSwitch = "suspend";
+      HandleLidSwitch = "suspend-then-hibernate";
     };
   };
+
+  # hibernation (suspend-then-hibernate)
+  boot.resumeDevice = "/dev/mapper/cryptroot";
+  boot.kernelParams = [ "resume_offset=60333312" ];
+  systemd.sleep.extraConfig = ''
+    AllowSuspendThenHibernate=yes
+    HibernateDelaySec=30min
+  '';
 
   # security
   services.fprintd.enable = true;
   security = {
     pam.services = {
       swaylock = {
-        unixAuth = true;
         fprintAuth = true;
+        unixAuth = true;
       };
 
       login = {

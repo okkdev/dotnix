@@ -39,6 +39,7 @@
       rainfrog
       difftastic
       wireguard-tools
+      gnumake
 
       # AI 🤖
       ollama

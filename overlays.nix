@@ -66,6 +66,7 @@ self: super: {
           [[ "$file" =~ ^node_modules(/|$) ]] && continue
           [[ "$file" =~ ^vendor(/|$) ]] && continue
           [[ "$file" =~ ^build(/|$) ]] && continue
+          [[ "$file" =~ ^target(/|$) ]] && continue
           [[ -d "$PWD/$file" ]] && HIDE_BINDS+="--tmpfs $PWD/$file "
           [[ -f "$PWD/$file" ]] && HIDE_BINDS+="--ro-bind /dev/null $PWD/$file "
         done < <(git ls-files --ignored --exclude-standard --others --directory)
@@ -80,12 +81,13 @@ self: super: {
         --ro-bind-try /nix /nix \
         --ro-bind-try /etc/profiles /etc/profiles \
         --ro-bind-try /etc/static/profiles /etc/static/profiles \
+        --ro-bind-try "$HOME/.cargo" "$HOME/.cargo" \
+        --ro-bind-try "$HOME/.mix" "$HOME/.mix" \
         --ro-bind /etc/resolv.conf /etc/resolv.conf \
         --ro-bind /etc/hosts /etc/hosts \
         --ro-bind /etc/passwd /etc/passwd \
         --ro-bind /etc/group /etc/group \
         --ro-bind ${super.cacert}/etc/ssl/certs/ca-bundle.crt /etc/ssl/certs/ca-bundle.crt \
-        --symlink /etc/ssl/certs/ca-bundle.crt /etc/ssl/certs/ca-certificates.crt \
         --bind "$PWD" "$PWD" \
         --bind "$HOME/.claude" "$HOME/.claude" \
         --bind "$HOME/.claude.json" "$HOME/.claude.json" \
