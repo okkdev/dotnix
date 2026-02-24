@@ -20,14 +20,6 @@
   # emulation
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
-  # swap
-  swapDevices = [
-    {
-      device = "/swapfile";
-      size = 49152;
-    }
-  ];
-
   # networking
   networking.hostName = "fork";
   networking.networkmanager = {
@@ -65,9 +57,23 @@
     };
   };
 
-  # hibernation (suspend-then-hibernate)
-  boot.resumeDevice = "/dev/mapper/cryptroot";
-  boot.kernelParams = [ "resume_offset=60333312" ];
+  # swap for hibernation
+  fileSystems."/swap" = {
+    device = "/dev/mapper/luks-cfa0fd3d-bc04-4a78-b19c-81a6b412ff17";
+    fsType = "btrfs";
+    options = [
+      "subvol=@swap"
+      "noatime"
+    ];
+  };
+  swapDevices = [
+    {
+      device = "/swap/swapfile";
+      size = 48 * 1024;
+    }
+  ];
+  boot.resumeDevice = "/dev/mapper/luks-cfa0fd3d-bc04-4a78-b19c-81a6b412ff17";
+  boot.kernelParams = [ "resume_offset=55234149" ];
   systemd.sleep.extraConfig = ''
     AllowSuspendThenHibernate=yes
     HibernateDelaySec=30min

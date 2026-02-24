@@ -88,7 +88,7 @@
                 return 1
             end
 
-            set nix_shell_cmd "nix shell"
+            set nix_shell_cmd "NIXPKGS_ALLOW_UNFREE=1 nix shell --impure"
 
             for pkg in $argv
                 set nix_shell_cmd "$nix_shell_cmd nixpkgs#$pkg"
@@ -102,7 +102,7 @@
         argumentNames = "pkg";
         body = # fish
           ''
-            nix run nixpkgs#$pkg -- $argv[2..-1]
+            NIXPKGS_ALLOW_UNFREE=1 nix run --impure nixpkgs#$pkg -- $argv[2..-1]
           '';
       };
 
