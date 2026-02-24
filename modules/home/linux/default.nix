@@ -4,7 +4,7 @@
     ./niri.nix
     ./noctalia.nix
     ./vicinae.nix
-
+    ./mail.nix
     ./zen-browser
   ];
 
@@ -60,6 +60,11 @@
     imv.enable = true;
     mpv.enable = true;
     vesktop.enable = true;
+
+    thunderbird = {
+      enable = true;
+      profiles.default.isDefault = true;
+    };
 
     iamb = {
       enable = true;

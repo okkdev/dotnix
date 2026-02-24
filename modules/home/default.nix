@@ -40,6 +40,7 @@
       difftastic
       wireguard-tools
       gnumake
+      gh
 
       # AI 🤖
       ollama

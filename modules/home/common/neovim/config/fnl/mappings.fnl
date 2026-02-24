@@ -23,7 +23,7 @@
 (map [:x] :<leader>p "\"_dP" {:desc "Paste without overriding the buffer"})
 
 ; Replace selection: yanks to 's' register and sets up substitution command
-(map [:x] :<leader>r "\"sy:%s\\<C-r>s\\<C-r>s\\gc<left><left><left>"
+(map [:x] :<leader>r "\"sy:%s/<C-r>s/<C-r>s/gc<left><left><left>"
      {:desc "Replace Selection"})
 
 (map [:x] "/" "\"sy:/\\V<C-r>s<CR>N" {:desc "Search for selection"})

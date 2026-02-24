@@ -1,7 +1,7 @@
 self: super: {
   gleam = super.stdenvNoCC.mkDerivation rec {
     name = "gleam";
-    version = "v1.14.0";
+    version = "v1.15.1";
     # version = "nightly";
     src = super.fetchurl (
       if super.stdenv.isDarwin then
@@ -12,7 +12,7 @@ self: super: {
       else
         {
           url = "https://github.com/gleam-lang/gleam/releases/download/${version}/gleam-${version}-x86_64-unknown-linux-musl.tar.gz";
-          sha256 = "sha256-XcZqu/PrgPIJ8cJh7PxE3BQE3YrFA+SDNp03GCpPzOg=";
+          sha256 = "sha256-5wE8xXM0oWgWJj3/+aNcirN5f+ZfHcsq5npKaIvaUtQ=";
         }
     );
     phases = [ "installPhase" ];
@@ -56,8 +56,27 @@ self: super: {
     ];
 
     text = ''
+      PROFILE="personal"
+      CLAUDE_ARGS=()
+      EXTRA_MOUNTS=""
+
+      while [[ $# -gt 0 ]]; do
+        case "$1" in
+          --work) PROFILE="work"; shift ;;
+          --mount) EXTRA_MOUNTS+="--ro-bind ''${2%/} ''${2%/} "; shift 2 ;;
+          *) CLAUDE_ARGS+=("$1"); shift ;;
+        esac
+      done
+
+      if [ "$PROFILE" = "work" ]; then
+        CREDS_FILE="$HOME/.claude/.credentials-work.json"
+      else
+        CREDS_FILE="$HOME/.claude/.credentials.json"
+      fi
+
       mkdir -p "$HOME/.claude"
       touch "$HOME/.claude.json"
+      touch "$CREDS_FILE"
 
       HIDE_BINDS=""
       if git rev-parse --git-dir > /dev/null 2>&1; then
@@ -67,6 +86,9 @@ self: super: {
           [[ "$file" =~ ^vendor(/|$) ]] && continue
           [[ "$file" =~ ^build(/|$) ]] && continue
           [[ "$file" =~ ^target(/|$) ]] && continue
+          [[ "$file" =~ ^.venv(/|$) ]] && continue
+          # Skip if this path is already in EXTRA_MOUNTS
+          [[ "$EXTRA_MOUNTS" == *"$PWD/''${file%/}"* ]] && continue
           [[ -d "$PWD/$file" ]] && HIDE_BINDS+="--tmpfs $PWD/$file "
           [[ -f "$PWD/$file" ]] && HIDE_BINDS+="--ro-bind /dev/null $PWD/$file "
         done < <(git ls-files --ignored --exclude-standard --others --directory)
@@ -81,6 +103,7 @@ self: super: {
         --ro-bind-try /nix /nix \
         --ro-bind-try /etc/profiles /etc/profiles \
         --ro-bind-try /etc/static/profiles /etc/static/profiles \
+        --ro-bind-try /run/current-system /run/current-system \
         --ro-bind-try "$HOME/.cargo" "$HOME/.cargo" \
         --ro-bind-try "$HOME/.mix" "$HOME/.mix" \
         --ro-bind /etc/resolv.conf /etc/resolv.conf \
@@ -90,6 +113,7 @@ self: super: {
         --ro-bind ${super.cacert}/etc/ssl/certs/ca-bundle.crt /etc/ssl/certs/ca-bundle.crt \
         --bind "$PWD" "$PWD" \
         --bind "$HOME/.claude" "$HOME/.claude" \
+        --bind "$CREDS_FILE" "$HOME/.claude/.credentials.json" \
         --bind "$HOME/.claude.json" "$HOME/.claude.json" \
         --setenv HOME "$HOME" \
         --setenv USER "$USER" \
@@ -102,8 +126,9 @@ self: super: {
         --unshare-pid \
         --die-with-parent \
         --chdir "$PWD" \
+        $EXTRA_MOUNTS \
         $HIDE_BINDS \
-        claude "$@"
+        claude "''${CLAUDE_ARGS[@]}"
     '';
   };
 

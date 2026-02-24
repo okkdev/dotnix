@@ -12,7 +12,7 @@
   # boot loader
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.loader.systemd-boot.configurationLimit = 10;
+  boot.loader.systemd-boot.configurationLimit = 20;
 
   # latest kernel
   boot.kernelPackages = pkgs.linuxPackages_latest;
@@ -76,7 +76,7 @@
   boot.kernelParams = [ "resume_offset=55234149" ];
   systemd.sleep.extraConfig = ''
     AllowSuspendThenHibernate=yes
-    HibernateDelaySec=30min
+    HibernateDelaySec=90min
   '';
 
   # security

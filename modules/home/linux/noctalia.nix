@@ -50,7 +50,7 @@
             }
             {
               id = "Battery";
-              displayMode = "alwaysShow";
+              displayMode = "graphic";
               warningThreshold = 20;
             }
             {
