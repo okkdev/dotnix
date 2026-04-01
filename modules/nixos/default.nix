@@ -17,16 +17,6 @@
     ln -sf ${pkgs.bash}/bin/bash /bin/bash
   '';
 
-  xdg.portal = {
-    enable = true;
-    # niri portals
-    extraPortals = with pkgs; [
-      xdg-desktop-portal-gtk
-      xdg-desktop-portal-gnome
-    ];
-    config.common.default = [ "gtk" ];
-  };
-
   services = {
     displayManager.ly = {
       enable = true;

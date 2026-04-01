@@ -116,8 +116,16 @@
       ];
 
       # macOS style keybinds
-      "Mod+C".action.spawn = [ "wl-copy" ];
-      "Mod+V".action.spawn = [ "wl-paste" ];
+      "Mod+C".action.spawn = [
+        "wtype"
+        "-k"
+        "XF86Copy"
+      ];
+      "Mod+V".action.spawn = [
+        "wtype"
+        "-k"
+        "XF86Paste"
+      ];
       "Mod+X".action.spawn = [
         "wtype"
         "-k"

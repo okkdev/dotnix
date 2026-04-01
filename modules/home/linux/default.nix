@@ -11,7 +11,6 @@
   home.packages = with pkgs; [
     # meta stuff
     xwayland-satellite
-    wtype
     wl-mirror
     wl-clipboard
     openssl
@@ -42,6 +41,7 @@
     slack
     spotify
     ungoogled-chromium
+    localsend
 
     # virtualisation
     docker-compose

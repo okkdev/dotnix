@@ -82,21 +82,20 @@
   # security
   services.fprintd.enable = true;
   security = {
-    pam.services = {
-      swaylock = {
-        fprintAuth = true;
-        unixAuth = true;
+    pam.services =
+      let
+        fprintAuth = {
+          fprintAuth = true;
+          rules.auth.fprintd.args = [ "timeout=5" ];
+        };
+      in
+      {
+        swaylock = fprintAuth;
+        login = fprintAuth;
+        sudo = fprintAuth;
+        "1password" = fprintAuth;
+        polkit-1 = fprintAuth;
       };
-
-      login = {
-        unixAuth = true;
-        fprintAuth = true;
-      };
-
-      sudo.fprintAuth = true;
-      "1password".fprintAuth = true;
-      polkit-1.fprintAuth = true;
-    };
 
     polkit.enable = true;
     soteria.enable = true;

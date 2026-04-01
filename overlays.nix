@@ -1,7 +1,7 @@
 self: super: {
   gleam = super.stdenvNoCC.mkDerivation rec {
     name = "gleam";
-    version = "v1.15.1";
+    version = "v1.15.2";
     # version = "nightly";
     src = super.fetchurl (
       if super.stdenv.isDarwin then
@@ -12,7 +12,7 @@ self: super: {
       else
         {
           url = "https://github.com/gleam-lang/gleam/releases/download/${version}/gleam-${version}-x86_64-unknown-linux-musl.tar.gz";
-          sha256 = "sha256-5wE8xXM0oWgWJj3/+aNcirN5f+ZfHcsq5npKaIvaUtQ=";
+          sha256 = "sha256-uc+CAZgfWMEi/E+VPYXyeOftqib6oPOFMpnKv+G3ydw=";
         }
     );
     phases = [ "installPhase" ];
@@ -101,6 +101,7 @@ self: super: {
         --ro-bind-try /lib /lib \
         --ro-bind-try /lib64 /lib64 \
         --ro-bind-try /nix /nix \
+        --ro-bind-try /etc/nix /etc/nix \
         --ro-bind-try /etc/profiles /etc/profiles \
         --ro-bind-try /etc/static/profiles /etc/static/profiles \
         --ro-bind-try /run/current-system /run/current-system \
