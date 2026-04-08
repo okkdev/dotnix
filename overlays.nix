@@ -82,6 +82,7 @@ self: super: {
       if git rev-parse --git-dir > /dev/null 2>&1; then
         while IFS= read -r file; do
           [[ "$file" =~ ^\.claude(/|$) ]] && continue
+          [[ "$file" =~ ^CLAUDE\.md$ ]] && continue
           [[ "$file" =~ ^node_modules(/|$) ]] && continue
           [[ "$file" =~ ^vendor(/|$) ]] && continue
           [[ "$file" =~ ^build(/|$) ]] && continue
@@ -89,6 +90,7 @@ self: super: {
           [[ "$file" =~ ^.venv(/|$) ]] && continue
           # Skip if this path is already in EXTRA_MOUNTS
           [[ "$EXTRA_MOUNTS" == *"$PWD/''${file%/}"* ]] && continue
+          [[ -L "$PWD/$file" ]] && continue
           [[ -d "$PWD/$file" ]] && HIDE_BINDS+="--tmpfs $PWD/$file "
           [[ -f "$PWD/$file" ]] && HIDE_BINDS+="--ro-bind /dev/null $PWD/$file "
         done < <(git ls-files --ignored --exclude-standard --others --directory)

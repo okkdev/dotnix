@@ -20,6 +20,24 @@
   # emulation
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
+  # remote build machine
+  # nix = {
+  #   buildMachines = [
+  #     {
+  #       hostName = "10.0.0.14";
+  #       system = "aarch64-linux";
+  #       sshKey = "/home/jen/.ssh/id_ed25519";
+  #       sshUser = "root";
+  #       maxJobs = 4;
+  #       supportedFeatures = [
+  #         "nixos-test"
+  #         "big-parallel"
+  #       ];
+  #     }
+  #   ];
+  #   distributedBuilds = true;
+  # };
+
   # networking
   networking.hostName = "fork";
   networking.networkmanager = {
@@ -76,7 +94,7 @@
   boot.kernelParams = [ "resume_offset=55234149" ];
   systemd.sleep.extraConfig = ''
     AllowSuspendThenHibernate=yes
-    HibernateDelaySec=90min
+    HibernateDelaySec=240min
   '';
 
   # security

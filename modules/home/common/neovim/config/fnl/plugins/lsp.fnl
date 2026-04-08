@@ -88,6 +88,7 @@
 ; Simple LSP servers
 
 (lsp.enable :bashls)
+(lsp.enable :biome)
 (lsp.enable :cssls)
 (lsp.enable :dockerls)
 (lsp.enable :elp)
@@ -113,19 +114,6 @@
 
 (lsp.enable :elixirls)
 (lsp.config :elixirls {:cmd [:expert]})
-
-(lsp.enable :biome)
-(lsp.config :biome {:filetypes [:css
-                                :graphql
-                                :html
-                                :javascript
-                                :javascriptreact
-                                :json
-                                :jsonc
-                                :typescript
-                                :typescript.tsx
-                                :typescriptreact
-                                :vue]})
 
 (lsp.enable :tailwindcss)
 (lsp.config :tailwindcss
