@@ -92,10 +92,10 @@
   ];
   boot.resumeDevice = "/dev/mapper/luks-cfa0fd3d-bc04-4a78-b19c-81a6b412ff17";
   boot.kernelParams = [ "resume_offset=55234149" ];
-  systemd.sleep.extraConfig = ''
-    AllowSuspendThenHibernate=yes
-    HibernateDelaySec=240min
-  '';
+  systemd.sleep.settings.Sleep = {
+    AllowSuspendThenHibernate = "yes";
+    HibernateDelaySec = "240min";
+  };
 
   # security
   services.fprintd.enable = true;

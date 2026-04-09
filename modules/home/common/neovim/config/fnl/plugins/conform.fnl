@@ -15,7 +15,7 @@
                                    :html [:superhtml :rustywind]
                                    :javascript [:biome :rustywind]
                                    :typescript [:biome :rustywind]
-                                   :nix [:nixfmt :nixpkgs_fmt]
+                                   :nix [:nixfmt]
                                    :lua [:stylua]
                                    :python [:ruff_format]
                                    :racket [:racket_fmt]

@@ -35,7 +35,7 @@
                                            :auto_show_delay_ms 0}
                            :list {:selection {:preselect true
                                               :auto_insert false}}
-                           :menu {:draw {:treesitter [:lsp :copilot]
+                           :menu {:draw {:treesitter [:lsp]
                                          :columns [[:kind_icon]
                                                    [:label :label_description]
                                                    [:kind]]
@@ -46,22 +46,5 @@
                        :<C-CR> [(fn [cmp] (cmp.select_and_accept))]}
               :signature {:enabled true :window {:show_documentation false}}
               :cmdline {:enabled false}
-              :sources {:default [:lsp :path :snippets :buffer :copilot]
-                        :providers {:lsp {:opts {:tailwind_color_icon "󰏘"}}
-                                    :copilot {:async true
-                                              :module :blink-cmp-copilot
-                                              :name :copilot
-                                              :score_offset 0
-                                              :transform_items (fn [_ items]
-                                                                 (let [blink_types (require :blink.cmp.types)
-                                                                       item_kind blink_types.CompletionItemKind
-                                                                       kind_idx (+ (length item_kind)
-                                                                                   1)]
-                                                                   (tset item_kind
-                                                                         kind_idx
-                                                                         :Copilot)
-                                                                   (icollect [_ item (ipairs items)]
-                                                                     (do
-                                                                       (set item.kind
-                                                                            kind_idx)
-                                                                       item))))}}}})
+              :sources {:default [:lsp :path :snippets :buffer]
+                        :providers {:lsp {:opts {:tailwind_color_icon "󰏘"}}}}})

@@ -112,8 +112,10 @@
 
 ; LSP servers with configs
 
-(lsp.enable :elixirls)
-(lsp.config :elixirls {:cmd [:expert]})
+(lsp.enable :expert)
+(lsp.config :expert {:cmd [:expert :--stdio]
+                     :root_markers [:mix.exs :.git]
+                     :filetypes [:elixir :eelixir :heex]})
 
 (lsp.enable :tailwindcss)
 (lsp.config :tailwindcss

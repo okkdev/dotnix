@@ -7,7 +7,7 @@ self: super: {
       if super.stdenv.isDarwin then
         {
           url = "https://github.com/gleam-lang/gleam/releases/download/${version}/gleam-${version}-aarch64-apple-darwin.tar.gz";
-          sha256 = "sha256-I5jRoTCxu0Br20pcLOotyYZ8Z3z0iz1sResgCmU9uzY=";
+          sha256 = "";
         }
       else
         {
@@ -25,17 +25,17 @@ self: super: {
 
   expert-lsp = super.stdenvNoCC.mkDerivation rec {
     name = "expert-lsp";
-    version = "nightly";
+    version = "v0.1.0";
     src = super.fetchurl (
       if super.stdenv.isDarwin then
         {
           url = "https://github.com/elixir-lang/expert/releases/download/${version}/expert_darwin_arm64";
-          sha256 = "sha256-Tq31CjLZOgg7r6MXrqxqIf5HDDGb/4pSB2BPkxx5zSI=";
+          sha256 = "";
         }
       else
         {
           url = "https://github.com/elixir-lang/expert/releases/download/${version}/expert_linux_amd64";
-          sha256 = "sha256-OLYyQEqp2jhb7XCDTl2QqZtKJIWgcPIYYZtdq6QMoPA=";
+          sha256 = "sha256-IjYYniJwda0qIY4kbo37JjDTuANUr4dhd5o/9hNfZ7o=";
         }
     );
     phases = [ "installPhase" ];

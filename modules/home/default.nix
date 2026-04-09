@@ -24,9 +24,11 @@
       coreutils
       dnsutils
       inetutils
+      file
       fd
       fzf
       ripgrep
+      ast-grep
       jq
       pv
       xh
@@ -82,7 +84,7 @@
       nixd
       nixfmt
       nixpkgs-lint-community
-      nodePackages.bash-language-server
+      bash-language-server
       shellcheck
       tailwindcss-language-server
       typescript-language-server
@@ -100,6 +102,7 @@
       taplo
       tombi
       tinymist
+      tree-sitter
       typstyle
       # omnisharp-roslyn
       vscode-langservers-extracted
@@ -127,10 +130,14 @@
       miracode
       nerd-fonts.symbols-only
       noto-fonts
+      noto-fonts-color-emoji
+      noto-fonts-cjk-sans
+      noto-fonts-cjk-serif
       recursive
       scientifica
       uiua386
       vista-fonts
+      wqy_microhei
     ];
 
   programs = {

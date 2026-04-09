@@ -67,7 +67,7 @@
     };
 
     iamb = {
-      enable = true;
+      enable = false;
       settings = {
         default_profile = "user";
         profiles.user.user_id = "@jen:goo.garden";
@@ -90,7 +90,7 @@
 
     swayidle = {
       enable = true;
-      systemdTarget = "niri.service";
+      systemdTargets = [ "niri.service" ];
       events = {
         "before-sleep" = "${pkgs.swaylock}/bin/swaylock -fF";
       };

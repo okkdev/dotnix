@@ -36,6 +36,8 @@ in
     vimAlias = true;
     defaultEditor = true;
     withNodeJs = true;
+    withRuby = false;
+    withPython3 = false;
     extraPackages = with pkgs; [
       curl
       fzf
@@ -63,11 +65,9 @@ in
 
       # completions
       blink-cmp
-      blink-cmp-copilot
       friendly-snippets
 
       # AI 🫥
-      copilot-lua
       # minuet-ai-nvim
       codecompanion-nvim
 
