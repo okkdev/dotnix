@@ -4,7 +4,8 @@
 ; Disable autoformat by default
 (set vim.g.disable_autoformat true)
 
-(conform.setup {:formatters_by_ft {:css [:prettierd :rustywind_css]
+(conform.setup {:formatters_by_ft {:astro [:prettierd :rustywind]
+                                   :css [:prettierd :rustywind_css]
                                    :d2 [:d2]
                                    :elixir [:rustywind :mix]
                                    :erlang [:erlfmt]
@@ -17,6 +18,7 @@
                                    :typescript [:biome :rustywind]
                                    :nix [:nixfmt]
                                    :lua [:stylua]
+                                   :mdx [:prettierd]
                                    :python [:ruff_format]
                                    :racket [:racket_fmt]
                                    :toml [:taplo]

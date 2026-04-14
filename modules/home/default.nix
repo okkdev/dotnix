@@ -81,9 +81,11 @@
       fennel-ls
       fnlfmt
       gdtoolkit_4
+      mdx-language-server
       nixd
       nixfmt
       nixpkgs-lint-community
+      astro-language-server
       bash-language-server
       shellcheck
       tailwindcss-language-server

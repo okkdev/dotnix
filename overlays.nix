@@ -188,6 +188,16 @@ self: super: {
         sha256 = "sha256-UERcpf+3kKKgJjWT6FSWu4BJOcKYOSzwqArJVWlocIE=";
       };
     };
+    mdx-nvim = super.vimUtils.buildVimPlugin {
+      pname = "mdx-nvim";
+      version = "2026-03-30";
+      src = super.fetchFromGitHub {
+        owner = "davidmh";
+        repo = "mdx.nvim";
+        rev = "c2644328587bbd58eede41b2cd0c1ccc99175661";
+        sha256 = "sha256-1yFasKL2UKRd/j9nn8mjiFZOs9sR2GKomoCejtL1XIs=";
+      };
+    };
     d2-vim = super.vimUtils.buildVimPlugin {
       pname = "d2-vim";
       version = "2025-03-27";

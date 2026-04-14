@@ -112,12 +112,18 @@
 
 ; LSP servers with configs
 
-(lsp.enable :expert)
+(lsp.config :astro {:init_options {:typescript {:tsdk vim.g.tsdk}}})
+(lsp.enable :astro)
+
+(lsp.config :mdx_analyzer {:init_options {:typescript {:tsdk vim.g.tsdk}}})
+(lsp.enable :mdx_analyzer)
+
 (lsp.config :expert {:cmd [:expert :--stdio]
                      :root_markers [:mix.exs :.git]
                      :filetypes [:elixir :eelixir :heex]})
 
-(lsp.enable :tailwindcss)
+(lsp.enable :expert)
+
 (lsp.config :tailwindcss
             {:filetypes [:astro
                          :astro-markdown
@@ -160,24 +166,28 @@
                                                                   "class\\(\\s*\"([^\"]*)\"\\s*\\)"
                                                                   "~H\"\"\".*class=\"([^\"]*)\".*\"\"\""]}}}})
 
-(lsp.enable :html)
-(lsp.config :html {:filetypes [:templ :svg]})
+(lsp.enable :tailwindcss)
 
-(lsp.enable :jsonls)
+(lsp.config :html {:filetypes [:templ :svg]})
+(lsp.enable :html)
+
 (lsp.config :jsonls
             {:settings {:json {:schemas (schemastore.json.schemas)
                                :validate {:enable true}}}})
 
-; (lsp.enable :omnisharp)
+(lsp.enable :jsonls)
+
 ; (lsp.config :omnisharp {:cmd [:OmniSharp :settings {:useModernNet false}]})
+; (lsp.enable :omnisharp)
 
-(lsp.enable :tinymist)
 (lsp.config :tinymist {:settings {:formatterMode :typstyle}})
+(lsp.enable :tinymist)
 
-(lsp.enable :yamlls)
 (lsp.config :yamlls
             {:settings {:yaml {:schemaStore {:enable false :url ""}
                                :schemas (schemastore.yaml.schemas {:extra {:description "More permissive Compose schema"
                                                                            :fileMatch "{,docker-}compose*.{yml,yaml}"
                                                                            :name :docker-compose
                                                                            :url "https://raw.githubusercontent.com/compose-spec/compose-spec/master/schema/compose-spec.json"}})}}})
+
+(lsp.enable :yamlls)

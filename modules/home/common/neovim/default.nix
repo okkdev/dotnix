@@ -120,12 +120,17 @@ in
       zenbones-nvim
 
       # language specific plugins
+      mdx-nvim
       uiua-vim
       d2-vim
     ];
 
     # we need to remove the return that fennel adds implicitly to the end of the module
-    initLua = lib.replaceString "return " "" (lib.readFile "${nvim-config}/init.lua");
+    initLua =
+      ''
+        vim.g.tsdk = "${pkgs.typescript}/lib/node_modules/typescript/lib"
+      ''
+      + lib.replaceString "return " "" (lib.readFile "${nvim-config}/init.lua");
   };
 
   xdg.configFile."nvim/lua" = {
