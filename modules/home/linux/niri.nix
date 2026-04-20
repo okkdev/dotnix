@@ -229,6 +229,7 @@
 
       # Window management
       "Mod+Q".action = close-window;
+      "Mod+Shift+Q".action.spawn-sh = "kill -9 $(niri msg --json focused-window | jq .pid)";
 
       # Focus - Arrow keys
       "Mod+Left".action = focus-column-left;

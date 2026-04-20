@@ -18,7 +18,6 @@
                                    :typescript [:biome :rustywind]
                                    :nix [:nixfmt]
                                    :lua [:stylua]
-                                   :mdx [:prettierd]
                                    :python [:ruff_format]
                                    :racket [:racket_fmt]
                                    :toml [:taplo]

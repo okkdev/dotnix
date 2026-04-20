@@ -23,29 +23,6 @@ self: super: {
     '';
   };
 
-  expert-lsp = super.stdenvNoCC.mkDerivation rec {
-    name = "expert-lsp";
-    version = "v0.1.0";
-    src = super.fetchurl (
-      if super.stdenv.isDarwin then
-        {
-          url = "https://github.com/elixir-lang/expert/releases/download/${version}/expert_darwin_arm64";
-          sha256 = "";
-        }
-      else
-        {
-          url = "https://github.com/elixir-lang/expert/releases/download/${version}/expert_linux_amd64";
-          sha256 = "sha256-IjYYniJwda0qIY4kbo37JjDTuANUr4dhd5o/9hNfZ7o=";
-        }
-    );
-    phases = [ "installPhase" ];
-    installPhase = ''
-      mkdir -p $out/bin
-      cp $src $out/bin/expert
-      chmod +x $out/bin/expert
-    '';
-  };
-
   claude-code-wrapped = super.writeShellApplication {
     name = "claude";
 

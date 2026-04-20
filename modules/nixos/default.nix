@@ -52,6 +52,7 @@
 
     udisks2.enable = true;
     hardware.bolt.enable = true;
+    flatpak.enable = true;
   };
 
   programs = {

@@ -14,133 +14,127 @@
     ERL_AFLAGS = "-kernel shell_history enabled";
   };
 
-  home.packages =
-    with pkgs;
-    let
-      otp = pkgs.beam.packages.erlang_28;
-    in
-    [
-      # Tools
-      coreutils
-      dnsutils
-      inetutils
-      file
-      fd
-      fzf
-      ripgrep
-      ast-grep
-      jq
-      pv
-      xh
-      btop
-      dust
-      gnused
-      (writeShellScriptBin "gsed" "exec ${gnused}/bin/sed \"$@\"") # macos gsed workaround
-      ouch
-      tealdeer
-      rainfrog
-      difftastic
-      wireguard-tools
-      gnumake
-      gh
+  home.packages = with pkgs; [
+    # Tools
+    coreutils
+    dnsutils
+    inetutils
+    file
+    fd
+    fzf
+    ripgrep
+    ast-grep
+    jq
+    pv
+    xh
+    btop
+    dust
+    gnused
+    (writeShellScriptBin "gsed" "exec ${gnused}/bin/sed \"$@\"") # macos gsed workaround
+    ouch
+    tealdeer
+    rainfrog
+    difftastic
+    wireguard-tools
+    gnumake
+    gh
 
-      # AI 🤖
-      ollama
-      claude-code-wrapped
+    # AI 🤖
+    ollama
+    claude-code-wrapped
 
-      # Programming
-      otp.erlang
-      otp.rebar3
-      otp.elixir_1_19
-      # dotnetCorePackages.dotnet_9.sdk
-      # mono
-      deno
-      nodejs_24
-      corepack_24
-      typescript
-      luaPackages.fennel
-      gleam
-      libiconv
-      llvm
-      python314
-      uv
-      rustup
-      tailwindcss
-      typst
-      uiua
-      d2
-      chez
+    # Programming
+    beam28Packages.erlang
+    beam28Packages.rebar3
+    beam28Packages.elixir_1_20
+    # dotnetCorePackages.dotnet_9.sdk
+    # mono
+    deno
+    nodejs_24
+    corepack_24
+    typescript
+    luaPackages.fennel
+    gleam
+    libiconv
+    llvm
+    python314
+    uv
+    rustup
+    tailwindcss
+    typst
+    uiua
+    d2
+    chez
 
-      # LSPs and formatters
-      biome
-      dockerfile-language-server
-      erlang-language-platform
-      erlfmt
-      otp.elixir-ls
-      expert-lsp
-      fennel-ls
-      fnlfmt
-      gdtoolkit_4
-      mdx-language-server
-      nixd
-      nixfmt
-      nixpkgs-lint-community
-      astro-language-server
-      bash-language-server
-      shellcheck
-      tailwindcss-language-server
-      typescript-language-server
-      svelte-language-server
-      phpactor
-      prettierd
-      pyright
-      ruff
-      ty
-      rustywind
-      shfmt
-      stylua
-      superhtml
-      sql-formatter
-      taplo
-      tombi
-      tinymist
-      tree-sitter
-      typstyle
-      # omnisharp-roslyn
-      vscode-langservers-extracted
-      yaml-language-server
-      (writeShellScriptBin "php-debug-adapter" ''
-        node ${pkgs.vscode-extensions.xdebug.php-debug}/share/vscode/extensions/xdebug.php-debug/out/phpDebug.js
-      '')
-      # akkuPackages.scheme-langserver
+    # LSPs and formatters
+    biome
+    dockerfile-language-server
+    erlang-language-platform
+    erlfmt
+    beam28Packages.expert
+    fennel-ls
+    fnlfmt
+    gdtoolkit_4
+    mdx-language-server
+    nixd
+    nixfmt
+    nixpkgs-lint-community
+    astro-language-server
+    bash-language-server
+    shellcheck
+    tailwindcss-language-server
+    typescript-language-server
+    svelte-language-server
+    phpactor
+    prettierd
+    pyright
+    ruff
+    ty
+    rustywind
+    shfmt
+    stylua
+    superhtml
+    sql-formatter
+    taplo
+    tombi
+    tinymist
+    tree-sitter
+    typstyle
+    # omnisharp-roslyn
+    vscode-langservers-extracted
+    yaml-language-server
+    (writeShellScriptBin "php-debug-adapter" ''
+      node ${pkgs.vscode-extensions.xdebug.php-debug}/share/vscode/extensions/xdebug.php-debug/out/phpDebug.js
+    '')
+    # akkuPackages.scheme-langserver
 
-      # fonts
-      # ibm-plex
-      # jetbrains-mono
-      agave
-      atkinson-hyperlegible
-      cascadia-code
-      commit-mono
-      corefonts
-      creep
-      departure-mono
-      fantasque-sans-mono
-      fira-code
-      hasklig
-      inter
-      julia-mono
-      miracode
-      nerd-fonts.symbols-only
-      noto-fonts
-      noto-fonts-color-emoji
-      noto-fonts-cjk-sans
-      noto-fonts-cjk-serif
-      recursive
-      scientifica
-      uiua386
-      vista-fonts
-      wqy_microhei
-    ];
+    # fonts
+    # ibm-plex
+    # jetbrains-mono
+    agave
+    atkinson-hyperlegible
+    cascadia-code
+    commit-mono
+    corefonts
+    creep
+    departure-mono
+    fantasque-sans-mono
+    fira-code
+    hasklig
+    inter
+    julia-mono
+    miracode
+    nerd-fonts.symbols-only
+    noto-fonts
+    noto-fonts-color-emoji
+    noto-fonts-cjk-sans
+    noto-fonts-cjk-serif
+    recursive
+    scientifica
+    uiua386
+    vista-fonts
+    wqy_microhei
+  ];
 
   programs = {
     zoxide.enable = true;
