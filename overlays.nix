@@ -35,12 +35,17 @@ self: super: {
     text = ''
       PROFILE="personal"
       CLAUDE_ARGS=()
-      EXTRA_MOUNTS=""
+      EXTRA_MOUNTS=()
+      MOUNT_PATHS=()
 
       while [[ $# -gt 0 ]]; do
         case "$1" in
           --work) PROFILE="work"; shift ;;
-          --mount) EXTRA_MOUNTS+="--ro-bind ''${2%/} ''${2%/} "; shift 2 ;;
+          --mount)
+            EXTRA_MOUNTS+=(--ro-bind "''${2%/}" "''${2%/}")
+            MOUNT_PATHS+=("''${2%/}")
+            shift 2
+            ;;
           *) CLAUDE_ARGS+=("$1"); shift ;;
         esac
       done
@@ -55,25 +60,34 @@ self: super: {
       touch "$HOME/.claude.json"
       touch "$CREDS_FILE"
 
-      HIDE_BINDS=""
-      if git rev-parse --git-dir > /dev/null 2>&1; then
-        while IFS= read -r file; do
-          [[ "$file" =~ ^\.claude(/|$) ]] && continue
-          [[ "$file" =~ ^CLAUDE\.md$ ]] && continue
-          [[ "$file" =~ ^node_modules(/|$) ]] && continue
-          [[ "$file" =~ ^vendor(/|$) ]] && continue
-          [[ "$file" =~ ^build(/|$) ]] && continue
-          [[ "$file" =~ ^target(/|$) ]] && continue
-          [[ "$file" =~ ^.venv(/|$) ]] && continue
-          # Skip if this path is already in EXTRA_MOUNTS
-          [[ "$EXTRA_MOUNTS" == *"$PWD/''${file%/}"* ]] && continue
-          [[ -L "$PWD/$file" ]] && continue
-          [[ -d "$PWD/$file" ]] && HIDE_BINDS+="--tmpfs $PWD/$file "
-          [[ -f "$PWD/$file" ]] && HIDE_BINDS+="--ro-bind /dev/null $PWD/$file "
-        done < <(git ls-files --ignored --exclude-standard --others --directory)
-      fi
+      hide_gitignored() {
+        local dir="$1"
+        if git -C "$dir" rev-parse --git-dir > /dev/null 2>&1; then
+          while IFS= read -r file; do
+            [[ "$file" =~ ^\.claude(/|$) ]] && continue
+            [[ "$file" =~ ^CLAUDE\.md$ ]] && continue
+            [[ "$file" =~ ^node_modules(/|$) ]] && continue
+            [[ "$file" =~ ^vendor(/|$) ]] && continue
+            [[ "$file" =~ ^build(/|$) ]] && continue
+            [[ "$file" =~ ^target(/|$) ]] && continue
+            [[ "$file" =~ ^.venv(/|$) ]] && continue
+            if [[ -L "$dir/$file" ]]; then
+              continue
+            elif [[ -d "$dir/$file" ]]; then
+              HIDE_BINDS+=(--tmpfs "$dir/$file")
+            elif [[ -f "$dir/$file" ]]; then
+              HIDE_BINDS+=(--ro-bind /dev/null "$dir/$file")
+            fi
+          done < <(git -C "$dir" ls-files --ignored --exclude-standard --others --directory)
+        fi
+      }
 
-      # shellcheck disable=SC2086
+      HIDE_BINDS=()
+      hide_gitignored "$PWD"
+      for mpath in "''${MOUNT_PATHS[@]}"; do
+        hide_gitignored "$mpath"
+      done
+
       bwrap \
         --ro-bind /usr /usr \
         --ro-bind /bin /bin \
@@ -106,8 +120,8 @@ self: super: {
         --unshare-pid \
         --die-with-parent \
         --chdir "$PWD" \
-        $EXTRA_MOUNTS \
-        $HIDE_BINDS \
+        "''${EXTRA_MOUNTS[@]}" \
+        "''${HIDE_BINDS[@]}" \
         claude "''${CLAUDE_ARGS[@]}"
     '';
   };
