@@ -53,13 +53,9 @@
           "clone"
           "--colocate"
         ];
-        tug = [
+        ba = [
           "bookmark"
-          "move"
-          "--from"
-          "closest_bookmark(@-)"
-          "--to"
-          "closest_pushable(@-)"
+          "advance"
         ];
         gf = [
           "git"
@@ -86,11 +82,7 @@
         ];
         rb = [ "rebase" ];
       };
-      revset-aliases = {
-        "closest_bookmark(to)" = "heads(::to & bookmarks())";
-        "closest_pushable(to)" =
-          "heads(::to & mutable() & ~description(exact:\"\") & (~empty() | merges()))";
-      };
+      revsets.bookmark-advance-to = "@-";
     };
   };
 }

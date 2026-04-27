@@ -288,16 +288,16 @@
       "Mod+Shift+Ctrl+K".action = move-column-to-monitor-up;
 
       # Workspace navigation
-      "Mod+U".action = focus-workspace-down;
-      "Mod+I".action = focus-workspace-up;
+      "Mod+D".action = focus-workspace-down;
+      "Mod+U".action = focus-workspace-up;
 
       # Move workspace
-      "Mod+Shift+U".action = move-workspace-down;
-      "Mod+Shift+I".action = move-workspace-up;
+      "Mod+Shift+D".action = move-workspace-down;
+      "Mod+Shift+U".action = move-workspace-up;
 
       # Move workspace monitor
-      "Mod+Shift+Ctrl+U".action = move-workspace-to-monitor-next;
-      "Mod+Shift+Ctrl+I".action = move-workspace-to-monitor-previous;
+      "Mod+Ctrl+N".action = move-workspace-to-monitor-next;
+      "Mod+Ctrl+P".action = move-workspace-to-monitor-previous;
 
       # Move column to workspace
       "Mod+Ctrl+Page_Down".action = move-column-to-workspace-down;

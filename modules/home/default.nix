@@ -8,6 +8,7 @@
     ./common/ghostty.nix
     ./common/neovim
     ./common/helix.nix
+    ./common/claude-code.nix
   ];
 
   home.sessionVariables = {
@@ -41,7 +42,6 @@
 
     # AI 🤖
     ollama
-    claude-code-wrapped
 
     # Programming
     beam28Packages.erlang
