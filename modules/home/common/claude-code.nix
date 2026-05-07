@@ -108,6 +108,14 @@ in
     enable = true;
     package = claude-code-wrapped;
     context = ''
+      You run inside a minimal bubblewrap sandbox. The current working directory
+      is mounted read-write, but gitignored files in it are masked — 
+      don't assume secrets or local env files are present. Most of the 
+      host filesystem, other dotfiles, sibling repos, and host processes are not 
+      visible. If a task needs something outside the sandbox, stop and ask 
+      — suggest re-running with `--mount <path>` or have the user run the command 
+      themselves.
+
       Be concise/terse.
       If uncertain, say so. Never invent APIs, types, or file paths.
       Ask before acting on ambiguous requests.
