@@ -3,7 +3,6 @@
   imports = [
     ./niri.nix
     ./noctalia.nix
-    ./vicinae.nix
     ./mail.nix
     ./zen-browser
   ];
@@ -81,6 +80,14 @@
             };
           };
         };
+      };
+    };
+
+    vicinae = {
+      enable = true;
+      systemd = {
+        enable = true;
+        autoStart = true;
       };
     };
   };
