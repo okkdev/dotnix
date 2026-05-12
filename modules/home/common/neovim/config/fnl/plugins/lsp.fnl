@@ -96,6 +96,7 @@
 (lsp.enable :gdscript)
 (lsp.enable :gleam)
 (lsp.enable :gopls)
+(lsp.enable :hls)
 (lsp.enable :nixd)
 (lsp.enable :svelte)
 (lsp.enable :phpactor)

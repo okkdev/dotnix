@@ -302,8 +302,8 @@
       # Move column to workspace
       "Mod+Ctrl+Page_Down".action = move-column-to-workspace-down;
       "Mod+Ctrl+Page_Up".action = move-column-to-workspace-up;
-      "Mod+Ctrl+U".action = move-column-to-workspace-down;
-      "Mod+Ctrl+I".action = move-column-to-workspace-up;
+      "Mod+Ctrl+D".action = move-column-to-workspace-down;
+      "Mod+Ctrl+U".action = move-column-to-workspace-up;
 
       # Direct workspace access (1-9)
       "Mod+1".action.focus-workspace = 1;

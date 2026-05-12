@@ -48,6 +48,38 @@
       devicons (require :nvim-web-devicons)]
   (statusline.setup {:use_icons true})
 
+  (local jj_cache {})
+
+  (fn update_jj_bookmark [bufnr]
+    (let [file (vim.api.nvim_buf_get_name bufnr)
+          dir (if (= file "") (vim.fn.getcwd) (vim.fn.fnamemodify file ":h"))]
+      (vim.system [:jj :log :--no-graph :--ignore-working-copy
+                   :--color :never :--limit "1"
+                   :-r "heads(::@ & bookmarks())"
+                   :-T "bookmarks.map(|b| b.name()).join(\",\")"]
+                  {:cwd dir :text true}
+                  (fn [result]
+                    (let [out (vim.trim (or result.stdout ""))]
+                      (vim.schedule #(do
+                                       (tset jj_cache bufnr
+                                             (if (not= result.code 0) nil
+                                                 (= out "") ""
+                                                 (.. "" " " out)))
+                                       (pcall vim.cmd.redrawstatus))))))))
+
+  (let [group (vim.api.nvim_create_augroup :MiniStatuslineJJ {:clear true})]
+    (vim.api.nvim_create_autocmd [:BufEnter :FocusGained :DirChanged
+                                  :BufWritePost]
+                                 {: group
+                                  :callback (fn [args]
+                                              (update_jj_bookmark args.buf))}))
+
+  ; Prefer jj closest bookmark when inside a jj repo; otherwise fall back to
+  ; mini's git section.
+  (fn section_vcs [args]
+    (or (. jj_cache (vim.api.nvim_get_current_buf))
+        (statusline.section_git args)))
+
   ; Display filename: full path when space available, just name when truncated
   (fn section_filename [args]
     (if (= vim.bo.buftype :terminal) "%t"
@@ -102,7 +134,7 @@
   (set statusline.active
        (fn []
          (let [(mode mode_hl) (statusline.section_mode {:trunc_width 120})
-               git (statusline.section_git {:trunc_width 75})
+               vcs (section_vcs {:trunc_width 75})
                filename (section_filename {:trunc_width 75})
                fileinfo (section_fileinfo {:trunc_width 100})
                search (statusline.section_searchcount {:trunc_width 75})
@@ -110,7 +142,7 @@
            (combine_groups [{:hl mode_hl :strings [mode] :rounded false}
                             ; " "
                             {:hl :MiniStatuslineDevinfo
-                             :strings [git]
+                             :strings [vcs]
                              :rounded false}
                             "%<"
                             {:hl :MiniStatuslineFilename :strings [filename]}

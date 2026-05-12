@@ -7,7 +7,7 @@
             :fzf_colors true})
 
 (local map vim.keymap.set)
-(local file-rg-opts "--color=never --files --hidden -g \"!.git\" -g \"!.jj\"")
+(local file-rg-opts "--color=never --files --hidden -g \"!.git\" -g \"!.jj\" -g \".env*\"")
 
 (map :n :<leader><space>
      (fn []
