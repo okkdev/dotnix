@@ -1,4 +1,9 @@
-{ inputs, lib, ... }:
+{
+  config,
+  inputs,
+  lib,
+  ...
+}:
 {
   imports = [ inputs.noctalia.homeModules.default ];
 
@@ -14,6 +19,10 @@
         # backgroundOpacity = lib.mkForce 0.0;
         useSeparateOpacity = false;
         floating = false;
+
+        colorSchemes = {
+          darkMode = config.stylix.polarity == "dark";
+        };
 
         notifications = {
           saveToHistory.low = false;
