@@ -10,19 +10,28 @@
   programs.noctalia-shell = {
     enable = true;
     settings = {
+
+      # capsules
+      bar.backgroundOpacity = lib.mkForce 0.0;
+      bar.useSeparateOpacity = true;
+      bar.showCapsule = true;
+      ui.panelsAttachedToBar = false;
+      general.enableShadows = false;
+
+      # solid
+      # bar.showCapsule = false;
+
+      general = {
+        animationSpeed = 1.5;
+      };
+
       bar = {
         density = "default";
         position = "top";
-        showCapsule = false;
         marginHorizontal = 0.50;
         marginVertical = 0.15;
-        # backgroundOpacity = lib.mkForce 0.0;
-        useSeparateOpacity = false;
-        floating = false;
 
-        colorSchemes = {
-          darkMode = config.stylix.polarity == "dark";
-        };
+        colorSchemes.darkMode = config.stylix.polarity == "dark";
 
         notifications = {
           saveToHistory.low = false;
@@ -33,11 +42,11 @@
             {
               id = "ActiveWindow";
               colorizeIcons = false;
-              maxWidth = 250;
+              maxWidth = 400;
             }
             {
               id = "MediaMini";
-              maxWidth = 300;
+              maxWidth = 400;
             }
           ];
           center = [

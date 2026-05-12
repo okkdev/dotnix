@@ -92,14 +92,13 @@
         noctalia-shell.enable = true;
         gtk.enable = true;
         qt.enable = true;
-        mako.enable = true;
         font-packages.enable = true;
         xresources.enable = true;
 
         # programs
         vicinae.enable = true;
         mpv.enable = true;
-        vesktop.enable = true;
+        # vesktop.enable = true;
         gedit.enable = true;
         zen-browser = {
           enable = true;

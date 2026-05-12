@@ -10,9 +10,9 @@ Clients
 
 ### macOS (boook)
 
-1. Install nix using the [Determinate Nix Installer](https://github.com/DeterminateSystems/nix-installer)
+1. Install nix using the [Nix Installer](https://github.com/NixOS/nix-installer)
 ```sh
-curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install
+curl -sSfL https://artifacts.nixos.org/nix-installer | sh -s -- install --enable-flakes
 ```
 > Restart the shell after installation
 

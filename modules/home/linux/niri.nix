@@ -52,7 +52,8 @@
     };
 
     layout = {
-      # struts.top = -8;
+      # capsules
+      struts.top = -8;
       gaps = 10;
       tab-indicator.place-within-column = true;
     };

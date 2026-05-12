@@ -41,6 +41,10 @@
     spotify
     ungoogled-chromium
     localsend
+    (inkscape-with-extensions.override {
+      inkscapeExtensions = with inkscape-extensions; [ inkstitch ];
+    })
+    moonlight-qt
 
     # virtualisation
     docker-compose

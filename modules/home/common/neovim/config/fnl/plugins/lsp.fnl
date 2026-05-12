@@ -96,7 +96,6 @@
 (lsp.enable :gdscript)
 (lsp.enable :gleam)
 (lsp.enable :gopls)
-(lsp.enable :hls)
 (lsp.enable :nixd)
 (lsp.enable :svelte)
 (lsp.enable :phpactor)
@@ -168,6 +167,9 @@
                                                                   "~H\"\"\".*class=\"([^\"]*)\".*\"\"\""]}}}})
 
 (lsp.enable :tailwindcss)
+
+(lsp.config :hls {:settings {:haskell {:formattingProvider :fourmolu}}})
+(lsp.enable :hls)
 
 (lsp.config :html {:filetypes [:templ :svg]})
 (lsp.enable :html)

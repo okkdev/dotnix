@@ -4,7 +4,7 @@
 (require :specific)
 
 ; Plugins
-; (require :plugins.theme)
+(require :plugins.theme)
 (require :plugins.lsp)
 (require :plugins.blink)
 (require :plugins.mini)

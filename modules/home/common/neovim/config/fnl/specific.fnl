@@ -5,7 +5,7 @@
 ; Note taking
 
 (autocmd [:FileType]
-         {:pattern [:markdown :norg :text :codecompanion]
+         {:pattern [:markdown :mdx :norg :text :codecompanion]
           :callback (fn []
                       (set vim.opt_local.wrap true)
                       (vim.keymap.set [:n :x] :j :gj {:buffer true})

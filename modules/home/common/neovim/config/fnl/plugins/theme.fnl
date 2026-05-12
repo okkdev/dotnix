@@ -1,6 +1,7 @@
 ; Styling
 (local colorscheme vim.cmd.colorscheme)
 (local usercmd vim.api.nvim_create_user_command)
+(local autocmd vim.api.nvim_create_autocmd)
 
 ; ; This shouldn't be necessary, but seems like nvim 0.10 doesn't detect background color correct/fast enough...
 ; (if (= (os.execute "defaults read -g AppleInterfaceStyle > /dev/null 2> /dev/null")
@@ -8,7 +9,8 @@
 ;     (set vim.o.background :dark)
 ;     (set vim.o.background :light))
 
-(local current_theme :zenbones)
+; using base16-nvim with stylix now
+; (local current_theme :zenbones)
 
 (usercmd :DarkTheme (fn []
                       (set vim.o.background :dark)
@@ -62,5 +64,19 @@
                                       (set hl.StatusLineNC {:bg p.bg0})
                                       (set hl.StatusLine {:bg p.bg0}))}))
 
+; Base16 doesn't set the new Added/Changed/Removed.
+(autocmd [:VimEnter :ColorScheme]
+         {:callback (fn []
+                      (let [base16 (require :base16-colorscheme)
+                            c base16.colors
+                            set-hl #(vim.api.nvim_set_hl 0 $1 $2)]
+                        (set-hl :Added {:fg c.base0B})
+                        (set-hl :Changed {:fg c.base0A})
+                        (set-hl :Removed {:fg c.base08})
+                        (set-hl :DiffAdd {:bg c.base0B})
+                        (set-hl :DiffChange {:bg c.base0A})
+                        (set-hl :DiffDelete {:bg c.base08})))})
+
 ; Activate the initial theme
-(colorscheme current_theme)
+; no need when using stylix
+; (colorscheme current_theme)
