@@ -65,17 +65,18 @@
                                       (set hl.StatusLine {:bg p.bg0}))}))
 
 ; Base16 doesn't set the new Added/Changed/Removed.
-(autocmd [:VimEnter :ColorScheme]
-         {:callback (fn []
-                      (let [base16 (require :base16-colorscheme)
-                            c base16.colors
-                            set-hl #(vim.api.nvim_set_hl 0 $1 $2)]
-                        (set-hl :Added {:fg c.base0B})
-                        (set-hl :Changed {:fg c.base0A})
-                        (set-hl :Removed {:fg c.base08})
-                        (set-hl :DiffAdd {:bg c.base0B})
-                        (set-hl :DiffChange {:bg c.base0A})
-                        (set-hl :DiffDelete {:bg c.base08})))})
+(when (not vim.g.darwin)
+  (autocmd [:VimEnter :ColorScheme]
+           {:callback (fn []
+                        (let [base16 (require :base16-colorscheme)
+                              c base16.colors
+                              set-hl #(vim.api.nvim_set_hl 0 $1 $2)]
+                          (set-hl :Added {:fg c.base0B})
+                          (set-hl :Changed {:fg c.base0A})
+                          (set-hl :Removed {:fg c.base08})
+                          (set-hl :DiffAdd {:bg c.base0B})
+                          (set-hl :DiffChange {:bg c.base0A})
+                          (set-hl :DiffDelete {:bg c.base08})))}))
 
 ; Activate the initial theme
 ; no need when using stylix
