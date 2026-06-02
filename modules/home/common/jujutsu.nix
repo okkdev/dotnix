@@ -18,14 +18,13 @@
       "--scope" = [
         {
           "--when".repositories = [
-            "~/Documents/git/work"
-            "~/code/work"
+            "~/code/dreipol"
           ];
           user = {
             name = "Jen Stehlik";
-            email = "js@cyon.ch";
+            email = "jen.stehlik@dreipol.ch";
           };
-          signing.key = "~/.ssh/id_cyon_ed25519.pub";
+          signing.key = "~/.ssh/id_dreipol_ed25519.pub";
         }
       ];
 

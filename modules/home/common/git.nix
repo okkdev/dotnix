@@ -11,19 +11,11 @@
     ];
     includes = [
       {
-        condition = "gitdir:~/Documents/git/work/";
+        condition = "gitdir:~/code/dreipol/";
         contents = {
           user.name = "Jen Stehlik";
-          user.email = "js@cyon.ch";
-          user.signingkey = "~/.ssh/id_cyon_ed25519.pub";
-        };
-      }
-      {
-        condition = "gitdir:~/code/work/";
-        contents = {
-          user.name = "Jen Stehlik";
-          user.email = "js@cyon.ch";
-          user.signingkey = "~/.ssh/id_cyon_ed25519.pub";
+          user.email = "jen.stehlik@dreipol.ch";
+          user.signingkey = "~/.ssh/id_dreipol_ed25519.pub";
         };
       }
     ];

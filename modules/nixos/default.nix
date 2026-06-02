@@ -2,7 +2,6 @@
 {
   imports = [
     ./stylix.nix
-    ./cyon.nix
   ];
 
   networking.wireguard.enable = true;

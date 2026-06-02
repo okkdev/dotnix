@@ -5,7 +5,6 @@ let
     "koekeishiya/formulae"
     "FelixKratz/formulae"
     "jackielii/tap"
-    "support/cyon-tools\", \"git@gitlab.cyon.lan:sup/homebrew-cyon-tools.git"
   ];
 
   brews = [
@@ -13,7 +12,6 @@ let
     "sketchybar"
     "skhd"
     "yabai"
-    "support/cyon-tools/supctl"
   ];
 
   casks = [
