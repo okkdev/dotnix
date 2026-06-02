@@ -106,7 +106,7 @@ in
 {
   programs.claude-code = {
     enable = true;
-    package = claude-code-wrapped;
+    package = if pkgs.stdenv.isDarwin then pkgs.claude-code else claude-code-wrapped;
     context = ''
       You run inside a minimal bubblewrap sandbox. The current working directory
       is mounted read-write, but gitignored files in it are masked — 
