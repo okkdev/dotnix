@@ -125,12 +125,12 @@ in
       d2-vim
     ];
 
+    initLua = ''
+      vim.g.tsdk = "${pkgs.typescript}/lib/node_modules/typescript/lib"
+      vim.g.darwin = ${if pkgs.stdenv.isDarwin then "true" else "false"}
+    ''
     # we need to remove the return that fennel adds implicitly to the end of the module
-    initLua =
-      ''
-        vim.g.tsdk = "${pkgs.typescript}/lib/node_modules/typescript/lib"
-      ''
-      + lib.replaceString "return " "" (lib.readFile "${nvim-config}/init.lua");
+    + lib.replaceString "return " "" (lib.readFile "${nvim-config}/init.lua");
   };
 
   xdg.configFile."nvim/lua" = {
@@ -149,44 +149,4 @@ in
       };
     in
     nvim-docset + /nvim.lua;
-
-  # Default biome config
-  home.file."biome.json" = {
-    text =
-      # json
-      ''
-        {
-          "formatter": {
-            "indentStyle": "space",
-            "formatWithErrors": true
-          },
-          "javascript": {
-            "formatter": {
-              "semicolons": "asNeeded",
-              "trailingCommas": "all"
-            }
-          },
-          "linter": {
-            "rules": {
-              "suspicious": {
-                "noShadowRestrictedNames": "warn"
-              }
-            }
-          }
-        }
-      '';
-  };
-
-  # Default deno config
-  home.file."deno.json" = {
-    text =
-      # json
-      ''
-        {
-          "fmt": {
-            "semiColons": false
-          }
-        }
-      '';
-  };
 }

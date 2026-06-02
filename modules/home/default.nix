@@ -49,7 +49,6 @@
     beam28Packages.elixir_1_20
     # dotnetCorePackages.dotnet_9.sdk
     # mono
-    deno
     nodejs_24
     corepack_24
     typescript
