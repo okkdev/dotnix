@@ -41,7 +41,6 @@
       homeConfigurations = {
         boook = home-manager.lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages.aarch64-darwin;
-
           modules = [
             {
               nixpkgs.config.allowUnfree = true;
@@ -49,6 +48,17 @@
             }
 
             ./hosts/boook
+          ];
+        };
+        dreibook = home-manager.lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages.aarch64-darwin;
+          modules = [
+            {
+              nixpkgs.config.allowUnfree = true;
+              nixpkgs.overlays = [ (import ./overlays.nix) ];
+            }
+
+            ./hosts/dreibook
           ];
         };
       };
