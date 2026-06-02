@@ -74,7 +74,7 @@ with lib;
 
       ) casks);
     onChange = ''
-      /opt/homebrew/bin/brew bundle install --cleanup --no-upgrade --force --global
+      /opt/homebrew/bin/brew bundle install --cleanup --no-upgrade --force --global --verbose
     '';
   };
 }
