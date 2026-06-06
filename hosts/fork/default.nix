@@ -39,10 +39,13 @@
   # };
 
   # networking
-  networking.hostName = "fork";
-  networking.networkmanager = {
-    enable = true;
-    wifi.powersave = true;
+  networking = {
+    hostName = "fork";
+    networkmanager = {
+      enable = true;
+      wifi.powersave = true;
+    };
+    firewall.enable = true;
   };
   hardware.bluetooth.enable = true;
 
@@ -104,7 +107,7 @@
       let
         fprintAuth = {
           fprintAuth = true;
-          rules.auth.fprintd.args = [ "timeout=5" ];
+          rules.auth.fprintd.args = [ "timeout=3" ];
         };
       in
       {
