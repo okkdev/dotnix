@@ -3,7 +3,7 @@
   programs.niri.settings = {
     spawn-at-startup = [
       {
-        command = [ "noctalia-shell" ];
+        command = [ "noctalia" ];
       }
     ];
 
@@ -150,7 +150,7 @@
       "XF86AudioRaiseVolume" = {
         allow-when-locked = true;
         action.spawn = [
-          "noctalia-shell"
+          "noctalia"
           "ipc"
           "call"
           "volume"
@@ -160,7 +160,7 @@
       "XF86AudioLowerVolume" = {
         allow-when-locked = true;
         action.spawn = [
-          "noctalia-shell"
+          "noctalia"
           "ipc"
           "call"
           "volume"
@@ -170,7 +170,7 @@
       "XF86AudioMute" = {
         allow-when-locked = true;
         action.spawn = [
-          "noctalia-shell"
+          "noctalia"
           "ipc"
           "call"
           "volume"
@@ -180,7 +180,7 @@
       "XF86AudioPlay" = {
         allow-when-locked = true;
         action.spawn = [
-          "noctalia-shell"
+          "noctalia"
           "ipc"
           "call"
           "media"
@@ -190,7 +190,7 @@
       "XF86AudioNext" = {
         allow-when-locked = true;
         action.spawn = [
-          "noctalia-shell"
+          "noctalia"
           "ipc"
           "call"
           "media"
@@ -200,7 +200,7 @@
       "XF86AudioPrev" = {
         allow-when-locked = true;
         action.spawn = [
-          "noctalia-shell"
+          "noctalia"
           "ipc"
           "call"
           "media"
@@ -210,7 +210,7 @@
       "XF86MonBrightnessUp" = {
         allow-when-locked = true;
         action.spawn = [
-          "noctalia-shell"
+          "noctalia"
           "ipc"
           "call"
           "brightness"
@@ -220,7 +220,7 @@
       "XF86MonBrightnessDown" = {
         allow-when-locked = true;
         action.spawn = [
-          "noctalia-shell"
+          "noctalia"
           "ipc"
           "call"
           "brightness"

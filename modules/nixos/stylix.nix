@@ -78,10 +78,6 @@
         neovim = {
           enable = true;
           plugin = "base16-nvim";
-          # transparentBackground = {
-          #   numberLine = true;
-          #   signColumn = true;
-          # };
         };
         ghostty.enable = true;
         btop.enable = true;
@@ -89,7 +85,6 @@
         # os
         niri.enable = true;
         swaylock.enable = true;
-        noctalia-shell.enable = true;
         gtk.enable = true;
         qt.enable = true;
         font-packages.enable = true;

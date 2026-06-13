@@ -1,101 +1,86 @@
 {
-  config,
   inputs,
   lib,
   ...
 }:
 {
-  imports = [ inputs.noctalia.homeModules.default ];
+  imports = [
+    inputs.noctalia.homeModules.default
+    ./noctalia-stylix.nix
+  ];
 
   programs.noctalia = {
     enable = true;
     settings = {
 
-      # capsules
-      bar.backgroundOpacity = lib.mkForce 0.0;
-      bar.useSeparateOpacity = true;
-      bar.showCapsule = true;
-      ui.panelsAttachedToBar = false;
-      general.enableShadows = false;
+      shell = {
+        settings_show_advanced = true;
+        animation.speed = 1.5; # was general.animationSpeed
 
-      # solid
-      # bar.showCapsule = false;
-
-      general = {
-        animationSpeed = 1.5;
+        panel = {
+          shadow = false;
+          control_center_placement = "floating";
+          open_near_click_control_center = true;
+          wallpaper_placement = "centered";
+          session_placement = "centered";
+        };
       };
 
-      bar = {
-        density = "default";
+      bar.main = {
         position = "top";
-        marginHorizontal = 0.50;
-        marginVertical = 0.15;
 
-        colorSchemes.darkMode = config.stylix.polarity == "dark";
+        background_opacity = lib.mkForce 0.0;
+        capsule = true;
 
-        notifications = {
-          saveToHistory.low = false;
+        shadow = false;
+
+        margin_edge = 4;
+        margin_ends = 6;
+
+        start = [
+          "active_window"
+          "media"
+        ];
+        center = [
+          "workspaces"
+        ];
+        end = [
+          "volume"
+          "network"
+          "battery"
+          "clock"
+          "tray"
+          "notifications"
+          "control-center"
+        ];
+      };
+
+      widget = {
+        active_window.max_length = 400;
+        media = {
+          max_length = 400;
+          hide_when_no_media = true;
         };
-
-        widgets = {
-          left = [
-            {
-              id = "ActiveWindow";
-              colorizeIcons = false;
-              maxWidth = 400;
-            }
-            {
-              id = "MediaMini";
-              maxWidth = 400;
-            }
-          ];
-          center = [
-            {
-              id = "Workspace";
-              hideUnoccupied = false;
-              labelMode = "none";
-            }
-          ];
-          right = [
-            {
-              id = "Volume";
-            }
-            {
-              id = "Network";
-            }
-            {
-              id = "VPN";
-            }
-            {
-              id = "Battery";
-              displayMode = "graphic";
-              warningThreshold = 20;
-            }
-            {
-              id = "Clock";
-              formatHorizontal = "HH:mm ddd, MMM dd";
-            }
-            {
-              id = "Tray";
-              colorizeIcons = false;
-              blacklist = [ ];
-            }
-            {
-              id = "NotificationHistory";
-            }
-            {
-              id = "ControlCenter";
-              useDistroLogo = true;
-            }
-          ];
+        workspaces.display = "none";
+        battery.display_mode = "graphic";
+        clock.format = "{:%H:%M %a, %b %d}";
+        tray = {
+          drawer = true;
+          detached_panel = true;
         };
       };
-      location = {
-        name = "Basel";
-      };
+
+      battery.warning_threshold = 20;
+
+      control_center.sidebar_section = "none";
+
+      location.address = "Basel";
 
       wallpaper.enabled = true;
       dock.enabled = false;
+
+      desktop_widgets.enabled = false;
+      lockscreen_widgets.enabled = false;
     };
   };
 }
