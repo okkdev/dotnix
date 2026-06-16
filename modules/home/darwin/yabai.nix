@@ -41,10 +41,10 @@ with lib;
         # general space settings
         yabai -m config layout                       bsp
         yabai -m config external_bar                 all:40:0
-        yabai -m config bottom_padding               20
-        yabai -m config left_padding                 20
-        yabai -m config right_padding                20
-        yabai -m config window_gap                   15
+        yabai -m config bottom_padding               15
+        yabai -m config left_padding                 15
+        yabai -m config right_padding                15
+        yabai -m config window_gap                   10
 
         # rules
         #yabai -m rule --add app=".*" sub-layer=normal
@@ -109,27 +109,27 @@ with lib;
         ${modMask} - s : yabai -m space --layout stack
         ${modMask} - f : yabai -m space --layout float
         # rotate space
-        ${moveMask} - n : yabai -m space --rotate 270
-        ${moveMask} - m : yabai -m space --rotate 90
+        # , comma
+        ${moveMask} - 0x2B : yabai -m space --rotate 270
+        # . dot
+        ${moveMask} - 0x2F : yabai -m space --rotate 90
         # split window vertically
         ${moveMask} - u : yabai -m window --focus west && yabai -m window --insert south && yabai -m window --focus east && yabai -m window --warp west
         # split window horizontally
         ${moveMask} - i : yabai -m window --focus north && yabai -m window --insert east && yabai -m window --focus south && yabai -m window --warp north
-        # , comma
-        ${moveMask} - 0x2B : yabai -m space --mirror y-axis
-        # . dot
-        ${moveMask} - 0x2F : yabai -m space --mirror x-axis
+        ${moveMask} - y : yabai -m space --mirror y-axis
+        ${moveMask} - x : yabai -m space --mirror x-axis
         # send window to space
         ${concatMapStrings (n: moveMask + " - " + n + " : yabai -m window --space " + n + "\n") (
           map toString (range 1 9)
         )}
         # focus monitor
-        ${modMask} - w : yabai -m display --focus prev
-        ${modMask} - e : yabai -m display --focus next
+        ${modMask} - p : yabai -m display --focus prev
+        ${modMask} - n : yabai -m display --focus next
         ${modMask} - r : yabai -m display --focus recent
         # send window to monitor and follow focus
-        ${moveMask} - w : yabai -m window --display prev; yabai -m display --focus prev
-        ${moveMask} - e : yabai -m window --display next; yabai -m display --focus next
+        ${moveMask} - p : yabai -m window --display prev; yabai -m display --focus prev
+        ${moveMask} - n : yabai -m window --display next; yabai -m display --focus next
         ${moveMask} - r : yabai -m window --display recent; yabai -m display --focus recent
         # balance size of windows
         ${modMask} - return : yabai -m space --balance

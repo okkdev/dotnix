@@ -7,11 +7,11 @@
             :fzf_colors true})
 
 (local map vim.keymap.set)
-(local file-rg-opts "--color=never --files --hidden -g \"!.git\" -g \"!.jj\" -g \".env*\"")
+(local file-rg-opts "--color=never --files --hidden -g \"!.git\" -g \"!.jj\"")
 
 (map :n :<leader><space>
      (fn []
-       (fzf.files {:rg_opts (.. file-rg-opts " --sortr accessed")
+       (fzf.files {:cmd (.. "rg " file-rg-opts " --sortr accessed")
                    :cwd_prompt false})) {:desc "Find recent files"})
 
 (map :n :<leader>ff (fn [] (fzf.files {:rg_opts file-rg-opts}))

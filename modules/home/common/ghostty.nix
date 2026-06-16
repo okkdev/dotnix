@@ -8,7 +8,25 @@
     package = lib.mkIf pkgs.stdenv.isDarwin null;
 
     settings = {
-      font-size = if pkgs.stdenv.isDarwin then 14 else 11;
+      font-size = 11;
+      bold-color = "bright";
+      adjust-cell-height = "40%";
+
+      window-padding-x = 15;
+      window-padding-y = 10;
+      window-padding-balance = true;
+      window-theme = "auto";
+      # window-decoration = "none";
+
+      scrollback-limit = 100000000;
+
+      keybind = [
+        "ctrl+enter=unbind"
+      ];
+    }
+    // lib.optionalAttrs pkgs.stdenv.isDarwin {
+      font-family = "Agave";
+
       # font-family = "Maple Mono";
       # font-family = "Departure Mono";
       # font-variation = "wght=500";
@@ -21,28 +39,12 @@
       #   "ss03"
       #   "ss08"
       # ];
-      bold-color = "bright";
 
-      # macOS stuff
+      theme = "dark:Zenbones Dark,light:Zenbones Light";
+
+      font-size = 15;
       font-thicken = true;
       macos-titlebar-style = "hidden";
-
-      # fallback font
-      # font-family = "MapleMono Nerd Font";
-
-      # theme = "dark:Zenbones Dark,light:Zenbones Light";
-
-      adjust-cell-height = "40%";
-
-      window-padding-x = 15;
-      window-padding-y = 10;
-      window-padding-balance = true;
-      window-theme = "auto";
-      window-decoration = "none";
-
-      keybind = [
-        "ctrl+enter=unbind"
-      ];
     };
   };
 }

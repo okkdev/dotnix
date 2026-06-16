@@ -44,7 +44,7 @@
         set -U hydro_multiline true
       '';
     shellAbbrs = {
-      npm = "pnpm";
+      # npm = "pnpm";
       du = "dust";
       cat = "bat";
       man = "batman";

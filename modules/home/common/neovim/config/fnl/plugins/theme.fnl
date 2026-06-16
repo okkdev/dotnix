@@ -9,9 +9,6 @@
 ;     (set vim.o.background :dark)
 ;     (set vim.o.background :light))
 
-; using base16-nvim with stylix now
-; (local current_theme :zenbones)
-
 (usercmd :DarkTheme (fn []
                       (set vim.o.background :dark)
                       (colorscheme vim.g.colors_name))
@@ -78,6 +75,6 @@
                           (set-hl :DiffChange {:bg c.base0A})
                           (set-hl :DiffDelete {:bg c.base08})))}))
 
-; Activate the initial theme
 ; no need when using stylix
-; (colorscheme current_theme)
+(when vim.g.darwin
+  (colorscheme :zenbones))

@@ -107,6 +107,15 @@ in
   programs.claude-code = {
     enable = true;
     package = if pkgs.stdenv.isDarwin then pkgs.claude-code else claude-code-wrapped;
+    settings = {
+      permissions = {
+        allow = [
+          "Bash(rg *)"
+          "Bash(fd *)"
+        ];
+      };
+      theme = "auto";
+    };
     context = ''
       You run inside a minimal bubblewrap sandbox. The current working directory
       is mounted read-write, but gitignored files in it are masked — 

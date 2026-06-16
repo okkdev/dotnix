@@ -14,7 +14,7 @@
         email = "dev@stehlik.me";
       };
 
-      # cyon config
+      # work config
       "--scope" = [
         {
           "--when".repositories = [
@@ -56,11 +56,11 @@
           "bookmark"
           "advance"
         ];
-        gf = [
+        f = [
           "git"
           "fetch"
         ];
-        gp = [
+        p = [
           "git"
           "push"
         ];
@@ -74,6 +74,11 @@
         e = [ "edit" ];
         n = [ "new" ];
         l = [ "log" ];
+        ll = [
+          "log"
+          "--revisions"
+          "::@"
+        ];
         lb = [
           "log"
           "--revisions"

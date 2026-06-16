@@ -7,7 +7,7 @@ self: super: {
       if super.stdenv.isDarwin then
         {
           url = "https://github.com/gleam-lang/gleam/releases/download/${version}/gleam-${version}-aarch64-apple-darwin.tar.gz";
-          sha256 = "";
+          sha256 = "sha256-ib8VVmCL/9DgL9dBw3FuasIO+1ohRjGFPic/L66kTZQ=";
         }
       else
         {

@@ -42,7 +42,7 @@ in
           padding_left=5
           padding_right=5
           icon.font="Symbols Nerd Font Mono:Regular:13.0"
-          label.font="Maple Mono:Bold:13.0"
+          label.font="Agave:Bold:13.0"
           icon.color=0xff180f23
           label.color=0xff180f23
           icon.padding_left=10
