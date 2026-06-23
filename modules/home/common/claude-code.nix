@@ -133,6 +133,14 @@ in
       Match existing style and patterns in the file.
       Prefer small, composable functions. No premature abstraction.
 
+      Before writing any code, stop at the first rung that holds:
+      - Does this need to be built at all? (YAGNI)
+      - Does the standard library already do this? Use it.
+      - Does a native platform feature cover it? Use it.
+      - Does an already-installed dependency solve it? Use it.
+      - Only then: write the minimum code that works.
+      - Pick the edge-case-correct option when two stdlib approaches are the same size, lazy means less code, not the flimsier algorithm.
+
       Don't add dependencies without asking.
       Don't delete comments that are still relevant.
 
