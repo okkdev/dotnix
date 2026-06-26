@@ -47,50 +47,59 @@
 (let [statusline (require :mini.statusline)
       devicons (require :nvim-web-devicons)]
   (statusline.setup {:use_icons true})
-
   (local jj_cache {})
 
   (fn update_jj_bookmark [bufnr]
+    "Cache the closest jj bookmark for a buffer, refreshing the statusline"
     (when (= (. (. vim.bo bufnr) :buftype) "")
-     (let [file (vim.api.nvim_buf_get_name bufnr)
-           dir (if (= file "") (vim.fn.getcwd) (vim.fn.fnamemodify file ":h"))]
-       (vim.system [:jj :log :--no-graph :--ignore-working-copy
-                    :--color :never :--limit "1"
-                    :-r "heads(::@ & bookmarks())"
-                    :-T "bookmarks.map(|b| b.name()).join(\",\")"]
-                   {:cwd dir :text true}
-                   (fn [result]
-                     (let [out (vim.trim (or result.stdout ""))]
-                       (vim.schedule #(do
-                                        (tset jj_cache bufnr
-                                              (if (not= result.code 0) nil
-                                                  (= out "") ""
-                                                  (.. "" " " out)))
-                                        (pcall vim.cmd.redrawstatus)))))))))
+      (let [file (vim.api.nvim_buf_get_name bufnr)
+            dir (if (= file "") (vim.fn.getcwd) (vim.fn.fnamemodify file ":h"))]
+        (vim.system [:jj
+                     :log
+                     :--no-graph
+                     :--ignore-working-copy
+                     :--color
+                     :never
+                     :--limit
+                     :1
+                     :-r
+                     "heads(::@ & bookmarks())"
+                     :-T
+                     "bookmarks.map(|b| b.name()).join(\",\")"]
+                    {:cwd dir :text true}
+                    (fn [result]
+                      (let [out (vim.trim (or result.stdout ""))]
+                        (vim.schedule #(do
+                                         (tset jj_cache bufnr
+                                               (if (not= result.code 0) nil
+                                                   (= out "") ""
+                                                   (.. "" " " out)))
+                                         (pcall vim.cmd.redrawstatus)))))))))
 
   (let [group (vim.api.nvim_create_augroup :MiniStatuslineJJ {:clear true})]
-    (vim.api.nvim_create_autocmd [:BufEnter :FocusGained :DirChanged
+    (vim.api.nvim_create_autocmd [:BufEnter
+                                  :FocusGained
+                                  :DirChanged
                                   :BufWritePost]
                                  {: group
                                   :callback (fn [args]
                                               (update_jj_bookmark args.buf))}))
 
-  ; Prefer jj closest bookmark when inside a jj repo; otherwise fall back to
-  ; mini's git section.
   (fn section_vcs [args]
+    "Prefer jj closest bookmark when inside a jj repo; otherwise fall back to mini's git section"
     (or (. jj_cache (vim.api.nvim_get_current_buf))
         (statusline.section_git args)))
 
-  ; Display filename: full path when space available, just name when truncated
   (fn section_filename [args]
+    "Display filename: full path when space available, just name when truncated"
     (if (= vim.bo.buftype :terminal) "%t"
         (= vim.bo.buftype :nofile) ""
         (statusline.is_truncated args.trunc_width) (.. (vim.fn.expand "%:t")
                                                        " %m%r")
         (.. (vim.fn.expand "%:~:.") " %m%r")))
 
-  ; Display filetype with icon from nvim-web-devicons
   (fn section_fileinfo [args]
+    "Display filetype with icon from nvim-web-devicons"
     (if (statusline.is_truncated args.trunc_width)
         ""
         (let [filetype vim.bo.filetype]
@@ -102,13 +111,13 @@
                 (string.format "%s %s" icon filetype)
                 filetype)))))
 
-  ; Display cursor location: column|total-cols line|total-lines percentage
   (fn section_location [args]
+    "Display cursor location: column|total-cols line|total-lines percentage"
     (if (statusline.is_truncated args.trunc_width) "%l|%L"
         "%2v|%-2{virtcol(\"$\") - 1} %l|%L %3P"))
 
-  ; Combine statusline groups with highlight groups and optional rounded separators
   (fn combine_groups [groups]
+    "Combine statusline groups with highlight groups and optional rounded separators"
     (table.concat (vim.tbl_map (fn [s]
                                  (if (= (type s) :string)
                                      s
