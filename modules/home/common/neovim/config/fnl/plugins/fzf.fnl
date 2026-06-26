@@ -6,6 +6,9 @@
             :fzf_opts {:--layout :default :--separator " " :--gutter " "}
             :fzf_colors true})
 
+; Use fzf-lua for vim.ui.select (code actions, etc.)
+(fzf.register_ui_select)
+
 (local map vim.keymap.set)
 (local file-rg-opts "--color=never --files --hidden -g \"!.git\" -g \"!.jj\"")
 
