@@ -128,6 +128,9 @@ in
       Be concise/terse.
       If uncertain, say so. Never invent APIs, types, or file paths.
       Ask before acting on ambiguous requests.
+      Don't add dependencies without asking.
+      Don't overexplain in comments, keep them concise.
+      Don't delete comments that are still relevant.
 
       Make minimal, focused changes. Ask before refactoring unrelated code.
       Match existing style and patterns in the file.
@@ -140,9 +143,6 @@ in
       - Does an already-installed dependency solve it? Use it.
       - Only then: write the minimum code that works.
       - Pick the edge-case-correct option when two stdlib approaches are the same size, lazy means less code, not the flimsier algorithm.
-
-      Don't add dependencies without asking.
-      Don't delete comments that are still relevant.
 
       Use `rg` for search, `fd` for file finding.
       Don't use the `gh` cli, use the http api directly.
