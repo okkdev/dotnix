@@ -1,29 +1,36 @@
 ; LSP
 (local autocmd vim.api.nvim_create_autocmd)
 
-(autocmd :LspAttach
-         {:group (vim.api.nvim_create_augroup :UserLspConfig {})
-          :callback (fn [event]
-                      (fn map [keys func desc]
-                        (vim.keymap.set :n keys func {:buffer event.buf : desc}))
+(autocmd :LspAttach {:group (vim.api.nvim_create_augroup :UserLspConfig {})
+                     :callback (fn [event]
+                                 (fn map [keys func desc]
+                                   (vim.keymap.set :n keys func
+                                                   {:buffer event.buf : desc}))
 
-                      (map :K vim.lsp.buf.hover "hover documentation")
-                      (map :gd vim.lsp.buf.definition "goto definition")
-                      (map :gD vim.lsp.buf.declaration "goto declaration")
-                      (map :gr vim.lsp.buf.references "goto references")
-                      (map :gI vim.lsp.buf.implementation "goto implementation")
-                      (map :<leader>lr vim.lsp.buf.rename :rename)
-                      (map :<leader>lc vim.lsp.buf.code_action "code action")
-                      (local client
-                             (vim.lsp.get_client_by_id event.data.client_id))
-                      (when (and client
-                                 client.server_capabilities.documentHighlightProvider)
-                        (autocmd [:CursorHold :CursorHoldI]
-                                 {:buffer event.buf
-                                  :callback vim.lsp.buf.document_highlight})
-                        (autocmd [:CursorMoved :CursorMovedI]
-                                 {:buffer event.buf
-                                  :callback vim.lsp.buf.clear_references})))})
+                                 (map :K vim.lsp.buf.hover
+                                      "hover documentation")
+                                 (map :gd vim.lsp.buf.definition
+                                      "goto definition")
+                                 (map :gD vim.lsp.buf.declaration
+                                      "goto declaration")
+                                 (map :gr vim.lsp.buf.references
+                                      "goto references")
+                                 (map :gI vim.lsp.buf.implementation
+                                      "goto implementation")
+                                 (map :<leader>lr vim.lsp.buf.rename :rename)
+                                 (map :<leader>lc vim.lsp.buf.code_action
+                                      "code action")
+                                 (local client
+                                        (vim.lsp.get_client_by_id event.data.client_id))
+                                 (when (and client
+                                            client.server_capabilities.documentHighlightProvider)
+                                   (autocmd [:CursorHold :CursorHoldI]
+                                            {:buffer event.buf
+                                             :callback vim.lsp.buf.document_highlight})
+                                   (autocmd [:CursorMoved :CursorMovedI]
+                                            {:buffer event.buf
+                                             :callback vim.lsp.buf.clear_references}))
+                                 nil)})
 
 ; Diagnostic config
 (vim.diagnostic.config {:severity_sort true
