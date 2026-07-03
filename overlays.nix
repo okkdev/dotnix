@@ -23,6 +23,16 @@ self: super: {
     '';
   };
 
+  # Node 24 detects `import.meta.url` in the bundled CommonJS servers and loads
+  # them as ES modules, which breaks every `require` call. Rewrite it to a
+  # CJS-safe equivalent so the servers start again.
+  vscode-langservers-extracted = super.vscode-langservers-extracted.overrideAttrs (old: {
+    postInstall = (old.postInstall or "") + ''
+      find "$out" -name '*ServerMain.js' -exec \
+        sed -i 's#import\.meta\.url#require("url").pathToFileURL(__filename).href#g' {} +
+    '';
+  });
+
   # Vim Plugins
   vimPlugins = super.vimPlugins // rec {
     bg-nvim = super.vimUtils.buildVimPlugin {

@@ -108,6 +108,7 @@ in
     enable = true;
     package = if pkgs.stdenv.isDarwin then pkgs.claude-code else claude-code-wrapped;
     settings = {
+      model = "opus";
       permissions = {
         allow = [
           "Bash(rg *)"
@@ -115,6 +116,11 @@ in
         ];
       };
       theme = "auto";
+      feedbackSurveyRate = 0;
+      env = {
+        CLAUDE_CODE_DISABLE_FEEDBACK_SURVEY = 1;
+        CLAUDE_CODE_ENABLE_TELEMETRY = 0;
+      };
     };
     context = ''
       You run inside a minimal bubblewrap sandbox. The current working directory
@@ -144,7 +150,6 @@ in
       - Only then: write the minimum code that works.
       - Pick the edge-case-correct option when two stdlib approaches are the same size, lazy means less code, not the flimsier algorithm.
 
-      Use `rg` for search, `fd` for file finding.
       Don't use the `gh` cli, use the http api directly.
       Don't run `nix` commands.
       Use `git` only for diffs. Don't commit.
