@@ -120,6 +120,11 @@ in
       env = {
         CLAUDE_CODE_DISABLE_FEEDBACK_SURVEY = 1;
         CLAUDE_CODE_ENABLE_TELEMETRY = 0;
+        CHROME_DEVTOOLS_MCP_NO_USAGE_STATISTICS = 1;
+      };
+      enabledPlugins = {
+        "chrome-devtools-mcp@claude-plugins-official" = true;
+        "typescript-lsp@claude-plugins-official" = true;
       };
     };
     context = ''
