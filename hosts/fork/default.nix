@@ -17,6 +17,9 @@
   # latest kernel
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
+  # crash dumps
+  boot.crashDump.enable = true;
+
   # emulation
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
@@ -163,10 +166,10 @@
       enable = true;
       defaultNetwork.settings.dns_enabled = true;
     };
-    docker = {
-      enable = true;
-      storageDriver = "btrfs";
-    };
+    # docker = {
+    #   enable = true;
+    #   storageDriver = "btrfs";
+    # };
   };
 
   # nix settings

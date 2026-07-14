@@ -6,7 +6,6 @@
 {
   imports = [
     inputs.noctalia.homeModules.default
-    ./noctalia-stylix.nix
   ];
 
   programs.noctalia = {
@@ -15,7 +14,7 @@
 
       shell = {
         settings_show_advanced = true;
-        animation.speed = 1.5; # was general.animationSpeed
+        animation.speed = 1.5;
 
         panel = {
           shadow = false;

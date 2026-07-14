@@ -85,6 +85,7 @@
         # os
         niri.enable = true;
         swaylock.enable = true;
+        noctalia.enable = true;
         gtk.enable = true;
         qt.enable = true;
         font-packages.enable = true;
