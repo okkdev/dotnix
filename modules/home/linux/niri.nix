@@ -151,48 +151,40 @@
         allow-when-locked = true;
         action.spawn = [
           "noctalia"
-          "ipc"
-          "call"
-          "volume"
-          "increase"
+          "msg"
+          "volume-up"
         ];
       };
       "XF86AudioLowerVolume" = {
         allow-when-locked = true;
         action.spawn = [
           "noctalia"
-          "ipc"
-          "call"
-          "volume"
-          "decrease"
+          "msg"
+          "volume-down"
         ];
       };
       "XF86AudioMute" = {
         allow-when-locked = true;
         action.spawn = [
           "noctalia"
-          "ipc"
-          "call"
-          "volume"
-          "muteOutput"
+          "msg"
+          "volume-mute"
         ];
       };
       "XF86AudioPlay" = {
         allow-when-locked = true;
         action.spawn = [
           "noctalia"
-          "ipc"
-          "call"
+          "msg"
           "media"
-          "playPause"
+          "toggle"
         ];
       };
       "XF86AudioNext" = {
         allow-when-locked = true;
         action.spawn = [
           "noctalia"
-          "ipc"
-          "call"
+          "msg"
           "media"
           "next"
         ];
@@ -201,8 +193,7 @@
         allow-when-locked = true;
         action.spawn = [
           "noctalia"
-          "ipc"
-          "call"
+          "msg"
           "media"
           "previous"
         ];
@@ -211,20 +202,16 @@
         allow-when-locked = true;
         action.spawn = [
           "noctalia"
-          "ipc"
-          "call"
-          "brightness"
-          "increase"
+          "msg"
+          "brightness-up"
         ];
       };
       "XF86MonBrightnessDown" = {
         allow-when-locked = true;
         action.spawn = [
           "noctalia"
-          "ipc"
-          "call"
-          "brightness"
-          "decrease"
+          "msg"
+          "brightness-down"
         ];
       };
 
