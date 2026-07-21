@@ -164,12 +164,10 @@
     containers.enable = true;
     podman = {
       enable = true;
+      dockerCompat = true;
+      dockerSocket.enable = true;
       defaultNetwork.settings.dns_enabled = true;
     };
-    # docker = {
-    #   enable = true;
-    #   storageDriver = "btrfs";
-    # };
   };
 
   # nix settings

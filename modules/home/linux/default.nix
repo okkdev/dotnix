@@ -47,7 +47,6 @@
     moonlight-qt
 
     # virtualisation
-    docker-compose
     podman-compose
     podman-desktop
 

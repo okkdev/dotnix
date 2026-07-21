@@ -86,6 +86,7 @@ let
         --bind "$HOME/.claude" "$HOME/.claude" \
         --bind "$CREDS_FILE" "$HOME/.claude/.credentials.json" \
         --bind "$HOME/.claude.json" "$HOME/.claude.json" \
+        --bind "$HOME/.local/share/pnpm/" "$HOME/.local/share/pnpm/" \
         --setenv HOME "$HOME" \
         --setenv USER "$USER" \
         --setenv PATH "$PATH" \
