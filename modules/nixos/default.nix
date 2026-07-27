@@ -55,13 +55,11 @@
   };
 
   programs = {
-    zoom-us.enable = true;
-
-    _1password.enable = true;
-    _1password-gui = {
-      enable = true;
-      polkitPolicyOwners = [ username ];
-    };
+    # _1password.enable = true;
+    # _1password-gui = {
+    #   enable = true;
+    #   polkitPolicyOwners = [ username ];
+    # };
 
     steam = {
       enable = true;
