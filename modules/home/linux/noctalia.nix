@@ -1,8 +1,17 @@
 {
+  config,
   inputs,
   lib,
+  pkgs,
   ...
 }:
+let
+  # workaround noctalia v5 needs a wallpaper folder now
+  wallpaperDir = pkgs.runCommand "noctalia-wallpaper" { } ''
+    mkdir -p $out
+    cp ${config.stylix.image} $out/
+  '';
+in
 {
   imports = [
     inputs.noctalia.homeModules.default
@@ -76,6 +85,7 @@
       location.address = "Basel";
 
       wallpaper.enabled = true;
+      wallpaper.directory = "${wallpaperDir}";
       dock.enabled = false;
 
       desktop_widgets.enabled = false;
