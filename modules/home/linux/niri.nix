@@ -90,6 +90,19 @@
       }
     ];
 
+    # niri 26.04 honors noctalia's ext-background-effect blur request; the bar
+    # has no background of its own, so the blur is all you see
+    layer-rules = [
+      {
+        matches = [
+          {
+            namespace = "^noctalia-bar";
+          }
+        ];
+        background-effect.blur = false;
+      }
+    ];
+
     binds = with config.lib.niri.actions; {
       # System & overlay & stuff
       "Mod+Shift+Slash".action = show-hotkey-overlay;

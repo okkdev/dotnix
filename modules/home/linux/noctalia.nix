@@ -29,8 +29,10 @@ in
           shadow = false;
           control_center_placement = "floating";
           open_near_click_control_center = true;
-          wallpaper_placement = "centered";
-          session_placement = "centered";
+          wallpaper_placement = "floating";
+          wallpaper_position = "center";
+          session_placement = "floating";
+          session_position = "center";
         };
       };
 
@@ -69,7 +71,7 @@ in
           max_length = 400;
           hide_when_no_media = true;
         };
-        workspaces.display = "none";
+        workspaces.show_labels = false;
         battery.display_mode = "graphic";
         clock.format = "{:%H:%M %a, %b %d}";
         tray = {
