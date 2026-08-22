@@ -4,7 +4,7 @@ self: super: {
     version = "v1.15.2";
     # version = "nightly";
     src = super.fetchurl (
-      if super.stdenv.isDarwin then
+      if super.stdenv.hostPlatform.isDarwin then
         {
           url = "https://github.com/gleam-lang/gleam/releases/download/${version}/gleam-${version}-aarch64-apple-darwin.tar.gz";
           sha256 = "sha256-ib8VVmCL/9DgL9dBw3FuasIO+1ohRjGFPic/L66kTZQ=";
@@ -84,16 +84,6 @@ self: super: {
         repo = "mdx.nvim";
         rev = "c2644328587bbd58eede41b2cd0c1ccc99175661";
         sha256 = "sha256-1yFasKL2UKRd/j9nn8mjiFZOs9sR2GKomoCejtL1XIs=";
-      };
-    };
-    d2-vim = super.vimUtils.buildVimPlugin {
-      pname = "d2-vim";
-      version = "2025-03-27";
-      src = super.fetchFromGitHub {
-        owner = "terrastruct";
-        repo = "d2-vim";
-        rev = "981c87dccb63df2887cc41b96e84bf550f736c57";
-        sha256 = "sha256-+mT4pEbtq7f9ZXhOop3Jnjr7ulxU32VtahffIwQqYF4=";
       };
     };
   };

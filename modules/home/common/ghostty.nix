@@ -5,7 +5,7 @@
     enable = true;
 
     # Don't install ghostty on macOS (use system/homebrew installation)
-    package = lib.mkIf pkgs.stdenv.isDarwin null;
+    package = lib.mkIf pkgs.stdenv.hostPlatform.isDarwin null;
 
     settings = {
       font-size = 11;
@@ -24,7 +24,7 @@
         "ctrl+enter=unbind"
       ];
     }
-    // lib.optionalAttrs pkgs.stdenv.isDarwin {
+    // lib.optionalAttrs pkgs.stdenv.hostPlatform.isDarwin {
       font-family = "Agave";
 
       # font-family = "Maple Mono";

@@ -18,7 +18,7 @@
     shellInit = # fish
       ''
         ${
-          if pkgs.stdenv.isDarwin then
+          if pkgs.stdenv.hostPlatform.isDarwin then
             #fish
             ''
               fish_add_path /opt/homebrew/sbin
@@ -63,7 +63,7 @@
         description = "show the current shell level as icon";
         body = # fish
           ''
-            switch (math "$SHLVL - ${if pkgs.stdenv.isDarwin then "1" else "2"}")
+            switch (math "$SHLVL - ${if pkgs.stdenv.hostPlatform.isDarwin then "1" else "2"}")
               case 0
                   echo " "
               case 1
@@ -106,7 +106,7 @@
           '';
       };
 
-      os_theme = pkgs.lib.mkIf pkgs.stdenv.isDarwin {
+      os_theme = pkgs.lib.mkIf pkgs.stdenv.hostPlatform.isDarwin {
         description = "get the current appearance mode of the system";
         body = # fish
           ''
@@ -117,7 +117,7 @@
             end
           '';
       };
-      switch_theme = pkgs.lib.mkIf pkgs.stdenv.isDarwin {
+      switch_theme = pkgs.lib.mkIf pkgs.stdenv.hostPlatform.isDarwin {
         argumentNames = "mode";
         description = "switches global theme";
         body = # fish

@@ -13,7 +13,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     niri = {
-      url = "github:/sodiboo/niri-flake";
+      # sodiboo/niri-flake is dormant (still on niri v25.08 + removed libdisplay-info_0_2)
+      url = "github:epireyn/niri-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     noctalia = {

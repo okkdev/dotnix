@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 {
   imports = [
     ./niri.nix
@@ -9,7 +9,6 @@
 
   home.packages = with pkgs; [
     # meta stuff
-    xwayland-satellite
     wl-mirror
     wl-clipboard
     openssl
@@ -105,7 +104,7 @@
       timeouts = [
         {
           timeout = 60 * 15;
-          command = "${pkgs.niri}/bin/niri msg action power-off-monitors";
+          command = "${config.programs.niri.package}/bin/niri msg action power-off-monitors";
         }
         {
           timeout = 60 * 15;

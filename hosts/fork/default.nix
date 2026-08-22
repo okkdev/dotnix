@@ -162,7 +162,7 @@
   # virtualisation
   virtualisation = {
     containers.enable = true;
-    containers.registries.search = [
+    containers.registries.settings.unqualified-search-registries = [
       "docker.io"
       "quay.io"
     ];

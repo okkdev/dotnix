@@ -1,4 +1,9 @@
-{ config, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 {
   programs.niri.settings = {
     spawn-at-startup = [
@@ -12,6 +17,9 @@
     prefer-no-csd = true;
     hotkey-overlay.skip-at-startup = true;
     screenshot-path = "~/Pictures/Screenshots/screenshot_%Y-%m-%d_%H-%M-%S.png";
+
+    # niri spawns this itself; pin it instead of relying on PATH
+    xwayland-satellite.path = lib.getExe pkgs.xwayland-satellite;
 
     input = {
       keyboard = {

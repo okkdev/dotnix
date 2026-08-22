@@ -127,7 +127,7 @@ in
 
     initLua = ''
       vim.g.tsdk = "${pkgs.typescript}/lib/node_modules/typescript/lib"
-      vim.g.darwin = ${if pkgs.stdenv.isDarwin then "true" else "false"}
+      vim.g.darwin = ${if pkgs.stdenv.hostPlatform.isDarwin then "true" else "false"}
     ''
     # we need to remove the return that fennel adds implicitly to the end of the module
     + lib.replaceString "return " "" (lib.readFile "${nvim-config}/init.lua");

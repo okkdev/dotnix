@@ -64,7 +64,7 @@
         l = "log --graph --abbrev-commit --decorate --format=format:'%C(blue)%h%C(reset) - %C(green)(%ar)%C(reset) %s %C(italic)- %an%C(reset)%C(magenta bold)%d%C(reset)' --all";
       };
       init.defaultBranch = "main";
-      core.sshCommand = lib.mkIf pkgs.stdenv.isDarwin "/usr/bin/ssh";
+      core.sshCommand = lib.mkIf pkgs.stdenv.hostPlatform.isDarwin "/usr/bin/ssh";
       push.default = "current";
       push.autoSetupRemote = true;
       pull.rebase = true;

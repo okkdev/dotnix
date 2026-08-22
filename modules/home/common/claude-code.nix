@@ -107,7 +107,7 @@ in
 {
   programs.claude-code = {
     enable = true;
-    package = if pkgs.stdenv.isDarwin then pkgs.claude-code else claude-code-wrapped;
+    package = if pkgs.stdenv.hostPlatform.isDarwin then pkgs.claude-code else claude-code-wrapped;
     settings = {
       model = "opus";
       permissions = {
