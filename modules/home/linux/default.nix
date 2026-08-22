@@ -101,9 +101,7 @@
     swayidle = {
       enable = true;
       systemdTargets = [ "niri.service" ];
-      events = {
-        "before-sleep" = "${pkgs.swaylock}/bin/swaylock -fF";
-      };
+      # no before-sleep: noctalia holds a logind sleep-delay inhibit and locks itself
       timeouts = [
         {
           timeout = 60 * 15;
@@ -111,7 +109,7 @@
         }
         {
           timeout = 60 * 15;
-          command = "${pkgs.swaylock}/bin/swaylock -fF";
+          command = "${pkgs.systemd}/bin/loginctl lock-session";
         }
         {
           timeout = 60 * 30;

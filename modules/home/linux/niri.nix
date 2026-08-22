@@ -103,7 +103,11 @@
         "vicinae"
         "toggle"
       ];
-      "Mod+Alt+L".action.spawn = "swaylock";
+      # noctalia locks on the logind Lock signal
+      "Mod+Alt+L".action.spawn = [
+        "loginctl"
+        "lock-session"
+      ];
       "Mod+Alt+K" = {
         allow-when-locked = true;
         action.spawn = [

@@ -89,6 +89,9 @@ in
       dock.enabled = false;
 
       desktop_widgets.enabled = false;
+
+      lockscreen.enabled = true;
+      lockscreen.fingerprint = true;
       lockscreen_widgets.enabled = false;
     };
   };
