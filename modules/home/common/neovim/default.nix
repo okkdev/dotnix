@@ -106,8 +106,6 @@ in
       nvim-web-devicons
 
       # ui
-      noice-nvim
-      nvim-notify
       # bg-nvim
 
       # themes

@@ -42,3 +42,8 @@
 (set o.virtualedit :block)
 (set o.winborder :none)
 (set o.wrap false)
+
+; Experimental builtin cmdline/message UI (replaces noice)
+(local ui2 (require :vim._core.ui2))
+
+(ui2.enable {})

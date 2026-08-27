@@ -9,8 +9,6 @@
 (require :plugins.blink)
 (require :plugins.mini)
 (require :plugins.fzf)
-(require :plugins.noice)
-(require :plugins.notify)
 (require :plugins.persisted)
 (require :plugins.conform)
 (require :plugins.dial)

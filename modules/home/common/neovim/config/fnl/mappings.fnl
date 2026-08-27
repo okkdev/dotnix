@@ -39,6 +39,9 @@
 ; (map [:i] :<Esc> :<Esc>l
 ;      {:desc "exiting insert mode after 'i' wont move the cursor"})
 
+; ui2 pager
+(map [:n] :<leader>nl "g<" {:desc "Message history"})
+
 (map :n :<C-d> :<C-d>zz {:desc "Scroll down and keep cursor in the center"})
 (map :n :<C-u> :<C-u>zz {:desc "Scroll up and keep cursor in the center"})
 (map :n :n :nzzzv {:desc "Find next and keep cursor in the center"})

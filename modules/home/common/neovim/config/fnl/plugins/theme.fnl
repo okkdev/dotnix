@@ -47,10 +47,8 @@
                                     :gitsigns true
                                     :mini {:enabled true
                                            :indentscope_color :overlay0}
-                                    :notify true
                                     :nvimtree true
                                     :treesitter true
-                                    :noice true
                                     :leap true
                                     :flash true
                                     :which_key true}}))
