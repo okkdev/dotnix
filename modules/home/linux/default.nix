@@ -35,7 +35,6 @@
     obsidian
     pixieditor
     popsicle
-    orca-slicer
     slack
     spotify
     ungoogled-chromium
