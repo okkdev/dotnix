@@ -1,7 +1,7 @@
 self: super: {
   gleam = super.stdenvNoCC.mkDerivation rec {
     name = "gleam";
-    version = "v1.15.2";
+    version = "v1.18.1";
     # version = "nightly";
     src = super.fetchurl (
       if super.stdenv.hostPlatform.isDarwin then
@@ -12,7 +12,7 @@ self: super: {
       else
         {
           url = "https://github.com/gleam-lang/gleam/releases/download/${version}/gleam-${version}-x86_64-unknown-linux-musl.tar.gz";
-          sha256 = "sha256-uc+CAZgfWMEi/E+VPYXyeOftqib6oPOFMpnKv+G3ydw=";
+          sha256 = "sha256-SVWjjC6MmUV0WOJHFHLM1e48Rb12N6MVzjO8zw3XXZ4=";
         }
     );
     phases = [ "installPhase" ];
