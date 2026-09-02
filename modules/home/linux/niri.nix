@@ -168,7 +168,7 @@
       ];
       "Mod+Shift+V".action.spawn = [
         "vicinae"
-        "vicinae://extensions/vicinae/clipboard/history"
+        "vicinae://launch/clipboard/history"
       ];
 
       # Audio control
