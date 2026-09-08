@@ -141,9 +141,8 @@ in
       If uncertain, say so. Never invent APIs, types, or file paths.
       Ask before acting on ambiguous requests.
       Don't add dependencies without asking.
-      Don't overexplain in comments, keep them concise.
+      Don't overexplain comments, keep them simple and concise! Only add comments if necessary!
       Don't delete comments that are still relevant.
-
       Make minimal, focused changes. Ask before refactoring unrelated code.
       Match existing style and patterns in the file.
       Prefer small, composable functions. No premature abstraction.
