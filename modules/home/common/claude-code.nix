@@ -116,6 +116,7 @@ in
           "Bash(fd *)"
         ];
       };
+      outputStyle = "Explanatory";
       theme = "auto";
       feedbackSurveyRate = 0;
       env = {
