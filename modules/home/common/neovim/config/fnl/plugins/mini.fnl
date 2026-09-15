@@ -111,6 +111,13 @@
                 (string.format "%s %s" icon filetype)
                 filetype)))))
 
+  (fn section_lsp [args]
+    "Display active LSP progress, tracked in lsp.fnl"
+    (if (statusline.is_truncated args.trunc_width)
+        ""
+        (let [status (or vim.g.lsp_progress "")]
+          (if (= status "") "" (.. "\u{f0a3}  " status)))))
+
   (fn section_location [args]
     "Display cursor location: column|total-cols line|total-lines percentage"
     (if (statusline.is_truncated args.trunc_width) "%l|%L"
@@ -147,6 +154,7 @@
                vcs (section_vcs {:trunc_width 75})
                filename (section_filename {:trunc_width 75})
                fileinfo (section_fileinfo {:trunc_width 100})
+               lsp (section_lsp {:trunc_width 120})
                search (statusline.section_searchcount {:trunc_width 75})
                location (section_location {:trunc_width 100})]
            (combine_groups [{:hl mode_hl :strings [mode] :rounded false}
@@ -165,7 +173,7 @@
                                 "")
                             ; " "
                             {:hl :MiniStatuslineFileinfo
-                             :strings [fileinfo]
+                             :strings [fileinfo lsp]
                              :rounded false}
                             ; " "
                             {:hl mode_hl

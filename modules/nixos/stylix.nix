@@ -5,23 +5,24 @@
     autoEnable = false;
 
     # light
-    polarity = "light";
+    # polarity = "light";
+    # image = ../../assets/wallpapers/mifuu-oda-02_upscayl_4x_upscayl-standard-4x.png;
+    # base16Scheme = "${pkgs.base16-schemes}/share/themes/cupcake.yaml";
+
     # base16Scheme = "${pkgs.base16-schemes}/share/themes/brushtrees.yaml";
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/cupcake.yaml";
     # base16Scheme = "${pkgs.base16-schemes}/share/themes/terracotta.yaml";
     # base16Scheme = "${pkgs.base16-schemes}/share/themes/chinoiserie.yaml";
 
     # dark
-    # polarity = "light";
-    # base16Scheme = "${pkgs.base16-schemes}/share/themes/chinoiserie-night.yaml";
-    # base16Scheme = "${pkgs.base16-schemes}/share/themes/chinoiserie-morandi.yaml";
-    # base16Scheme = "${pkgs.base16-schemes}/share/themes/vesper.yaml";
-    # base16Scheme = "${pkgs.base16-schemes}/share/themes/chalk.yaml";
-    # base16Scheme = "${pkgs.base16-schemes}/share/themes/kanagawa-dragon.yaml";
-    # base16Scheme = "${pkgs.base16-schemes}/share/themes/mountain.yaml";
-    # base16Scheme = "${pkgs.base16-schemes}/share/themes/ashes.yaml";
+    polarity = "dark";
+    image = ../../assets/wallpapers/mifuu-oda-02_upscayl_4x_upscayl-standard-4x-inverted.png;
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/kanagawa-dragon.yaml";
 
-    image = ../../assets/wallpapers/mifuu-oda-02_upscayl_4x_upscayl-standard-4x.png;
+    # base16Scheme = "${pkgs.base16-schemes}/share/themes/chinoiserie-morandi.yaml";
+    # base16Scheme = "${pkgs.base16-schemes}/share/themes/ashes.yaml";
+    # base16Scheme = "${pkgs.base16-schemes}/share/themes/chalk.yaml";
+    # base16Scheme = "${pkgs.base16-schemes}/share/themes/mountain.yaml";
+
 
     cursor = {
       # name = "Maple";

@@ -41,7 +41,7 @@
                                                    [:kind]]
                                          :components {:label {:width {:fill true
                                                                       :max 40}}}}}
-                           :ghost_text {:enabled true}}
+                           :ghost_text {:enabled false}}
               :keymap {:preset :default
                        :<C-CR> [(fn [cmp] (cmp.select_and_accept))]}
               :signature {:enabled true :window {:show_documentation false}}

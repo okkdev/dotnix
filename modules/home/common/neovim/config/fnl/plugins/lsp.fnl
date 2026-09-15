@@ -26,24 +26,36 @@
                                              :callback vim.lsp.buf.clear_references}))
                                  nil)})
 
-; Route LSP $/progress into ui2 messages (:h LspProgress)
+; Track LSP $/progress for the statusline (:h LspProgress)
+(local progress {})
+
+(fn progress_label [token]
+  (let [p (. progress token)]
+    (if (not p) ""
+        p.percent (string.format "%s %d%%%%" p.title p.percent)
+        p.title)))
+
 (autocmd :LspProgress
          {:callback (fn [ev]
                       (let [value ev.data.params.value
-                            client (vim.lsp.get_client_by_id ev.data.client_id)]
-                        (vim.api.nvim_echo [[(or value.message :done)]] false
-                                           {:id (.. :lsp. ev.data.params.token)
-                                            :kind :progress
-                                            :source :vim.lsp
-                                            :title (.. "LSP["
-                                                       (or (and client
-                                                                client.name)
-                                                           :lsp)
-                                                       "] " (or value.title ""))
-                                            :status (if (= value.kind :end)
-                                                        :success
-                                                        :running)
-                                            :percent value.percentage})))})
+                            token ev.data.params.token
+                            prev (. progress token)
+                            ; the spec only sends the title on `begin`
+                            entry (when (not= value.kind :end)
+                                    {:title (or value.title (and prev prev.title))
+                                     :percent value.percentage})]
+                        (tset progress token entry)
+                        (let [n (vim.tbl_count progress)
+                              label (progress_label (if entry token
+                                                        (next progress)))
+                              status (if (= n 0) ""
+                                         (> n 1) (string.format "%s (+%d)" label
+                                                                (- n 1))
+                                         label)]
+                          (when (not= vim.g.lsp_progress status)
+                            (set vim.g.lsp_progress status)
+                            (vim.cmd.redrawstatus))))
+                      nil)})
 
 ; Diagnostic config
 (vim.diagnostic.config {:severity_sort true

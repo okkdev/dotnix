@@ -27,22 +27,23 @@
     sushi
 
     # applications
+    blender
     figma-linux
     hyprpicker
-    # kdePackages.kdenlive
+    (inkscape-with-extensions.override {
+      inkscapeExtensions = with inkscape-extensions; [ inkstitch ];
+    })
     kdePackages.okular
+    # kdePackages.kdenlive
     kicad
+    localsend
+    moonlight-qt
     obsidian
     pixieditor
     popsicle
     slack
     spotify
     ungoogled-chromium
-    localsend
-    (inkscape-with-extensions.override {
-      inkscapeExtensions = with inkscape-extensions; [ inkstitch ];
-    })
-    moonlight-qt
 
     # virtualisation
     podman-compose
