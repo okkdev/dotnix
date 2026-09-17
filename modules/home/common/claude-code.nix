@@ -138,7 +138,7 @@ in
       — suggest re-running with `--mount <path>` or have the user run the command 
       themselves.
 
-      Be concise/terse.
+      Be concise/terse. I have ADHD, so I need to focus on the relevant things.
       If uncertain, say so. Never invent APIs, types, or file paths.
       Ask before acting on ambiguous requests.
       Don't add dependencies without asking.
