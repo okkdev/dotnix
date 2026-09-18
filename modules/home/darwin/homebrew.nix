@@ -2,9 +2,9 @@
 
 let
   taps = [
-    "koekeishiya/formulae"
+    "asmvik/formulae"
     "FelixKratz/formulae"
-    "jackielii/tap"
+    # "jackielii/tap"
   ];
 
   brews = [
@@ -76,7 +76,7 @@ with lib;
 
       ) casks);
     onChange = ''
-      /opt/homebrew/bin/brew bundle install --cleanup --no-upgrade --force --global --verbose
+      /opt/homebrew/bin/brew bundle install --no-upgrade --force --global --verbose
     '';
   };
 }
