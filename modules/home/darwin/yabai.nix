@@ -89,25 +89,30 @@ with lib;
     executable = true;
     text =
       let
+        cmdModMask = "cmd";
+        cmdMoveMask = "cmd + ctrl";
+        cmdModAltMask = "cmd + shift";
         modMask = "shift + alt";
         moveMask = "ctrl + shift + alt";
       in
       # sh
       ''
         # focus window
-        ${modMask} - h : yabai -m window --focus west || yabai -m window --focus stack.prev || yabai -m window --focus stack.last
-        ${modMask} - j : yabai -m window --focus south
-        ${modMask} - k : yabai -m window --focus north
-        ${modMask} - l : yabai -m window --focus east || yabai -m window --focus stack.next || yabai -m window --focus stack.first
+        ${cmdModMask} - h : yabai -m window --focus west || yabai -m window --focus stack.prev || yabai -m window --focus stack.last
+        ${cmdModMask} - j : yabai -m window --focus south
+        ${cmdModMask} - k : yabai -m window --focus north
+        ${cmdModMask} - l : yabai -m window --focus east || yabai -m window --focus stack.next || yabai -m window --focus stack.first
         # swap managed window
-        ${moveMask} - h : yabai -m window --swap west
-        ${moveMask} - j : yabai -m window --swap south
-        ${moveMask} - k : yabai -m window --swap north
-        ${moveMask} - l : yabai -m window --swap east
+        ${cmdMoveMask} - h : yabai -m window --swap west
+        ${cmdMoveMask} - j : yabai -m window --swap south
+        ${cmdMoveMask} - k : yabai -m window --swap north
+        ${cmdMoveMask} - l : yabai -m window --swap east
         # change space
         ${modMask} - b : yabai -m space --layout bsp
         ${modMask} - s : yabai -m space --layout stack
         ${modMask} - f : yabai -m space --layout float
+        # float / unfloat window and center on screen
+        ${modMask} - t : yabai -m window --toggle float; yabai -m window --grid 4:4:1:1:2:2
         # rotate space
         # , comma
         ${moveMask} - 0x2B : yabai -m space --rotate 270
@@ -124,13 +129,13 @@ with lib;
           map toString (range 1 9)
         )}
         # focus monitor
-        ${modMask} - p : yabai -m display --focus prev
-        ${modMask} - n : yabai -m display --focus next
-        ${modMask} - r : yabai -m display --focus recent
+        ${cmdModAltMask} - p : yabai -m display --focus prev
+        ${cmdModAltMask} - n : yabai -m display --focus next
+        # ${cmdModAltMask} - r : yabai -m display --focus recent
         # send window to monitor and follow focus
-        ${moveMask} - p : yabai -m window --display prev; yabai -m display --focus prev
-        ${moveMask} - n : yabai -m window --display next; yabai -m display --focus next
-        ${moveMask} - r : yabai -m window --display recent; yabai -m display --focus recent
+        ${cmdMoveMask} - p : yabai -m window --display prev; yabai -m display --focus prev
+        ${cmdMoveMask} - n : yabai -m window --display next; yabai -m display --focus next
+        # ${cmdMoveMask} - r : yabai -m window --display recent; yabai -m display --focus recent
         # balance size of windows
         ${modMask} - return : yabai -m space --balance
         # fullscreen window
@@ -144,8 +149,6 @@ with lib;
         ${moveMask} - right : yabai -m window --resize left:20:0
         ${moveMask} - up : yabai -m window --resize top:-20:0
         ${moveMask} - down : yabai -m window --resize top:20:0
-        # float / unfloat window and center on screen
-        ${modMask} - t : yabai -m window --toggle float; yabai -m window --grid 4:4:1:1:2:2
 
         # unbind hide window shortcut
         cmd - h : skhd -k ""
