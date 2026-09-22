@@ -26,6 +26,25 @@
                                              :callback vim.lsp.buf.clear_references}))
                                  nil)})
 
+; Route LSP $/progress into ui2 messages (:h LspProgress)
+(autocmd :LspProgress
+         {:callback (fn [ev]
+                      (let [value ev.data.params.value
+                            client (vim.lsp.get_client_by_id ev.data.client_id)]
+                        (vim.api.nvim_echo [[(or value.message :done)]] false
+                                           {:id (.. :lsp. ev.data.params.token)
+                                            :kind :progress
+                                            :source :vim.lsp
+                                            :title (.. "LSP["
+                                                       (or (and client
+                                                                client.name)
+                                                           :lsp)
+                                                       "] " (or value.title ""))
+                                            :status (if (= value.kind :end)
+                                                        :success
+                                                        :running)
+                                            :percent value.percentage})))})
+
 ; Diagnostic config
 (vim.diagnostic.config {:severity_sort true
                         :update_in_insert false

@@ -46,4 +46,6 @@
 ; Experimental builtin cmdline/message UI (replaces noice)
 (local ui2 (require :vim._core.ui2))
 
-(ui2.enable {})
+(ui2.enable {:enable true
+             :msg {:targets {:progress :msg :echomsg :msg}
+                   :msg {:timeout 5000}}})
