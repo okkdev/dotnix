@@ -139,7 +139,7 @@ with lib;
         # balance size of windows
         ${modMask} - return : yabai -m space --balance
         # fullscreen window
-        ${modMask} - space : yabai -m window --toggle zoom-fullscreen
+        ${cmdModAltMask} - f : yabai -m window --toggle zoom-fullscreen
         # window size
         ${modMask} - left : yabai -m window --resize right:-20:0
         ${modMask} - right : yabai -m window --resize right:20:0
