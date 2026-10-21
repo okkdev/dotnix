@@ -9,6 +9,7 @@
     ./common/neovim
     ./common/helix.nix
     ./common/claude-code.nix
+    ./common/herdr.nix
   ];
 
   home.sessionVariables = {
