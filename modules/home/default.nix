@@ -65,6 +65,8 @@
     uiua
     # d2
     chez
+    janet
+    jpm
 
     # LSPs and formatters
     biome
