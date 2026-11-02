@@ -23,6 +23,20 @@ self: super: {
     '';
   };
 
+  # spork/fmt formatter; spork isn't in nixpkgs
+  janet-format =
+    let
+      spork = super.fetchFromGitHub {
+        owner = "janet-lang";
+        repo = "spork";
+        rev = "v1.3.0";
+        sha256 = "sha256-H6QdzMXesedPmyGzq83H9rDxyw61Efv8BOPP+2rmulg=";
+      };
+    in
+    super.writeShellScriptBin "janet-format" ''
+      JANET_PATH=${spork} exec ${super.janet}/bin/janet ${spork}/bin/janet-format "$@"
+    '';
+
   # Vim Plugins
   vimPlugins = super.vimPlugins // rec {
     bg-nvim = super.vimUtils.buildVimPlugin {

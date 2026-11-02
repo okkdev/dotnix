@@ -45,9 +45,9 @@
     ollama
 
     # Programming
-    beam28Packages.erlang
-    beam28Packages.rebar3
-    beam28Packages.elixir_1_20
+    beam29Packages.erlang
+    beam29Packages.rebar3
+    beam29Packages.elixir_1_20
     # dotnetCorePackages.dotnet_9.sdk
     # mono
     nodejs_24
@@ -77,6 +77,7 @@
     fennel-ls
     fnlfmt
     gdtoolkit_4
+    janet-format
     mdx-language-server
     nixd
     nixfmt

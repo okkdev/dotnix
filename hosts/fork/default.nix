@@ -176,10 +176,16 @@
 
   # nix settings
   nix = {
-    settings.experimental-features = [
-      "nix-command"
-      "flakes"
-    ];
+    settings = {
+      experimental-features = [
+        "nix-command"
+        "flakes"
+      ];
+      trusted-users = [
+        "root"
+        "jen"
+      ];
+    };
 
     gc = {
       automatic = true;

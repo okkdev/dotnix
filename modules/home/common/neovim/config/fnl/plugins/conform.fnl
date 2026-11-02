@@ -13,6 +13,7 @@
                                    :gdscript [:gdformat]
                                    :gleam [:rustywind_gleam :gleam]
                                    :heex [:rustywind :mix]
+                                   :janet [:janet-format]
                                    :html [:superhtml :rustywind]
                                    :javascript [:biome :rustywind]
                                    :javascriptreact [:biome :rustywind]
