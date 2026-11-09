@@ -94,6 +94,7 @@ in
 
       lockscreen.enabled = true;
       lockscreen.fingerprint = true;
+      lockscreen.transition = [ ];
       lockscreen_widgets.enabled = false;
     };
   };

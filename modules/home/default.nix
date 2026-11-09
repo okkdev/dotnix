@@ -35,7 +35,7 @@
     (writeShellScriptBin "gsed" "exec ${gnused}/bin/sed \"$@\"") # macos gsed workaround
     ouch
     tealdeer
-    rainfrog
+    # rainfrog
     difftastic
     wireguard-tools
     gnumake
@@ -54,6 +54,7 @@
     corepack_24
     typescript
     luaPackages.fennel
+    gcc
     gleam
     libiconv
     llvm

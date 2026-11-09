@@ -41,8 +41,6 @@
     obsidian
     pixieditor
     popsicle
-    slack
-    spotify
     ungoogled-chromium
 
     # virtualisation
@@ -97,24 +95,28 @@
   services = {
     udiskie.enable = true;
 
-    swayidle = {
+    # hypridle, unlike swayidle, honors logind idle inhibitors (noctalia's caffeine)
+    hypridle = {
       enable = true;
-      systemdTargets = [ "niri.service" ];
-      # no before-sleep: noctalia holds a logind sleep-delay inhibit and locks itself
-      timeouts = [
-        {
-          timeout = 60 * 15;
-          command = "${config.programs.niri.package}/bin/niri msg action power-off-monitors";
-        }
-        {
-          timeout = 60 * 15;
-          command = "${pkgs.systemd}/bin/loginctl lock-session";
-        }
-        {
-          timeout = 60 * 30;
-          command = "${pkgs.systemd}/bin/systemctl suspend";
-        }
-      ];
+      systemdTarget = "niri.service";
+      settings = {
+        # no before-sleep: noctalia holds a logind sleep-delay inhibit and locks itself
+        general.inhibit_sleep = 0;
+        listener = [
+          {
+            timeout = 60 * 15;
+            on-timeout = "${config.programs.niri.package}/bin/niri msg action power-off-monitors";
+          }
+          {
+            timeout = 60 * 15;
+            on-timeout = "${pkgs.systemd}/bin/loginctl lock-session";
+          }
+          {
+            timeout = 60 * 30;
+            on-timeout = "${pkgs.systemd}/bin/systemctl suspend";
+          }
+        ];
+      };
     };
   };
 

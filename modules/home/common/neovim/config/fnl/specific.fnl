@@ -18,6 +18,13 @@
 ;                       :callback (fn [])
 ;                       :desc "Gleam stuff"})
 
+; Janet
+
+(autocmd [:FileType] {:pattern [:janet]
+                      :callback (fn []
+                                  (set vim.opt_local.commentstring "# %s"))
+                      :desc "Janet stuff"})
+
 ; GDScript
 
 (when (vim.loop.fs_stat (.. (vim.fn.getcwd) :/project.godot))
