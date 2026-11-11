@@ -50,6 +50,7 @@
     gnome.gnome-keyring.enable = true;
 
     udisks2.enable = true;
+    gvfs.enable = true;
     hardware.bolt.enable = true;
     flatpak.enable = true;
   };
