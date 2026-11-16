@@ -48,6 +48,7 @@ let
             [[ "$file" =~ (^|/)build(/|$) ]] && continue
             [[ "$file" =~ (^|/)target(/|$) ]] && continue
             [[ "$file" =~ (^|/)\.venv(/|$) ]] && continue
+            [[ "$file" =~ (^|/)\.jj(/|$) ]] && continue
             if [[ -L "$dir/$file" ]]; then
               continue
             elif [[ -d "$dir/$file" ]]; then

@@ -36,7 +36,12 @@
     kdePackages.okular
     # kdePackages.kdenlive
     kicad
-    localsend
+    # nixpkgs links libz without zlib in RUNPATH
+    (localsend.overrideAttrs (old: {
+      postFixup = (old.postFixup or "") + ''
+        patchelf --add-rpath ${zlib}/lib $out/app/localsend/localsend_app
+      '';
+    }))
     moonlight-qt
     obsidian
     pixieditor
