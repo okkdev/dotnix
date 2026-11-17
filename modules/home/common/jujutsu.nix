@@ -84,6 +84,11 @@
           "--revisions"
           "bookmarks()"
         ];
+        mine = [
+          "log"
+          "--revisions"
+          "mine()"
+        ];
         rb = [ "rebase" ];
       };
       revsets.bookmark-advance-to = "@-";
