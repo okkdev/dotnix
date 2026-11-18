@@ -10,6 +10,7 @@
     ./common/helix.nix
     ./common/claude-code.nix
     ./common/herdr.nix
+    ./common/maki
   ];
 
   home.sessionVariables = {

@@ -66,23 +66,37 @@ let
         hide_gitignored "$mpath"
       done
 
+      RO_PATHS=(
+        /usr
+        /bin
+        /lib
+        /lib64
+        /nix
+        /etc/nix
+        /etc/profiles
+        /etc/static/profiles
+        /run/current-system
+        /etc/resolv.conf
+        /etc/hosts
+        /etc/passwd
+        /etc/group
+        /etc/localtime
+        /etc/ssl/certs/ca-bundle.crt
+        /etc/ssl/certs/ca-certificates.crt
+        "$HOME/.config/git"
+        "$HOME/.config/jj"
+        "$HOME/.rustup"
+        "$HOME/.cargo"
+        "$HOME/.mix"
+      )
+
+      RO_BINDS=()
+      for path in "''${RO_PATHS[@]}"; do
+        RO_BINDS+=(--ro-bind-try "$path" "$path")
+      done
+
       bwrap \
-        --ro-bind /usr /usr \
-        --ro-bind /bin /bin \
-        --ro-bind-try /lib /lib \
-        --ro-bind-try /lib64 /lib64 \
-        --ro-bind-try /nix /nix \
-        --ro-bind-try /etc/nix /etc/nix \
-        --ro-bind-try /etc/profiles /etc/profiles \
-        --ro-bind-try /etc/static/profiles /etc/static/profiles \
-        --ro-bind-try /run/current-system /run/current-system \
-        --ro-bind-try "$HOME/.cargo" "$HOME/.cargo" \
-        --ro-bind-try "$HOME/.mix" "$HOME/.mix" \
-        --ro-bind /etc/resolv.conf /etc/resolv.conf \
-        --ro-bind /etc/hosts /etc/hosts \
-        --ro-bind /etc/passwd /etc/passwd \
-        --ro-bind /etc/group /etc/group \
-        --ro-bind /etc/ssl/certs/ca-bundle.crt /etc/ssl/certs/ca-bundle.crt \
+        "''${RO_BINDS[@]}" \
         --bind "$PWD" "$PWD" \
         --bind "$HOME/.claude" "$HOME/.claude" \
         --bind "$CREDS_FILE" "$HOME/.claude/.credentials.json" \

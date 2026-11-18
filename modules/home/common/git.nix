@@ -8,6 +8,7 @@
       ".DS_Store"
       ".direnv"
       ".claude"
+      ".maki"
     ];
     includes = [
       {

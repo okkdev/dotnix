@@ -26,6 +26,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.home-manager.follows = "home-manager";
     };
+    maki = {
+      url = "github:tontinton/maki";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -50,6 +54,7 @@
 
             ./hosts/boook
           ];
+          extraSpecialArgs = { inherit inputs; };
         };
         dreibook = home-manager.lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages.aarch64-darwin;
@@ -61,6 +66,7 @@
 
             ./hosts/dreibook
           ];
+          extraSpecialArgs = { inherit inputs; };
         };
       };
 
