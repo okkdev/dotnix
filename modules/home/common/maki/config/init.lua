@@ -10,3 +10,4 @@ maki.setup({
 })
 
 require("semble")
+require("lancet")

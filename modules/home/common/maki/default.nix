@@ -21,6 +21,27 @@ let
     hash = "sha256-u1nYEzg/r8hlqFwhLzTDO/iRVJl45EfxkN8I6DslimQ=";
   };
 
+  lancet = pkgs.fetchzip rec {
+    version = "v0.4.3";
+    url = "https://github.com/TannerMidd/LANCET-model/releases/download/${version}/lancet-${version}-nano-cpu-int8.zip";
+    hash = "sha256-iQS0hGuScz6MpwyPzuLRB6hRsb5cTtbyiegDF/Jw9m8=";
+  };
+
+  lancet-classify = pkgs.writeShellApplication {
+    name = "lancet-classify";
+    runtimeInputs = [
+      (pkgs.python3.withPackages (ps: [
+        ps.numpy
+        ps.tokenizers
+        ps.onnxruntime
+      ]))
+    ];
+    text = ''
+      export OPENBLAS_NUM_THREADS=1
+      printf '%s\n' "$1" | python3 -I ${lancet}/classify.py --model ${lancet}/model
+    '';
+  };
+
   maki = inputs.maki.packages.${pkgs.stdenv.hostPlatform.system}.default;
 
   maki-wrapped = pkgs.writeShellApplication {
@@ -121,6 +142,7 @@ in
   home.packages = [
     (if pkgs.stdenv.hostPlatform.isDarwin then maki else maki-wrapped)
     semble
+    lancet-classify
   ];
 
   xdg.configFile = {
