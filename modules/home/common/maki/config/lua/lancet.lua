@@ -12,7 +12,7 @@ local function classify(command)
 	if not id then
 		return nil, err
 	end
-	local res, werr = maki.fn.jobwait(id, 20000)
+	local res, werr = maki.fn.jobwait(id, 30000)
 	if not res then
 		return nil, werr
 	end
