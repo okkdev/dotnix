@@ -1,0 +1,11 @@
+[bash]
+allow = [
+  "ls *", "cat *", "head *", "tail *", "wc *", "pwd *", "echo *",
+  "tree *", "which *", "diff *", "jq *", "grep *", "rg *",
+
+  "git status *", "git diff *", "git log *", "git show *",
+]
+deny = [
+  "sudo *", "git push *",
+  "nixos-rebuild switch *",
+]
